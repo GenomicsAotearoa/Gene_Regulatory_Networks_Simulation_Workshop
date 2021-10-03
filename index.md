@@ -1,5 +1,6 @@
 ---
-title: {site.title}
+layout: page
+title: "Scaling-up simulation-based research on NeSI"
 ---
 
 ## Pre-workshop information
