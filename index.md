@@ -1,4 +1,5 @@
 ---
+title: {site.title}
 ---
 
 ## Pre-workshop information
