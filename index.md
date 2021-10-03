@@ -1,4 +1,4 @@
-Trying something else
+This advanced workshop is an introduction to...
 
 ## Pre-workshop information
 
