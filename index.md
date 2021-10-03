@@ -1,7 +1,4 @@
----
-layout: page
-title: "Scaling-up simulation-based research on NeSI"
----
+Trying something else
 
 ## Pre-workshop information
 
