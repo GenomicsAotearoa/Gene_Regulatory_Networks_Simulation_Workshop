@@ -1,2 +1,3 @@
 theme: jekyll-theme-cayman
-title: "Scaling-up simulation-based research on NeSI"
+title: "Scaling-up Gene Regulatory Network Simulations"
+description: "With an introduction to parallelisation and High Performance Computing"
