@@ -18,8 +18,8 @@ This advanced workshop is an introduction to the stochastic simulation of Gene R
     1. [Why are simulations important in research?](#why-are-simulations-important-in-research)
     2. [What are Gene Regulatory Networks?](#what-are-gene-regulatory-networks)
     3. [Simulating Gene Regulatory Networks](#simulating-gene-regulatory-networks)
-    4. [The sismonr package](#the-sismonr-package)
-    5. A (brief) introduction to the Stochastic Simulation algorithm
+    4. A (brief introduction of the Stochastic Simulation Algorithm)
+    5. The sismonr package
 2. The research question
     1. The topic (simulation of anthocyanin biosynthesis pathway)
     2. Setting on local machine
@@ -161,3 +161,18 @@ where :
 One crucial thing to understand is that a reaction in a stochastic system is a simplified representation of a set of true biochemical reactions happening in the biological system. For example, in the example above, the reaction `R1 --> R1 + P1`, which represents the translation of gene 1, ignores the fact that the translation of a messenger RNA is a very complex process involving many steps and molecular actors.
 
 Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts.
+
+
+
+
+### A (brief) introduction to the Stochastic Simulation Algorithm
+
+### The sismonr package
+
+## The research question
+
+### Modelling the anthocyanin biosynthesis regulation pathway in eudicots
+
+<img src="images/anthocyanin_model_animation.gif" alt="The sismonr stochastic system rules" width="700"/>
+
+<small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/images/anthocyanin_pathway_schema.png). </small>
