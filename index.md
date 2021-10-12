@@ -18,7 +18,7 @@ This advanced workshop is an introduction to the stochastic simulation of Gene R
     1. [Why are simulations important in research?](#why-are-simulations-important-in-research)
     2. [What are Gene Regulatory Networks?](#what-are-gene-regulatory-networks)
     3. [Simulating Gene Regulatory Networks](#simulating-gene-regulatory-networks)
-    4. The sismonr package
+    4. [The sismonr package](#the-sismonr-package)
     5. A (brief) introduction to the Stochastic Simulation algorithm
 2. The research question
     1. The topic (simulation of anthocyanin biosynthesis pathway)
@@ -78,7 +78,9 @@ As scientists gain knowledge into the regulatory relationships between genes, th
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
 
 
-#### Simulating Gene Regulatory Networks
+### Simulating Gene Regulatory Networks
+
+#### Classes of GRN models
 
 One way to understand the dynamics of GRNs is through simulation. Simulating GRNs allows us to:
 
@@ -96,3 +98,66 @@ There are many types of models that can be developed to simulate GRNs. For examp
 
 Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size.
 
+#### Generating a stochastic model with the sismonr package
+
+Once we have selected a class of model to represent our chosen GRN, decisions must be made about the construction of the model. In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is not one correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. For example, the `sismonr` uses the following rules:
+
+
+<img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/>
+
+<small>This is how `sismonr` models different type of expression regulation. Each arrow i -> j in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
+
+For example, the following small GRN:
+
+<img src="images/example_GRN1.png" alt="A small GRN with 3 genes" width="500"/>
+
+<small>A small GRN with 3 genes; gene 1 activates the transcription of gene 2; gene 2 activates the transcription of gene 3; and gene 3 represses the transcription of gene 1. </small>
+
+is transformed into the following set of reactions:
+
+``` r
+## Binding/unbinding of regulators to/from their target's DNA
+Pr2reg1F + P1 --> Pr2reg1B 
+Pr2reg1B --> Pr2reg1F + P1 
+Pr3reg2F + P2 --> Pr3reg2B 
+Pr3reg2B --> Pr3reg2F + P2 
+Pr1reg3F + P3 --> Pr1reg3B 
+
+## Basal and regulated transcription
+Pr1reg3B --> Pr1reg3F + P3 
+Pr1reg3F --> Pr1reg3F + R1 
+Pr2reg1F --> Pr2reg1F + R2 
+Pr2reg1B --> Pr2reg1B + R2 
+Pr3reg2F --> Pr3reg2F + R3 
+Pr3reg2B --> Pr3reg2B + R3 
+
+## Translation
+R1 --> R1 + P1 
+R2 --> R2 + P2 
+R3 --> R3 + P3 
+
+## RNA decay
+R1 --> 0 
+R2 --> 0 
+R3 --> 0 
+
+## Protein decay (including those bound to DNA)
+P1 --> 0 
+Pr2reg1B --> Pr2reg1F 
+P2 --> 0 
+Pr3reg2B --> Pr3reg2F 
+P3 --> 0 
+Pr1reg3B --> Pr1reg3F
+```
+
+where :
+
+- `PrXregY` represents the DNA region of gene X where regulator Y binds; `PrXregYF` represents the region with no bound regulator (free), and `PrXregYB` represents the region with a regulator bound to it
+- `RX` represents the RNA produced by gene X;
+- `PX` represents the protein produced by gene X.
+
+(It's actually a bit more complicated than that, as `sismonr` accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately.)
+
+One crucial thing to understand is that a reaction in a stochastic system is a simplified representation of a set of true biochemical reactions happening in the biological system. For example, in the example above, the reaction `R1 --> R1 + P1`, which represents the translation of gene 1, ignores the fact that the translation of a messenger RNA is a very complex process involving many steps and molecular actors.
+
+Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts.
