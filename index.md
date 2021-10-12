@@ -51,7 +51,7 @@ The instructions necessary to a cell's functioning are encoded in its DNA, which
 2. Translation: the messenger RNA is used as a template to create proteins; each consecutive triplet of nucleotides is translated into a specific amino acid (the building blocks of proteins). The correspondence between triplets of nucleotides and amino acids is known as the genetic code. A sequence of amino acids is thus created from the messenger RNA template, and, once completed, constitutes the synthesised protein.
 3. Post-translational modifications: once synthesised, a protein may have to undergo some transformations before attaining its functional state. Such modifications include changes in conformation (i.e. the way in which the sequence of amino acids is folded in the 3D space), cleavage of a portion of the amino acid sequence, addition of molecular signals to specific amino acids, or binding to other proteins to form protein complexes.
 
-![Schema of the gene expression process](images/gene_expression_schema.png)
+![Schema of the gene expression process](./images/gene_expression_schema.png)
 
 
 #### Regulation of gene expression
@@ -69,6 +69,6 @@ Regulators that increase the expression of their target are called activators; t
 
 As scientists gain knowledge into the regulatory relationships between genes, they summarisethis information into graphs, which we call Gene Regulatory Networks (GRN). In these graphs, nodes represent genes, and a directed arrow from Gene A directed to Gene B informs that the products of Gene A control the expression of gene B. An example of GRN is given in Figure X.
 
-![An example of Gene Regulatory Network](images/grn.jpg)
+![An example of Gene Regulatory Network](./images/grn.jpg)
 
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
