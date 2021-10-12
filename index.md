@@ -14,10 +14,10 @@ This advanced workshop is an introduction to the stochastic simulation of Gene R
 
 ## Outline (draft)
 
-1. Introduction:
-    1. Why are simulations important in research?
-    2. What are Gene Regulatory Networks?
-    3. Simulating Gene Regulatory Networks
+1. [Introduction](#introduction)
+    1. [Why are simulations important in research?](#why-are-simulations-important-in-research)
+    2. [What are Gene Regulatory Networks?](#what-are-gene-regulatory-networks)
+    3. [Simulating Gene Regulatory Networks](#simulating-gene-regulatory-networks)
     4. The sismonr package
     5. A (brief) introduction to the Stochastic Simulation algorithm
 2. The research question
@@ -76,3 +76,23 @@ As scientists gain knowledge into the regulatory relationships between genes, th
 <small>From Ma, Sisi, et al. "De-novo learning of genome-scale regulatory networks in S. cerevisiae." *Plos one* 9.9 (2014): e106479. (available under license [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) )</small>
 
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
+
+
+#### Simulating Gene Regulatory Networks
+
+One way to understand the dynamics of GRNs is through simulation. Simulating GRNs allows us to:
+
+- Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
+- predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell to the presence of a hormone);
+- predict the behaviour of the system in response to modifications of the GRN (e.g. what happens when a critical gene is mutated in a cancer cell?);
+- understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
+- To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
+
+There are many types of models that can be developed to simulate GRNs. For example:
+
+- Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
+- Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
+- Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
+
+Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size.
+
