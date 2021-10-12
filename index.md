@@ -69,6 +69,6 @@ Regulators that increase the expression of their target are called activators; t
 
 As scientists gain knowledge into the regulatory relationships between genes, they summarisethis information into graphs, which we call Gene Regulatory Networks (GRN). In these graphs, nodes represent genes, and a directed arrow from Gene A directed to Gene B informs that the products of Gene A control the expression of gene B. An example of GRN is given in Figure X.
 
-![An example of Gene Regulatory Network](./images/grn.jpg)
+![An example of Gene Regulatory Network](./images/grn.jpg "Test title")
 
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
