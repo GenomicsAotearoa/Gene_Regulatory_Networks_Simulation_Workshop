@@ -52,7 +52,7 @@ colsystem = createInSilicoSystem(empty = T,
                                  PC.PD.p = 0,
                                  PC.PTM.p = 0,
                                  PC.MR.p = 0,
-                                 ploidy = 1)
+                                 ploidy = 2)
 
 ## Changing the kinetic parameters of the genes
 colsystem$genes$TCrate = c(5, 0.1, 0.5, 0.01, 0.01, 0.1, 0.5)
@@ -215,7 +215,8 @@ save(colsystem, plants, plant_wt, plant_oe, plant_si, id2names, file = here("dat
 set.seed(123)
 sim = simulateInSilicoSystem(colsystem,
                              plants, 
-                             simtime = 10000,
-                             nepochs = 10000,
+                             simtime = 2500,
+                             nepochs = 2500,
                              ntrials = 1)
+sim$runningtime / 60
 plotSimulation(sim$Simulation, molecules = 1:7)
