@@ -2,7 +2,7 @@
 
 ## Outline
 
-{% include toc.html html=content %}
+{% include lib/toc.html html=content %}
 
 ## Why simulations are important in research
 
