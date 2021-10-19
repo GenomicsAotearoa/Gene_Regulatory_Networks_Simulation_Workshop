@@ -1,55 +1,66 @@
-
 # Introduction
 
 ## Outline
-- [Why simulations are important in research](#simulations-research)
-- [What are Gene Regulatory Networks](#what-are-grn)
-  - [An overview of gene expression](#gene-expression)
-  - [Regulation of gene expression](#reg-gene-expression)
-- [Simulating Gene Regulatory Networks](#sim-grn)
-  - [Classes of GRN models](#classes-of-grn-models)
-  - [Tools to simulate GRNs](#simulators)
-  - [The sismonr package](#sismonr)
-  - [Generating a stochastic model with the sismonr package](#stoch-sys-sismonr)
-  - [A (brief) introduction to the Stochastic Simulation Algorithm](#ssa)
+
+-   [Why simulations are important in research](#simulations-research)
+
+-   [What are Gene Regulatory Networks](#what-are-grn)
+
+    -   [An overview of gene expression](#gene-expression)
+    -   [Regulation of gene expression](#reg-gene-expression)
+
+-   [Simulating Gene Regulatory Networks](#sim-grn)
+
+    -   [Classes of GRN models](#classes-of-grn-models)
+    -   [Tools to simulate GRNs](#simulators)
+    -   [The sismonr package](#sismonr)
+    -   [Generating a stochastic model with the sismonr package](#stoch-sys-sismonr)
+    -   [A (brief) introduction to the Stochastic Simulation Algorithm](#ssa)
 
 <h2 id="simulations-research">
+
 Why simulations are important in research
+
 </h2>
 
 <h2 id="what-are-grn">
+
 What are Gene Regulatory Networks?
+
 </h2>
 
 <h3 id="gene-expression">
+
 An overview of gene expression
+
 </h3>
 
 The instructions necessary to a cell's functioning are encoded in its DNA, which is composed of two anti-parallel chains of nucleotides, intertwined into a double helix. Some portions of this DNA molecule, termed protein-coding genes, contain instructions about the synthesis of proteins, which are important molecular actors fulfilling essential roles in the cell. The complex multi-step process of decoding this information and using it to produce proteins is what we call gene expression. Briefly, gene expression involves:
 
-1. Transcription: the sequence of nucleotides that forms the gene is copied into a "free-floating" version called messenger RNA (mRNA), as the result of a complex series of biochemical interactions involving enzymes and other molecules.
-2. Translation: the messenger RNA is used as a template to create proteins; each consecutive triplet of nucleotides is translated into a specific amino acid (the building blocks of proteins). The correspondence between triplets of nucleotides and amino acids is known as the genetic code. A sequence of amino acids is thus created from the messenger RNA template, and, once completed, constitutes the synthesised protein.
-3. Post-translational modifications: once synthesised, a protein may have to undergo some transformations before attaining its functional state. Such modifications include changes in conformation (i.e. the way in which the sequence of amino acids is folded in the 3D space), cleavage of a portion of the amino acid sequence, addition of molecular signals to specific amino acids, or binding to other proteins to form protein complexes.
+1.  Transcription: the sequence of nucleotides that forms the gene is copied into a "free-floating" version called messenger RNA (mRNA), as the result of a complex series of biochemical interactions involving enzymes and other molecules.
+2.  Translation: the messenger RNA is used as a template to create proteins; each consecutive triplet of nucleotides is translated into a specific amino acid (the building blocks of proteins). The correspondence between triplets of nucleotides and amino acids is known as the genetic code. A sequence of amino acids is thus created from the messenger RNA template, and, once completed, constitutes the synthesised protein.
+3.  Post-translational modifications: once synthesised, a protein may have to undergo some transformations before attaining its functional state. Such modifications include changes in conformation (i.e. the way in which the sequence of amino acids is folded in the 3D space), cleavage of a portion of the amino acid sequence, addition of molecular signals to specific amino acids, or binding to other proteins to form protein complexes.
 
 ![Schema of the gene expression process](./images/gene_expression_schema.png)
 
 <small>Image credit: Fondation Merieux</small>
-    
 
 <h3 id="reg-gene-expression">
+
 Regulation of gene expression
+
 </h3>
 
 Cells respond and adapt to changes in the environment or other inter- and intra-cellular cues by modulating the expression of their genes, which affects the pool of available proteins. Regulation of gene expression can be achieved by different types of molecular actors: proteins encoded by other genes, regulatory non-coding RNAs (i.e. molecules of RNAs that are not used to produce proteins), or even metabolites.
 
 Regulators can control the expression of a given target gene by affecting different steps of the target's expression:
 
-- Regulation of transcription: this is the most-studied type of gene expression regulation. The regulatory molecule (a protein that regulates transcription are called a transcription factor) controls the production of messenger RNAs from the target gene.
-- Regulation of translation: the regulatory molecule controls the rate at which target mRNAs are translated to synthesise proteins.
-- Decay regulation: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded.
-- Post-translational regulation: the regulator modifies the shape or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
+-   Regulation of transcription: this is the most-studied type of gene expression regulation. The regulatory molecule (a protein that regulates transcription are called a transcription factor) controls the production of messenger RNAs from the target gene.
+-   Regulation of translation: the regulatory molecule controls the rate at which target mRNAs are translated to synthesise proteins.
+-   Decay regulation: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded.
+-   Post-translational regulation: the regulator modifies the shape or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
 
-Regulators that increase the expression of their target are called activators; those decreasing the expression of their target are called repressors. Typically, the relationship between regulator and target is quite specific, with most regulators controlling the expression of only a few target genes, and most genes being controlled by a small set of regulators. 
+Regulators that increase the expression of their target are called activators; those decreasing the expression of their target are called repressors. Typically, the relationship between regulator and target is quite specific, with most regulators controlling the expression of only a few target genes, and most genes being controlled by a small set of regulators.
 
 As scientists gain knowledge into the regulatory relationships between genes, they summarisethis information into graphs, which we call Gene Regulatory Networks (GRN). In these graphs, nodes represent genes, and a directed arrow from Gene A directed to Gene B informs that the products of Gene A control the expression of gene B. An example of GRN is given in Figure X.
 
@@ -60,39 +71,45 @@ As scientists gain knowledge into the regulatory relationships between genes, th
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
 
 <h2 id="sim-grn">
+
 Simulating Gene Regulatory Networks
+
 </h2>
 
 <h3 id="classes-of-grn-models">
+
 Classes of GRN models
+
 </h3>
 
 One way to understand the dynamics of GRNs is through simulation. Simulating GRNs allows us to:
 
-- Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
-- predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell to the presence of a hormone);
-- predict the behaviour of the system in response to modifications of the GRN (e.g. what happens when a critical gene is mutated in a cancer cell?);
-- understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
-- To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
+-   Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
+-   predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell to the presence of a hormone);
+-   predict the behaviour of the system in response to modifications of the GRN (e.g. what happens when a critical gene is mutated in a cancer cell?);
+-   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
+-   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
 
 There are many types of models that can be developed to simulate GRNs. For example:
 
-- Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
-- Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
-- Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
+-   Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
+-   Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
+-   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
 
 Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size.
 
-
-
 <h3 id="simulators">
+
 Tools to simulate GRNs
+
 </h3>
 
 *Mention a few of the maintstream tools for GRN simulation*
 
 <h3 id="sismonr">
+
 The sismonr package
+
 </h3>
 
 The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properies of biological regulatory networks. Alternatively, the user can construct their own network by adding/removing regulatory relationships between the genes. sismonr can supports different types of regulations (e.g. transcription, translation or decay regulations). Genes can encode for proteins or for non-coding regulatory RNAs. Gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr generates in-silico individuals, that carry different versions or alleles of the genes present in the GRN. This is quite useful to simulate gene expression in the presence of different mutations for example.
@@ -103,12 +120,30 @@ The particularity of sismonr is that it is available as an R package; but intern
 
 *Add instructions to open the sismonr kernel.*
 
-We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem`. 
+Before getting started, here are some abbreviations that are often used within sismonr:
 
-```r
+| Abbreviations | Meaning                         |
+|---------------|---------------------------------|
+| TC            | Transcription                   |
+| TL            | Translation                     |
+| RD            | RNA decay                       |
+| PD            | Protein decay                   |
+| PTM           | Post-translational modification |
+|               |                                 |
+| PC            | Protein-coding                  |
+| NC            | Noncoding                       |
+|               |                                 |
+| R             | RNA                             |
+| P             | Protein                         |
+| Pm            | Modified protein                |
+| C             | Regulatory complex              |
+
+We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem()`.
+
+``` r
 set.seed(12) # important for reproducibility of "random" results in R!
 small_grn <- createInSilicoSystem(G = 10, 
-                                  PC.p = 1, # proportion of genes in the GRN that are protein-coding
+                                  PC.p = 1, # proportion of genes that are protein-coding
                                   ploidy = 2) # ploidy of the system
 ```
 
@@ -116,7 +151,7 @@ Note that the first time you run a sismonr command, you might have to wait a few
 
 You can visualise the GRN you just created with:
 
-```r
+``` r
 plotGRN(small_grn)
 ```
 
@@ -126,30 +161,55 @@ Alternatively, you can get a list of the genes and regulatory relationships in t
 
 *update once I've made the getGenes() and getEdges() functions*
 
-In the data-frames of genes and regulatory relationships, you will notice that we use some abbreviations. The meanings are shown below:
+\*Maybe this is a to go further section?\* The `createInSilicoSystem` function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:
 
-| Abbreviations | Meaning |
-| ------------- | ------- |
-| TC | Transcription |
-| TL | Translation |
-| RD | RNA decay |
-| PD | Protein decay |
-| PTM | Post-translational modification |
-| | | 
-| PC | Protein-coding |
-| NC | Noncoding |
-| | |
-| R | RNA |
-| P | Protein |
-| Pm | Modified protein |
-| C | Regulatory complex | 
+``` r
+?insilicosystemargs 
+```
+
+**Exercise:** generate a network of 5 genes with only protein-coding genes that are regulators of transcription.
+
+<details>
+
+<summary>
+
+**Solution:**
+
+</summary>
+
+``` r
+set.seed(45)
+small_grn <- createInSilicoSystem(G = 5, 
+                                  PC.p = 1, 
+                                  PC.TC.p = 1)
+```
+
+</details>
+
+In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, but we're working on it).
+
+When adding a gene, you can specify its kinetic parameters, e.g. its transcription rate (in RNA/sec), RNA decay rate, etc.
+
+``` r
+small_grn2 <- addGene(small_grn, 
+                      coding = TRUE, 
+                      TCrate = 0.01,
+                      RDrate = 0.005)
+```
+
+Same thing when adding an edge to the GRN: you can decide if the regulation is activative or repressive, and the different rates of the regulation:
+
+``` r
+small_grn2 <- addEdge(small_grn2, 11, 10, regsign = "-1")
+```
 
 <h3 id="stoch-sys-sismonr">
+
 Generating a stochastic model with the sismonr package
+
 </h3>
 
 Once we have selected a class of model to represent our chosen GRN, decisions must be made about the construction of the model. In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is not one correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. For example, the `sismonr` uses the following rules:
-
 
 <img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/>
 
@@ -200,9 +260,9 @@ Pr1reg3B --> Pr1reg3F
 
 where :
 
-- `PrXregY` represents the DNA region of gene X where regulator Y binds; `PrXregYF` represents the region with no bound regulator (free), and `PrXregYB` represents the region with a regulator bound to it
-- `RX` represents the RNA produced by gene X;
-- `PX` represents the protein produced by gene X.
+-   `PrXregY` represents the DNA region of gene X where regulator Y binds; `PrXregYF` represents the region with no bound regulator (free), and `PrXregYB` represents the region with a regulator bound to it
+-   `RX` represents the RNA produced by gene X;
+-   `PX` represents the protein produced by gene X.
 
 (It's actually a bit more complicated than that, as `sismonr` accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately.)
 
@@ -210,6 +270,16 @@ One crucial thing to understand is that a reaction in a stochastic system is a s
 
 Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts.
 
+\*expand bullet points below\*
+
+-   show the rates for the reactions (need to add a function in sismonr for that)
+
+-   explain why it's not numbers (it depends on the genetic mutations of the different individuals
+
+-   generate individuals (DIY part?) and look at reaction rates for different individuals
+
 <h2 id="ssa">
+
 A (brief) introduction to the Stochastic Simulation Algorithm
+
 </h2>
