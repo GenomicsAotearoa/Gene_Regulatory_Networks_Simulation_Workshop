@@ -1,41 +1,14 @@
 # Introduction
 
-{:toc}
-
 ## Outline
 
--   [Why simulations are important in research](#simulations-research)
+{:toc}
 
--   [What are Gene Regulatory Networks](#what-are-grn)
+## Why simulations are important in research
 
-    -   [An overview of gene expression](#gene-expression)
-    -   [Regulation of gene expression](#reg-gene-expression)
+## What are Gene Regulatory Networks?
 
--   [Simulating Gene Regulatory Networks](#sim-grn)
-
-    -   [Classes of GRN models](#classes-of-grn-models)
-    -   [Tools to simulate GRNs](#simulators)
-    -   [The sismonr package](#sismonr)
-    -   [Generating a stochastic model with the sismonr package](#stoch-sys-sismonr)
-    -   [A (brief) introduction to the Stochastic Simulation Algorithm](#ssa)
-
-<h2 id="simulations-research">
-
-Why simulations are important in research
-
-</h2>
-
-<h2 id="what-are-grn">
-
-What are Gene Regulatory Networks?
-
-</h2>
-
-<h3 id="gene-expression">
-
-An overview of gene expression
-
-</h3>
+### An overview of gene expression
 
 The instructions necessary to a cell's functioning are encoded in its DNA, which is composed of two anti-parallel chains of nucleotides, intertwined into a double helix. Some portions of this DNA molecule, termed protein-coding genes, contain instructions about the synthesis of proteins, which are important molecular actors fulfilling essential roles in the cell. The complex multi-step process of decoding this information and using it to produce proteins is what we call gene expression. Briefly, gene expression involves:
 
@@ -47,11 +20,7 @@ The instructions necessary to a cell's functioning are encoded in its DNA, which
 
 <small>Image credit: Fondation Merieux</small>
 
-<h3 id="reg-gene-expression">
-
-Regulation of gene expression
-
-</h3>
+### Regulation of gene expression
 
 Cells respond and adapt to changes in the environment or other inter- and intra-cellular cues by modulating the expression of their genes, which affects the pool of available proteins. Regulation of gene expression can be achieved by different types of molecular actors: proteins encoded by other genes, regulatory non-coding RNAs (i.e. molecules of RNAs that are not used to produce proteins), or even metabolites.
 
@@ -72,17 +41,9 @@ As scientists gain knowledge into the regulatory relationships between genes, th
 
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
 
-<h2 id="sim-grn">
+## Simulating Gene Regulatory Networks
 
-Simulating Gene Regulatory Networks
-
-</h2>
-
-<h3 id="classes-of-grn-models">
-
-Classes of GRN models
-
-</h3>
+### Classes of GRN models
 
 One way to understand the dynamics of GRNs is through simulation; i.e. by simulating the expression over time of genes involved in the GRN. Simulating GRNs allows us to:
 
@@ -110,11 +71,7 @@ A computational model of GRN is generally comprised of 3 components:
 
 We will come back to the second point in a later section.
 
-<h3 id="simulators">
-
-Tools to simulate GRNs
-
-</h3>
+### Tools to simulate GRNs
 
 While it is possible to develop "by hand" your own model to simulate the expression of genes for a specific GRN, a number of simulators have been developed, each with its own goals, choice of programming language, and modelling assumptions. A few examples are mentioned below:
 
@@ -122,11 +79,7 @@ While it is possible to develop "by hand" your own model to simulate the express
 
 In this workshop, we will use the `sismonr` R package.
 
-<h3 id="sismonr">
-
-The sismonr package
-
-</h3>
+### The sismonr package
 
 The `sismonr` package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, `sismonr` allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. `sismonr` can supports different types of regulation (e.g. transcription, translation or decay regulations). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of `sismonr` is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, `sismonr` simulates the expression of the genes in a GRN for different *in silico* individuals, that carry different versions (or alleles) of the genes present in the GRN. This is quite useful to simulate gene expression under different scenarios such as gene knock-out for example.
 
@@ -225,11 +178,7 @@ Same thing when adding an edge to the GRN: you can decide if the regulation is a
 small_grn2 <- addEdge(small_grn2, 11, 10, regsign = "-1")
 ```
 
-<h3 id="stoch-sys-sismonr">
-
-Generating a stochastic model with the `sismonr` package
-
-</h3>
+### Generating a stochastic model with the `sismonr` package
 
 As mentioned previously, simulators rely on a set of rules to convert the GRN into a mathematical or statistical model that can be used to simulate gene expression over time. This set of rules will depend on the type of model we want to construct (boolean, deterministic, etc).
 
@@ -308,7 +257,7 @@ small_pop <- createInSilicoPopulation(2, ## number of individuals
                                       ngenevariants = 2) ## how many alleles per gene
 ```
 
-\*expand bullet points below\*
+*expand bullet points below*
 
 -   show the rates for the reactions (need to add a function in `sismonr` for that)
 
@@ -316,8 +265,5 @@ small_pop <- createInSilicoPopulation(2, ## number of individuals
 
 -   generate individuals (DIY part?) and look at reaction rates for different individuals
 
-<h2 id="ssa">
+## A (brief) introduction to the Stochastic Simulation Algorithm
 
-A (brief) introduction to the Stochastic Simulation Algorithm
-
-</h2>
