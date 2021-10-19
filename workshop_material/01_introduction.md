@@ -12,11 +12,17 @@
   - [Generating a stochastic model with the sismonr package](#stoch-sys-sismonr)
   - [A (brief) introduction to the Stochastic Simulation Algorithm](#ssa)
 
-## <a name="simulations-research">Why simulations are important in research</a> 
+<h2 id="simulations-research">
+Why simulations are important in research
+</h2>
 
-## <a name="what-are-grn">What are Gene Regulatory Networks?</a> 
+<h2 id="what-are-grn">
+What are Gene Regulatory Networks?
+</h2>
 
-### <a name="gene-expression">An overview of gene expression</a> 
+<h3 id="gene-expression">
+An overview of gene expression
+</h3>
 
 The instructions necessary to a cell's functioning are encoded in its DNA, which is composed of two anti-parallel chains of nucleotides, intertwined into a double helix. Some portions of this DNA molecule, termed protein-coding genes, contain instructions about the synthesis of proteins, which are important molecular actors fulfilling essential roles in the cell. The complex multi-step process of decoding this information and using it to produce proteins is what we call gene expression. Briefly, gene expression involves:
 
@@ -29,7 +35,9 @@ The instructions necessary to a cell's functioning are encoded in its DNA, which
 <small>Image credit: Fondation Merieux</small>
     
 
-### <a name="reg-gene-expression">Regulation of gene expression</a>
+<h3 id="reg-gene-expression">
+Regulation of gene expression
+</h3>
 
 Cells respond and adapt to changes in the environment or other inter- and intra-cellular cues by modulating the expression of their genes, which affects the pool of available proteins. Regulation of gene expression can be achieved by different types of molecular actors: proteins encoded by other genes, regulatory non-coding RNAs (i.e. molecules of RNAs that are not used to produce proteins), or even metabolites.
 
@@ -50,10 +58,13 @@ As scientists gain knowledge into the regulatory relationships between genes, th
 
 A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
 
+<h2 id="sim-grn">
+Simulating Gene Regulatory Networks
+</h2>
 
-## <a name="sim-grn">Simulating Gene Regulatory Networks</a> 
-
-### <a name="classes-of-grn-models">Classes of GRN models</a> 
+<h3 id="classes-of-grn-models">
+Classes of GRN models
+</h3>
 
 One way to understand the dynamics of GRNs is through simulation. Simulating GRNs allows us to:
 
@@ -71,9 +82,13 @@ There are many types of models that can be developed to simulate GRNs. For examp
 
 Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size.
 
-### <a name="sismonr">The sismonr package</a> 
+<h3 id="sismonr">
+The sismonr package
+</h3>
 
-### <a name="stoch-sys-sismonr">Generating a stochastic model with the sismonr package</a>
+<h3 id="stoch-sys-sismonr">
+Generating a stochastic model with the sismonr package
+</h3>
 
 Once we have selected a class of model to represent our chosen GRN, decisions must be made about the construction of the model. In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is not one correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. For example, the `sismonr` uses the following rules:
 
@@ -137,7 +152,6 @@ One crucial thing to understand is that a reaction in a stochastic system is a s
 
 Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts.
 
-
-
-
-## <a name="ssa">A (brief) introduction to the Stochastic Simulation Algorithm</a>
+<h2 id="ssa">
+A (brief) introduction to the Stochastic Simulation Algorithm
+</h2>
