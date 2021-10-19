@@ -8,6 +8,7 @@
   - [Regulation of gene expression](#reg-gene-expression)
 - [Simulating Gene Regulatory Networks](#sim-grn)
   - [Classes of GRN models](#classes-of-grn-models)
+  - [Tools to simulate GRNs](#simulators)
   - [The sismonr package](#sismonr)
   - [Generating a stochastic model with the sismonr package](#stoch-sys-sismonr)
   - [A (brief) introduction to the Stochastic Simulation Algorithm](#ssa)
@@ -82,9 +83,66 @@ There are many types of models that can be developed to simulate GRNs. For examp
 
 Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size.
 
+
+
+<h3 id="simulators">
+Tools to simulate GRNs
+</h3>
+
+*Mention a few of the maintstream tools for GRN simulation*
+
 <h3 id="sismonr">
 The sismonr package
 </h3>
+
+The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properies of biological regulatory networks. Alternatively, the user can construct their own network by adding/removing regulatory relationships between the genes. sismonr can supports different types of regulations (e.g. transcription, translation or decay regulations). Genes can encode for proteins or for non-coding regulatory RNAs. Gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr generates in-silico individuals, that carry different versions or alleles of the genes present in the GRN. This is quite useful to simulate gene expression in the presence of different mutations for example.
+
+The particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!
+
+**Practice time!**
+
+*Add instructions to open the sismonr kernel.*
+
+We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem`. 
+
+```r
+set.seed(12) # important for reproducibility of "random" results in R!
+small_grn <- createInSilicoSystem(G = 10, 
+                                  PC.p = 1, # proportion of genes in the GRN that are protein-coding
+                                  ploidy = 2) # ploidy of the system
+```
+
+Note that the first time you run a sismonr command, you might have to wait a few seconds, as sismonr needs to open a new Julia process on your computer to execute some of the internal commands (such as the generation of a random GRN).
+
+You can visualise the GRN you just created with:
+
+```r
+plotGRN(small_grn)
+```
+
+*need to add an image*
+
+Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
+
+*update once I've made the getGenes() and getEdges() functions*
+
+In the data-frames of genes and regulatory relationships, you will notice that we use some abbreviations. The meanings are shown below:
+
+| Abbreviations | Meaning |
+| ------------- | ------- |
+| TC | Transcription |
+| TL | Translation |
+| RD | RNA decay |
+| PD | Protein decay |
+| PTM | Post-translational modification |
+| | | 
+| PC | Protein-coding |
+| NC | Noncoding |
+| | |
+| R | RNA |
+| P | Protein |
+| Pm | Modified protein |
+| C | Regulatory complex | 
 
 <h3 id="stoch-sys-sismonr">
 Generating a stochastic model with the sismonr package
