@@ -170,17 +170,15 @@ Alternatively, you can get a list of the genes and regulatory relationships in t
 **Exercise:** generate a network of 5 genes with only protein-coding genes that are regulators of transcription.
 
 <details>
-<summary><strong>Click here to see the solution:</strong></summary>
-<p>
+<summary><strong>Click here to see the solution</strong></summary>
    
-```r
+~~~r
 set.seed(45)
 small_grn <- createInSilicoSystem(G = 5, 
                                   PC.p = 1, 
                                   PC.TC.p = 1)
-```   
+~~~   
              
-</p> 
 </details>
 
 In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, but we're working on it).
