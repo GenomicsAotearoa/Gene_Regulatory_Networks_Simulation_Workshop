@@ -1,5 +1,8 @@
 # Introduction
 
+* Do not remove this line (it will not be displayed)
+{:toc}
+
 ## Outline
 
 {% include lib/toc.html html=content %}
