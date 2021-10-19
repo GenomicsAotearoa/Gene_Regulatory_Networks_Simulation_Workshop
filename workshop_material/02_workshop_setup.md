@@ -4,7 +4,9 @@
 - [Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots](#antho-model)
 
 
-## <a name="antho-model">Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots</a>
+<h2 id="antho-model">
+Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots
+</h2>
 
 <img src="images/anthocyanin_model_animation.gif" alt="The sismonr stochastic system rules" width="700"/>
 
