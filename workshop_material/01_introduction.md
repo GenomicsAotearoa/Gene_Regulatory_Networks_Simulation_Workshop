@@ -171,7 +171,7 @@ Alternatively, you can get a list of the genes and regulatory relationships in t
 
 <details>
 <summary><strong>Click here to see the solution</strong></summary>
-    
+{::options parse_block_html="true" /} 
 <p>
     
 ```r
@@ -181,6 +181,7 @@ small_grn <- createInSilicoSystem(G = 5,
                                   PC.TC.p = 1)
 ```
 
+{::options parse_block_html="false" /} 
 </p>             
 </details>
 
