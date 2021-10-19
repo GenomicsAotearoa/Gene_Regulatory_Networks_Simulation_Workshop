@@ -1,11 +1,10 @@
 # Introduction
 
-* Do not remove this line (it will not be displayed)
-{:toc}
 
 ## Outline
 
-{% include lib/toc.html html=content %}
+* Do not remove this line (it will not be displayed)
+{:toc}
 
 ## Why simulations are important in research
 
@@ -242,6 +241,8 @@ where :
 
 (It's actually a bit more complicated than that, as `` `sismonr` `` accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately.)
 
+*Add a link to the code that generates this small system and computes the reactions*
+
 One crucial thing to understand is that a reaction in a stochastic system is a simplified representation of a set of true biochemical reactions happening in the biological system. For example, in the example above, the reaction `R1 --> R1 + P1`, which represents the translation of gene 1, ignores the fact that the translation of a messenger RNA is a very complex process involving many steps and molecular actors.
 
 Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts. This is again a very complex step in the creation of a model, as it is quite arduous to precisely estimate the rate of different biochemical reactions *in vivo*.
@@ -255,18 +256,22 @@ For example, for the small GRN, the rates of each reaction is computed as:
 Let us generate 2 random *in silico* individuals with `sismonr`; we'll assume that for each gene, they can carry one of 2 possible alleles (this can be customised further, e.g. each gene having a different set of possible alleles, but we won't go into details).
 
 ``` r
+set.seed(23)
 small_pop <- createInSilicoPopulation(2, ## number of individuals
                                       small_grn,
                                       ngenevariants = 2) ## how many alleles per gene
 ```
 
-*expand bullet points below*
+`sismonr` models different types of genetic mutations that affect different kinetic properties of a gene. For more information, see [the sismonr documentation](https://oliviaab.github.io/sismonr/#the-gene-alleles).
 
--   show the rates for the reactions (need to add a function in `sismonr` for that)
+We can visualise the difference between the two individuals via:
 
--   explain why it's not numbers (it depends on the genetic mutations of the different individuals
+```r
+plotMutations(small_pop, small_grn, nGenesPerRow = 5)
+```
 
--   generate individuals (DIY part?) and look at reaction rates for different individuals
+Now we can compute the rate of each reaction for the two individuals:
+
+*Need to write once I have the functions*
 
 ## A (brief) introduction to the Stochastic Simulation Algorithm
-

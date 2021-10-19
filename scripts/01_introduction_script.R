@@ -11,3 +11,11 @@ plotGRN(small_grn, edge.arrow.size = 0.5)
 ?insilicosystemargs
 
 small_grn2 <- addEdge(small_grn2, 11, 10, regsign = "-1")
+
+
+set.seed(23)
+small_pop <- createInSilicoPopulation(2, ## number of individuals
+                                      small_grn,
+                                      ngenevariants = 2) ## how many alleles per gene
+
+plotMutations(small_pop, small_grn, nGenesPerRow = 5)
