@@ -1,5 +1,12 @@
 # Workshop set-up
 
+<p style="text-align:left;">
+    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
+    <span style="float:right;">
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_HPC.html">3. First steps on the HPC &gt;</a></b>
+    </span>
+</p>
+
 ## Outline
 * Do not remove this line (it will not be displayed)
 {:toc}
@@ -93,3 +100,14 @@ sim$runningtime
 ```
 
 which corresponds to approx. 3 minutes per simulation. So if we were to run *update number* simulations for each plant, it would take *????*. This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.
+
+---
+
+<p style="text-align:left;">
+    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
+    <span style="float:right;">
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_HPC.html">3. First steps on the HPC &gt;</a></b>
+    </span>
+</p>
+
+<p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
