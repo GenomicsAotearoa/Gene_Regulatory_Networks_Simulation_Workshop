@@ -1,6 +1,6 @@
-# Introduction
+[Back to main page](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/)
 
-<button onclick="window.location.href='https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/';">Click</button>
+# Introduction
 
 ## Outline
 
@@ -272,5 +272,9 @@ Now we can compute the rate of each reaction for the two individuals:
 
 ## A (brief) introduction to the Stochastic Simulation Algorithm
 
-
-[Back to main page](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/)
+<p style="text-align:left;">
+    [Main page](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/)
+    <span style="float:right;">
+        [2. Workshop setup](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_workshop_setup.html)
+    </span>
+</p>
