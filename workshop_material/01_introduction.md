@@ -1,6 +1,6 @@
 # Introduction
 
-[Back to main page](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/){: .btn}
+<button onclick="window.location.href='https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/';">Click</button>
 
 ## Outline
 
