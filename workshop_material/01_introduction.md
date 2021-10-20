@@ -1,5 +1,6 @@
 # Introduction
 
+[Back to main page](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/){: .btn}
 
 ## Outline
 
@@ -134,7 +135,7 @@ Alternatively, you can get a list of the genes and regulatory relationships in t
 
 Note that you can modify the properties of your system by changing the values in these data-frames.
 
-\*Maybe this is a to go further section?\* The `createInSilicoSystem` function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:
+*Maybe this is a to go further section?* The `createInSilicoSystem` function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:
 
 ``` r
 ?insilicosystemargs 
@@ -144,11 +145,7 @@ Note that you can modify the properties of your system by changing the values in
 
 <details>
 
-<summary>
-
-<strong>Click here to see the solution</strong>
-
-</summary>
+<summary><strong>Click here to see the solution</strong></summary>
 
 <p>
 
@@ -160,7 +157,6 @@ small_grn <- createInSilicoSystem(G = 5,
 ```
 
 </p>
-
 </details>
 
 In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, but we're working on it).
@@ -184,11 +180,11 @@ small_grn2 <- addEdge(small_grn2, 11, 10, regsign = "-1")
 
 As mentioned previously, simulators rely on a set of rules to convert the GRN into a mathematical or statistical model that can be used to simulate gene expression over time. This set of rules will depend on the type of model we want to construct (boolean, deterministic, etc).
 
-In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is no correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. As an example, the `` `sismonr` `` uses the following rules:
+In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is no correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. As an example, the `sismonr` uses the following rules:
 
 <img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/>
 
-<small>This is how `` `sismonr` `` models different type of expression regulation. Each arrow i -> j in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
+<small>This is how `sismonr` models different type of expression regulation. Each arrow i -> j in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
 
 For example, the following small GRN:
 
@@ -239,7 +235,7 @@ where :
 -   `RX` represents the RNA produced by gene X;
 -   `PX` represents the protein produced by gene X.
 
-(It's actually a bit more complicated than that, as `` `sismonr` `` accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately.)
+(It's actually a bit more complicated than that, as `sismonr` accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately.)
 
 *Add a link to the code that generates this small system and computes the reactions*
 
@@ -275,3 +271,6 @@ Now we can compute the rate of each reaction for the two individuals:
 *Need to write once I have the functions*
 
 ## A (brief) introduction to the Stochastic Simulation Algorithm
+
+
+[Back to main page](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/)

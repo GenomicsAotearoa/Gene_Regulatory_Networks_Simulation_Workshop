@@ -168,11 +168,15 @@ plants = createInSilicoPopulation(3,
 ## We have to change it for both homologs of the gene (GCN1 and GCN2)
 ## as the plants are diploid.
 plants$individualsList$Ind2$QTLeffects$GCN1$qtlTCrate[5] = 50
+plants$individualsList$Ind2$QTLeffects$GCN2$qtlTCrate[5] = 50
+
 plants$individualsList$Ind2$QTLeffects$GCN1$qtlTCregbind[5] = 0
+plants$individualsList$Ind2$QTLeffects$GCN2$qtlTCregbind[5] = 0
 
 ## We add the QTL effect coefficient for the second individual
 ## such that the RNA decay rate of gene 5 is increased
 plants$individualsList$Ind3$QTLeffects$GCN1$qtlRDrate[5] = 20
+plants$individualsList$Ind3$QTLeffects$GCN2$qtlRDrate[5] = 20
 
 ## Changing the initial conditions:
 ## As specified in Albert et al., 2014, only genes 2 and 3
@@ -190,23 +194,16 @@ for(g in names(plants$individualsList$Ind1$InitAbundance)){
 
 plants_all = plants ## contains all 3 in silico plants
 
-## Only the wild-type
-plant_wt = plants_all
-plant_wt$individualsList = plant_wt$individualsList[1]
+## Only the wild-type and overexpressed mutate
+plants$individualsList = plants$individualsList[1:2]
 
-## Only the overexpressed mutant
-plant_oe = plants_all
-plant_oe$individualsList = plant_oe$individualsList[2]
 
-## Only the silenced mutant
-plant_si = plants_all
-plant_si$individualsList = plant_si$individualsList[3]
 
 ## --------------------------------- ##
 ## Saving the system and individuals ##
 ## --------------------------------- ##
 
-save(colsystem, plants, plant_wt, plant_oe, plant_si, id2names, file = here("data/sismonr_anthocyanin_system.RData"))
+save(colsystem, plants, id2names, file = here("data/sismonr_anthocyanin_system.RData"))
 
 ## -------------------------------------------------------------------- ##
 ## Simulating the expression profiles of the genes for the three plants ##
@@ -215,8 +212,9 @@ save(colsystem, plants, plant_wt, plant_oe, plant_si, id2names, file = here("dat
 set.seed(123)
 sim = simulateInSilicoSystem(colsystem,
                              plants, 
-                             simtime = 2500,
-                             nepochs = 2500,
+                             simtime = 1200,
                              ntrials = 1)
 sim$runningtime / 60
-plotSimulation(sim$Simulation, molecules = 1:7)
+sum(sim$runningtime)
+
+plotSimulation(sim$Simulation, molecules = 1:7, mergeComplexes = TRUE)
