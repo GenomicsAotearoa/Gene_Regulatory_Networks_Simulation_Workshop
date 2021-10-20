@@ -3,7 +3,7 @@
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
     <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_HPC.html">3. First steps on the HPC &gt;</a></b>
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_hpc.html">3. First steps on the HPC &gt;</a></b>
     </span>
 </p>
 
@@ -106,7 +106,7 @@ which corresponds to approx. 3 minutes per simulation. So if we were to run *upd
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
     <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_HPC.html">3. First steps on the HPC &gt;</a></b>
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_hpc.html">3. First steps on the HPC &gt;</a></b>
     </span>
 </p>
 
