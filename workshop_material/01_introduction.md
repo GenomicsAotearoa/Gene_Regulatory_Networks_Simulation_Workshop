@@ -1,3 +1,9 @@
+---
+layout: page
+title: 01. Introduction
+tagline: Workshop name
+---
+
 # Introduction
 
 <p style="text-align:left;">
@@ -132,6 +138,8 @@ You can visualise the GRN you just created with:
 ``` r
 plotGRN(small_grn)
 ```
+
+{% include images/sismonr_network.html %}
 
 *need to add an image*
 
