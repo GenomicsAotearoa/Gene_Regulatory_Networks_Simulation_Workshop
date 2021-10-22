@@ -139,8 +139,6 @@ You can visualise the GRN you just created with:
 plotGRN(small_grn)
 ```
 
-{% include images/sismonr_network.html %}
-
 *need to add an image*
 
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
