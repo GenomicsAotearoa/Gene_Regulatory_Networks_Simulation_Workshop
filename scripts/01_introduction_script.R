@@ -6,12 +6,15 @@ small_grn <- createInSilicoSystem(G = 10,
                                   ploidy = 2) # ploidy of the system
 
 plotGRN(small_grn)
-plotGRN(small_grn, edge.arrow.size = 0.5)
+
+visNetwork::visSave(plotGRN(small_grn, width = "800px"),
+                    "_includes/sismonr_network.html")
+
+getGenes(small_grn)
 
 ?insilicosystemargs
 
 small_grn2 <- addEdge(small_grn2, 11, 10, regsign = "-1")
-
 
 set.seed(23)
 small_pop <- createInSilicoPopulation(2, ## number of individuals

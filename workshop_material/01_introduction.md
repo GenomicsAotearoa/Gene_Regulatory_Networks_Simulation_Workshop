@@ -15,8 +15,6 @@
 
 ## Why simulations are important in research
 
-{% include sismonr_network.html%}
-
 ## What are Gene Regulatory Networks?
 
 ### An overview of gene expression
@@ -135,11 +133,49 @@ You can visualise the GRN you just created with:
 plotGRN(small_grn)
 ```
 
-*need to add an image*
+{% include sismonr_network.html%}
 
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
 
-*update once I've made the getGenes() and getEdges() functions*
+```r
+getGenes(small_grn)
+```
+
+```
+   id coding TargetReaction PTMform ActiveForm       TCrate      TLrate       RDrate       PDrate
+1   1     PC             TC       0         P1 0.0010706485 0.115208445 0.0006563273 0.0003594616
+2   2     PC             PD       0         P2 0.0007063012 1.096787613 0.0002886745 0.0008614784
+3   3     PC             TC       0         P3 0.0010690560 0.016254643 0.0004565128 0.0002589524
+4   4     PC             TC       0         P4 0.0020231676 0.006923935 0.0008362586 0.0011683879
+5   5     PC             TC       0         P5 0.0017721606 0.021329358 0.0011665348 0.0004787676
+6   6     PC             TL       0         P6 0.0011366749 0.017786830 0.0008228596 0.0002831087
+7   7     PC             TL       0         P7 0.0052234381 0.060540559 0.0007973883 0.0007609887
+8   8     PC             TL       0         P8 0.0026365016 0.017948936 0.0006848954 0.0003388916
+9   9     PC             TL       0         P9 0.0030150020 0.140724990 0.0006802817 0.0002328448
+10 10     PC             TC       0        P10 0.0015819471 0.007701612 0.0006157945 0.0005439300
+```
+
+and:
+
+```r
+getEdges(small_grn)
+```
+
+```
+   from to TargetReaction RegSign RegBy
+1     4 10             TC       1    PC
+2     5 10             TC      -1    PC
+3     3  2             TC      -1    PC
+4     1  3             TC       1    PC
+5     3  3             TC       1    PC
+6     5  5             TC       1    PC
+7  CTC1  9             TC      -1     C
+8     7  2             TL       1    PC
+9     9  4             TL      -1    PC
+10    6  7             TL      -1    PC
+11    8  7             TL      -1    PC
+12    2  1             PD       1    PC
+```
 
 Note that you can modify the properties of your system by changing the values in these data-frames.
 
@@ -152,9 +188,7 @@ Note that you can modify the properties of your system by changing the values in
 **Exercise:** generate a network of 5 genes with only protein-coding genes that are regulators of transcription.
 
 <details>
-
 <summary><strong>Click here to see the solution</strong></summary>
-
 <p>
 
 ``` r
