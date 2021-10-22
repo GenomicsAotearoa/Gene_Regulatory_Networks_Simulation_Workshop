@@ -21,6 +21,8 @@ tagline: Workshop name
 
 ## Why simulations are important in research
 
+{% includes sismonr_network.html%}
+
 ## What are Gene Regulatory Networks?
 
 ### An overview of gene expression
