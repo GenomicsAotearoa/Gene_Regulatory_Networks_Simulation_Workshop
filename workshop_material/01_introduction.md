@@ -15,7 +15,7 @@
 
 ## Why simulations are important in research
 
-{% includes sismonr_network.html%}
+{% include sismonr_network.html%}
 
 ## What are Gene Regulatory Networks?
 
