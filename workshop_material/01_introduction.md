@@ -1,9 +1,3 @@
----
-layout: page
-title: 01. Introduction
-tagline: Workshop name
----
-
 # Introduction
 
 <p style="text-align:left;">
