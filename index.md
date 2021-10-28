@@ -16,3 +16,4 @@ This advanced workshop is an introduction to the stochastic simulation of Gene R
 
 1. [Introduction](./workshop_material/01_introduction.md)
 2. [Workshop set-up](./workshop_material/02_workshop_setup.md)
+3. [First steps on the HPC](./workshop_material/03_first_steps_hpc.html)

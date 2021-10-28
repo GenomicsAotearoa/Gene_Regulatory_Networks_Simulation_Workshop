@@ -58,7 +58,7 @@ library(sismonr)
 load("sismonr_anthocyanin_system.RData")
 ```
 
-Feel free to inspect the different aspects of the models (unfortunately the GRN plot generated is a bit confusing). We can run one simulation for each of the two *in silico* plants via the command:
+Feel free to inspect the different aspects of the model. We can run one simulation for each of the two *in silico* plants via the command:
 
 ```r
 set.seed(123)
@@ -70,22 +70,21 @@ sim <- simulateInSilicoSystem(colsystem,
 
 Where `simtime` is the time (in seconds) for which we want to simulate the expression of the genes; `ntrials` corresponds to the number of times we want to repeat the simulation for each *in silico* individual.
 
-This should take a couple of minutes to complete. Once this is done, you can visualise the result with:
-
-```r
-plotSimulation(sim$Simulation)
-```
-
-*add image*
-
-By default, the `plotSimulation` function plots all molecules in the system, including the regulatory complexes. Let's focus on the expression of the genes (the option `mergeComplexes` includes proteins bound in a regulatory complexin the total count of proteins):
+This should take a couple of minutes to complete. Once this is done, you can visualise the result with the `plotSimulation` function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:
 
 
 ```r
-plotSimulation(sim$Simulation, molecules = 1:7, mergeComplexes = TRUE)
+plotSimulation(sim$Simulation, 
+               molecules = names(colours), 
+               mergeComplexes = FALSE,
+               labels = id2names[names(colours)],
+               colours = colours)
 ```
 
-*add image*
+<img src="images/colsystem_simulations_1trial.png" alt="Simulated gene expression for the anthocyanin biosynthesis regulation pathway" width="700"/>
+
+<small> Simulated gene expression for the anthocyanin biosynthesis regulation pathway. The legend shows under which form (i.e. RNA, protein or regulatory copmplex) each component can be found. For example, MYB is present in both the 'RNAs' and the 'Proteins' plots, while MBW1 is a regulatory complex, and thus only appears in the 'Complexes' plot. </small>
+
 
 Pretty neat! We can see that when the *MYBrep* gene is overexpressed, the activity of the pathway is reduced, and so the downstream enzymes responsible for the synthesis of anthocyanin (represented here by the *DFR* gene) are produced in smaller quantities. This leads to a reduction in the colouration of the plant.
 
