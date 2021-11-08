@@ -3,7 +3,7 @@
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">&lt; Back to homepage</a></b>
     <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_workshop_setup.html">2. Workshop setup  &gt;</a></b>
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b>
     </span>
 </p>
 
@@ -133,7 +133,7 @@ You can visualise the GRN you just created with:
 plotGRN(small_grn)
 ```
 
-{% include sismonr_network_test.html%}
+{% include sismonr_network.html%}
 
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
 
@@ -318,6 +318,6 @@ Now we can compute the rate of each reaction for the two individuals:
 
 ---
 
-<p align="right"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_workshop_setup.html">2. Workshop setup &gt;</a></b></p>
+<p align="right"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b></p>
   
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>

@@ -1,15 +1,17 @@
-# Workshop set-up
+# Getting started with sismonr
 
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
     <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_hpc.html">3. First steps on the HPC &gt;</a></b>
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">3. Scaling up your work &gt;</a></b>
     </span>
 </p>
 
 ## Outline
 * Do not remove this line (it will not be displayed)
 {:toc}
+
+## Introduction to the sismonr package
 
 ## Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots
 
@@ -44,7 +46,7 @@ Because the simulations are stochastic, it is better to simulate the GRN a large
 The `sismonr` GRN and *in silico* plants can be downloaded [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData); they are available in *need to detail were it is*. The R script used to generate them can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R).
 
 
-## Setting on a local machine
+## Running a first simulation (interactive)
 
 Once your model is ready to be simulated, the first thing to do is to test running one simulation on your local machine. For this workshop, a jupyter kernel will act as your local machine.
 
@@ -88,6 +90,8 @@ plotSimulation(sim$Simulation,
 
 Pretty neat! We can see that when the *MYBrep* gene is overexpressed, the activity of the pathway is reduced, and so the downstream enzymes responsible for the synthesis of anthocyanin (represented here by the *DFR* gene) are produced in smaller quantities. This leads to a reduction in the colouration of the plant.
 
+## Why is scaling-up important
+
 Once important aspect to notice is that each simulation takes a long time to run! `sismonr` records the simulation running time (in seconds) for each individual:
 
 ```r
@@ -105,7 +109,7 @@ which corresponds to approx. 3 minutes per simulation. So if we were to run *upd
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
     <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_first_steps_hpc.html">3. First steps on the HPC &gt;</a></b>
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">3. Scaling up your work &gt;</a></b>
     </span>
 </p>
 
