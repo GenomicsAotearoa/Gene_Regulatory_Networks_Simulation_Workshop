@@ -1,4 +1,4 @@
-# Introduction
+# 1. Introduction
 
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">&lt; Back to homepage</a></b>

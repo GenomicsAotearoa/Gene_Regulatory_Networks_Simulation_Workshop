@@ -1,4 +1,4 @@
-# Getting started with sismonr
+# 2. Getting started with sismonr
 
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>

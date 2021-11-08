@@ -1,4 +1,4 @@
-# Scaling up your work
+# 3. Scaling up your work
 
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">&lt; 2. Getting started with sismonr</a></b>
