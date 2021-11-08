@@ -17,8 +17,7 @@ This advanced workshop is an introduction to the stochastic simulation of Gene R
 Before getting started, have a look at the [Supplementary](./workshop_material/10_supplementary.md).
 
 1. [Introduction](./workshop_material/01_introduction.md)
-2. [Workshop set-up](./workshop_material/02_workshop_setup.md)
-3. [Setup](./workshop_material/03_setup.html)
-4. [Scaling up your work](./workshop_material/04_scaling_up.html)
-5. [Parallel computing on NeSI](./workshop_material/05_parallel_computing.html)
-6. [Post-processing](./workshop_material/06_post_processing.html)
+2. [Getting started with sismonr](./workshop_material/02_getting_started_sismonr.md)
+3. [Scaling up your work](./workshop_material/03_scaling_up.html)
+4. [Parallel computing on NeSI](./workshop_material/04_parallel_computing.html)
+5. [Post-processing](./workshop_material/05_post_processing.html)
