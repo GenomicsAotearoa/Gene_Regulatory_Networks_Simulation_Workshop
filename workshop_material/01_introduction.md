@@ -62,13 +62,28 @@ One way to understand the dynamics of GRNs is through simulation; i.e. by simula
 -   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
 -   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
 
-There are many types of models that can be developed to simulate GRNs. For example:
+There are many types of models that can be developed to simulate GRNs (see [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503)). For example:
 
 -   Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
--   Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
--   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
 
-Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size.
+![An example of logical model](./images/logical_model_kalerbach.png)
+
+<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770–780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a logical model. Each node in the GRN can be in state 0 (OFF) or 1 (ON). The transition rules from one time-point to the next are displayed in the tables on the right. </small>
+
+
+-   Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
+
+![An example of continuous and deterministic model](./images/ode_model_kalerbach.png)
+
+<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770–780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a continuous and deterministic model, for the same GRN as in the previous example. a: the set of ordinary differential equations (ODEs) used to model the GRN. b: graphical representation of the GRN. c: Solutions of the model (see the paper for the values used for the different parameters). </small>
+
+-   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm (SSA) is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
+
+Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size. The following graph by [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503) provides a good overview of the main differences between different classes of GRN models.
+
+![Summary of the main differences between different classes of GRN models](./images/diff_types_models_kalerbach.png)
+
+<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770–780 (2008). <https://doi.org/10.1038/nrm2503>.</small>
 
 A computational model of GRN is generally comprised of 3 components:
 
@@ -88,229 +103,6 @@ While it is possible to develop "by hand" your own model to simulate the express
 
 In this workshop, we will use the `sismonr` R package.
 
-### The sismonr package
-
-The `sismonr` package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, `sismonr` allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. `sismonr` can supports different types of regulation (e.g. transcription, translation or decay regulations). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of `sismonr` is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, `sismonr` simulates the expression of the genes in a GRN for different *in silico* individuals, that carry different versions (or alleles) of the genes present in the GRN. This is quite useful to simulate gene expression under different scenarios such as gene knock-out for example.
-
-One particularity of `sismonr` is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use `sismonr`!
-
-**Practice time!**
-
-*Add instructions to open the sismonr kernel.*
-
-Before getting started, here are some abbreviations that are often used within `sismonr`:
-
-| Abbreviations | Meaning                         |
-|---------------|---------------------------------|
-| TC            | Transcription                   |
-| TL            | Translation                     |
-| RD            | RNA decay                       |
-| PD            | Protein decay                   |
-| PTM           | Post-translational modification |
-|               |                                 |
-| PC            | Protein-coding                  |
-| NC            | Noncoding                       |
-|               |                                 |
-| R             | RNA                             |
-| P             | Protein                         |
-| Pm            | Modified protein                |
-| C             | Regulatory complex              |
-
-We will start by generating a small random GRN with `sismonr`, using the function `createInSilicoSystem()`.
-
-``` r
-set.seed(12) # important for reproducibility of "random" results in R!
-small_grn <- createInSilicoSystem(G = 10, 
-                                  PC.p = 1, # proportion of genes that are protein-coding
-                                  ploidy = 2) # ploidy of the system
-```
-
-Note that the first time you run a `sismonr` command, you might have to wait a few seconds, as `sismonr` needs to open a new Julia process on your computer to execute some of the internal commands (such as the generation of a random GRN).
-
-You can visualise the GRN you just created with:
-
-``` r
-plotGRN(small_grn)
-```
-
-{% include sismonr_network.html%}
-
-Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
-
-```r
-getGenes(small_grn)
-```
-
-```
-   id coding TargetReaction PTMform ActiveForm       TCrate      TLrate       RDrate       PDrate
-1   1     PC             TC       0         P1 0.0010706485 0.115208445 0.0006563273 0.0003594616
-2   2     PC             PD       0         P2 0.0007063012 1.096787613 0.0002886745 0.0008614784
-3   3     PC             TC       0         P3 0.0010690560 0.016254643 0.0004565128 0.0002589524
-4   4     PC             TC       0         P4 0.0020231676 0.006923935 0.0008362586 0.0011683879
-5   5     PC             TC       0         P5 0.0017721606 0.021329358 0.0011665348 0.0004787676
-6   6     PC             TL       0         P6 0.0011366749 0.017786830 0.0008228596 0.0002831087
-7   7     PC             TL       0         P7 0.0052234381 0.060540559 0.0007973883 0.0007609887
-8   8     PC             TL       0         P8 0.0026365016 0.017948936 0.0006848954 0.0003388916
-9   9     PC             TL       0         P9 0.0030150020 0.140724990 0.0006802817 0.0002328448
-10 10     PC             TC       0        P10 0.0015819471 0.007701612 0.0006157945 0.0005439300
-```
-
-and:
-
-```r
-getEdges(small_grn)
-```
-
-```
-   from to TargetReaction RegSign RegBy
-1     4 10             TC       1    PC
-2     5 10             TC      -1    PC
-3     3  2             TC      -1    PC
-4     1  3             TC       1    PC
-5     3  3             TC       1    PC
-6     5  5             TC       1    PC
-7  CTC1  9             TC      -1     C
-8     7  2             TL       1    PC
-9     9  4             TL      -1    PC
-10    6  7             TL      -1    PC
-11    8  7             TL      -1    PC
-12    2  1             PD       1    PC
-```
-
-Note that you can modify the properties of your system by changing the values in these data-frames.
-
-*Maybe this is a to go further section?* The `createInSilicoSystem` function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:
-
-``` r
-?insilicosystemargs 
-```
-
-**Exercise:** generate a network of 5 genes with only protein-coding genes that are regulators of transcription.
-
-<details>
-<summary><strong>Click here to see the solution</strong></summary>
-<p>
-
-``` r
-set.seed(45)
-small_grn <- createInSilicoSystem(G = 5, 
-                                  PC.p = 1, 
-                                  PC.TC.p = 1)
-```
-
-</p>
-</details>
-
-In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, but we're working on it).
-
-When adding a gene, you can specify its kinetic parameters, e.g. its transcription rate (in RNA/sec), RNA decay rate, etc.
-
-``` r
-small_grn2 <- addGene(small_grn, 
-                      coding = TRUE, 
-                      TCrate = 0.01,
-                      RDrate = 0.005)
-```
-
-Same thing when adding an edge to the GRN: you can decide if the regulation is activative or repressive, and the different rates of the regulation:
-
-``` r
-small_grn2 <- addEdge(small_grn2, 11, 10, regsign = "-1")
-```
-
-### Generating a stochastic model with the `sismonr` package
-
-As mentioned previously, simulators rely on a set of rules to convert the GRN into a mathematical or statistical model that can be used to simulate gene expression over time. This set of rules will depend on the type of model we want to construct (boolean, deterministic, etc).
-
-In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is no correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. As an example, the `sismonr` uses the following rules:
-
-<img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/>
-
-<small>This is how `sismonr` models different type of expression regulation. Each arrow i -> j in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
-
-For example, the following small GRN:
-
-<img src="images/example_GRN1.png" alt="A small GRN with 3 genes" width="500"/>
-
-<small>A small GRN with 3 genes; gene 1 activates the transcription of gene 2; gene 2 activates the transcription of gene 3; and gene 3 represses the transcription of gene 1. </small>
-
-is transformed into the following set of reactions:
-
-``` r
-## Binding/unbinding of regulators to/from their target's DNA
-Pr2reg1F + P1 --> Pr2reg1B 
-Pr2reg1B --> Pr2reg1F + P1 
-Pr3reg2F + P2 --> Pr3reg2B 
-Pr3reg2B --> Pr3reg2F + P2 
-Pr1reg3F + P3 --> Pr1reg3B 
-Pr1reg3B --> Pr1reg3F + P3
-
-## Basal and regulated transcription
-Pr1reg3F --> Pr1reg3F + R1 
-Pr2reg1F --> Pr2reg1F + R2 
-Pr2reg1B --> Pr2reg1B + R2 
-Pr3reg2F --> Pr3reg2F + R3 
-Pr3reg2B --> Pr3reg2B + R3 
-
-## Translation
-R1 --> R1 + P1 
-R2 --> R2 + P2 
-R3 --> R3 + P3 
-
-## RNA decay
-R1 --> 0 
-R2 --> 0 
-R3 --> 0 
-
-## Protein decay (including those bound to DNA)
-P1 --> 0 
-Pr2reg1B --> Pr2reg1F 
-P2 --> 0 
-Pr3reg2B --> Pr3reg2F 
-P3 --> 0 
-Pr1reg3B --> Pr1reg3F
-```
-
-where :
-
--   `PrXregY` represents the DNA region of gene X where regulator Y binds; `PrXregYF` represents the region with no bound regulator (free), and `PrXregYB` represents the region with a regulator bound to it
--   `RX` represents the RNA produced by gene X;
--   `PX` represents the protein produced by gene X.
-
-(It's actually a bit more complicated than that, as `sismonr` accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately.)
-
-*Add a link to the code that generates this small system and computes the reactions*
-
-One crucial thing to understand is that a reaction in a stochastic system is a simplified representation of a set of true biochemical reactions happening in the biological system. For example, in the example above, the reaction `R1 --> R1 + P1`, which represents the translation of gene 1, ignores the fact that the translation of a messenger RNA is a very complex process involving many steps and molecular actors.
-
-Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts. This is again a very complex step in the creation of a model, as it is quite arduous to precisely estimate the rate of different biochemical reactions *in vivo*.
-
-When constructing a stochastic model for a given GRN, `sismonr` computes for each reaction in the model a rate (i.e. the probability of the reaction occurring in one unit of time), which depends on the properties of the genes (e.g. transcription rate) and of the GRN (e.g. strength of regulation). These rates can be influenced by "genetic mutations" that differentiate the *in silico* individuals modelled by sismonr.
-
-For example, for the small GRN, the rates of each reaction is computed as:
-
-*show non-parsed propensities*
-
-Let us generate 2 random *in silico* individuals with `sismonr`; we'll assume that for each gene, they can carry one of 2 possible alleles (this can be customised further, e.g. each gene having a different set of possible alleles, but we won't go into details).
-
-``` r
-set.seed(23)
-small_pop <- createInSilicoPopulation(2, ## number of individuals
-                                      small_grn,
-                                      ngenevariants = 2) ## how many alleles per gene
-```
-
-`sismonr` models different types of genetic mutations that affect different kinetic properties of a gene. For more information, see [the sismonr documentation](https://oliviaab.github.io/sismonr/#the-gene-alleles).
-
-We can visualise the difference between the two individuals via:
-
-```r
-plotMutations(small_pop, small_grn, nGenesPerRow = 5)
-```
-
-Now we can compute the rate of each reaction for the two individuals:
-
-*Need to write once I have the functions*
 
 ## A (brief) introduction to the Stochastic Simulation Algorithm
 

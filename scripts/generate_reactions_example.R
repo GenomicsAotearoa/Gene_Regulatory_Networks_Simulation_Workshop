@@ -1,8 +1,8 @@
 here::i_am("scripts/generate_reactions_example.R")
 
 library(sismonr)
-library(XRJulia)
 library(stringr)
+library(dplyr)
 
 ## Generate a system of 3 genes (all transcription factors)
 set.seed(456)
@@ -11,32 +11,24 @@ mysystem <- addEdge(mysystem, 1, 2, regsign = "1")
 mysystem <- addEdge(mysystem, 2, 3, regsign = "1")
 mysystem <- addEdge(mysystem, 3, 1, regsign = "-1")
 
-## Generate the stochastic system with sismonr
-stochsys <- sismonr::createStochSystem(mysystem)
+## Get the list of reactions from the system
+reactions <- getReactions(mysystem)
+str_remove_all(reactions$reaction, "GCN1")
 
-## Extract the list of reactions from the Julia object
-reactions <- unlist(juliaGet(juliaEval(paste0(stochsys@.Data, "[\"reactions\"]"))))
+## Generate 2 in silico individuals
+set.seed(123)
+mypop <- createInSilicoPopulation(2, ## number of individuals
+                                  small_grn,
+                                  ngenevariants = 2) ## how many alleles per gene
 
-## Make the reactions more user friendly
-reactions <- str_remove_all(reactions, "GCN\\d")
+## Get the list of reactions and associated reaction rates 
+reactions_rates <- getReactions(mysystem, mypop)
+reactions_rates %>% 
+  select(reaction, starts_with("rate")) %>% 
+  mutate(reaction = str_remove_all(reaction, "GCN1"),
+         across(starts_with("rate"), ~ signif(.x, digits = 3)))
 
-for(i in reactions) cat(i, "\n")
 
-## Extract the list of reaction propensities
-propensities <- unlist(juliaGet(juliaEval(paste0(stochsys@.Data, "[\"propensities\"]"))))
-
-## Create an in silico individual to compute the propensities for
-mypop <- createInSilicoPopulation(1, mysystem, ngenevariants = 1)
-QTLeffects <- mypop$individualsList$Ind1$QTLeffects
-
-## Compute the values of the propensities
-propensities <- str_replace_all(propensities, "\\[", "\\[\\[")
-propensities <- str_replace_all(propensities, "\\]", "\\]\\]")
-propensities <- sapply(propensities, function(i){eval(str2expression(i))})
-propensities <- format(propensities, digits = 3)
-
-text <- paste0(reactions, " (", propensities, ")")
-for(i in text) cat(i, "\n")
 
 ## Generate the same system but diploid
 set.seed(456)
@@ -45,11 +37,8 @@ mysystem2 <- addEdge(mysystem2, 1, 2, regsign = "1")
 mysystem2 <- addEdge(mysystem2, 2, 3, regsign = "1")
 mysystem2 <- addEdge(mysystem2, 3, 1, regsign = "-1")
 
-## Generate the stochastic system with sismonr
-stochsys2 <- sismonr::createStochSystem(mysystem2)
+## Get the list of reactions from the system
+reactions2 <- getReactions(mysystem2)
+reactions2$reaction
 
-## Extract the list of reactions from the Julia object
-reactions <- unlist(juliaGet(juliaEval(paste0(stochsys2@.Data, "[\"reactions\"]"))))
-
-for(i in reactions) cat(i, "\n")
 
