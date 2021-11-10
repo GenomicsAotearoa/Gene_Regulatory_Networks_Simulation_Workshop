@@ -1,19 +1,48 @@
 # 1. Introduction
 
 <p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">&lt; Back to homepage</a></b>
-    <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b>
-    </span>
+  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">&lt; Back to homepage</a></b> <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b>
 </p>
-
 
 ## Outline
 
-* Do not remove this line (it will not be displayed)
-{:toc}
+-   Do not remove this line (it will not be displayed) {:toc}
 
 ## Why simulations are important in research
+
+One way to answer a research question is through observations and experiments. A scientist can go in the field or the lab to collect data, and analyse them to answer the question. However, this is not the only way to "do" research. The construction of mathematical or statistical models can be an alternative way of testing and generating new hypotheses. It can help us answer questions as simple as predicting the movement of planets in the Solar system, or as complex as providing a weather forecast.
+
+> **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
+
+> **Simulation**: Using a mathematical or statistical model to generate data about the system.
+
+Modelling and simulations are very powerful tools. In particular, they allow us to:
+
+-   explain experimental data, through model fitting and estimation of parameters;
+
+-   test hypotheses without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of deleting a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
+
+-   test scenarios that wouldn't be ethical or even feasible to test in real life (e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies);
+
+-   make predictions about new interventions/scenarios (e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...);
+
+-   communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
+
+Modelling and simulations are used in many fields of science, including for example:
+
+-   Epidemiology: modelling of infectious diseases; for example to predict the spreading of a pandemic and to assess the effects of different prevention measures (see for example a very interesting [talk from Dr Rachel Binny](https://www.youtube.com/watch?v=OhECexc9jt4) on the modelling of the COVID19 response in New Zealand);
+
+-   Ecology: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
+
+-   Medicine: construction of organ models, prediction of drug-target binding and drug efficiency;
+
+-   Chemistry, molecular biology: molecules interaction models;
+
+-   Astrophysics: modelling of planet formation, galaxy mergers ([galaxy mergers](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
+
+-   and many more!
+
+In biology, the study of the interaction between biological entities through modelling and simulations is known as Systems Biology ([Macilwain, 2011](https://doi.org/10.1016/j.cell.2011.02.044)). It is a very interdisciplinary field, building from numerous disciplines (physics, chemistry, biology, computer science, statistics, mathematics, etc). In particular, Systems biologists are interested in understanding the emerging properties of biological systems arising from local interactions between molecular components. This led for example to the construction of a whole-cell computational model ([Kar *et al.*, 2012](https://doi.org/10.1016/j.cell.2012.05.044)).
 
 ## What are Gene Regulatory Networks?
 
@@ -68,22 +97,25 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 ![An example of logical model](./images/logical_model_kalerbach.png)
 
-<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770–780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a logical model. Each node in the GRN can be in state 0 (OFF) or 1 (ON). The transition rules from one time-point to the next are displayed in the tables on the right. </small>
-
+<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a logical model. Each node in the GRN can be in state 0 (OFF) or 1 (ON). The transition rules from one time-point to the next are displayed in the tables on the right. </small>
 
 -   Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
 
 ![An example of continuous and deterministic model](./images/ode_model_kalerbach.png)
 
-<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770–780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a continuous and deterministic model, for the same GRN as in the previous example. a: the set of ordinary differential equations (ODEs) used to model the GRN. b: graphical representation of the GRN. c: Solutions of the model (see the paper for the values used for the different parameters). </small>
+<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol* **9**, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a continuous and deterministic model, for the same GRN as in the previous example. a: the set of ordinary differential equations (ODEs) used to model the GRN. b: graphical representation of the GRN. c: Solutions of the model (see the paper for the values used for the different parameters). </small>
 
 -   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm (SSA) is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
+
+![An example of discrete and stochastic model](./images/stochastic_model_tonn.png)
+
+<small>From Tonn, M.K., Thomas, P., Barahona, M. et al. Stochastic modelling reveals mechanisms of metabolic heterogeneity. *Commun Biol* **2**, 108 (2019). <https://doi.org/10.1038/s42003-019-0347-0>. Example of a discrete and stochastic model. The model depicts the expression of one gene, which produces an enzyme involved in a metabolic reaction. </small>
 
 Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size. The following graph by [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503) provides a good overview of the main differences between different classes of GRN models.
 
 ![Summary of the main differences between different classes of GRN models](./images/diff_types_models_kalerbach.png)
 
-<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770–780 (2008). <https://doi.org/10.1038/nrm2503>.</small>
+<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>.</small>
 
 A computational model of GRN is generally comprised of 3 components:
 
@@ -103,13 +135,16 @@ While it is possible to develop "by hand" your own model to simulate the express
 
 In this workshop, we will use the `sismonr` R package.
 
-
 ## A (brief) introduction to the Stochastic Simulation Algorithm
 
 *Some content*
 
 ---
 
-<p align="right"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b></p>
-  
-<p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
+<p align="right">
+  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b>
+</p>
+
+<p align="center">
+  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b>
+</p>
