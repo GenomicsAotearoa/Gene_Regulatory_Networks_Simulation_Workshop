@@ -91,6 +91,14 @@ One way to understand the dynamics of GRNs is through simulation; i.e. by simula
 -   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
 -   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
 
+A model of GRN is generally comprised of 3 components:
+
+-   A graph representing the regulatory interactions between the genes;
+
+-   A set of rules to convert the regulatory interactions into mathematical or statistical equations;
+
+-   A set of kinetic parameters that specify the rate of the different reactions in the model.
+
 There are many types of models that can be developed to simulate GRNs (see [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503)). For example:
 
 -   Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
@@ -111,33 +119,30 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 <small>From Tonn, M.K., Thomas, P., Barahona, M. et al. Stochastic modelling reveals mechanisms of metabolic heterogeneity. *Commun Biol* **2**, 108 (2019). <https://doi.org/10.1038/s42003-019-0347-0>. Example of a discrete and stochastic model. The model depicts the expression of one gene, which produces an enzyme involved in a metabolic reaction. </small>
 
-Each type of model has its own advantages and drawbacks. In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size. The following graph by [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503) provides a good overview of the main differences between different classes of GRN models.
+Each type of model has its own advantages and drawbacks. The following graph by [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503) provides a good overview of the main differences between different classes of GRN models.
 
 ![Summary of the main differences between different classes of GRN models](./images/diff_types_models_kalerbach.png)
 
 <small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>.</small>
 
-A computational model of GRN is generally comprised of 3 components:
+In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size. In the next section, you will learn more about how to simulate expression data from stochastic models using the Stochastic Simulation Algorithm.
 
--   A graph representing the regulatory interactions between the genes;
+### A (brief) introduction to the Stochastic Simulation Algorithm
 
--   A set of rules to convert the regulatory interactions into a mathematical or statistical model;
+*Some content*
 
--   A set of kinetic parameters that specify the rate of the different reactions in the model.
-
-We will come back to the second point in a later section.
 
 ### Tools to simulate GRNs
 
-While it is possible to develop "by hand" your own model to simulate the expression of genes for a specific GRN, a number of simulators have been developed, each with its own goals, choice of programming language, and modelling assumptions. A few examples are mentioned below:
+While it is possible to develop "by hand" your own model to simulate the expression of genes for a specific GRN, a number of simulators have been developed, each with its own goals, choice of programming language, and modelling assumptions. A few examples are mentioned below. Note that existing tools generally focus on the simulation of transcription regulatory networks, i.e. only regulation of transcription is accounted for.
 
-*Mention a few of the maintstream tools for GRN simulation*
+**GeneNetWeaver**: [GeneNetWeaver](http://gnw.sourceforge.net/) ([Schaffter et al., 2011](https://doi.org/10.1093/bioinformatics/btr373)) is a Java-implemented software for GRN generation and simulation. Users can either provide their own network graph, or sample small regulatory network from two possible experimentally derived transcriptional networks (reconstructed respectively from E. coli and S. cerevisiae). A deterministic or semi-stochastic model is used to represent the expression of genes and transcription regulations between the genes. The model is then used to simulate time-course RNA and proteins normalised concentration. In addition, it is possible to simulate data for different types of network perturbation, e.g. gene knockouts or knockdowns. 
 
-In this workshop, we will use the `sismonr` R package.
+**CaiNet**: [CaiNet](https://gitlab.com/GebhardtLab/cainet) ([Hettich et al., 2021](https://doi.org/10.1101/872374)) is a Matlab/C++-based interactive tool to construct and simulate GRNs. The user can design in the GUI its own transcription regulatory network, which can include external input signal,  homo- and heterodimerisation, and enzyme-aided metabolic reactions. A model is then constructed, using a mix of probabilistic and deterministic equations. The simulations are sped-up by simulating individually each gene for short time-steps, then synchronising the different gene expression levels across the entire system. In addition, CaiNet offers a module for the inference of GRN topology and parameters from steady-state gene expression data.
 
-## A (brief) introduction to the Stochastic Simulation Algorithm
+**MeSCoT**: [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/) ([Milkevych *et al.*, 2021](https://doi.org/10.1093/g3journal/jkab133)) is a tool for generating and simulating GRNs impacted by genetic mutations and resulting quantitative phenotypes. This is particularly interesting for people working on QTL mapping or GWAS analyses for example. They use stochastic differential equations with time delay to construct the model. 
 
-*Some content*
+In this workshop, we will use the [sismonr](https://github.com/oliviaAB/sismonr) R package. sismonr generates GRNs that include protein-coding and non-coding genes, and models different types of expression regulation, such as regulation of transcription, translation, RNA or protein decay, and post-translational modifications. sismonr constructs a stochastic model to simulate the abundance of RNAs and proteins in the system over time. 
 
 ---
 
