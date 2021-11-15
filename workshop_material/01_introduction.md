@@ -84,6 +84,11 @@ A given environmental cue typically triggers the activation of a specific regula
 
 ## Simulating Gene Regulatory Networks
 
+Question
+>! Answer!
+
+Some math equation: $y = ax + b \pi$.
+
 ### Classes of GRN models
 
 One way to understand the dynamics of GRNs is through simulation; i.e. by simulating the expression over time of genes involved in the GRN. Simulating GRNs allows us to:
