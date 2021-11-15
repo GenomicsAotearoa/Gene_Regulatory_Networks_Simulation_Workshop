@@ -1,6 +1,7 @@
 theme: jekyll-theme-cayman
 title: "Scaling-up Gene Regulatory Network Simulations"
-description: "With an introduction to parallelisation and High Performance Computing"
+subtitle: "with an introduction to parallelisation and High Performance Computing"
+description: "Scaling-up Gene Regulatory Network Simulations workshop"
 
 markdown: kramdown
 kramdown:

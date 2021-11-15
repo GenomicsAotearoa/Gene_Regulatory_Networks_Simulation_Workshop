@@ -1,3 +1,7 @@
+---
+layout: homepage
+---
+
 This advanced workshop is an introduction to the stochastic simulation of Gene Regulatory Networks (GRNs) using the R package `sismonr`. You will learn the basics of simulating GRNs, and how to scale up simulations on a HPC.
 
 ## Pre-workshop information
@@ -21,6 +25,3 @@ Before getting started, have a look at the [Supplementary](./workshop_material/1
 3. [Scaling up your work](./workshop_material/03_scaling_up.html)
 4. [Parallel computing on NeSI](./workshop_material/04_parallel_computing.html)
 5. [Post-processing](./workshop_material/05_post_processing.html)
-
-
-Testing some math equation $y = ax + b \pi$
