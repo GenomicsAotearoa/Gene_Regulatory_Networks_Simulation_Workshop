@@ -14,11 +14,12 @@ mysystem <- addEdge(mysystem, 3, 1, regsign = "-1")
 ## Get the list of reactions from the system
 reactions <- getReactions(mysystem)
 str_remove_all(reactions$reaction, "GCN1")
+cat(paste0(str_remove_all(reactions$reaction, "GCN1"), collapse = "\n")) ## to get the reactions in a column
 
 ## Generate 2 in silico individuals
 set.seed(123)
 mypop <- createInSilicoPopulation(2, ## number of individuals
-                                  small_grn,
+                                  mysystem,
                                   ngenevariants = 2) ## how many alleles per gene
 
 ## Get the list of reactions and associated reaction rates 

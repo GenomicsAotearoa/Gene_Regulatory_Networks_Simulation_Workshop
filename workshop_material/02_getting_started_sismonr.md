@@ -237,34 +237,34 @@ When constructing a stochastic model for a given GRN, sismonr computes for each 
 Here are the rates of each reaction for two genetically different *in silico* individuals:
 
 ``` r
-                  reaction rate_Ind1 rate_Ind2
-Pr2reg1F + P1 --> Pr2reg1B  5.89e-06  5.89e-06
+                 reaction rate_Ind1 rate_Ind2
+Pr2reg1F + P1 --> Pr2reg1B  5.89e-06  5.27e-06
 Pr2reg1B --> Pr2reg1F + P1  2.45e-03  2.45e-03
-Pr3reg2F + P2 --> Pr3reg2B  3.24e-05  3.24e-05
+Pr3reg2F + P2 --> Pr3reg2B  3.46e-05  3.32e-05
 Pr3reg2B --> Pr3reg2F + P2  2.86e-03  2.86e-03
-Pr1reg3F + P3 --> Pr1reg3B  1.25e-06  1.24e-06
+Pr1reg3F + P3 --> Pr1reg3B  1.36e-06  1.25e-06
 Pr1reg3B --> Pr1reg3F + P3  9.84e-04  9.84e-04
 
 Pr1reg3F --> Pr1reg3F + R1  6.54e-04  6.54e-04
-Pr2reg1F --> Pr2reg1F + R2  1.13e-03  1.13e-03
-Pr2reg1B --> Pr2reg1B + R2  7.75e-03  7.75e-03
-Pr3reg2F --> Pr3reg2F + R3  1.54e-03  1.54e-03
-Pr3reg2B --> Pr3reg2B + R3  7.84e-03  7.84e-03
+Pr2reg1F --> Pr2reg1F + R2  1.13e-03  1.22e-03
+Pr2reg1B --> Pr2reg1B + R2  7.75e-03  8.39e-03
+Pr3reg2F --> Pr3reg2F + R3  1.63e-03  1.54e-03
+Pr3reg2B --> Pr3reg2B + R3  8.28e-03  7.84e-03
 
-           R1 --> R1 + P1  1.02e-01  9.79e-02
-           R2 --> R2 + P2  8.88e-03  8.88e-03
-           R3 --> R3 + P3  3.22e-01  3.22e-01
-           
-                 R1 --> 0  6.20e-04  5.29e-04
-                 R2 --> 0  6.48e-04  6.48e-04
-                 R3 --> 0  4.57e-04  4.57e-04
+            R1 --> R1 + P1  1.02e-01  1.02e-01
+            R2 --> R2 + P2  8.88e-03  8.69e-03
+            R3 --> R3 + P3  3.09e-01  3.22e-01
 
-                 P1 --> 0  1.95e-04  1.95e-04
-    Pr2reg1B --> Pr2reg1F  1.95e-04  1.95e-04
-                 P2 --> 0  1.23e-04  1.23e-04
-    Pr3reg2B --> Pr3reg2F  1.23e-04  1.23e-04
-                 P3 --> 0  1.05e-03  1.05e-03
-    Pr1reg3B --> Pr1reg3F  1.05e-03  1.05e-03
+                  R1 --> 0  6.20e-04  6.20e-04
+                  R2 --> 0  6.48e-04  5.78e-04
+                  R3 --> 0  4.55e-04  4.57e-04
+
+                  P1 --> 0  1.95e-04  1.95e-04
+     Pr2reg1B --> Pr2reg1F  1.95e-04  1.95e-04
+                  P2 --> 0  1.23e-04  1.13e-04
+     Pr3reg2B --> Pr3reg2F  1.23e-04  1.13e-04
+                  P3 --> 0  1.02e-03  1.05e-03
+     Pr1reg3B --> Pr1reg3F  1.02e-03  1.05e-03
 ```
 
 The list of reactions and associated rates is what sismonr uses to simulate the expression of the genes over time for each *in silico* individual.
@@ -348,7 +348,11 @@ Pretty neat! We can see that when the *MYBrep* gene is overexpressed, the activi
 
 ## Why is scaling-up important
 
-Once important aspect to notice is that each simulation takes a long time to run! sismonr records the simulation running time (in seconds) for each individual:
+The simulation above is nice, and allows us to get an idea of the dynamics of gene expression in both wild-type and mutated conditions. However, one stochastic simulation is not enough to draw robust conclusions. Ideally, the simulations should be repeated a large number of time (say, 2,000) in order to obtain distributions, rather than single values, of the abundance of different gene products. With a large number of simulations, we can then perform hypothesis testing for example, and draw solid conclusions.
+
+*add an example of the simulation plot with the error ribbons, then a plot with distribution (histogram) of DFR proteins for each plant.*
+
+However, you will have noticed that each simulation takes a long time to run! sismonr records the simulation running time (in seconds) for each individual:
 
 ```r
 sim$runningtime
@@ -358,7 +362,7 @@ sim$runningtime
 [1] 187.59 178.13
 ```
 
-which corresponds to approx. 3 minutes per simulation. So if we were to run *update number* simulations for each plant, it would take *????*. This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.
+which corresponds to approx. 3 minutes per simulation. So if we were to run, say, 2,000 simulations for each plant, it would take approximately 100 hours! This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.
 
 ---
 

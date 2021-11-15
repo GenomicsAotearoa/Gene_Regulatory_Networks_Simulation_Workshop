@@ -28,7 +28,7 @@ small_grn2 <- addGene(small_grn,
 
 small_grn3 <- addEdge(small_grn2, 11, 8, regsign = "1")
 
-set.seed(23)
+set.seed(123)
 small_pop <- createInSilicoPopulation(3, ## number of individuals
                                       small_grn,
                                       ngenevariants = 2) ## how many alleles per gene
