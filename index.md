@@ -25,3 +25,4 @@ Before getting started, have a look at the [Supplementary](./workshop_material/1
 3. [Scaling up your work](./workshop_material/03_scaling_up.html)
 4. [Parallel computing on NeSI](./workshop_material/04_parallel_computing.html)
 5. [Post-processing](./workshop_material/05_post_processing.html)
+10. [Supplementary-material](./workshop_material/10_supplementary.md)
