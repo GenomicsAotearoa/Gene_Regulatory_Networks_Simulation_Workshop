@@ -14,7 +14,7 @@
  3. <p>Choose server options as below<br><img src="nesi_images/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p>
  
 
-## Opening a Jupyter kernel (sismonr/R-4.1.0) and Jupyter terminal
+## Opening a Jupyter teminal and  sismonr Jupyter kernel (sismonr/R-4.1.0) 
 
 1. <p>Start a terminal session from the JupyterLab launcher<br><img src="nesi_images/jupyterLauncher.png" alt="terminal" width="500"/></p>
 
