@@ -118,13 +118,13 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 -   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm (SSA) is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
 
-![An example of discrete and stochastic model](./images/ssa_model_example.png)
+<img src="images/ssa_model_example.png" alt="An example of discrete and stochastic model" width="1400"/>
 
 <small>Example of a discrete and stochastic model. a) The GRN modelled. b) The list of biochemical reactions occuring in the modelled system, with the rate of each reaction indicated above the reaction arrow. c) One simulation obtained with the Stochastic Simulation Algorithm. The code to reproduce this example is available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). </small>
 
 Each type of model has its own advantages and drawbacks.
 
-![Summary of the main differences between different classes of GRN models](./images/comparison_type_models.png)
+<img src="images/comparison_type_models.png" alt="Summary of the main differences between different classes of GRN models" width="700"/>
 
 <small>A very schematic representation of some of the differences between different classes of GRN models.</small>
 
