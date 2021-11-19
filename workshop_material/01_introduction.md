@@ -106,27 +106,27 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 -   Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
 
-![An example of logical model](./images/logical_model_kalerbach.png)
+![An example of logical model](./images/boolean_model_example.png)
 
-<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a logical model. Each node in the GRN can be in state 0 (OFF) or 1 (ON). The transition rules from one time-point to the next are displayed in the tables on the right. </small>
+<small>Example of a logical model. a) The GRN modelled. b) The transition rules from one time point to the next for each edge in the GRN: for each possible state of the regulator(s) (white columns), the corresponding state of the target (grey column) at the next time point. c) Simulation of the model: at each time point, the genes are either ON (1) or OFF (2). Example adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. </small>
 
--   Continuous and deterministic models: differential expressions are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
+-   Continuous and deterministic models: ordinary differential expressions (ODEs) are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
 
-![An example of continuous and deterministic model](./images/ode_model_kalerbach.png)
+![An example of continuous and deterministic model](./images/ode_model_example.png)
 
-<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol* **9**, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. Example of a continuous and deterministic model, for the same GRN as in the previous example. a: the set of ordinary differential equations (ODEs) used to model the GRN. b: graphical representation of the GRN. c: Solutions of the model (see the paper for the values used for the different parameters). </small>
+<small>Example of a continuous and deterministic model, for the same GRN as in the previous example. a) The GRN modelled. b) The system of ODEs used to describe the change in the different genes' concentration over time. The regulatory functions are constructed to match the GRN modelled. c) The trajectories of the model over time (obtained by solving the system of ODEs). The code to reproduce this example is available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). Adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol* **9**, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. </small>
 
 -   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm (SSA) is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
 
-![An example of discrete and stochastic model](./images/stochastic_model_tonn.png)
+![An example of discrete and stochastic model](./images/ssa_model_example.png)
 
-<small>From Tonn, M.K., Thomas, P., Barahona, M. et al. Stochastic modelling reveals mechanisms of metabolic heterogeneity. *Commun Biol* **2**, 108 (2019). <https://doi.org/10.1038/s42003-019-0347-0>. Example of a discrete and stochastic model. The model depicts the expression of one gene, which produces an enzyme involved in a metabolic reaction. </small>
+<small>Example of a discrete and stochastic model. a) The GRN modelled. b) The list of biochemical reactions occuring in the modelled system, with the rate of each reaction indicated above the reaction arrow. c) One simulation obtained with the Stochastic Simulation Algorithm. The code to reproduce this example is available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). </small>
 
-Each type of model has its own advantages and drawbacks. The following graph by [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503) provides a good overview of the main differences between different classes of GRN models.
+Each type of model has its own advantages and drawbacks.
 
-![Summary of the main differences between different classes of GRN models](./images/diff_types_models_kalerbach.png)
+![Summary of the main differences between different classes of GRN models](./images/comparison_type_models.png)
 
-<small>From Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>.</small>
+<small>A very schematic representation of some of the differences between different classes of GRN models.</small>
 
 In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size. In the next section, you will learn more about how to simulate expression data from stochastic models using the Stochastic Simulation Algorithm.
 
