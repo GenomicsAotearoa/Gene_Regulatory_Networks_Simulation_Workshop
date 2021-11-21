@@ -18,7 +18,7 @@
 
 1. <p>Start a terminal session from the JupyterLab launcher<br><img src="nesi_images/jupyterLauncher.png" alt="terminal" width="500"/></p>
 
- When you connect to NeSI JupyterLab you always start in a new hidden directory. To make sure you can find your work next time, you should change to another location. Here we will create a working directory in project nesi02659 workspace for each attendee and then create a symlink from home (~) for easy access. 
+    * <p>When you connect to NeSI JupyterLab you always start in a new hidden directory. To make sure you can find your work next time, you should change to another location. Here we will create a working directory in project nesi02659 workspace for each attendee and then create a symlink from home (~) for easy access.</p> 
 
  ```bash
  cd ~
@@ -26,7 +26,7 @@
  ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER sism_2021
  ```
 
-2. <p>Guide Jupyter file explorer (left panel) to above working directory<br><img src="nesi_images/jupyter_fileexplorer.png" alt="drawing" width="700"/></p> 
+2. <p>Guide Jupyter file explorer (left panel) to above working directory<br><img src="nesi_images/jupyter_fileexplorer.png" alt="drawing" width="900"/></p> 
 
 3. <p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="600"/></p>
 
