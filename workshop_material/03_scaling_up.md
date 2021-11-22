@@ -15,15 +15,10 @@
 
 ### Defining high-performance computing
 
-he simplest way of defining high-performance computing is by saying that it is the using of high-performance computers. However, this leads to our next question.
+The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers. However, this leads to our next question.
 
->**Question** - what you think defines a high-performance computer
-><
->> **Answer**
->>
 >>A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.
->>
->{: .answer}
+
 <br>
 <p>While modern computers can do a lot (and a lot more than their equivalents 10-20 years ago), there are limits to what they can do and the speed at which they are able to do this. One way to overcome these limits is to pool computers together to create a cluster of computers. These pooled resources can then be used to run software that requires more total memory, or need more processors to complete in a reasonable time.</p>
 
