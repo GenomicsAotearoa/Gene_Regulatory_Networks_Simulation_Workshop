@@ -34,7 +34,10 @@ We are only interested in the `Simulation` data-frame.
 If you try to load one of your simulation files and have a look at this data-frame, it should look something like this (note that I'm using `as_tibble()` to get a nicer visualisation of the data-frame):
 
 ```r
-> as_tibble(sim$Simulation)
+as_tibble(sim$Simulation)
+```
+
+```r
 # A tibble: 4,804 × 203
     time trial R1GCN1 P1GCN1 R4GCN2 P4GCN2 R5GCN2 P5GCN2 R6GCN1 P6GCN1 R2GCN2 P2GCN2 R7GCN2 P7GCN2 R5GCN1 P5GCN1 R3GCN1 P3GCN1 R4GCN1 P4GCN1 R3GCN2 P3GCN2
    <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -60,8 +63,11 @@ If you try to load one of your simulation files and have a look at this data-fra
 Notice that each species has a suffix on the form `GCN1` or `GCN2`. This is because sismonr tracks the allele of origin of each molecule. As we are simulating a diploid system, each gene is present in 2 copies (two alleles), and so the RNAs and proteins of a given gene can originate from either of these two alleles. This can be really handy when looking at the impact of mutations of different alleles. In this case however, we don't care about the allele of origin of the different species. Instead, we would rather have the abundance of all RNAs or proteins for a given gene into one column. To obtain that, we can use the sismonr function `mergeAlleleAbundance`:
 
 ```r
-> merged_simulation <- mergeAlleleAbundance(sim$Simulation)
-> as_tibble(merged_simulation)
+merged_simulation <- mergeAlleleAbundance(sim$Simulation)
+as_tibble(merged_simulation)
+```
+
+```r
 # A tibble: 4,804 × 27
     time trial Ind      R1    P1    R4    P4    R5    P5    R6    P6    R2    P2    R7    P7    R3    P3  CTC1  CTC5  CTC2  CTC6  CTC3  CTC7  CTC8  CTC4
    <dbl> <dbl> <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -144,10 +150,11 @@ sim_df <- lapply(sim_files, function(file){
 
 But as we've seen earlier, there are some modifications that we want to apply to the simulation results to make it more interesting for us. One of these modifications is to apply the `mergeAlleleAbundance` function:
 
-```r
+```diff
 sim_df <- lapply(sim_files, function(file){
   load(paste0("~/sism_2021/output_simulations/", file))
-  mergeAlleleAbundance(sim$Simulation)
+- sim$Simulation
++ mergeAlleleAbundance(sim$Simulation)
 }) %>% 
   reduce(bind_rows)
 ```
@@ -164,24 +171,26 @@ File index  trial    Simulation index
                 2                   6
          4      1                   7
                 2                   8
+etc.
 ```
 
 Maybe you noticed that `Simulation index = 2*(File index - 1) + trial`:
 
-```r
-sim_df <- lapply(1:n_sim, function(i){
-  file <- sim_files[i]
+```diff
+- sim_df <- lapply(sim_files, function(file){
++ sim_df <- lapply(1:n_sim, function(i){
++  file <- sim_files[i]
   load(paste0("~/sism_2021/output_simulations/", file))
   
   mergeAlleleAbundance(sim$Simulation) %>% 
-    mutate(trial = trial + 2*(i - 1))
++    mutate(trial = trial + 2*(i - 1))
 }) %>% 
   reduce(bind_rows)
 ```
 
 Finally, we'll transform the data-frame into a tibble, just to make our lives easier:
 
-```r
+```diff
 sim_df <- lapply(1:n_sim, function(i){
   file <- sim_files[i]
   load(paste0("~/sism_2021/output_simulations/", file))
@@ -189,13 +198,14 @@ sim_df <- lapply(1:n_sim, function(i){
   mergeAlleleAbundance(sim$Simulation) %>% 
     mutate(trial = trial + 2*(i - 1))
 }) %>% 
-  reduce(bind_rows) %>% 
-  as_tibble()
+-  reduce(bind_rows)
++  reduce(bind_rows) %>% 
++  as_tibble()
 ```
 
 ## Visualising the simulations
 
-Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll first use the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plots:
+Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plots:
 
 ```r
 load("~/sism_2021/sismonr_anthocyanin_system.RData")
@@ -210,7 +220,7 @@ plotSimulation(sim_df,
 ```
 ![A plot of the 500 simulations](./images/colsystem_simulations_500trials.png)
 
-This should look very similar to the first plot we've made of the result of one simulation. This time however, the average abundance of a given species across all simulations is given with a solid lines, and the minimum and maximum abundance across the simulations is represented as a shaded area. This plot is really useful to visualise the biological variation that could be observed experimentally for genetically identical plants.
+This should look very similar to the first plot we've made of the result of one simulation. This time however, the average abundance of a given species across all simulations is given with a solid line, and the minimum and maximum abundance across the simulations is represented as a shaded area. This plot is really useful to visualise the biological variation that could be observed experimentally for genetically identical plants.
 
 ## Comparing DFR expression between the two plants
 
@@ -222,7 +232,7 @@ Have a go at it first! When you are ready, one possible plot is presented below:
 sim_df %>% 
   filter(time == 1200) %>% ## only keep the last time-point of each simulation
   select(trial, Ind, "P7") %>% ## we want to focus on DFR proteins abundance 
-  ## for a better plot, show wild-type plant first, give them a nice label 
+  ## for a better plot, show wild-type plant first, and give each individual a nice label 
   ## (rather than "Ind1" and "Ind2")
   mutate(Ind = factor(Ind, 
                       levels = c("Ind1", "Ind2"), 
@@ -244,6 +254,10 @@ sim_df %>%
 
 ![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
 
+
+## Conclusion
+
+Yay, you've reached the end of this workshop! Feel free to make use of this knowledge in your own research projects :)
 
 ---
 

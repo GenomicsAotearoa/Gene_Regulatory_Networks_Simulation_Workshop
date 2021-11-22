@@ -305,7 +305,7 @@ The sismonr objects representing the anthocyanin biosynthesis regulation network
 /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData
 ```
 
-Alternatively, it can be down [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData); they are available in *need to detail were it is*. The R script used to generate it can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R).
+Alternatively, it can be downloaded [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData). The R script used to generate it can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R).
 
 You will start by creating a copy of this object in your working directory, for easier access. In a Jupyter terminal, type:
 
@@ -373,6 +373,9 @@ Pretty neat! We can see that when the *MYBrep* gene is overexpressed, the activi
 The simulation above is nice, and allows us to get an idea of the dynamics of gene expression in both wild-type and mutated conditions. However, one stochastic simulation is not enough to draw robust conclusions. Ideally, the simulations should be repeated a large number of time in order to obtain distributions, rather than single values, for the abundance of different gene products. With a large number of simulations, we can then perform hypothesis testing, and draw solid conclusions. As an example, here is some of the output we can obtain after running 500 simulations:
 
 ![A plot of the 500 simulations](./images/colsystem_simulations_500trials.png)
+
+
+
 
 ![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
 
