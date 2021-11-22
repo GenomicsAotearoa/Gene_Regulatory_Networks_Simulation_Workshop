@@ -299,21 +299,43 @@ The goal of this workshop will be to simulate the expression of the different ge
 
 Because the simulations are stochastic, it is better to simulate the GRN a large number of times in order to obtain a good overview of the system behaviour. We will aim to produce *need to decide on the number*.
 
-The sismonr GRN and *in silico* plants can be downloaded [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData); they are available in *need to detail were it is*. The R script used to generate them can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R).
+The sismonr objects representing the anthocyanin biosynthesis regulation network and the *in silico* are saved in the following `.RData` file:
 
+```
+/nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData
+```
+
+Alternatively, it can be down [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData); they are available in *need to detail were it is*. The R script used to generate it can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R).
+
+You will start by creating a copy of this object in your working directory, for easier access. In a Jupyter terminal, type:
+
+```bash
+cp /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData ~/sism_2021/
+```
+
+You can check that it worked with:
+
+```bash
+ls -l ~/sism_2021/
+```
+
+```
+total 0
+-r--r-----+ 1 oangelin nesi02659 5417 Nov 22 17:05 sismonr_anthocyanin_system.RData
+```
 
 ## Running a first simulation (interactive)
 
-Once your model is ready to be simulated, the first thing to do is to test running one simulation on your local machine. For this workshop, a jupyter kernel will act as your local machine.
+We will start by running one simulation on your local machine. This is the first thing to do if you are planning to run simulations on NeSI: first, make sure your actually works! For this workshop, a jupyter kernel will act as your local machine. 
 
-Start by opening a sismonr kernel *maybe need to copy again the instructions*
+Start by opening a sismonr kernel (see the instructions [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/10_supplementary.html)).
 
-We will first load the sismonr package, and the model and in silico plants we want to simulate.
+We will first load the sismonr package, and the model and *in silico* plants we want to simulate.
 
 ```r
 library(sismonr)
 
-load("sismonr_anthocyanin_system.RData")
+load("~/sism_2021/sismonr_anthocyanin_system.RData")
 ```
 
 Feel free to inspect the different aspects of the model. We can run one simulation for each of the two *in silico* plants via the command:
@@ -348,9 +370,12 @@ Pretty neat! We can see that when the *MYBrep* gene is overexpressed, the activi
 
 ## Why is scaling-up important
 
-The simulation above is nice, and allows us to get an idea of the dynamics of gene expression in both wild-type and mutated conditions. However, one stochastic simulation is not enough to draw robust conclusions. Ideally, the simulations should be repeated a large number of time (say, 2,000) in order to obtain distributions, rather than single values, of the abundance of different gene products. With a large number of simulations, we can then perform hypothesis testing for example, and draw solid conclusions.
+The simulation above is nice, and allows us to get an idea of the dynamics of gene expression in both wild-type and mutated conditions. However, one stochastic simulation is not enough to draw robust conclusions. Ideally, the simulations should be repeated a large number of time in order to obtain distributions, rather than single values, for the abundance of different gene products. With a large number of simulations, we can then perform hypothesis testing, and draw solid conclusions. As an example, here is some of the output we can obtain after running 500 simulations:
 
-*add an example of the simulation plot with the error ribbons, then a plot with distribution (histogram) of DFR proteins for each plant.*
+![A plot of the 500 simulations](./images/colsystem_simulations_500trials.png)
+
+![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
+
 
 However, you will have noticed that each simulation takes a long time to run! sismonr records the simulation running time (in seconds) for each individual:
 

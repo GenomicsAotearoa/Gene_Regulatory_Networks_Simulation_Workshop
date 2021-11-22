@@ -175,7 +175,7 @@ for(inter in interactions){
 ## silencing, which increases the decay of the RNAs of the gene,
 ## which is what we are reproducing here).
 
-plants <- createInSilicoPopulation(3,
+plants <- createInSilicoPopulation(2,
                                    colsystem,
                                    initialNoise = F,
                                    ngenevariants = 1)
@@ -193,11 +193,6 @@ plants$individualsList$Ind2$QTLeffects$GCN2$qtlTCrate[5] <- 50
 plants$individualsList$Ind2$QTLeffects$GCN1$qtlTCregbind[5] <- 0
 plants$individualsList$Ind2$QTLeffects$GCN2$qtlTCregbind[5] <- 0
 
-## We add the QTL effect coefficient for the second individual
-## such that the RNA decay rate of gene 5 is increased
-plants$individualsList$Ind3$QTLeffects$GCN1$qtlRDrate[5] <- 20
-plants$individualsList$Ind3$QTLeffects$GCN2$qtlRDrate[5] <- 20
-
 ## Changing the initial conditions:
 ## As specified in Albert et al., 2014, only genes 2 and 3
 ## (bHLH1 and WDR) are constitutively expressed.
@@ -212,22 +207,15 @@ for(g in names(plants$individualsList$Ind1$InitAbundance)){
   }
 }
 
-plants_all <- plants ## contains all 3 in silico plants
-
-## Only the wild-type and overexpressed mutate
-plants$individualsList <- plants$individualsList[1:2]
-
-
-
 ## --------------------------------- ##
 ## Saving the system and individuals ##
 ## --------------------------------- ##
 
 save(colsystem, plants, id2names, colours, file = here("data/sismonr_anthocyanin_system.RData"))
 
-## -------------------------------------------------------------------- ##
-## Simulating the expression profiles of the genes for the three plants ##
-## -------------------------------------------------------------------- ##
+## ------------------------------------------------------------------------- ##
+## Extra: simulating the expression profiles of the genes for the two plants ##
+## ------------------------------------------------------------------------- ##
 
 plotGRN(colsystem, nodes_label = id2names)
 
@@ -239,11 +227,10 @@ sim <- simulateInSilicoSystem(colsystem,
 sim$runningtime / 60
 sum(sim$runningtime)
 
-plotSimulation(sim$Simulation,
-               labels = id2names)
-
 plotSimulation(sim$Simulation, 
                molecules = names(colours), 
                mergeComplexes = FALSE,
                labels = id2names[names(colours)],
                colours = colours)
+ggsave(here("workshop_material/images/colsystem_simulations_1trial.png"), width = 12, height = 8)
+
