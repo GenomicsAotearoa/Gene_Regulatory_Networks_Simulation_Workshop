@@ -13,6 +13,16 @@
 
 ## Checking that the job array worked
 
+In the previous section, you have seen how to run a slurm array job. Now it is time to check whether the arrays completed without failing! And if some of the arrays did fail, we would like to identify them to re-run them.
+
+As we have seen in the previous sections, the `sacct` command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output and paste it in your slurm script for the `array` option, in order to re-run only those arrays that failed. In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID:
+
+```bash
+sacct -j $JOB_ID -X -n -s TO,F,OOM -o jobid | cut -d "_" -f2 | tr -s ' \n' ','
+```
+
+Your turn! Did any of your arrays failed? If so, how would you re-run them?
+
 ## Interpreting the sismonr output
 
 Now, it is time to analyse the simulations that we generated. In the simulation script, we made sure to save each simulation into a `.RData` file, which can be then loaded into R with:
