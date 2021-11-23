@@ -17,17 +17,18 @@ One way to answer a research question is through observations and experiments. A
 
 > **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
 
-> **Simulation**: Using a mathematical or statistical model to generate data about the system.
+> **Simulation**: Data about the system generated using a mathematical or statistical model.
 
 Modelling and simulations are very powerful tools. In particular, they allow us to:
 
--   explain experimental data, through model fitting and estimation of parameters;
+-   explain experimental data, through model fitting and refinement;
 
--   test hypotheses without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of deleting a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
+-   test hypotheses:
+  - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of deleting a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
 
--   test scenarios that wouldn't be ethical or even feasible to test in real life (e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies);
+  -   that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
 
--   make predictions about new interventions/scenarios (e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...);
+-   make predictions about new interventions/scenarios: e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...;
 
 -   communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
 
@@ -89,7 +90,7 @@ A given environmental cue typically triggers the activation of a specific regula
 One way to understand the dynamics of GRNs is through simulation; i.e. by simulating the expression over time of genes involved in the GRN. Simulating GRNs allows us to:
 
 -   Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
--   predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell to the presence of a hormone);
+-   predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell in the presence of a hormone);
 -   predict the behaviour of the system in response to modifications of the GRN (e.g. what happens when a critical gene is mutated in a cancer cell?);
 -   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
 -   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
@@ -100,23 +101,23 @@ A model of GRN is generally comprised of 3 components:
 
 -   A set of rules to convert the regulatory interactions into mathematical or statistical equations;
 
--   A set of kinetic parameters that specify the rate of the different reactions in the model.
+-   A set of kinetic parameters that specify the rate of the different reactions in the model (depends on the type of model used).
 
 There are many types of models that can be developed to simulate GRNs (see [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503)). For example:
 
--   Logical models: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the target gene switch state (or remain in the same state) at time t+1;
+-   **Logical models**: each gene in a GRN is considered as a switch with two states, ON and OFF. Depending on the state (ON or OFF) of a regulator at time t and the type of regulation exerted by the regulator on its target (i.e. activative or repressive), the state of the target gene will change (or remain the same) at time t+1;
 
 ![An example of logical model](./images/boolean_model_example.png)
 
 <small>Example of a logical model. a) The GRN modelled. b) The transition rules from one time point to the next for each edge in the GRN: for each possible state of the regulator(s) (white columns), the corresponding state of the target (grey column) at the next time point. c) Simulation of the model: at each time point, the genes are either ON (1) or OFF (2). Example adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. </small>
 
--   Continuous and deterministic models: ordinary differential expressions (ODEs) are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
+-   **Continuous and deterministic models**: ordinary differential expressions (ODEs) are used to describe how the concentrations of the different mRNAs and proteins evolve over time. Regulatory functions are used to describe the change in the production of mRNAs or proteins of a target gene as a function of the concentration of regulator molecules.
 
 ![An example of continuous and deterministic model](./images/ode_model_example.png)
 
 <small>Example of a continuous and deterministic model, for the same GRN as in the previous example. a) The GRN modelled. b) The system of ODEs used to describe the change in the different genes' concentration over time. The regulatory functions are constructed to match the GRN modelled. c) The trajectories of the model over time (obtained by solving the system of ODEs). The code to reproduce this example is available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). Adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol* **9**, 770--780 (2008). <https://doi.org/10.1038/nrm2503>. </small>
 
--   Discrete and stochastic models: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm (SSA) is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
+-   **Discrete and stochastic models**: biochemical reactions represent the production, transformation and decay of the molecules (DNA, mRNA and proteins) present in the system of interest. A Stochastic Simulation Algorithm (SSA) is used to predict the evolution of the different molecules' absolute abundance over time, by simulating the occurrence of the different reactions in the system.
 
 <img src="images/ssa_model_example.png" alt="An example of discrete and stochastic model" width="1400"/>
 
@@ -158,7 +159,7 @@ A stochastic model consists of:
 
 Mathematically, the biochemical reactions are usually represented with a stoichiometry matrix, in which each row corresponds to a species and each column to a reaction. The cells indicate the change in abundance of the different species resulting from one occurrence of the reactions. Thus, negative values indicate the reactants of the reactions, while positive values indicate its products.
 
-<img src="images/stoichiometry_matrix_example.png" alt="The stoichiometry of the stochastic model." width="700"/>
+<img src="images/stoichiometry_matrix_example.png" alt="The stoichiometry of the stochastic model." width="1000"/>
 
 <small>The stoichiometry of the stochastic model. Notice that in reactions 3 and 4, a species appears as both a reactant and a product, and so is not represented in the stoichiometry matrix. This is because the species is necessary for the reaction, but is not degraded or transformed by the reaction.</small>
 
@@ -207,6 +208,7 @@ Many variations of this stochastic simulation algorithms have been proposed, to 
 
 There are many implementations of the different versions of the Stochastic Simulation Algorithm, in the language of your choice: The R packages [GillespieSSA](https://CRAN.R-project.org/package=GillespieSSA) and [adaptivetau](https://CRAN.R-project.org/package=adaptivetau), the Python module [gillespie](https://github.com/sueskind/gillespie), the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/), and many (or at least a few) more.
 
+The sismonr packages uses under the hood the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/) to perform the stochastic simulations. You will learn a bit more about how sismonr links R and Julia in the next section.
 
 ---
 
