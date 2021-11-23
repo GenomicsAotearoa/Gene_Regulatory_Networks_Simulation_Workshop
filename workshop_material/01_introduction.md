@@ -130,6 +130,19 @@ Each type of model has its own advantages and drawbacks.
 
 In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restrict the simulations to models of GRNs of small size. In the next section, you will learn more about how to simulate expression data from stochastic models using the Stochastic Simulation Algorithm.
 
+### Tools to simulate GRNs
+
+While it is possible to develop "by hand" your own model to simulate the expression of genes for a specific GRN, a number of simulators have been developed, each with its own goals, choice of programming language, and modelling assumptions. A few examples are mentioned below. Note that existing tools generally focus on the simulation of transcription regulatory networks, i.e. only regulation of transcription is accounted for.
+
+**GeneNetWeaver**: [GeneNetWeaver](http://gnw.sourceforge.net/) ([Schaffter et al., 2011](https://doi.org/10.1093/bioinformatics/btr373)) is a Java-implemented software for GRN generation and simulation. Users can either provide their own network graph, or sample small regulatory network from two possible experimentally derived transcriptional networks (reconstructed respectively from E. coli and S. cerevisiae). A deterministic or semi-stochastic model is used to represent the expression of genes and transcription regulations between the genes. The model is then used to simulate time-course RNA and proteins normalised concentration. In addition, it is possible to simulate data for different types of network perturbation, e.g. gene knockouts or knockdowns. 
+
+**CaiNet**: [CaiNet](https://gitlab.com/GebhardtLab/cainet) ([Hettich et al., 2021](https://doi.org/10.1101/872374)) is a Matlab/C++-based interactive tool to construct and simulate GRNs. The user can design in the GUI its own transcription regulatory network, which can include external input signal,  homo- and heterodimerisation, and enzyme-aided metabolic reactions. A model is then constructed, using a mix of probabilistic and deterministic equations. The simulations are sped-up by simulating individually each gene for short time-steps, then synchronising the different gene expression levels across the entire system. In addition, CaiNet offers a module for the inference of GRN topology and parameters from steady-state gene expression data.
+
+**MeSCoT**: [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/) ([Milkevych *et al.*, 2021](https://doi.org/10.1093/g3journal/jkab133)) is a tool for generating and simulating GRNs impacted by genetic mutations and resulting quantitative phenotypes. This is particularly interesting for people working on QTL mapping or GWAS analyses for example. They use stochastic differential equations with time delay to construct the model. 
+
+In this workshop, we will use the [sismonr](https://github.com/oliviaAB/sismonr) R package. sismonr generates GRNs that include protein-coding and non-coding genes, and models different types of expression regulation, such as regulation of transcription, translation, RNA or protein decay, and post-translational modifications. sismonr constructs a stochastic model to simulate the abundance of RNAs and proteins in the system over time. 
+
+
 ### A (brief) introduction to the Stochastic Simulation Algorithm
 
 A stochastic model consists of:
@@ -192,20 +205,8 @@ An example is shown below:
 
 Many variations of this stochastic simulation algorithms have been proposed, to reduce the computational burden of the simulations. Some are exact, i.e. they will simulate the occurrence of each reaction in the system; while other are approximate, i.e. they will try to speed up the calculations at the expense of accuracy.
 
-There are many implementations of the different versions of the Stochastic Simulation Algorithm, in the language of your choice: The R packages [`GillespieSSA`](https://CRAN.R-project.org/package=GillespieSSA) and [`adaptivetau`](https://CRAN.R-project.org/package=adaptivetau), the Python module [`gillespie`](https://github.com/sueskind/gillespie), the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/), and many (or at least a few) more.
+There are many implementations of the different versions of the Stochastic Simulation Algorithm, in the language of your choice: The R packages [GillespieSSA](https://CRAN.R-project.org/package=GillespieSSA) and [adaptivetau](https://CRAN.R-project.org/package=adaptivetau), the Python module [gillespie](https://github.com/sueskind/gillespie), the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/), and many (or at least a few) more.
 
-
-### Tools to simulate GRNs
-
-While it is possible to develop "by hand" your own model to simulate the expression of genes for a specific GRN, a number of simulators have been developed, each with its own goals, choice of programming language, and modelling assumptions. A few examples are mentioned below. Note that existing tools generally focus on the simulation of transcription regulatory networks, i.e. only regulation of transcription is accounted for.
-
-**GeneNetWeaver**: [GeneNetWeaver](http://gnw.sourceforge.net/) ([Schaffter et al., 2011](https://doi.org/10.1093/bioinformatics/btr373)) is a Java-implemented software for GRN generation and simulation. Users can either provide their own network graph, or sample small regulatory network from two possible experimentally derived transcriptional networks (reconstructed respectively from E. coli and S. cerevisiae). A deterministic or semi-stochastic model is used to represent the expression of genes and transcription regulations between the genes. The model is then used to simulate time-course RNA and proteins normalised concentration. In addition, it is possible to simulate data for different types of network perturbation, e.g. gene knockouts or knockdowns. 
-
-**CaiNet**: [CaiNet](https://gitlab.com/GebhardtLab/cainet) ([Hettich et al., 2021](https://doi.org/10.1101/872374)) is a Matlab/C++-based interactive tool to construct and simulate GRNs. The user can design in the GUI its own transcription regulatory network, which can include external input signal,  homo- and heterodimerisation, and enzyme-aided metabolic reactions. A model is then constructed, using a mix of probabilistic and deterministic equations. The simulations are sped-up by simulating individually each gene for short time-steps, then synchronising the different gene expression levels across the entire system. In addition, CaiNet offers a module for the inference of GRN topology and parameters from steady-state gene expression data.
-
-**MeSCoT**: [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/) ([Milkevych *et al.*, 2021](https://doi.org/10.1093/g3journal/jkab133)) is a tool for generating and simulating GRNs impacted by genetic mutations and resulting quantitative phenotypes. This is particularly interesting for people working on QTL mapping or GWAS analyses for example. They use stochastic differential equations with time delay to construct the model. 
-
-In this workshop, we will use the [sismonr](https://github.com/oliviaAB/sismonr) R package. sismonr generates GRNs that include protein-coding and non-coding genes, and models different types of expression regulation, such as regulation of transcription, translation, RNA or protein decay, and post-translational modifications. sismonr constructs a stochastic model to simulate the abundance of RNAs and proteins in the system over time. 
 
 ---
 
