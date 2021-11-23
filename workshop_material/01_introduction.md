@@ -166,6 +166,7 @@ The general formula is, for a reaction $i$ with constant rate $r_i$ and $j$ reac
 
 $p_j(\mathbf{X}) = r_i \times \sum_{\text{reactants }j} X_j(t)$
 
+Which gives, for the reactions in our example:
 
 <img src="images/propensities_example.png" alt="Propensities of some of the reactions." width="700"/>
 
@@ -182,7 +183,17 @@ So, a typical Stochastic Simulation Algorithm will generate the simulation as fo
 4. Based on which reaction occurred, update the system state $\mathbf{X}(t)$.
 5. Loop through steps 1 to 4, until $t = t_max$
 
+An example is shown below: 
+
+
+<img src="images/steps_ssa_example.png" alt="Example of one iteration of the SSA." width="700"/>
+
+<small>Example of one iteration of the SSA.</small>
+
 Many variations of this stochastic simulation algorithms have been proposed, to reduce the computational burden of the simulations. Some are exact, i.e. they will simulate the occurrence of each reaction in the system; while other are approximate, i.e. they will try to speed up the calculations at the expense of accuracy.
+
+There are many implementations of the different versions of the Stochastic Simulation Algorithm, in the language of your choice: The R packages [`GillespieSSA`](https://CRAN.R-project.org/package=GillespieSSA) and [`adaptivetau`](https://CRAN.R-project.org/package=adaptivetau), the Python module [`gillespie`](https://github.com/sueskind/gillespie), the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/), and many (or at least a few) more.
+
 
 ### Tools to simulate GRNs
 
