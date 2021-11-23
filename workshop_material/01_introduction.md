@@ -132,8 +132,57 @@ In this workshop, we will be focusing on the discrete and stochastic class of mo
 
 ### A (brief) introduction to the Stochastic Simulation Algorithm
 
-Some math equation: $y = ax + b \pi$.
+A stochastic model consists of:
 
+- a list of (molecular) species present in the system of interest: in our case that would be the different genes, RNAs, proteins, etc.
+- a list of initial abundance for each species in the system, i.e. the number of molecules of each species present in the system at the beginning of the simulation;
+- a list of biochemical reactions that can occur in the system: e.g. substrate 1 binds with enzyme A to form a complex, represented on the form S1 + EA → C1A
+- a list of constant rates, one per reaction, that represent for  a given reaction the probability of one molecule of each reactant colliding and undergoing the reaction in the next time step.
+
+<img src="images/list_reactions_species_example.png" alt="Example of a stochastic model." width="700"/>
+
+<small>Example of a stochastic model.</small>
+
+Mathematically, the biochemical reactions are usually represented with a stoichiometry matrix, in which each row corresponds to a species and each column to a reaction. The cells indicate the change in abundance of the different species resulting from one occurrence of the reactions. Thus, negative values indicate the reactants of the reactions, while positive values indicate its products.
+
+<img src="images/stoichiometry_matrix_example.png" alt="The stoichiometry of the stochastic model." width="700"/>
+
+<small>The stoichiometry of the stochastic model. Notice that in reactions 3 and 4, a species appears as both a reactant and a product, and so is not represented in the stoichiometry matrix. This is because the species is necessary for the reaction, but is not degraded or transformed by the reaction.</small>
+
+We can represent the state of the system at a given time point $t$ as a vector of species abundance: $\mathbf{X}(t) = \left( X_1(t), \ldots, X_N(t) \right)$, where $X_i(t)$ is the abundance of species $i$ at time $t$. We already know what the system state is at time point $t = 0$: this is the initial abundance of the species that we decided on. The goal of  the simulation is to simulate the system state over a period of time (say until time point $t_max$):
+
+
+<img src="images/system_state_example.png" alt="The system state." width="700"/>
+
+<small>The system state.</small>
+
+
+In order to do that, we need to simulate the series of occurrence of the reactions. But how do we know which reaction will occur first? and when? We can answer these questions by calculating for each reaction its propensity: the probability of the reaction to "fire" or occur in the next unit (small) time-step. The propensities of the reactions depend on:
+
+- The constant rate of the reactions, which are the probability of one molecule of each reactant species to undergo the reaction; and
+- The state of the system at the current time point: more specifically, the abundance of the reactant species. Think about it: a reaction for which one of the reactant is present in very low abundance will have a very low probability of occurring. On the other hand, a reaction for which all reactants are very abundant will likely occur in the next time step.
+
+The general formula is, for a reaction $i$ with constant rate $r_i$ and $j$ reactants:
+
+$p_j(\mathbf{X}) = r_i \times \sum_{\text{reactants }j} X_j(t)$
+
+
+<img src="images/propensities_example.png" alt="Propensities of some of the reactions." width="700"/>
+
+<small>Propensities of some of the reactions.</small>
+
+
+So, a typical Stochastic Simulation Algorithm will generate the simulation as follow:
+
+- Initialisation: Start with the initial system state, and set $t = 0$.
+1. Compute the propensities of all reactions, based on the current state of the system
+2. Based on the propensities, randomly generate the time increment $\tau$ during which the next reaction will occur
+    - Update the time to $t = t + \tau$
+3. Based on the propensities, randomly select which reaction will occur between $t$ and $t+ \tau$
+4. Based on which reaction occurred, update the system state $\mathbf{X}(t)$.
+5. Loop through steps 1 to 4, until $t = t_max$
+
+Many variations of this stochastic simulation algorithms have been proposed, to reduce the computational burden of the simulations. Some are exact, i.e. they will simulate the occurrence of each reaction in the system; while other are approximate, i.e. they will try to speed up the calculations at the expense of accuracy.
 
 ### Tools to simulate GRNs
 
