@@ -1,7 +1,7 @@
 ---
 title: "Scaling-up Gene Regulatory Network Simulations"
 subtitle: "with an introduction to parallelisation and High Performance Computing"
-author: "Olivia Angelin-Bonnet, Dinindu Senanayake"
+author: "Olivia Angelin-Bonnet, New Zealand eScience Infrastructure"
 date: "01 December 2021"
 output:
   xaringan::moon_reader:
