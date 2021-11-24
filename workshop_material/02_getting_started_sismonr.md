@@ -17,7 +17,29 @@ The sismonr package was developed for the purpose of generating benchmark datase
 
 One particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!
 
-**Practice time!**
+### How sismonr links R and Julia
+
+Before we get into the fun part, which is getting to play with the sismonr package, it is important to know a little bit about sismonr works. More specifically, we will now briefly cover how sismonr uses Julia to run the simulations and other computations. This will be important when scaling-up our work from a local machine to a HPC environment.
+
+sismonr handles communications between R and Julia via the [XRJulia]([https://cran.r-project.org/package=XRJulia](https://cran.r-project.org/package=XRJulia)) R package. The first time you use a function from the sismonr package that requires Julia, sismonr (via XRJulia functions) opens a new julia process on your computer, and sets up a socket connection between the R session and the new julia process. 
+
+By default, this connection is set up on a random port, but there are ways to decide on the port to use: if, at the start of your R session, you use:
+
+```r
+XRJulia::newJuliaEvaluator(port = as.integer(456))
+```
+
+We won't need to use this for now, but you will find it useful later on :)
+
+Then, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.
+
+<img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="700"/>
+
+<small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small>
+
+This is why, if you decide to use sismonr on your own computer, you will have to install Julia first, and make sure that R can find the Julia executable (for example by adding Julia to the PATH, which is done for you when installing Julia).
+
+### Practice time!
 
 For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/10_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel.
 
