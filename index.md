@@ -4,19 +4,32 @@ layout: homepage
 
 This advanced workshop is an introduction to the stochastic simulation of Gene Regulatory Networks (GRNs) using the R package `sismonr`. You will learn the basics of simulating GRNs, and how to scale up simulations on a HPC.
 
-## Pre-workshop information
-
 ## Prerequisites
 
 - Familiarity with bash and R
 - Basic molecular biology knowledge preferred (gene expression and regulation)
 - HPC knowledge preferred
 
-## Learning goals
+## Learning objectives
 
-## Schedule
+By the end of this workshop, participants should be able to:
 
-## Outline (draft)
+- explain the concept of modelling and simulations, and how simulations can help answer research questions;
+- briefly describe the main steps of gene expression, and explain what is a Gene Regulatory Network;
+- list several classes of GRN models;
+
+- generate a small random GRN with the sismonr package and simulate the expression of its gene;
+
+- *complete with HPC learning objectives*
+
+## Some of the things we won't cover in this workshop
+
+- how to construct a mathematical or statistical model for a specific biological system of interest;
+- How to estimate model parameters based on experimental data;
+- How to reconstruct a GRN from experimental data;
+- Any questions we don't have answer for :)
+
+## Content
 
 Before getting started, have a look at the [Supplementary](./workshop_material/10_supplementary.md).
 
@@ -26,3 +39,17 @@ Before getting started, have a look at the [Supplementary](./workshop_material/1
 4. [Parallel computing on NeSI](./workshop_material/04_parallel_computing.html)
 5. [Post-processing](./workshop_material/05_post_processing.html)
 10. [Supplementary-material](./workshop_material/10_supplementary.md)
+
+## Schedule
+
+
+| Day      | Time           | Topic                                               |
+|----------|----------------|-----------------------------------------------------|
+| 1st day: | 10am-12:30pm   | 1. Introduction (with a coffee break at some point) |
+|          | 12:30pm-1:30pm | *Lunch break*                                       |
+|          | 1:30pm-2:30pm  | 2. Getting started with sismonr                     |
+|          | 2:30pm-4pm     | 3. Scaling up your work                             |
+| 2nd day: | 10am-12pm      | Section 4                                           |
+|          | 12pm-1pm       | *Lunch break*                                       |
+|          | 1pm-3pm        | 5. Post-processing                                  |
+|          | 3pm-4pm        | Question time                                       |
