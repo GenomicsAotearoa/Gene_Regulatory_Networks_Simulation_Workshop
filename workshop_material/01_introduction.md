@@ -21,16 +21,16 @@ One way to answer a research question is through observations and experiments. A
 
 Modelling and simulations are very powerful tools. In particular, they allow us to:
 
--   explain experimental data, through model fitting and refinement;
+* explain experimental data, through model fitting and refinement;
 
--   test hypotheses:
+* test hypotheses:
   - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of deleting a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
 
-  -   that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
+  - that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
 
--   make predictions about new interventions/scenarios: e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...;
+* make predictions about new interventions/scenarios: e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...;
 
--   communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
+* communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
 
 Modelling and simulations are used in many fields of science, including for example:
 
@@ -42,7 +42,7 @@ Modelling and simulations are used in many fields of science, including for exam
 
 -   Chemistry, molecular biology: molecules interaction models;
 
--   Astrophysics: modelling of planet formation, galaxy mergers ([galaxy mergers](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
+-   Astrophysics: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
 
 -   and many more!
 

@@ -1,0 +1,100 @@
+---
+title: "Scaling-up Gene Regulatory Network Simulations"
+subtitle: "with an introduction to parallelisation and High Performance Computing"
+author: "Olivia Angelin-Bonnet, Dinindu Senanayake"
+date: "01 December 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse, center, middle
+
+# 1. Introduction
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+---
+
+# Why simulations are important in research
+
+<br />
+<br />
+
+.pull-left[
+<img src="slides_images/julia-koblitz-RlOAwXt2fEA-unsplash.jpg">
+<small>Photo by <a href="https://unsplash.com/@jkoblitz?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Julia Koblitz</a> on <a href="https://unsplash.com/s/photos/experiment?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> </small>
+]
+
+.pull-right[
+<img src="slides_images/chuttersnap-UmncJq4KPcA-unsplash.jpg">
+<small>Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/s/photos/experiment?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></small>
+]
+
+---
+
+## Why simulations are important in research
+
+<br />
+
+> **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
+
+<br />
+
+> **Simulation**: Data about the system generated using a mathematical or statistical model.
+
+---
+
+## Why simulations are important in research
+
+Models and simulations allow us to:
+
+* Explain experimental data (through model fitting and refinement);
+
+--
+
+* Test hypotheses:
+  - without going through expensive and time-consuming experiments;
+  - that wouldn’t be ethical or even feasible to test in real life:
+  
+--
+
+* Make predictions about new interventions/scenarios;
+
+--
+
+* Communicate knowledge.
+
+---
+
+## Why simulations are important in research
+
+Modelling and simulations are used in many fields of science, e.g.:
+
+* **Epidemiology**: modelling of infectious diseases (see this [talk on COVID-19 modelling](https://www.youtube.com/watch?v=OhECexc9jt4));
+
+--
+ 
+* **Ecology**: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
+
+--
+
+* **Medicine**: construction of organ models, prediction of drug-target binding and drug efficiency;
+
+--
+
+* **Chemistry**, molecular biology: molecules interaction models;
+
+--
+
+* **Astrophysics**: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw));
+
+--
+
+* and many more!
