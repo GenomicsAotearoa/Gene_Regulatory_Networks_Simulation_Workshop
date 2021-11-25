@@ -26,13 +26,32 @@ Why do we need a scheduler ?
 
 Commonly used schedulers
 
-* SLURM - (All NeSI Clusters)
+* Slurm
 * PBS , Torque
 * Grid Engine
 * LSF – IBM Systems
 * LoadLeveller – IBM Systems
 
+
+All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. The main commands you will use with Slurm on NeSI Mahuika cluster are:
+   
+---
+| Command       | Function                                            |
+|---------------|-----------------------------------------------------|
+| `sbatch`      | Submit non-interactive (batch) jobs to the scheduler|
+| `squeue`      | List jobs in the queue                              |
+| `scancel`     | Cancel a job                                        |
+| `sacct`       | displays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database                                        |
+| `srun`        | Post-translational modification                     |
+| `sinfo`       | Query the current state of nodes                    |
+| `saclloc`     | Submit interactive jobs to the scheduler            |
+---
+
+
+
 ## First slurm job
+
+
 
 ## Assessing time and memory usage
 
