@@ -11,6 +11,7 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
+Slides are available [here]("https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html").
 ## Why simulations are important in research
 
 One way to answer a research question is through observations and experiments. A scientist can go in the field or the lab to collect data, and analyse them to answer the question. However, this is not the only way to "do" research. The construction of mathematical or statistical models can be an alternative way of testing and generating new hypotheses. It can help us answer questions as simple as predicting the movement of planets in the Solar system, or as complex as providing a weather forecast.
