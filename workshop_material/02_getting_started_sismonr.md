@@ -13,7 +13,7 @@
 
 ## Introduction to the sismonr package
 
-The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulations). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different *in silico* individuals, that carry different versions (or alleles) of the genes present in the GRN. This is quite useful to simulate gene expression under different scenarios such as gene knock-out for example.
+The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulations). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different *in silico* individuals, that carry different versions (or alleles) of the genes present in the GRN. This is quite useful to simulate gene expression under different scenarios such as gene knock-out for example. If you are interested, a full tutorial is available [here](https://oliviaab.github.io/sismonr/).
 
 One particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!
 
@@ -21,7 +21,7 @@ One particularity of sismonr is that it is available as an R package; but intern
 
 Before we get into the fun part, which is getting to play with the sismonr package, it is important to know a little bit about sismonr works. More specifically, we will now briefly cover how sismonr uses Julia to run the simulations and other computations. This will be important when scaling-up our work from a local machine to a HPC environment.
 
-sismonr handles communications between R and Julia via the [XRJulia]([https://cran.r-project.org/package=XRJulia](https://cran.r-project.org/package=XRJulia)) R package. The first time you use a function from the sismonr package that requires Julia, sismonr (via XRJulia functions) opens a new julia process on your computer, and sets up a socket connection between the R session and the new julia process. 
+sismonr handles communications between R and Julia via the [XRJulia](https://cran.r-project.org/package=XRJulia](https://cran.r-project.org/package=XRJulia)) R package. The first time you use a function from the sismonr package that requires Julia, sismonr (via XRJulia functions) opens a new julia process on your computer, and sets up a socket connection between the R session and the new julia process. 
 
 By default, this connection is set up on a random port, but there are ways to decide on the port to use: if, at the start of your R session, you use:
 
@@ -33,7 +33,7 @@ We won't need to use this for now, but you will find it useful later on :)
 
 Then, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.
 
-<img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="700"/>
+<img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="900"/>
 
 <small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small>
 

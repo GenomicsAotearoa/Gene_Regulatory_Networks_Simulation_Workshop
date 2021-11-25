@@ -85,8 +85,6 @@ A given environmental cue typically triggers the activation of a specific regula
 
 ## Simulating Gene Regulatory Networks
 
-### Classes of GRN models
-
 One way to understand the dynamics of GRNs is through simulation; i.e. by simulating the expression over time of genes involved in the GRN. Simulating GRNs allows us to:
 
 -   Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
@@ -95,13 +93,16 @@ One way to understand the dynamics of GRNs is through simulation; i.e. by simula
 -   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
 -   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
 
-A model of GRN is generally comprised of 3 components:
+A model of GRN is generally comprised of 2 or 3 components:
 
--   A graph representing the regulatory interactions between the genes;
+- A graph representing the regulatory interactions between the genes;
 
--   A set of rules to convert the regulatory interactions into mathematical or statistical equations;
+- A set of rules to convert the regulatory interactions into mathematical or statistical equations;
 
--   A set of kinetic parameters that specify the rate of the different reactions in the model (depends on the type of model used).
+- A set of numerical parameters that specify the rate of the different reactions in the model (optional, depends on the type of model used).
+
+### Classes of GRN models
+
 
 There are many types of models that can be developed to simulate GRNs (see [Kalerbach *et al.*, 2008](https://doi.org/10.1038/nrm2503)). For example:
 
@@ -190,12 +191,11 @@ Which gives, for the reactions in our example:
 So, a typical Stochastic Simulation Algorithm will generate the simulation as follow:
 
 - Initialisation: Start with the initial system state, and set $t = 0$.
-1. Compute the propensities of all reactions, based on the current state of the system
-2. Based on the propensities, randomly generate the time increment $\tau$ during which the next reaction will occur
-    - Update the time to $t = t + \tau$
-3. Based on the propensities, randomly select which reaction will occur between $t$ and $t+ \tau$
-4. Based on which reaction occurred, update the system state $\mathbf{X}(t)$.
-5. Loop through steps 1 to 4, until $t = t_max$
+1. Compute the propensities of all reactions, based on the current state of the system;
+2. Based on the propensities, randomly generate the time increment $\tau$ during which the next reaction will occur;
+3. Based on the propensities, randomly select which reaction will occur between $t$ and $t+ \tau$;
+4. Update time to $t + \tau$, update the system state based on which reaction occurred;
+5. Repeat steps 1 to 4, until $t = t_{max}$ (the desired end time of the simulation).
 
 An example is shown below: 
 
@@ -203,6 +203,13 @@ An example is shown below:
 <img src="images/steps_ssa_example.png" alt="Example of one iteration of the SSA." width="700"/>
 
 <small>Example of one iteration of the SSA.</small>
+
+This means that the Stochastic Simulation Algorithm simulates the occurrence of every single reaction in the system. The downside of that is that if several reactions have high propensities, then the interval of time sampled will be really small, and so the algorithm will have to go through many iterations before reaching the end of the simulation. This occurs typically when some of the species are present in very high abundance in the system.
+
+![Illustration of the computational burden of SSA](./images/comparison_tau_ssa.png)
+
+<small>Illustration of the computational burden of the Stochastic Simulation Algorithm. Left: if reactions all have small propensities, the simulated time intervals are rather large, and the simulation will end quickly. Right: if on the contrary reactions have high propensities, many reactions will occur in short periods of time, and it will take many iterations to reach the end of the simulation.</small>
+
 
 Many variations of this stochastic simulation algorithms have been proposed, to reduce the computational burden of the simulations. Some are exact, i.e. they will simulate the occurrence of each reaction in the system; while other are approximate, i.e. they will try to speed up the calculations at the expense of accuracy.
 
