@@ -7,6 +7,15 @@
     </span>
 </p>
 
+## Introduction to slurm scheduler and directives
+
+## First slurm job
+
+## Assessing time and memory usage
+
+## slurm profiling
+
+## Running more than 2 jobs (provisional)
 
 
 ---
