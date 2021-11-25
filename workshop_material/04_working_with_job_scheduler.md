@@ -77,6 +77,8 @@ Let's run the following commands and discuss the outputs
 <p align="center"><img src="nesi_images/slurm_flow.png" alt="drawing" width="1000"/></p> 
 <br>
 
+
+
 ## Anatomy of a slurm script and submitting first slurm job
 
 As with most other scheduler systems, job submission scripts in Slurm consist of a header section with the shell specification and options to the submission command (`sbatch` in this case) followed by the body of the script that actually runs the commands you want. In the header section, options to `sbatch` should be prepended with `#SBATCH`.
@@ -84,6 +86,21 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 <br>
 <p align="center"><img src="nesi_images/anatomy_of_a_slurm_script.png" alt="drawing" width="700"/></p> 
 <br>
+
+---
+
+| header          | use                                 | description                                         |
+|:--------------- |:------------------------------------|:----------------------------------------------------|
+|--job-name 	  | `#SBATCH --job-name=MyJob` 	        |The name that will appear when using squeue or sacct |
+|--account 	      | `#SBATCH --account=nesi12345` 	    |The account your core hours will be 'charged' to.    |
+|--time 	      | `#SBATCH --time=DD-HH:MM:SS` 	    |Job max walltime                                     |
+|--mem 	          | `#SBATCH --mem=512MB` 	            |Memory required per node.                            |
+|--cpus-per-task  | `#SBATCH --cpus-per-task=10` 	    |Will request 10 logical CPUs per task.               |
+|--output 	      | `#SBATCH --output=%j_output.out` 	|Path and name of standard output file.               |
+|--mail-user 	  | `#SBATCH --mail-user=me23@gmail.com`|address to send mail notifications.                  |
+|--mail-type 	  | `#SBATCH --mail-type=ALL` 	        |Will send a mail notification at BEGIN END FAIL      |
+|                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime                    |
+---
 
 
 
