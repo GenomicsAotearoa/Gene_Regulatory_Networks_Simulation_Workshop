@@ -49,7 +49,11 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 
 ---
 
+## Life cycle of a slurm job
 
+<br>
+<p align="center"><img src="nesi_images/slurm_flow.png" alt="drawing" width="1000"/></p> 
+<br>
 
 ## First slurm job
 
