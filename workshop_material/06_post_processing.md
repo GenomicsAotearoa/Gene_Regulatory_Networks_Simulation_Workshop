@@ -1,7 +1,7 @@
 # 6. Post-processing
 
 <p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_automating_large_number_of_tasks.html">&lt; 5. Automating large numbers of tasks  </a></b>
+    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_automating_large_number_of_tasks.html">&lt; 5. Automating large number of tasks  </a></b>
     <span style="float:right;">
      <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b>
     </span>
@@ -271,6 +271,6 @@ Yay, you've reached the end of this workshop! Feel free to make use of this know
 
 ---
 
-<p align="left"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_automating_large_number_of_tasks.html">&lt; 5. Automating large numbers of tasks  </a></b></p>
+<p align="left"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_automating_large_number_of_tasks.html">&lt; 5. Automating large number of tasks  </a></b></p>
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>

@@ -1,4 +1,4 @@
-# 5. Automating large numbers of tasks
+# 5. Automating large number of tasks
 
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html">&lt;  4. Working with job scheduler</a></b>
