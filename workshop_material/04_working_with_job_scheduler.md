@@ -24,6 +24,14 @@ Why do we need a scheduler ?
 * To track usage - for accounting and budget control
 * To mediate access to other resources e.g. software licences
 
+Commonly used schedulers
+
+* SLURM - (All NeSI Clusters)
+* PBS , Torque
+* Grid Engine
+* LSF – IBM Systems
+* LoadLeveller – IBM Systems
+
 ## First slurm job
 
 ## Assessing time and memory usage
