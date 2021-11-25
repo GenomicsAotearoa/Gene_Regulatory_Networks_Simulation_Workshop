@@ -15,7 +15,7 @@
 
 ### Defining high-performance computing
 
-The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers. However, this leads to our next question.
+The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers (HPC). However, this leads to our next question what is a HPC .
 
 >>A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.
 
@@ -41,11 +41,11 @@ NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different n
 * Login nodes
 * Compute nodes
 <br>
-<p align="center"><img src="nesi_images/hpc_architecture.png" alt="drawing" width="600"/></p> 
+<p align="center"><img src="nesi_images/hpc_architecture.png" alt="drawing" width="700"/></p> 
 <br>
 In reality
 
-<p align="center"><img src="nesi_images/mahuika_maui_real.png" alt="drawing" width="600"/></p>
+<p align="center"><img src="nesi_images/mahuika_maui_real.png" alt="drawing" width="700"/></p>
 
 ### Accessing software via modules
 
@@ -66,7 +66,7 @@ There are a number of different environment module implementations commonly used
 * Load a specific program
 
     >Note: All modules on NeSI have version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
-    
+
 ```bash
 $ module load MY_APPLICATION
 ```
