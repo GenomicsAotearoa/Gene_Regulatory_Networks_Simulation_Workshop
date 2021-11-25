@@ -36,15 +36,17 @@ Commonly used schedulers
 All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. The main commands you will use with Slurm on NeSI Mahuika cluster are:
    
 ---
-| Command       | Function                                                                                             |
-|---------------|------------------------------------------------------------------------------------------------------|
-| `sbatch`      | Submit non-interactive (batch) jobs to the scheduler                                                 |
-| `squeue`      | List jobs in the queue                                                                               |
-| `scancel`     | Cancel a job                                                                                         |
-| `sacct`       | displays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database|
-| `srun`        | Post-translational modification                                                                      |
-| `sinfo`       | Query the current state of nodes                                                                     |
-| `salloc`      | Submit interactive jobs to the scheduler                                                             |
+
+| Command        | Function                                                                                             |
+|:---------------|:------------------------------------------------------------------------------------------------------|
+| `sbatch`       | Submit non-interactive (batch) jobs to the scheduler                                                 |
+| `squeue`       | List jobs in the queue                                                                               |
+| `scancel`      | Cancel a job                                                                                         |
+| `sacct`        | displays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database|
+| `srun`         | Post-translational modification                                                                      |
+| `sinfo`        | Query the current state of nodes                                                                     |
+| `salloc`       | Submit interactive jobs to the scheduler                                                             |
+
 ---
 
 
