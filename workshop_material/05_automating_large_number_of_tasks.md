@@ -1,7 +1,7 @@
-# 5. Parallel computing on NeSI
+# 5. Automating large numbers of tasks
 
 <p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">&lt;  3. Scaling up your work</a></b>
+    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">&lt;  3. Working with job sch</a></b>
     <span style="float:right;">
      <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_post_processing.html">5. Post-processing &gt;</a></b>
     </span>
