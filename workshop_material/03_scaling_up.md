@@ -85,7 +85,6 @@ $ module spider KEYWORD
 **Unload all current modules**
 
 ```bash
-
 $ module purge
 ```
 >Please **do not** use `$module --force purge`
