@@ -17,6 +17,13 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
 * Manages the reservation of resources and job execution on these resources 
 * Allows users to “fire and forget” large, long calculations or many jobs (“production runs”)
 
+Why do we need a scheduler ?
+
+* To ensure the machine is utilised as fully as possible
+* Ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
+* To track usage - for accounting and budget control
+* To mediate access to other resources e.g. software licences
+
 ## First slurm job
 
 ## Assessing time and memory usage
