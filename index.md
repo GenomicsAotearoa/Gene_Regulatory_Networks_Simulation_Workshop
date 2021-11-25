@@ -35,10 +35,10 @@ Before getting started, have a look at the [Supplementary](./workshop_material/1
 
 1. [Introduction](./workshop_material/01_introduction.md)
 2. [Getting started with sismonr](./workshop_material/02_getting_started_sismonr.md)
-3. [Scaling up your work](./workshop_material/03_scaling_up.html)
+3. [Scaling up your work](./workshop_material/03_scaling_up.md)
 4. [Working with job scheduler](./workshop_material/04_working_with_job_scheduler.md)
-5. [Parallel computing on NeSI](./workshop_material/05_parallel_computing.html)
-6. [Post-processing](./workshop_material/06_post_processing.html)
+5. [Parallel computing on NeSI](./workshop_material/05_parallel_computing.md)
+6. [Post-processing](./workshop_material/06_post_processing.md)
 7. [Supplementary-material](./workshop_material/07_supplementary.md)
 
 ## Schedule

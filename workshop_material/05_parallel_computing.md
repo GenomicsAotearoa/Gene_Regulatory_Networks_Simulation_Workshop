@@ -1,4 +1,4 @@
-# 4. Parallel computing on NeSI
+# 5. Parallel computing on NeSI
 
 <p style="text-align:left;">
     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">&lt;  3. Scaling up your work</a></b>
