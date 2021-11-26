@@ -17,21 +17,21 @@ By the end of this workshop, participants should be able to:
 - explain the concept of modelling and simulations, and how simulations can help answer research questions;
 - briefly describe the main steps of gene expression, and explain what is a Gene Regulatory Network;
 - list several classes of GRN models;
-
 - generate a small random GRN with the sismonr package and simulate the expression of its gene;
+- submit and manage jobs on a cluster using a scheduler and use software through environment modules;
+- automate a large number of tasks on a HPC using array jobs.
 
-- *complete with HPC learning objectives*
 
 ## Some of the things we won't cover in this workshop
 
 - how to construct a mathematical or statistical model for a specific biological system of interest;
 - How to estimate model parameters based on experimental data;
 - How to reconstruct a GRN from experimental data;
-- Any questions we don't have answer for :)
+- Any questions we don't have an answer for :)
 
 ## Content
 
-Before getting started, have a look at the [Supplementary](./workshop_material/10_supplementary.md).
+Before getting started, have a look at the [Supplementary data](./workshop_material/10_supplementary.md) for instructions on how to connect to NeSI Mahuika Jupyter.
 
 1. [Introduction](./workshop_material/01_introduction.md)
 2. [Getting started with sismonr](./workshop_material/02_getting_started_sismonr.md)
@@ -44,13 +44,13 @@ Before getting started, have a look at the [Supplementary](./workshop_material/1
 ## Schedule
 
 
-| Day      | Time           | Topic                                               |
-|----------|----------------|-----------------------------------------------------|
-| 1st day: | 10am-12:30pm   | 1. Introduction (with a coffee break at some point) |
-|          | 12:30pm-1:30pm | *Lunch break*                                       |
-|          | 1:30pm-2:30pm  | 2. Getting started with sismonr                     |
-|          | 2:30pm-4pm     | 3. Scaling up your work                             |
-| 2nd day: | 10am-12pm      | Section 4                                           |
-|          | 12pm-1pm       | *Lunch break*                                       |
-|          | 1pm-3pm        | 5. Post-processing                                  |
-|          | 3pm-4pm        | Question time                                       |
+| Day      | Time           | Topic                                                          |
+|----------|----------------|----------------------------------------------------------------|
+| 1st day: | 10am-12:30pm   | 1. Introduction                                                |
+|          | 12:30pm-1:30pm | *Lunch break*                                                  |
+|          | 1:30pm-2:30pm  | 2. Getting started with sismonr                                |
+|          | 2:30pm-4pm     | 3. Scaling up your work<br>4. Working with job scheduler       |
+| 2nd day: | 10am-12pm      | 5. Automating large number of tasks                            |
+|          | 12pm-1pm       | *Lunch break*                                                  |
+|          | 1pm-3pm        | 5. Post-processing                                             |
+|          | 3pm-4pm        | Question time                                                  |
