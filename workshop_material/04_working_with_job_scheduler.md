@@ -47,7 +47,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 | `squeue`       | List jobs in the queue                                                                               |
 | `scancel`      | Cancel a job                                                                                         |
 | `sacct`        | displays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database|
-| `srun`         | Post-translational modification                                                                      |
+| `srun`         | Slurm directive for parallel computing                                                                      |
 | `sinfo`        | Query the current state of nodes                                                                     |
 | `salloc`       | Submit interactive jobs to the scheduler                                                             |
 
