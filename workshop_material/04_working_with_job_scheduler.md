@@ -135,7 +135,7 @@ $ nano firstslurm.sl
 >
 >sleep 40
 >
->echo "I am slurm job and I slept for 40 seconds"
+>echo "I am a slurm job and I slept for 40 seconds"
 >
 >echo "$SLURM_JOB_ID END"
 >```
