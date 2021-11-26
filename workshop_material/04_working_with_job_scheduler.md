@@ -149,7 +149,9 @@ $ sbatch firstslum.sl
 >Execute `squeue -u usrename` and `sacct`. Discuss the outputs
 
 
-## Assessing time and memory usage
+## Assessing resource utilisation (cpu, memory, time)
+
+
 
 ## slurm profiling
 
