@@ -215,7 +215,7 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 
 * Edit `example1_arraysum.sl ` by adding following slurm directives
     * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
-    * `#SBATCH --acctg-freq 1`  - By default, data will be gathered every 30 seconds. Given our job finishs in ~33 seconds, we will gather data every 1 second
+    * `#SBATCH --acctg-freq 1`  - By default, data will be gathered every 30 seconds. Given our job finishes in ~33 seconds, we will gather data every 1 second
     
 * Once the above edits are done, submit the job as before with `sbatch example1_arraysum.sl`. Do take a note of the jobid
 
