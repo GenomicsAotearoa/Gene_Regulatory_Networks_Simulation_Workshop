@@ -15,7 +15,7 @@ Slides are available [here](/Gene_Regulatory_Networks_Simulation_Workshop/worksh
 
 ## Why simulations are important in research
 
-One way to answer a research question is through observations and experiments. A scientist can go in the field or the lab to collect data, and analyse them to answer the question. However, this is not the only way to "do" research. The construction of mathematical or statistical models can be an alternative way of testing and generating new hypotheses. It can help us answer questions as simple as predicting the movement of planets in the Solar system, or as complex as providing a weather forecast.
+One way to answer a research question is through observations and experiments. A scientist can go in the field or the lab to collect data, and analyse them to answer the question. However, this is not the only way to "do" research. The construction of mathematical or statistical models can be an alternative way of testing and generating new hypotheses. It can help us answer questions as "simple" as predicting the movement of planets in the Solar system, or as complex as providing a weather forecast.
 
 > **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
 
@@ -26,7 +26,7 @@ Modelling and simulations are very powerful tools. In particular, they allow us 
 * explain experimental data, through model fitting and refinement;
 
 * test hypotheses:
-  - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of deleting a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
+  - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of knocking out a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
 
   - that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
 
@@ -36,19 +36,21 @@ Modelling and simulations are very powerful tools. In particular, they allow us 
 
 Modelling and simulations are used in many fields of science, including for example:
 
--   Epidemiology: modelling of infectious diseases; for example to predict the spreading of a pandemic and to assess the effects of different prevention measures (see for example a very interesting [talk from Dr Rachel Binny](https://www.youtube.com/watch?v=OhECexc9jt4) on the modelling of the COVID19 response in New Zealand);
+-   **Epidemiology**: modelling of infectious diseases; for example to predict the spreading of a pandemic and to assess the effects of different prevention measures (see for example a very interesting [talk from Dr Rachel Binny](https://www.youtube.com/watch?v=OhECexc9jt4) on the modelling of the COVID19 response in New Zealand);
 
--   Ecology: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
+-   **Ecology**: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
 
--   Medicine: construction of organ models, prediction of drug-target binding and drug efficiency;
+-   **Medicine**: construction of organ models, prediction of drug-target binding and drug efficiency;
 
--   Chemistry, molecular biology: molecules interaction models;
+-   **Chemistry**, **molecular biology**: molecules interaction models;
 
--   Astrophysics: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
+-   **Astrophysics**: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
 
 -   and many more!
 
-In biology, the study of the interaction between biological entities through modelling and simulations is known as Systems Biology ([Macilwain, 2011](https://doi.org/10.1016/j.cell.2011.02.044)). It is a very interdisciplinary field, building from numerous disciplines (physics, chemistry, biology, computer science, statistics, mathematics, etc). In particular, Systems biologists are interested in understanding the emerging properties of biological systems arising from local interactions between molecular components. This led for example to the construction of a whole-cell computational model ([Kar *et al.*, 2012](https://doi.org/10.1016/j.cell.2012.05.044)).
+In biology, the study of the interactions between biological entities through modelling and simulations is known as Systems Biology ([Macilwain, 2011](https://doi.org/10.1016/j.cell.2011.02.044)). It is a very interdisciplinary field, building from numerous disciplines (physics, chemistry, biology, computer science, statistics, mathematics, etc). In particular, Systems biologists are interested in understanding the emerging properties of biological systems arising from local interactions between molecular components. This led for example to the construction of a whole-cell computational model ([Kar *et al.*, 2012](https://doi.org/10.1016/j.cell.2012.05.044)).
+
+In this workshop, we are going to work on one of the topics of Systems Biology, which is simulating the expression of genes involved in a Gene Regulatory Network.
 
 ## What are Gene Regulatory Networks?
 
@@ -58,7 +60,7 @@ The instructions necessary to a cell's functioning are encoded in its DNA, which
 
 1.  Transcription: the sequence of nucleotides that forms the gene is copied into a "free-floating" version called messenger RNA (mRNA), as the result of a complex series of biochemical interactions involving enzymes and other molecules.
 2.  Translation: the messenger RNA is used as a template to create proteins; each consecutive triplet of nucleotides is translated into a specific amino acid (the building blocks of proteins). The correspondence between triplets of nucleotides and amino acids is known as the genetic code. A sequence of amino acids is thus created from the messenger RNA template, and, once completed, constitutes the synthesised protein.
-3.  Post-translational modifications: once synthesised, a protein may have to undergo some transformations before attaining its functional state. Such modifications include changes in conformation (i.e. the way in which the sequence of amino acids is folded in the 3D space), cleavage of a portion of the amino acid sequence, addition of molecular signals to specific amino acids, or binding to other proteins to form protein complexes.
+3.  Post-translational modifications: once synthesised, a protein may have to undergo some transformations before attaining its functional state. Such modifications include changes in its conformation (i.e. the way in which the sequence of amino acids is folded in the 3D space), cleavage of a portion of the amino acid sequence, addition of molecular signals to specific amino acids, or binding to other proteins to form protein complexes.
 
 ![Schema of the gene expression process](./images/gene_expression_schema.png)
 
@@ -70,20 +72,20 @@ Cells respond and adapt to changes in the environment or other inter- and intra-
 
 Regulators can control the expression of a given target gene by affecting different steps of the target's expression:
 
--   Regulation of transcription: this is the most-studied type of gene expression regulation. The regulatory molecule (a protein that regulates transcription are called a transcription factor) controls the production of messenger RNAs from the target gene.
--   Regulation of translation: the regulatory molecule controls the rate at which target mRNAs are translated to synthesise proteins.
--   Decay regulation: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded.
--   Post-translational regulation: the regulator modifies the shape or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
+-   **Regulation of transcription**: this is the most well-known type of gene expression regulation. The regulatory molecule (a protein that regulates transcription is called a transcription factor) controls the production of messenger RNAs from the target gene.
+-   **Regulation of translation**: the regulatory molecule controls the synthesis of proteins from the target mRNAs.
+-   **Decay regulation**: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded by triggering their decay or protecting them from degradation.
+-   **Post-translational regulation**: the regulator modifies the conformation or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
 
-Regulators that increase the expression of their target are called activators; those decreasing the expression of their target are called repressors. Typically, the relationship between regulator and target is quite specific, with most regulators controlling the expression of only a few target genes, and most genes being controlled by a small set of regulators.
+Regulators that increase the expression of their target are called **activators**; those decreasing the expression of their target are called **repressors**. Typically, the relationship between regulator and target is quite specific, with most regulators controlling the expression of only a few target genes, and most genes being controlled by a small set of regulators.
 
-As scientists gain knowledge into the regulatory relationships between genes, they summarisethis information into graphs, which we call Gene Regulatory Networks (GRN). In these graphs, nodes represent genes, and a directed arrow from Gene A directed to Gene B informs that the products of Gene A control the expression of gene B. An example of GRN is given in Figure X.
+Information about the regulatory relationships between genes can be summarised into graphs, which we call Gene Regulatory Networks (GRN). In these graphs, nodes represent genes, and a directed arrow from gene A to gene B indicates that the products of gene A control the expression of gene B. An example of GRN is given below.
 
 ![An example of Gene Regulatory Network](./images/grn.jpg)
 
 <small>From Ma, Sisi, et al. "De-novo learning of genome-scale regulatory networks in S. cerevisiae." *Plos one* 9.9 (2014): e106479. (available under license [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) )</small>
 
-A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their target in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
+A given environmental cue typically triggers the activation of a specific regulatory pathway (i.e. a part of the cell-wide GRN), with regulators modulating the expression of their targets in a cascade. Thus, understanding the dynamics of gene expression regulation is key to deciphering how organisms react to certain triggers.
 
 ## Simulating Gene Regulatory Networks
 
