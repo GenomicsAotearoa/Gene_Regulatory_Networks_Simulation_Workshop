@@ -105,6 +105,48 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 |                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime                    |
 ---
 
+Let's put these directives together and compile a our first slurm script
+
+* First create a new working directory and write the script
+
+```bash
+
+#make sure the current path is the designated working directory
+$ pwd
+/nesi/project/nesi02659/sismonr_workshop/workingdir/dsen018/
+
+#create a new directory for this section and change the directory to it
+$ mkdir 4_wwscheduler && cd 4_wwscheduler
+
+#use a text editor of choice to create a file named firstslurm.sl - we will use nano here
+$ nano firstslurm.sl
+```
+>Content of `firstslum.sl` should be as below. Please discuss as you make progress
+>
+>```bash
+>#!/bin/bash 
+>
+>#SBATCH 	--job-name      myfirstslurmjob
+>#SBATCH 	--account       nesi02659
+>#SBATCH 	--time          00:01:00
+>#SBATCH         --cpus-per-task 1
+>#SBATCH 	--mem           512
+>#SBATCH         --output        slurmjob.%j.out
+>
+>sleep 40
+>
+>echo "I am slurm job and I slept for 40 seconds"
+>
+>echo "$SLURM_JOB_ID END"
+>```
+
+* **Save** and **Exit**
+* Submit the script with `sbatch` command
+
+```bash
+$ sbatch firstslum.sl
+```
+>Execute `squeue -u usrename` and `sacct`. Discuss the outputs
 
 
 ## Assessing time and memory usage
