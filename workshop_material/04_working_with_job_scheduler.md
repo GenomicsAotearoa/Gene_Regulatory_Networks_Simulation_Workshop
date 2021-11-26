@@ -102,6 +102,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 |--mail-user 	  | `#SBATCH --mail-user=me23@gmail.com`|address to send mail notifications.                  |
 |--mail-type 	  | `#SBATCH --mail-type=ALL` 	        |Will send a mail notification at BEGIN END FAIL      |
 |                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime                    |
+
 ---
 
 Let's put these directives together and compile a our first slurm script
@@ -160,12 +161,13 @@ Understanding the resources you have available and how to use them most efficien
 
 ---
 
-| Resource         | Asking for too much                                   | Not asking for enough                                          |
-|:---------------  |:------------------------------------------------------|:----------------------------------------------------------------|
-| Number of CPUs   | Job may wait in the queue for longer   	           | Job will run more slowly than expected, and somay run out time  |
-|                  | Drop in fairshare score which determines job priority |                                                                 |
+| Resource         | Asking for too much                                   | Not asking for enough                                                               |
+|:---------------  |:------------------------------------------------------|:------------------------------------------------------------------------------------|
+| Number of CPUs   | Job may wait in the queue for longer   	           | Job will run more slowly than expected, and somay run out time    |                    
+|                  | Drop in fairshare score which determines job priority |                                                                                     |
 | Memory           | (above)                                               | Job will fail, probably with `OUT OF MEMORY` error, segmenration faults or bus error|
-| Wall time        | (above)                                               | Job will run out of time and get killed |
+| Wall time        | (above)                                               | Job will run out of time and get killed                                             |
+
 ---
 
 * Let's submit another slurm job and review it's resource utilisation
