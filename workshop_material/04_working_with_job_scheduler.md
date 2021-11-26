@@ -189,6 +189,22 @@ $ sbatch example1_arraysum.sl
 ```
 
 >use `squeue -u username` and `sacct` again to evaluate the job status
+>
+>Once the job ran into completion, use `nn_seff jobid` command to print the resource utilisation statistics 
+>
+>```bash
+>$ nn_seff 23263188
+>Job ID: 23263188
+>Cluster: mahuika
+>User/Group: me1234/me123
+>State: COMPLETED (exit code 0)
+>Cores: 1
+>Tasks: 1
+>Nodes: 1
+>Job Wall-time:  20.56%  00:00:37 of 00:03:00 time limit
+>CPU Efficiency: 178.38%  00:01:06 of 00:00:37 core-walltime
+>Mem Efficiency: 21.94%  224.68 MB of 1.00 GB
+>```
 
 
 
