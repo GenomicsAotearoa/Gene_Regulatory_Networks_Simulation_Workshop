@@ -210,7 +210,33 @@ $ sbatch example1_arraysum.sl
 
 ## slurm profiling
 
+Although `nn_seff` command is a quick and easy way to determine the resource utilisation, it relies on **peak** values (data gets recorded every 30 seconds) which doesn't allows us to examine resource usage over the run-time of the job. There are number of in-built/external tools to achieve latter which will require some effort to understand it's deployment,tracing and interpretation. Therefore, we will use **slurm native profiling** to evaluate resource usage over run-time.This is a simple and elegant solution 
 
+* Edit `example1_arraysum.sl ` by adding following slurm directives
+    * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
+    * `#SBATCH --acctg-freq 1`  - By default, data will be gathered every 30 seconds. Given our job finishs in ~33 seconds, we will gather data every 1 second
+    
+* Once the above edits are done, submit the job as before with `sbatch example1_arraysum.sl`. Do take a note of the jobid
+
+```bash
+
+#collate the data into an HDF5 file using the command
+$ sh5util -j jobid
+sh5util: Merging node-step files into ./job_jobid.h5
+
+#Download the python script to analyse and plot data in above .h5 file
+$ curl -O https://raw.githubusercontent.com/DininduSenanayake/NeSI-Mahuika_slurm_profiling/master/profile_plot_Jul2020.py
+
+#execute the script on .h5 file. We will need one of the Python 3 modules to do this. Ignore the deprecating warning 
+$ module purge && module load Python/3.8.2-gimkl-2020a
+$ python profile_plot_Jul2020.py job_jobid.h5
+
+#This should generate a .png file where the filename is in the format of job_23258404_profile.png
+``` 
+
+<br>
+<p align="center"><img src="nesi_images/slurm_profile.png" alt="drawing" width="1000"/></p> 
+<br>
 
 
 ---
