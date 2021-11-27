@@ -239,7 +239,7 @@ $ python profile_plot_Jul2020.py job_jobid.h5
 <p align="center"><img src="nesi_images/slurm_profile.png" alt="drawing" width="1000"/></p> 
 <br>
 
-**Exercise**
+**Exercise** 😬	
 
 >Let's submit your first sismonr slum job. 
 >* First step is to copy the already generated network to current working directory
