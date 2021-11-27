@@ -37,6 +37,13 @@ This means, that in contrast to the language-specific parallelism methods requir
 |<img src="nesi_images/shared_memory.png" alt="drawing" width="500"/>|<img src="nesi_images/distributed_memory.png" alt="drawing" width="400"/>
 
 ---
+
+Let's break this down a bit by using the image used into illustrate HPC architecture 
+
+<br>
+<p align="center"><img src="nesi_images/shared_distributed_hpc_arch.png" alt="drawing" width="500"/></p> 
+<br>
+
 ## How to execute parallel code on NeSI
 
 ---
