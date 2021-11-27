@@ -68,7 +68,7 @@ Let's run the following commands and discuss the outputs
 >$ sinfo -N -l
 >
 >#Explore the capacity of a compute node
->$ sinfo -n nid001005 -o "%n %c %m"
+>$ sinfo -n wch001 -o "%n %c %m"
 >```
 
 ## Life cycle of a slurm job
