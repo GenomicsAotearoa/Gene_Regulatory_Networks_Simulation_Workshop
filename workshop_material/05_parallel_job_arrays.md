@@ -29,6 +29,7 @@ This means, that in contrast to the language-specific parallelism methods requir
 
 ## Shared memory vs Distributed memory
 
+
 ---
 
 | Shared memory                                           | Distributed memory |
@@ -44,7 +45,24 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 <p align="center"><img src="nesi_images/shared_distributed_hpc_arch.png" alt="drawing" width="500"/></p> 
 <br>
 
-## How to execute parallel code on NeSI
+>*Analogy*
+>* Shared memory:
+>    * Once very large whiteboard in a two-person office (the shared memory)
+>    * Two people working on the same problem (threads running on different cores attached to the memory)
+>    * How do they collaborate (working together but not interfering)
+>    * need *private* data
+>
+>* Distributed memory
+>    * Two whiteboards in different single-person offices (distributed memory)
+>    * Two people working on the same problem (processes on different nodes attached to the interconnect)
+>    * How do they collaborate ( to work on a single problem)
+>    * Explicit communication ( for an example by phone. Also, no shared data)
+ 
+## OpenMP
+
+## MPI
+
+## Parallel Performance 
 
 ---
 
