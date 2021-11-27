@@ -72,6 +72,8 @@ Job arrays offer a mechanism for submitting and managing collections of similar 
 <p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
 <br>
 
+### Exercise 1
+
 >```bash
 >
 >#confirm the working directory is correct
