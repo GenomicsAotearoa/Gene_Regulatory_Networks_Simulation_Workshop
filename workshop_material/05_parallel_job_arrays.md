@@ -35,7 +35,7 @@ This means, that in contrast to the language-specific parallelism methods requir
 |:-----                                                   |:----- |
 |In a shared memory model all processors have access to a pool of common memory that they can freely use.  | In a distributed memory model a separate segment of memory is available to each processor. Because memory isn’t shared inherently, information that must be shared between processes is sent over a network.
 |        | |
-|<p align="center"><img src="nesi_images/shared_memory.png" alt="drawing" width="400"/></p>|<p align="center"><img src="nesi_images/distributed_memory.png" alt="drawing" width="400"/></p>|
+|<img src="nesi_images/shared_memory.png" alt="drawing" width="490"/>|<img src="nesi_images/distributed_memory.png" alt="drawing" width="400"/>
 
 ---
 ## How to execute parallel code on NeSI
