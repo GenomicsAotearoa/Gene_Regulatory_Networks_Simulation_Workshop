@@ -64,7 +64,11 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 ## Parallel Performance 
 
-## SLURM job arrays
+## Slurm job arrays
+
+<br>
+<p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
+<br>
 
 ---
 
