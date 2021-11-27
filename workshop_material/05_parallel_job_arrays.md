@@ -68,6 +68,12 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily; job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits). All jobs must have the same initial options (e.g. size, time limit, etc.)
 
+In brief, Job arrays allow you to leverage Slurm’s ability to create multiple jobs from one script. Many of the situations where this is useful include:
+
+* Establishing a list of commands to run and have a job created from each command in the list.
+* Running many parameters against one set of data or analysis program.
+* Running the same program multiple times with different sets of data. 
+
 <br>
 <p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
 <br>
@@ -115,6 +121,10 @@ Let's start compiling our first slurm array script
 >echo "This is the result for ${SLURM_ARRAY_TASK_ID}"
 >```
 
+>Let's review some of those new slurm directives and variables prior to submitting the script
+> * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
+> * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
+
 * Once you submit the job with `sbatch firstslurm_array.sl`, take a not on the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
 
 >```bash
@@ -127,6 +137,7 @@ Let's start compiling our first slurm array script
 >23284978_4    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
 >23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
 >```
+
 ---
 
 <p style="text-align:left;">
