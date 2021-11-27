@@ -74,6 +74,10 @@ Job arrays offer a mechanism for submitting and managing collections of similar 
 
 ### Exercise 1
 
+Let's start compiling our first slurm array script
+
+* Purpose is to execute the same `sleep 40 ` command we used in *Working with job scheduler* episode but we want to run five iterations of it 
+
 >```bash
 >
 >#confirm the working directory is correct
@@ -90,13 +94,13 @@ Job arrays offer a mechanism for submitting and managing collections of similar 
 >$ nano firstslurm_array.sl
 >```
 
->Content of `firstslum_array.sl` should be as below. Please discuss as you make progress
+>Content of `firstslurm_array.sl` should be as below. Please discuss as you make progress
 >```bash
 >#!/bin/bash -e
 >
 >#SBATCH --account       nesi02659
 >#SBATCH --job-name      first_slurm_Array
->#SBATCH --time          00:01:00
+>#SBATCH --time          00:00:50
 >#SBATCH --output        slurmouts/sleeparray.%A.%a.out
 >#SBATCH --cpus-per-task 1
 >#SBATCH --mem           100
@@ -111,6 +115,18 @@ Job arrays offer a mechanism for submitting and managing collections of similar 
 >echo "This is the result for ${SLURM_ARRAY_TASK_ID}"
 >```
 
+* Once you submit the job with `sbatch firstslurm_array.sl`, take a not on the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
+
+>```bash
+>$ squeue -j 23284978
+>
+>JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
+>23284978_1    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn094              
+>23284978_2    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn094              
+>23284978_3    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
+>23284978_4    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
+>23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
+>```
 ---
 
 <p style="text-align:left;">
