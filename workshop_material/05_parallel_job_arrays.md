@@ -91,10 +91,7 @@ Let's start compiling our first slurm array script
 >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel
 >
 >#Create a new sub-directory and name it slurm_arrays and change the directory to this
->$ mkdir slurm_arrays && cd slurm_arrays
->
->#create a new directory for slurm .out files
->$ mkdir slurmouts
+>$ mkdir -p slurm_arrays/{Exercise_1/slurmout,Exercise_2/slurmout,Exercise_3/slurmout} && cd slurm_arrays/Exercise_1
 >
 >#use a text editor of choice to create a file named firstslurm_array.sl - we will use nano here
 >$ nano firstslurm_array.sl
@@ -107,7 +104,7 @@ Let's start compiling our first slurm array script
 >#SBATCH --account       nesi02659
 >#SBATCH --job-name      first_slurm_Array
 >#SBATCH --time          00:00:50
->#SBATCH --output        slurmouts/sleeparray.%A.%a.out
+>#SBATCH --output        slurmout/sleeparray.%A.%a.out
 >#SBATCH --cpus-per-task 1
 >#SBATCH --mem           100
 >#SBATCH --array         1-5
