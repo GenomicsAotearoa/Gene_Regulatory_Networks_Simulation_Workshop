@@ -79,7 +79,7 @@ Let's run the following commands and discuss the outputs
 
 
 
-## Anatomy of a slurm script and submitting first slurm job
+## Anatomy of a slurm script and submitting first slurm job 🧐
 
 As with most other scheduler systems, job submission scripts in Slurm consist of a header section with the shell specification and options to the submission command (`sbatch` in this case) followed by the body of the script that actually runs the commands you want. In the header section, options to `sbatch` should be prepended with `#SBATCH`.
 
