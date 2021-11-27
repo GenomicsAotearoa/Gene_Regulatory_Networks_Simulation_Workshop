@@ -66,9 +66,48 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 ## Slurm job arrays
 
+Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily; job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits). All jobs must have the same initial options (e.g. size, time limit, etc.)
+
 <br>
 <p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
 <br>
+
+>```bash
+>
+>#confirm the working directory is correct
+>$ pwd
+>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel
+>
+>#Create a new sub-directory and name it slurm_arrays and change the directory to this
+>$ mkdir slurm_arrays && cd slurm_arrays
+>
+>#create a new directory for slurm .out files
+>$ mkdir slurmouts
+>
+>#use a text editor of choice to create a file named firstslurm_array.sl - we will use nano here
+>$ nano firstslurm_array.sl
+>```
+
+>Content of `firstslum_array.sl` should be as below. Please discuss as you make progress
+>```bash
+>#!/bin/bash -e
+>
+>#SBATCH --account       nesi02659
+>#SBATCH --job-name      first_slurm_Array
+>#SBATCH --time          00:01:00
+>#SBATCH --output        slurmouts/sleeparray.%A.%a.out
+>#SBATCH --cpus-per-task 1
+>#SBATCH --mem           100
+>#SBATCH --array         1-5
+>#SBATCH --export        NONE
+>
+>export SLURM_EXPORT_ENV=ALL	
+>
+>srun sleep 40
+>
+>echo "I am a slurm job and I slept for 40 seconds but this time in Parallel"
+>echo "This is the result for ${SLURM_ARRAY_TASK_ID}"
+>```
 
 ---
 
