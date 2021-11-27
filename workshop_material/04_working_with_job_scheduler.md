@@ -260,6 +260,7 @@ $ python profile_plot_Jul2020.py job_jobid.h5
 >    * Give any filename to `--out` but make sure the .out gets written into `slurmouts` directory
 >    * Let's add profiling as well. Given the job runs for ~10 minutes, let's leave slurm alone and *not* ask it to gather data every 1 second. Instead, we will run it with the **default** 30 second time points .i.e. Don't need a `--acctg-freq 1` directive
 >    * Now to the bash commands section of the slurm script.  😱😱😱😱😱
+>
 >```bash
 >export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_$SLURM_JOB_ID
 >mkdir -p $TMPDIR
@@ -268,6 +269,7 @@ $ python profile_plot_Jul2020.py job_jobid.h5
 >module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
 >
 >Rscript --vanilla simulate_colsystem_1second.R 
+>```
 ---
 
 <p style="text-align:left;">
