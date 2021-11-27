@@ -38,7 +38,7 @@ This means, that in contrast to the language-specific parallelism methods requir
 
 ---
 
-Let's break this down a bit by using the image used into illustrate HPC architecture 
+Let's break this down a bit by using the schematic use for illustrating HPC architecture 
 
 <br>
 <p align="center"><img src="nesi_images/shared_distributed_hpc_arch.png" alt="drawing" width="500"/></p> 
