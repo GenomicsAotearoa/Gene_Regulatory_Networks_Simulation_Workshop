@@ -64,6 +64,8 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 ## Parallel Performance 
 
+## SLURM job arrays
+
 ---
 
 <p style="text-align:left;">
