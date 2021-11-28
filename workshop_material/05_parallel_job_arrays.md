@@ -186,6 +186,15 @@ Let's start compiling our first slurm array script
 >23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
 >```
 
+### Exercise 5.2
+
+
+
+### Exercise 5.3 (Group)
+
+>* Host will assign you to a breakout room (zoom) or a group. 
+>* Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a **single** array job with 250 indexes
+
 ---
 
 <p style="text-align:left;">

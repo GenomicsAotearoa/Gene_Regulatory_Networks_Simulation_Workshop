@@ -56,6 +56,8 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 >A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
 Let's run the following commands and discuss the outputs
 
+### Exercise 4.1
+
 >```bash
 >
 >#summary of current states of compute nodes known to the scheduler
@@ -104,6 +106,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 |                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime                    |
 
 ---
+### Exercise 4.2
 
 Let's put these directives together and compile a our first slurm script
 
@@ -148,6 +151,8 @@ $ sbatch firstslum.sl
 ```
 >Execute `squeue -u usrename` and `sacct`. Discuss the outputs
 
+---
+
 ### STDOUT/STDERR from jobs
 
 **STDOUT** and **STDERR** from jobs are, by default, written to a file called slurm-<jobid>.out in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in slurm-12345.out.
@@ -174,6 +179,8 @@ Understanding the resources you have available and how to use them most efficien
 | Wall time        | (above)                                               | Job will run out of time and get killed                                             |
 
 ---
+
+### Exercise 4.3 
 
 * Let's submit another slurm job and review it's resource utilisation
 
@@ -212,11 +219,13 @@ $ sbatch example1_arraysum.sl
 >Mem Efficiency: 21.94%  224.68 MB of 1.00 GB
 >```
 
-
+---
 
 ## slurm profiling
 
 Although `nn_seff` command is a quick and easy way to determine the resource utilisation, it relies on **peak** values (data gets recorded every 30 seconds) which doesn't allows us to examine resource usage over the run-time of the job. There are number of in-built/external tools to achieve latter which will require some effort to understand it's deployment,tracing and interpretation. Therefore, we will use **slurm native profiling** to evaluate resource usage over run-time.This is a simple and elegant solution 
+
+### Exercise 4.4
 
 * Edit `example1_arraysum.sl ` by adding following slurm directives
     * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
@@ -244,7 +253,7 @@ $ python profile_plot_Jul2020.py job_jobid.h5
 <p align="center"><img src="nesi_images/slurm_profile.png" alt="drawing" width="1000"/></p> 
 <br>
 
-### Exercise 4.1 😬	
+### Exercise 4.5 😬	
 
 >Let's submit your first sismonr slum job. 
 >* First step is to copy the already generated network to current working directory
