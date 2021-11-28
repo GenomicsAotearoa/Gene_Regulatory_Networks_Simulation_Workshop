@@ -75,8 +75,68 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 
 ### Exercise 5.1
 
+>Let's try out a multi-threading example script with OpenMP which is an application programming interface that supports multi-platform shared-memory 
+>
+>```bash
+>#confirm the working directory 
+>$pwd 
+>$/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
+>
+>#create a new directory for this episode, cd into it
+>$ mkdir 5_parallel && cd 5_parallel
+>
+>#Create two morw working directories for this exercise and the next one and change to `openmp` directory
+>$ mkdir {openmp,mpi} && cd openmp
+>
+>#Copy the pre-compiled `omp_helloworld` to current working directory
+>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/openmp/omp_helloworld ./
+>
+>#Compile a slurm script as below and name it `openmp_hw.sl`
+>```
+>
+>```bash
+>#!/bin/bash
+>
+>#SBATCH --account       nesi02659
+>#SBATCH --job-name      openmp_helloworld
+>#SBATCH --cpus-per-task 6
+>#SBATCH --mem-per-cpu   100
+>#SBATCH --output        openmp_hw_%j.out
+>#SBATCH --export        none
+>
+>export SLURM_EXPORT_ENV=ALL
+>module purge
+>
+>export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
+>
+>srun ./omp_helloworld
+>```
+>* Submit the script with `sbatch openmp_hw.sl` and review the content of  .out file *openmp_hw_jobid.out* upon completion 
+
+---
 
 ## MPI
+
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
 
 ### Exercise 5.2
 
