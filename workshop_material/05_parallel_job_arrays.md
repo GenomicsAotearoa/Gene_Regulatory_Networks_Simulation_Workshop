@@ -73,7 +73,12 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 <p align="center"><img src="nesi_images/multi_threading_process.png" alt="drawing" width="550"/></p> 
 <br>
 
+### Exercise 5.1
+
+
 ## MPI
+
+### Exercise 5.2
 
 ## Parallel Performance 
 
@@ -129,7 +134,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 <p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
 <br>
 
-### Exercise 5.1
+### Exercise 5.3
 
 Let's start compiling our first slurm array script
 
@@ -186,11 +191,11 @@ Let's start compiling our first slurm array script
 >23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
 >```
 
-### Exercise 5.2
+### Exercise 5.4
 
+>Objective of this exercise is to to run slurm array with two indexes for 500 simulations.  
 
-
-### Exercise 5.3 (Group)
+### Exercise 5.5 (Group)
 
 >* Host will assign you to a breakout room (zoom) or a group. 
 >* Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a **single** array job with 250 indexes
