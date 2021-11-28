@@ -64,7 +64,7 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 Multi-threading is a method of parallelisation whereby the initial single thread of a process forks into a number of parallel threads, generally via a library such as OpenMP (Open MultiProcessing), TBB (Threading Building Blocks), or pthread (POSIX threads).
 
-Let's take a loot at the difference between a serial job and a multi-threaded job
+Let's take a look at the difference between a serial job and a multi-threaded job
 
 <br>
 <p align="center"><img src="nesi_images/serial_process.png" alt="drawing" width="500"/></p> 
