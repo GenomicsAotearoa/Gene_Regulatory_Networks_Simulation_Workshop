@@ -77,6 +77,14 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 
 ## Parallel Performance 
 
+In general, there are two advantages to running applications in parallel: (1) applications will run more quickly and we can get our solutions faster, and (2) we can solve larger, more complex problems.
+
+In an ideal world, if we increase the number of cores we are using by a factor of 10, we should be able to either get the solution to our current problem 10 times faster, or to run a system 10 times bigger in the same amount of time as now.
+
+Unfortunately, this is often not the case…
+
+
+
 ## Slurm job arrays
 
 Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily; job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits). All jobs must have the same initial options (e.g. size, time limit, etc.)
@@ -91,7 +99,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 <p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
 <br>
 
-### Exercise 1
+### Exercise 5.1
 
 Let's start compiling our first slurm array script
 
