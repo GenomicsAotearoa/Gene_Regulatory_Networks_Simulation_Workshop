@@ -6,7 +6,7 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-## NeSI Mahuika Jupyter login
+## S.1.NeSI Mahuika Jupyter login
 
 
  1. <p>Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)</p>
@@ -14,7 +14,7 @@
  3. <p>Choose server options as below<br><img src="nesi_images/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p>
  
 
-## Opening a Jupyter teminal, create a working directory, switch Jupyter file explorer to correct path and open sismonr Jupyter kernel (sismonr/R-4.1.0) 
+## S.2.Opening a Jupyter teminal, create a working directory, switch Jupyter file explorer to correct path and open sismonr Jupyter kernel (sismonr/R-4.1.0) 
 
 1. <p>Start a terminal session from the JupyterLab launcher<br><img src="nesi_images/jupyterLauncher.png" alt="terminal" width="500"/></p>
 
@@ -30,7 +30,7 @@
 
 3. <p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="600"/></p>
 
-## Local setup
+## S.3.Local setup
 
 ---
 
