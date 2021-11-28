@@ -96,9 +96,17 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
 
 The limitations of strong scaling are best illustrated by Amdhal’s law: “The performance improvement to be gained by parallelisation is limited by the proportion of the code which is serial”. As more processors are used, the runtime becomes more and more dominated by the serial portion of a code.
 
+<br>
+<p align="center"><img src="nesi_images/amdhal.png" alt="drawing" width="490"/></p> 
+<br>
+
 #### Gustafson’s law and weak scaling
 
 Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.
+
+<br>
+<p align="center"><img src="nesi_images/gustaffason.png" alt="drawing" width="490"/></p> 
+<br>
 
 #### Load imbalance
 
