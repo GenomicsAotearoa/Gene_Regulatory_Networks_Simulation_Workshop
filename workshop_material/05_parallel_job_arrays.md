@@ -100,6 +100,12 @@ The limitations of strong scaling are best illustrated by Amdhal’s law: “The
 
 Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.
 
+#### Load imbalance
+
+The laws and thoughts above only apply to cases where all processors are equally busy. What happens if some processors run out of work while others are still busy?
+
+Scalibility isn’t everything! It’s also important to make the best use of all processors at hand before increasing the number of processors.
+
 
 ## Slurm job arrays
 
