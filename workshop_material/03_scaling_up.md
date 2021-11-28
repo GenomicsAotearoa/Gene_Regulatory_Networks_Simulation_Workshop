@@ -43,6 +43,10 @@ NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different n
 <br>
 <p align="center"><img src="nesi_images/hpc_architecture.png" alt="drawing" width="700"/></p> 
 <br>
+
+<br>
+<p align="center"><img src="nesi_images/node_overview.png" alt="drawing" width="500"/></p> 
+<br>
 In reality
 
 <p align="center"><img src="nesi_images/mahuika_maui_real.png" alt="drawing" width="700"/></p>
