@@ -69,9 +69,8 @@ Let's take a loot at the difference between a serial job and a multi-threaded jo
 <br>
 <p align="center"><img src="nesi_images/serial_process.png" alt="drawing" width="500"/></p> 
 <br>
-
 <br>
-<p align="center"><img src="nesi_images/multi_threading_process.png" alt="drawing" width="500"/></p> 
+<p align="center"><img src="nesi_images/multi_threading_process.png" alt="drawing" width="550"/></p> 
 <br>
 
 ## MPI
