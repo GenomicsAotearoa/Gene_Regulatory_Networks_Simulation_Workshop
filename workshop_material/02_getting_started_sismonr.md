@@ -13,7 +13,7 @@
 
 ## Introduction to the sismonr package
 
-The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulations). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different *in silico* individuals, that carry different versions (or alleles) of the genes present in the GRN. This is quite useful to simulate gene expression under different scenarios such as gene knock-out for example. If you are interested, a full tutorial is available [here](https://oliviaab.github.io/sismonr/).
+The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulation). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different *in silico* individuals, that carry different versions (or alleles) of the genes present in the GRN (think of it as simulating gene expression from different subjects). This is quite useful to simulate gene expression under different scenarios such as gene knock-outs for example. If you are interested, a full tutorial is available [here](https://oliviaab.github.io/sismonr/).
 
 One particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!
 
@@ -23,15 +23,14 @@ Before we get into the fun part, which is getting to play with the sismonr packa
 
 sismonr handles communications between R and Julia via the [XRJulia](https://cran.r-project.org/package=XRJulia](https://cran.r-project.org/package=XRJulia)) R package. The first time you use a function from the sismonr package that requires Julia, sismonr (via XRJulia functions) opens a new julia process on your computer, and sets up a socket connection between the R session and the new julia process. 
 
-By default, this connection is set up on a random port, but there are ways to decide on the port to use: if, at the start of your R session, you use:
+By default, this connection is set up on a random port, but there are ways to decide on the port to use: by executing, at the start of your R session, the following command:
 
 ```r
 XRJulia::newJuliaEvaluator(port = as.integer(456))
 ```
+you are creating a new Julia process and the socket connection between the R session and the Julia process will use port 456. We won't need to use this for now, but you will find it useful later on :)
 
-We won't need to use this for now, but you will find it useful later on :)
-
-Then, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.
+Once the Julia process is started, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.
 
 <img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="900"/>
 
@@ -41,7 +40,7 @@ This is why, if you decide to use sismonr on your own computer, you will have to
 
 ### Practice time!
 
-For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/10_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel.
+For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel.
 
 Before getting started, here are some abbreviations that are often used within sismonr:
 
@@ -68,14 +67,14 @@ We will start by generating a small random GRN with sismonr, using the function 
 
 ``` r
 set.seed(12) # important for reproducibility of "random" results in R!
-small_grn <- createInSilicoSystem(G = 10, 
+small_grn <- createInSilicoSystem(G = 10, # number of genes in the GRN
                                   PC.p = 1, # proportion of genes that are protein-coding
                                   ploidy = 2) # ploidy of the system
 ```
 
 Note that the first time you run a sismonr command, you might have to wait a few seconds, as sismonr needs to open a new Julia process on your computer to execute some of the internal commands (such as the generation of a random GRN).
 
-You can visualise the GRN you just created with:
+You can visualise the GRN you just created with the following command (the resulting graph is interactive, try to hover over nodes or edges with your mouse, move nodes or click on nodes):
 
 ``` r
 plotGRN(small_grn)
@@ -139,13 +138,14 @@ For example, you can generate a network of 5 genes with only protein-coding gene
 set.seed(45)
 another_grn <- createInSilicoSystem(G = 5, 
                                     PC.p = 1, 
-                                    PC.TC.p = 1)
+                                    PC.TC.p = 1) # all protein-coding genes are
+                                                 # regulators of transcription
 ```
 
 
 ### Modifying a GRN
 
-In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, but we're working on it).
+In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, this option will be added in the future).
 
 When adding a gene, you can specify its kinetic parameters, e.g. its transcription rate (in RNA/sec), RNA decay rate, etc.
 
@@ -159,7 +159,7 @@ small_grn2 <- addGene(small_grn,
 Same thing when adding an edge to the GRN: you can decide if the regulation is activative or repressive, and the different rates of the regulation:
 
 ``` r
-small_grn3 <- addEdge(small_grn2, 11, 8, regsign = "1")
+small_grn3 <- addEdge(small_grn2, regID = 11, tarID = 8, regsign = "1")
 ```
 
 ### Simulating genetically diverse *in silico* individuals
@@ -170,9 +170,9 @@ Once you've created a GRN with sismonr, you can generate *in silico* individuals
 
 ``` r
 set.seed(123)
-small_pop <- createInSilicoPopulation(3, ## number of individuals
-                                      small_grn,
-                                      ngenevariants = 2) ## how many alleles per gene
+small_pop <- createInSilicoPopulation(3, # number of individuals
+                                      small_grn, # our GRN
+                                      ngenevariants = 2) # how many alleles exist per gene
 ```
 
 We can visualise the difference between the individuals via:
@@ -183,9 +183,15 @@ plotMutations(small_pop, small_grn, nGenesPerRow = 5)
 
 ![A plot of *in silico* individuals](./images/plot_mutations.png)
 
-<small>A plot representing, for each *in silico* individual (rows) and each gene (columns), the effect (colour) of genetic mutations on different aspects of the gene's expression (x-axis) for each allele (y-axis) carried in individual. For noncoding genes, some QTL effect coefficients are not relevant (the ones related to protein or translation) and are represented in gray as NA.</small>
+<small>A plot representing, for each *in silico* individual (rows) and each gene (columns), the effect (colour) of genetic mutations on different aspects of the gene's expression (x-axis) for each allele (y-axis) carried by the individual. For noncoding genes, some QTL effect coefficients are not relevant (the ones related to protein or translation) and are represented in gray.</small>
 
 For example, *in silico* individual `Ind1` has no mutation on any of its copies of gene 1. It carries two different alleles of gene 2.
+
+**Tip**: to increase the size of the figure generated in a Jupyter notebook cell, add the following command at the top of the cell:
+
+```r
+options(repr.plot.width=18, repr.plot.height=12)
+```
 
 ### Generating a stochastic model with the sismonr package
 
@@ -195,7 +201,7 @@ In the case of a stochastic model, we must decide how to transform a graph repre
 
 <img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/>
 
-<small>This is how sismonr models different type of expression regulation. Each arrow i -> j in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
+<small>This is how sismonr models different type of expression regulation. Each arrow $i \rightarrow j$ in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
 
 For example, the following small GRN:
 
@@ -254,12 +260,12 @@ One crucial thing to understand is that a reaction in a stochastic system is a s
 
 Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts. This is again a very complex step in the creation of a model, as it is quite arduous to precisely estimate the rate of different biochemical reactions *in vivo*.
 
-When constructing a stochastic model for a given GRN, sismonr computes for each reaction in the model a rate (i.e. the probability of the reaction occurring in one unit of time), which depends on the properties of the genes (e.g. transcription rate) and of the GRN (e.g. strength of regulation). These rates will be influenced by "genetic mutations" that differentiate the *in silico* individuals modelled by sismonr.
+When constructing a stochastic model for a given GRN, sismonr computes for each reaction in the model a constant rate (i.e. the probability of one molecule of each reactant to collide and undergo the reaction in one unit of time), which depends on the properties of the genes (e.g. transcription rate) and of the GRN (e.g. strength of regulation). These rates will be influenced by "genetic mutations" that differentiate the *in silico* individuals modelled by sismonr.
 
 Here are the rates of each reaction for two genetically different *in silico* individuals:
 
 ``` r
-                 reaction rate_Ind1 rate_Ind2
+                  reaction rate_Ind1 rate_Ind2
 Pr2reg1F + P1 --> Pr2reg1B  5.89e-06  5.27e-06
 Pr2reg1B --> Pr2reg1F + P1  2.45e-03  2.45e-03
 Pr3reg2F + P2 --> Pr3reg2B  3.46e-05  3.32e-05
@@ -291,9 +297,26 @@ Pr3reg2B --> Pr3reg2B + R3  8.28e-03  7.84e-03
 
 The list of reactions and associated rates is what sismonr uses to simulate the expression of the genes over time for each *in silico* individual.
 
+**Tip**: The `getReactions()` function from sismonr allows you to see the list of biochemical reactions and associated rates for a GRN. There are two ways to use the function. Providing only the GRN object as an input to the function, as follows:
+
+```r
+getReactions(small_grn)
+```
+
+will return a data-frame with the list of biochemical reactions, their name and the formula used by sismonr to compute their constant rate.
+
+If you also provide the _in silico_ inviduals as an input to the function, like so:
+
+```r
+getReactions(small_grn, small_pop)
+```
+
+the resulting data-frame will contain, in addition to the columns previously described, one column for each *in silico* individual giving the constant rate of the reactions for this individual.
+
+
 ## Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots
 
-For this workshop, we will work on a model for the [anthocyanin](https://en.wikipedia.org/wiki/Anthocyanin) biosynthesis regulation pathway from [eudicots](https://en.wikipedia.org/wiki/Eudicots). Anthocyanins are pgiments providing colouration to plants, flowers and fruits. This model was developed (mainly) based on the following sources:
+For this workshop, we will work on a model for the [anthocyanin](https://en.wikipedia.org/wiki/Anthocyanin) biosynthesis regulation pathway in [eudicots](https://en.wikipedia.org/wiki/Eudicots). Anthocyanins are pgiments providing colouration to plants, flowers and fruits. This model was developed (mainly) based on the following sources:
 
 * Albert, Nick W., et al. "A conserved network of transcriptional activators and repressors regulates anthocyanin pigmentation in eudicots." *The Plant Cell* 26.3 (2014): 962-980. <https://doi.org/10.1105/tpc.113.122069>
 
@@ -311,7 +334,11 @@ An animation of the GRN is presented below:
 
 <small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png). </small>
 
-The GRN starts with 3 protein-genes, *MYB*, *bHLH1* and *WDR*. While *bHLH1* and *WDR* are constitutively expressed (i.e. constantly produce proteins), *MYB* is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the *bHLH2*. The synthesised bHLH2 proteins form a second regulatory complexes with the MYB and WDR proteins (termed MBW2). This complex then activates the transcription of downstream genes encoding for enzymes involved in the anthocyanin biosynthesis pathway. The presence of these enzymes result in the production of anthocyanin. Here we use the *DFR* gene as an representative example of MBW2's targets. In addition, the MBW2 complex also activates the transcription of two repressors genes, *MYBrep* and *R3-MYB*, which form a negative feedback loop in the GRN. Both genes repress the activity of the network through different means. The MYBrep proteins bind the MBW2 complex (this new complex is termed MBWr), which becomes a repressor complex. It will inhibit the transcription of *bHLH2*, which in turn reduces the expression of the downstream enzymes and thus modulates the production of anthocyanin. The R3-MYB exert instead a passive repression on the system, by binding to bHLH1 and bHLH2 proteins, thus reducing the number of available bHLH1 and bHLH2 proteins in the system. In consequence, this reduces the number of MBW1 and MBW2 complexes in the systems and in turn the activity of the network.
+The GRN starts with 3 protein-genes, *MYB*, *bHLH1* and *WDR*. While *bHLH1* and *WDR* are constitutively expressed (i.e. constantly produce proteins), *MYB* is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the *bHLH2* gene.
+
+The synthesised bHLH2 proteins form a second regulatory complex with the MYB and WDR proteins (termed MBW2). This complex then activates the transcription of downstream genes encoding for enzymes involved in the anthocyanin biosynthesis pathway. The presence of these enzymes result in the production of anthocyanin. Here we use the *DFR* gene as a representative example of MBW2's targets. We will assume that the abundance of DFR proteins acts as a proxy for the production of anthocyanins. 
+
+In addition, the MBW2 complex also activates the transcription of two repressors genes, *MYBrep* and *R3-MYB*, which form a negative feedback loop in the GRN. Both genes repress the activity of the network through different means. The MYBrep proteins bind the MBW2 complex (this new complex is termed MBWr), which becomes a repressor complex. It will inhibit the transcription of *bHLH2*, which in turn reduces the expression of the downstream enzymes and thus modulates the production of anthocyanin. The R3-MYB exert instead a passive repression on the system, by binding to bHLH1 and bHLH2 proteins, thus reducing the number of available bHLH1 and bHLH2 proteins in the system. In consequence, this reduces the number of MBW1 and MBW2 complexes in the system and in turn reduces the activity of the network.
 
 The goal of this workshop will be to simulate the expression of the different genes in the pathway over a period of 1,200 seconds (20 minutes) after induction of the MYB gene. We will simulate the GRN for two different *in silico* plants:
 
@@ -319,15 +346,15 @@ The goal of this workshop will be to simulate the expression of the different ge
 
 * A mutant plant in which the *MYBrep* gene is overexpressed: the transcription rate of the gene is increased 50-fold. This can be achieved experimentally by transforming a plant, in order to modify the promoter of the target gene.
 
-Because the simulations are stochastic, it is better to simulate the GRN a large number of times in order to obtain a good overview of the system behaviour. We will aim to produce *need to decide on the number*.
+Because the simulations are stochastic, it is better to simulate the GRN a large number of times in order to obtain a good overview of the system behaviour. We will aim to produce 2,000 simulations.
 
-The sismonr objects representing the anthocyanin biosynthesis regulation network and the *in silico* are saved in the following `.RData` file:
+In order to save time, the GRN and the *in silico* plants have already been generated with sismonr. The R script used to generate it can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R). The sismonr objects representing the anthocyanin biosynthesis regulation network and the *in silico* plants are saved in the following `.RData` file:
 
 ```
 /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData
 ```
 
-Alternatively, it can be downloaded [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData). The R script used to generate it can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R).
+Alternatively, it can be downloaded [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData). 
 
 You will start by creating a copy of this object in your working directory, for easier access. In a Jupyter terminal, type:
 
@@ -348,9 +375,9 @@ total 0
 
 ## Running a first simulation (interactive)
 
-We will start by running one simulation on your local machine. This is the first thing to do if you are planning to run simulations on NeSI: first, make sure your actually works! For this workshop, a jupyter kernel will act as your local machine. 
+You will start by running one simulation on your local machine. This is the first thing to do if you are planning to run simulations on NeSI: first, make sure your code actually works! For this workshop, a jupyter kernel will act as your local machine. 
 
-Start by opening a sismonr kernel (see the instructions [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/10_supplementary.html)).
+Start by opening a sismonr kernel (see the instructions [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html)).
 
 We will first load the sismonr package, and the model and *in silico* plants we want to simulate.
 
@@ -360,14 +387,14 @@ library(sismonr)
 load("~/sism_2021/sismonr_anthocyanin_system.RData")
 ```
 
-Feel free to inspect the different aspects of the model. We can run one simulation for each of the two *in silico* plants via the command:
+Feel free to inspect the different aspects of the model (using for example `plotGRN`, `plotMutations` or `getReactions`). We can run one simulation for each of the two *in silico* plants via the command:
 
 ```r
 set.seed(123)
 sim <- simulateInSilicoSystem(colsystem,
-                             plants, 
-                             simtime = 1200,
-                             ntrials = 1)
+                              plants, 
+                              simtime = 1200,
+                              ntrials = 1)
 ```
 
 Where `simtime` is the time (in seconds) for which we want to simulate the expression of the genes; `ntrials` corresponds to the number of times we want to repeat the simulation for each *in silico* individual.
@@ -412,7 +439,18 @@ sim$runningtime
 [1] 187.59 178.13
 ```
 
-which corresponds to approx. 3 minutes per simulation. So if we were to run, say, 2,000 simulations for each plant, it would take approximately 100 hours! This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.
+which corresponds to approx. 3 minutes per simulation. So if we were to run, say, 2,000 simulations for each plant, it would take approximately 100 hours<sup>*</sup> ! This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.
+
+<sup>*</sup> : actually, this estimate depends on how you run these 500 simulations. The running time of 3 minutes per simulation includes the time to transform the sismonr GRN object into a list of biochemical reactions, and to compute for each _in silico_ individual the different reaction rates. If you were to run 2 simulations for each plant, with:
+
+```r
+sim <- simulateInSilicoSystem(colsystem,
+                              plants, 
+                              simtime = 1200,
+                              ntrials = 2)
+```
+
+you should notice that it doesn't take much more time than to run only one simulation per plant. This will not hold however if you start running a large number of simulations (e.g. setting `ntrials = 10` will take more time to run).
 
 ---
 
