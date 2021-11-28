@@ -224,7 +224,7 @@ Let's start compiling our first slurm array script
 >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel
 >
 >#Create a new sub-directory and name it slurm_arrays and change the directory to this
->$ mkdir -p slurm_arrays/{Exercise_1/slurmout,Exercise_2/slurmout,Exercise_3/slurmout} && cd slurm_arrays/Exercise_1
+>$ mkdir -p slurm_arrays/{Exercise_5.3/slurmout,Exercise_5.4/slurmout,Exercise_5.5/slurmout} && cd slurm_arrays/Exercise_5.3
 >
 >#use a text editor of choice to create a file named firstslurm_array.sl - we will use nano here
 >$ nano firstslurm_array.sl
