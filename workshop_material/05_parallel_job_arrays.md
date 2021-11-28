@@ -90,9 +90,8 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >
 >#Copy the pre-compiled `omp_helloworld` to current working directory
 >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/openmp/omp_helloworld ./
->
->#Compile a slurm script as below and name it `openmp_hw.sl`
 >```
+>**Compile a slurm script as below and name it `openmp_hw.sl`**
 >
 >```bash
 >#!/bin/bash
@@ -115,30 +114,48 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 
 ---
 
-## MPI
+## MPI (**M**essage **P**assing **I**nterface)
 
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
+MPI is a specification for the developers and users of message passing libraries. By itself, it is NOT a library - but rather the specification of what such a library should be.
+
+MPI primarily addresses the message-passing parallel programming model: data is moved from the address space of one process to that of another process through cooperative operations on each process.
+
+Simply stated, the goal of the Message Passing Interface is to provide a widely used standard for writing message passing programs. The interface attempts to be:
+
+* Practical
+* Portable
+* Efficient
+* Flexible
 
 ### Exercise 5.2
+
+>Let's try out a MPI example 
+>
+>```bash
+>#change the current working directory to 5_parallel/mpi
+>$ pwd 
+>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/mpi
+>
+>#copy the pre-compiled mpi program to current working directory
+>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/mpi/mpi_helloworld ./
+>```
+>**Compile a slurm script as below and name it `mpi_hw.sl`**
+>```bash
+>#SBATCH --account       nesi02659
+>#SBATCH --job-name      mpi_helloworld
+>#SBATCH --cpus-per-task 1
+>#SBATCH --ntasks        6
+>#SBATCH --mem-per-cpu   100
+>#SBATCH --output        mpi_hw_%j.out
+>#SBATCH --export        none
+>export SLURM_EXPORT_ENV=ALL
+>
+>module purge && module load OpenMPI/4.1.1-GCC-9.2.0
+>
+>srun ./mpi_helloworld
+>```
+>* Submit the script with `sbatch mpi_hw.sl` and review the content of  .out file *mpi_hw_jobid.out* upon completion 
+
 
 ## Parallel Performance 
 
