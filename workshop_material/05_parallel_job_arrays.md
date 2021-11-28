@@ -58,7 +58,7 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 >    * How do they collaborate ( to work on a single problem)
 >    * Explicit communication ( for an example by phone. Also, no shared data)
  
-## OpenMP
+## Multi-threading
 
 ## MPI
 
