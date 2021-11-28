@@ -148,6 +148,11 @@ $ sbatch firstslum.sl
 ```
 >Execute `squeue -u usrename` and `sacct`. Discuss the outputs
 
+### STDOUT/STDERR from jobs
+
+**STDOUT** and **STDERR** from jobs are, by default, written to a file called slurm-<jobid>.out in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in slurm-12345.out.
+
+ When things go wrong, first step of **debugging** (STORY TIME !) starts with a referral to these files. 
 
 ## Assessing resource utilisation (cpu, memory, time)
 
