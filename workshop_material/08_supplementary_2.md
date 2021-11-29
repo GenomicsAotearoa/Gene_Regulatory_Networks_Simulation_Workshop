@@ -8,10 +8,19 @@
 
 <details>
   <summary>System Requirements</summary>
+  
+  {::options parse_block_html="true" /}  
 
-  <p>Requires a computer running an operating system. The computer
-  must have some memory and ideally some kind of long-term storage.
-  An input device as well as some form of output device is
-  recommended.</p>
+```bash
+ cd ~
+ mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
+ ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
+ ```
+
+ {::options parse_block_html="false" /} 
+
 
 </details>
+
+
+
