@@ -30,7 +30,7 @@ The simplest way of defining high-performance computing is by saying that it is 
 <br>
 
 * The number of computers/nodes 
-* The strength of each individual computer/nodes 
+* The strength of each individual computer/node 
 * The network interconnect – this dictates the communication speed between nodes. The faster this speed is, the more a group of individual nodes will act like a unit.
 
 
@@ -63,7 +63,7 @@ Before we start using individual software packages, however, we should understan
 
 One of the workarounds for this issue is Environment modules. A module is a self-contained description of a software package — it contains the settings required to run a software package and, usually, encodes required dependencies on other software packages.
 
-There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is `Lmod` where `module` command is used to interact with environment modules.
+There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is `Lmod` where the `module` command is used to interact with environment modules.
 
 **Common commands - module**
 
