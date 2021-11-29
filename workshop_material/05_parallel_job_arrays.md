@@ -90,8 +90,11 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >
 >#Copy the pre-compiled `omp_helloworld` to current working directory
 >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/openmp/omp_helloworld ./
+>
+>#use a text editor of choice to create a file named openmp_hw.sl - we will use nano here
+>$ nano openmp_hw.sl
 >```
->**Compile a slurm script as below and name it `openmp_hw.sl`**
+>**Content of `openmp_hw.sl` is as below**
 >
 >```bash
 >#!/bin/bash
@@ -138,8 +141,11 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >
 >#copy the pre-compiled mpi program to current working directory
 >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/mpi/mpi_helloworld ./
+>
+>#use a text editor of choice to create a file named mpi_hw.sl - we will use nano here
+>$ nano mpi_hw.sl
 >```
->**Compile a slurm script as below and name it `mpi_hw.sl`**
+>**Content of  `mpi_hw.sl` is as below**
 >```bash
 >#SBATCH --account       nesi02659
 >#SBATCH --job-name      mpi_helloworld
@@ -271,6 +277,49 @@ Let's start compiling our first slurm array script
 ### Exercise 5.4
 
 >Objective of this exercise is to to run slurm array with two indexes for 500 simulations.  
+
+
+>```bash
+>#Change working directory to /5_parallel/slurm_arrays/Exercise_5.4
+>$ pwd 
+>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/slurm_arrays/Exercise_5.4
+>
+>#copy the pre-generated network file to current working directory
+>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_array_500sim_2cpu/simulate_colsystem_array.R ./
+>
+>#use a text editor of choice to create a file named firstslurm_array.sl - we will use nano here
+>$ nano 500sims_2arrayindex.sl
+>```
+
+>Content of `500sims_2arrayindex.sl` should be as below. Please discuss as you make progress
+
+>```bash
+>#!/bin/bash -e
+>
+>#SBATCH --account       nesi02659
+>#SBATCH --job-name      simulations_500_test             
+>#SBATCH --time          00:15:00                 
+>#SBATCH --mem           1GB 
+>#SBATCH --cpus-per-task 1                    
+>#SBATCH --array         1-2
+>#SBATCH --output        slurmout/sims_500_%A_%a.out # Include the array ID in the names of
+>#SBATCH --error         slurmout/sims_500_%A_%a.err # the output and error files
+>
+>#SBATCH --export NONE
+>
+>export SLURM_EXPORT_ENV=ALL
+>
+>export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_${SLURM_JOB_ID}_${SLURM_ARRAY_TASK_ID}
+>mkdir -p $TMPDIR
+>
+>module purge
+>module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
+>
+>srun Rscript simulate_colsystem_array.R
+>```
+
+* Once you submit the job with `sbatch 500sims_2arrayindex.sl`, take a not on the jobid and run the command `squeue -j jobid`. 
+* Take a look at the content of *.out* and *.err* files in *slurmout* directory
 
 ### Exercise 5.5 (Group)
 
