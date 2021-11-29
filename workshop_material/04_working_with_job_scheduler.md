@@ -4,6 +4,8 @@ accordion:
     content: test content
 ---
 
+{% include accordion.html %}
+
 ```bash
 #summary of current states of compute nodes known to the scheduler
 $ sinfo
@@ -85,6 +87,7 @@ Let's run the following commands and discuss the outputs
 <p align="center"><img src="nesi_images/slurm_flow.png" alt="drawing" width="1000"/></p> 
 <br>
 
+{% include accordion.html %}
 
 
 ## Anatomy of a slurm script and submitting first slurm job 🧐
