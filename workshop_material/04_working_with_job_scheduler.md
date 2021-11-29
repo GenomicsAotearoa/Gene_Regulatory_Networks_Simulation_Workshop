@@ -64,7 +64,7 @@ Let's run the following commands and discuss the outputs
 Exercise #1
 </button>
 </h2>
-<div class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 <div class="accordion-body">
 
 ```bash
