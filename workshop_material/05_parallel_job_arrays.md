@@ -323,7 +323,7 @@ Let's start compiling our first slurm array script
 
 * Once you submit the job with `sbatch 500sims_2arrayindex.sl`, take a not on the jobid and run the command `squeue -j jobid`. 
 * Take a look at the content of *.out* and *.err* files in *slurmout* directory
->* If all goes, job should run within 10 minutes and will generate two *.RData* files
+* If all goes well, job should run within 10 minutes and will generate two *.RData* files
 
 ```
 simulation_500_1_TEAMNAME.RData
