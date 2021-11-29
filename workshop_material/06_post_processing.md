@@ -15,17 +15,21 @@
 
 In the previous section, you have seen how to run a slurm array job. Now it is time to check whether the arrays completed without failing! And if some of the arrays did fail, we would like to identify them to re-run them.
 
-As we have seen in the previous sections, the `sacct` command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output and paste it in your slurm script for the `array` option, in order to re-run only those arrays that failed. In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID:
+As we have seen in the previous sections, the `sacct` command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output of this command and paste it in your slurm script for the `array` option, in order to re-run only those arrays that failed. In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID:
 
 ```bash
 $ sacct -j $JOB_ID -X -n -s TO,F,OOM -o jobid | cut -d "_" -f2 | tr -s ' \n' ','
 ```
 
-Your turn! Did any of your arrays failed? If so, how would you re-run them?
+Your turn! Did any of your arrays failed? If so, what would you change before re-running them?
 
 ## Interpreting the sismonr output
 
-Now, it is time to analyse the simulations that we generated. In the simulation script, we made sure to save each simulation into a `.RData` file. First, make sure that you are in the appropriate directory with:
+Now, it is time to analyse the simulations that we generated. 
+
+### Copying the simulation outputs to relevant directory
+
+In the simulation script, we made sure to save each simulation into a `.RData` file. First, make sure that you are in the appropriate directory with:
 
 ```bash
 $ pwd
@@ -39,6 +43,8 @@ $ cp nesi/project/nesi02659/sismonr_workshop/workingdir/member456/5_parallel/slu
 ```
 
 of course replacing `member456` by the username of the person that has the simulations.
+
+### Looking at one simulation output
 
 A single `.RData` file can be then loaded into R with:
 
@@ -112,7 +118,7 @@ One more thing to note: in each simulation output, the `trial` column will be fi
 
 ## Importing all simulation results in R
 
-The challenge here is we don't have only 1 `.RData` file; in fact, we've just created 250 of them per group! We will need to use a loop of some sort in R to import all simulations. This section provides a step-by-step for this.
+The challenge here is we don't have only 1 `.RData` file; in fact, we've just created 250 of them per group! We will need to use a loop of some sort to import all simulations in R.
 
 ### Listing all the simulation files
 
@@ -120,8 +126,8 @@ The first thing we need is a list of all simulation files. There is a function i
 
 ```r
 ## Don't forget to update the pattern to reflect how you named your simulation outputs
-## For example, replace 'oangelin' by the group name you chose
-> sim_files <- list.files(path = "./", pattern = "_oangelin.RData")
+## For example, replace 'group_1' by your group ID
+> sim_files <- list.files(path = "./", pattern = "_group_1.RData")
 > head(sim_files)
 
 [1] "simulation_1_group_1.RData"   "simulation_10_group_1.RData"  "simulation_100_group_1.RData" "simulation_101_group_1.RData"
@@ -139,7 +145,7 @@ You can check that there are 250 files:
 
 ### Creating a loop to import all simulations
 
-To import each of these simulations, we could use a basic for loop, which would look something like this:
+To import each of these simulations, we could use a basic `for` loop, which would look something like this:
 
 ```r
 > library(dplyr) ## for the bind_rows function
@@ -156,6 +162,7 @@ Which is really not ideal from a memory and computational time perspective. Howe
 To get the list of data-frame, the R function `lapply()` does just what we want: it acts as a for loop, except that it returns the output of the different iterations as a list. So we could use something like:
 
 ```r
+> # AGAIN DO NOT RUN
 > sim_df <- lapply(sim_files, function(file){
 +   load(file)
 +   sim$Simulation
@@ -220,6 +227,20 @@ sim_df <- lapply(1:n_sim, function(i){
 +  as_tibble()
 ```
 
+The final code (which is the one you want to run) is:
+
+```r
+> sim_df <- lapply(1:n_sim, function(i){
++   file <- sim_files[i]
++   load(file)
++  
++   mergeAlleleAbundance(sim$Simulation) %>% 
++       mutate(trial = trial + 2*(i - 1))
++ }) %>% 
++   reduce(bind_rows) %>% 
++   as_tibble()
+```
+
 ## Visualising the simulations
 
 Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plots:
@@ -247,7 +268,7 @@ Have a go at it first! When you are ready, one possible plot is presented below:
 
 ```r
 > sim_df %>% 
-+   filter(time == 1200) %>% ## only keep the last time-point of each simulation
++   filter(time == 1200) %>% ## only keep the last time point of each simulation
 +   select(trial, Ind, "P7") %>% ## we want to focus on DFR proteins abundance 
 +   ## for a better plot, show wild-type plant first, and give each individual a nice label 
 +   ## (rather than "Ind1" and "Ind2")
@@ -256,11 +277,11 @@ Have a go at it first! When you are ready, one possible plot is presented below:
 +                       labels = c("Wild-type", "MYBrep overexpressed"))) %>% 
 +   ## Plot section:                    
 +   ggplot(aes(x = P7, fill = Ind)) + 
-+   geom_histogram(alpha = 0.5, colour = "gray20", bins = 50) +
++   geom_histogram(alpha = 0.5, colour = "gray20", bins = 50) + ## alpha = transparency of the bars
 +   scale_fill_brewer(palette = "Set1", direction = -1) + ## choose nice colours
-+   labs(x = "DFR protein abundance",
-+        y = "Count (simulations)",
-+        fill = "Plant",
++   labs(x = "DFR protein abundance", ## x axis title
++        y = "Count (simulations)", ## y axis title
++        fill = "Plant", ## colour legend title
 +        title = "DFR expression is reduced in mutant plants", ## informative title
 +        subtitle = "Results from 500 simulations") + ## and subtitle
 +   theme_bw() + ## white background, black axes, etc
