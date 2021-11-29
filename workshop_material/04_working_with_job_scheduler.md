@@ -2,19 +2,19 @@
 accordion: 
   - title: Excersise 4.1
     content: |
-            ```bash
-            #summary of current states of compute nodes known to the scheduler
-            $ sinfo
-
-            #similar to above but expanded
-            $ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
-
-            #will print a long output as it is one row per compute node in the cluster
-            $ sinfo -N -l
-
-            #Explore the capacity of a compute node
-            $ sinfo -n wch001 -o "%n %c %m"
-            ```
+      ```bash
+      #summary of current states of compute nodes known to the scheduler
+      $ sinfo
+      
+      #similar to above but expanded
+      $ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
+      
+      #will print a long output as it is one row per compute node in the cluster
+      $ sinfo -N -l
+      
+      #Explore the capacity of a compute node
+      $ sinfo -n wch001 -o "%n %c %m"
+      ```
 ---
 
 
