@@ -6,8 +6,7 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-{::options parse_block_html="true" /}
-<details>
+<details markdown="block">
 <summary markdown="span">**A Summary**</summary>
 
 These are the details of the summary
@@ -19,4 +18,5 @@ ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
 ```
 
 </details>
-{::options parse_block_html="false" /}
+
+
