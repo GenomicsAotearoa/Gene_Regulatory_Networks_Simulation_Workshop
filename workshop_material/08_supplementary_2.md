@@ -19,11 +19,9 @@
 >></details>
 
 
-<button type="button" class="collapsible">Open Collapsible</button>
-<div class="content">
-  <p>This is collapsible content</p>
-</div>
 
+<html>
+<body>
 <div class="container">
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
   <div id="demo" class="collapse">
@@ -32,3 +30,5 @@
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </div>
 </div>
+</body>
+</html>
