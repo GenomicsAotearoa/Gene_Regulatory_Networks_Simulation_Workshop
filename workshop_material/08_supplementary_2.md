@@ -8,28 +8,13 @@
 
 
 <details>
-<summary>System Requirements</summary>
-
-{% highlight ruby %}
-```bash
- cd ~
- mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
- ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
- ```
- {% endhighlight %}
-
-</details>
-
-<details>
 <summary>Preview</summary>
 
-<figure class="highlight">
-    <pre>
-        <code class="language-ruby" data-lang="ruby">
-        <span class="nb">puts</span> <span class="s1">'Expanded message'</span>
-        </code>
-    </pre>
-</figure>
+{% highlight ruby %}
+puts 'Expanded message'
+{% endhighlight %}
+
 </details>
+
 
 
