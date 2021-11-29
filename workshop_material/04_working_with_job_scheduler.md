@@ -57,7 +57,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 Let's run the following commands and discuss the outputs
 
 <details markdown="block">
-<summary markdown="span">### Exercise 4.1</summary>
+<summary markdown="span"><button name="button" style="background-color:blue; border-color:blue; color:white"><b>Exercise 4.1</b></button></summary>
 
 >```bash
 >
