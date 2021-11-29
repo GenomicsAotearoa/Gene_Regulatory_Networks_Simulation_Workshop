@@ -8,7 +8,7 @@
 
 
 >><details markdown=block>
->><summary markdown=span>**A Summary**</summary>
+>><summary markdown=span style="cursor: text;">**A Summary**</summary>
 >>
 >>These are the details of the summary
 >> ```bash
