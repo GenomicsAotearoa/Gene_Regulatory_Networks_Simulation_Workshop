@@ -6,24 +6,9 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-
-<details>
-  <summary>Click to expand!</summary>
-  
-  ## Heading
-  1. Item
-  2. list
-     * Item
-     * Item
-```js
-	console.log('code');
-```
-
-- code
-	```js
-		console.log('also code');
-	```
-</details>
-
+Check whether the expand option can be used
+[expand]
+check whether the text can be expanded
+[/expand]
 
 
