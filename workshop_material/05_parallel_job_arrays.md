@@ -49,7 +49,7 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 >*Analogy*
 >* Shared memory:
->    * Once very large whiteboard in a two-person office (the shared memory)
+>    * One very large whiteboard in a two-person office (the shared memory)
 >    * Two people working on the same problem (threads running on different cores attached to the memory)
 >    * How do they collaborate (working together but not interfering)
 >    * need *private* data
@@ -57,8 +57,8 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 >* Distributed memory
 >    * Two whiteboards in different single-person offices (distributed memory)
 >    * Two people working on the same problem (processes on different nodes attached to the interconnect)
->    * How do they collaborate ( to work on a single problem)
->    * Explicit communication ( for an example by phone. Also, no shared data)
+>    * How do they collaborate (to work on a single problem)
+>    * Explicit communication (for example by phone. Also, no shared data)
  
 ## Multi-threading
 
@@ -80,12 +80,12 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >```bash
 >#confirm the working directory 
 >$pwd 
->$/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
+>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
 >
 >#create a new directory for this episode, cd into it
 >$ mkdir 5_parallel && cd 5_parallel
 >
->#Create two morw working directories for this exercise and the next one and change to `openmp` directory
+>#Create two more working directories for this exercise and the next one and change to `openmp` directory
 >$ mkdir {openmp,mpi} && cd openmp
 >
 >#Copy the pre-compiled `omp_helloworld` to current working directory
@@ -135,7 +135,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >Let's try out a MPI example 
 >
 >```bash
->#change the current working directory to 5_parallel/mpi
+>#make sure you have changed the current working directory to 5_parallel/mpi
 >$ pwd 
 >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/mpi
 >
