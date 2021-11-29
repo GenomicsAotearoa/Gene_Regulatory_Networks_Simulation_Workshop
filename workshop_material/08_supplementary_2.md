@@ -7,7 +7,7 @@
 {:toc}
 
 
->><details>
+>><details>{::options parse_block_html="true" /}
 >><summary markdown="span">**A Summary**</summary>
 >>
 >>These are the details of the summary
@@ -16,6 +16,7 @@
 >> mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
 >> ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
 >> ```
+>>{::options parse_block_html="false" /}
 >></details>
 
 
