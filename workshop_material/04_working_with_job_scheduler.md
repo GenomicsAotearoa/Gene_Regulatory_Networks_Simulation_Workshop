@@ -64,9 +64,8 @@ Let's run the following commands and discuss the outputs
 Exercise #1
 </button>
 </h2>
-<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+<div id="collapseOne" class="accordion-collapse collapse hide" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 <div class="accordion-body">
-
 ```bash
 #summary of current states of compute nodes known to the scheduler
 $ sinfo
@@ -80,7 +79,6 @@ $ sinfo -N -l
 #Explore the capacity of a compute node
 $ sinfo -n wch001 -o "%n %c %m"
 ```
-
 </div>
 </div>
 </div>
