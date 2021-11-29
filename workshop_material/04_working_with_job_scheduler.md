@@ -24,7 +24,7 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
 Why do we need a scheduler ?
 
 * To ensure the machine is utilised as fully as possible
-* Ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
+* To ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
 * To track usage - for accounting and budget control
 * To mediate access to other resources e.g. software licences
 
@@ -46,7 +46,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 | `sbatch`       | Submit non-interactive (batch) jobs to the scheduler                                                 |
 | `squeue`       | List jobs in the queue                                                                               |
 | `scancel`      | Cancel a job                                                                                         |
-| `sacct`        | displays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database|
+| `sacct`        | Display accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database|
 | `srun`         | Slurm directive for parallel computing                                                                      |
 | `sinfo`        | Query the current state of nodes                                                                     |
 | `salloc`       | Submit interactive jobs to the scheduler                                                             |
@@ -93,22 +93,22 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 ---
 
-| header          | use                                 | description                                         |
-|:--------------- |:------------------------------------|:----------------------------------------------------|
-|--job-name 	  | `#SBATCH --job-name=MyJob` 	        |The name that will appear when using squeue or sacct |
-|--account 	      | `#SBATCH --account=nesi12345` 	    |The account your core hours will be 'charged' to.    |
-|--time 	      | `#SBATCH --time=DD-HH:MM:SS` 	    |Job max walltime                                     |
-|--mem 	          | `#SBATCH --mem=512MB` 	            |Memory required per node.                            |
-|--cpus-per-task  | `#SBATCH --cpus-per-task=10` 	    |Will request 10 logical CPUs per task.               |
-|--output 	      | `#SBATCH --output=%j_output.out` 	|Path and name of standard output file.               |
-|--mail-user 	  | `#SBATCH --mail-user=me23@gmail.com`|address to send mail notifications.                  |
-|--mail-type 	  | `#SBATCH --mail-type=ALL` 	        |Will send a mail notification at BEGIN END FAIL      |
-|                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime                    |
+| header          | use                                 | description                                          |
+|:--------------- |:------------------------------------|:-----------------------------------------------------|
+|--job-name 	  | `#SBATCH --job-name=MyJob` 	        |The name that will appear when using squeue or sacct. |
+|--account 	      | `#SBATCH --account=nesi12345` 	    |The account your core hours will be 'charged' to.     |
+|--time 	      | `#SBATCH --time=DD-HH:MM:SS` 	    |Job max walltime.                                     |
+|--mem 	          | `#SBATCH --mem=512MB` 	            |Memory required per node.                             |
+|--cpus-per-task  | `#SBATCH --cpus-per-task=10` 	    |Will request 10 logical CPUs per task.                |
+|--output 	      | `#SBATCH --output=%j_output.out` 	|Path and name of standard output file. `%j` will be replaced by the job ID.         |
+|--mail-user 	  | `#SBATCH --mail-user=me23@gmail.com`|address to send mail notifications.                   |
+|--mail-type 	  | `#SBATCH --mail-type=ALL` 	        |Will send a mail notification at BEGIN END FAIL.      |
+|                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime.                    |
 
 ---
 ### Exercise 4.2
 
-Let's put these directives together and compile a our first slurm script
+Let's put these directives together and compile our first slurm script
 
 * First create a new working directory and write the script
 
@@ -155,13 +155,13 @@ $ sbatch firstslum.sl
 
 ### STDOUT/STDERR from jobs
 
-**STDOUT** and **STDERR** from jobs are, by default, written to a file called slurm-<jobid>.out in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in slurm-12345.out.
+**STDOUT** and **STDERR** from jobs are, by default, written to a file called `slurm-<jobid>.out` and `slurm-<jobid>.err` in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in `slurm-12345.out` and `slurm-12345.err`.
 
  When things go wrong, first step of **debugging** (STORY TIME !) starts with a referral to these files. 
 
 ## Assessing resource utilisation (cpu, memory, time)
 
-Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing. The three resources that every single job submitted on the platforms needs to request are:
+Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing. The three resources that every single job submitted on the platform needs to request are:
 
 * CPUs (i.e. logical CPU cores), and
 * Memory (RAM), and
@@ -173,16 +173,16 @@ Understanding the resources you have available and how to use them most efficien
 
 | Resource         | Asking for too much                                   | Not asking for enough                                                               |
 |:---------------  |:------------------------------------------------------|:------------------------------------------------------------------------------------|
-| Number of CPUs   | Job may wait in the queue for longer   	           | Job will run more slowly than expected, and somay run out time    |                    
+| Number of CPUs   | Job may wait in the queue for longer   	           | Job will run more slowly than expected, and so may run out time    |                    
 |                  | Drop in fairshare score which determines job priority |                                                                                     |
-| Memory           | (above)                                               | Job will fail, probably with `OUT OF MEMORY` error, segmenration faults or bus error|
+| Memory           | (above)                                               | Job will fail, probably with `OUT OF MEMORY` error, segmentation fault or bus error|
 | Wall time        | (above)                                               | Job will run out of time and get killed                                             |
 
 ---
 
 ### Exercise 4.3 
 
-* Let's submit another slurm job and review it's resource utilisation
+* Let's submit another slurm job and review its resource utilisation
 
 ```bash
 $pwd
@@ -194,7 +194,7 @@ $ mkdir slurmout
 #copy the R script to current working directory
 $ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_examples/example1_arraysum.R ./
 
-#copy the correspoding slurm script for above R script
+#copy the corresponding slurm script for above R script
 $ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_examples/example1_arraysum.sl ./
 
 #edit the mail-user directive value with a valid email address and submit the script
@@ -223,11 +223,11 @@ $ sbatch example1_arraysum.sl
 
 ## slurm profiling
 
-Although `nn_seff` command is a quick and easy way to determine the resource utilisation, it relies on **peak** values (data gets recorded every 30 seconds) which doesn't allows us to examine resource usage over the run-time of the job. There are number of in-built/external tools to achieve latter which will require some effort to understand it's deployment,tracing and interpretation. Therefore, we will use **slurm native profiling** to evaluate resource usage over run-time.This is a simple and elegant solution 
+Although `nn_seff` command is a quick and easy way to determine the resource utilisation, it relies on **peak** values (data gets recorded every 30 seconds) which doesn't allows us to examine resource usage over the run-time of the job. There are number of in-built/external tools to achieve the latter which will require some effort to understand its deployment, tracing and interpretation. Therefore, we will use **slurm native profiling** to evaluate resource usage over run-time. This is a simple and elegant solution.
 
 ### Exercise 4.4
 
-* Edit `example1_arraysum.sl ` by adding following slurm directives
+* Edit `example1_arraysum.sl ` by adding the following slurm directives
     * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
     * `#SBATCH --acctg-freq 1`  - By default, data will be gathered every 30 seconds. Given our job finishes in ~33 seconds, we will gather data every 1 second
     
@@ -256,7 +256,7 @@ $ python profile_plot_Jul2020.py job_jobid.h5
 ### Exercise 4.5 😬	
 
 >Let's submit your first sismonr slum job. 
->* First step is to copy the already generated network to current working directory
+>* First step is to copy the already written R script to current working directory
 >
 >```bash
 >#please do make sure the working directory is 4_wwscheduler
