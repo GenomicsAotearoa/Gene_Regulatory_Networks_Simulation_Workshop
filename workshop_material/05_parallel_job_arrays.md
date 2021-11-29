@@ -274,6 +274,9 @@ Let's start compiling our first slurm array script
 >23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
 >```
 
+---
+---
+
 ### Exercise 5.4
 
 >Objective of this exercise is to to run slurm array with two indexes for 500 simulations.  
@@ -326,7 +329,8 @@ Let's start compiling our first slurm array script
 simulation_500_1_TEAMNAME.RData
 simulation_500_2_TEAMNAME.RData
 ```
-
+---
+---
 ### Exercise 5.5 (Group)
 
 >* Host will assign you to a breakout room (zoom) or a group. 
