@@ -67,13 +67,6 @@ There are a number of different environment module implementations commonly used
 
 **Common commands - module**
 
-* Load a specific program
-
-    >Note: All modules on NeSI have version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
-
-```bash
-$ module load MY_APPLICATION
-```
 * View available modules
 
 ```bash
@@ -86,15 +79,23 @@ $ module avail KEYWORD
 # View all modules which match the keyword in their name or description
 $ module spider KEYWORD
 ```
+* Load a specific program
 
-**Unload all current modules**
+    >Note: All modules on NeSI have version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
+
+```bash
+$ module load MY_APPLICATION
+```
+
+
+* Unload all current modules
 
 ```bash
 $ module purge
 ```
 >Please **do not** use `$module --force purge`
 
-**Swap a currently loaded module for a different one**
+* Swap a currently loaded module for a different one
 
 ```bash
 $ module switch CURRENT_MODULE DESIRED_MODULE
