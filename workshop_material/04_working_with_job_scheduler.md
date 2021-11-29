@@ -1,8 +1,9 @@
 ---
 accordion: 
   - title: Exercise 4.1
-    content:```bash
-
+    content: test content
+---
+```bash
 #summary of current states of compute nodes known to the scheduler
 $ sinfo
 
@@ -14,9 +15,7 @@ $ sinfo -N -l
 
 #Explore the capacity of a compute node
 $ sinfo -n wch001 -o "%n %c %m"
-``` 
----
-
+```
 # 4. Working with job scheduler
 
 <p style="text-align:left;">
