@@ -279,7 +279,7 @@ Let's start compiling our first slurm array script
 
 ### Exercise 5.4
 
->Objective of this exercise is to to run slurm array with two indexes for 500 simulations.  
+>Objective of this exercise is to to run slurm array with two indexes each running 2 simulations.  
 
 
 >```bash
@@ -287,11 +287,11 @@ Let's start compiling our first slurm array script
 >$ pwd 
 >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/slurm_arrays/Exercise_5.4
 >
->#copy the pre-generated network file to current working directory
->$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_array_500sim_2cpu/simulate_colsystem_array.R ./
+>#copy the pre-generated R script to current working directory
+>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_array_250sim/simulate_colsystem_array_2sim.R ./
 >
->#use a text editor of choice to create a file named firstslurm_array.sl - we will use nano here
->$ nano 500sims_2arrayindex.sl
+>#use a text editor of choice to create a file named 250sims_2arrayindex.sl - we will use nano here
+>$ nano 250sims_2arrayindex.sl
 >```
 
 >Content of `500sims_2arrayindex.sl` should be as below. Please discuss as you make progress
@@ -300,14 +300,13 @@ Let's start compiling our first slurm array script
 >#!/bin/bash -e
 >
 >#SBATCH --account       nesi02659
->#SBATCH --job-name      simulations_500_test             
+>#SBATCH --job-name      simulations_250_test             
 >#SBATCH --time          00:15:00                 
->#SBATCH --mem           1GB 
->#SBATCH --cpus-per-task 1                    
+>#SBATCH --mem           2GB 
+>#SBATCH --cpus-per-task 2                    
 >#SBATCH --array         1-2
->#SBATCH --output        slurmout/sims_500_%A_%a.out # Include the array ID in the names of
->#SBATCH --error         slurmout/sims_500_%A_%a.err # the output and error files
->
+>#SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of
+>#SBATCH --error         slurmout/sims_250_test_%a.err # the output and error files
 >#SBATCH --export NONE
 >
 >export SLURM_EXPORT_ENV=ALL
@@ -315,13 +314,15 @@ Let's start compiling our first slurm array script
 >export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_${SLURM_JOB_ID}_${SLURM_ARRAY_TASK_ID}
 >mkdir -p $TMPDIR
 >
+>export GROUP_ID=1.01
+>
 >module purge
 >module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
 >
->srun Rscript simulate_colsystem_array.R
+>srun Rscript simulate_colsystem_array_2sim.R
 >```
 
-* Once you submit the job with `sbatch 500sims_2arrayindex.sl`, take a not on the jobid and run the command `squeue -j jobid`. 
+* Once you submit the job with `sbatch 250sims_2arrayindex.sl`, take a not on the jobid and run the command `squeue -j jobid`. 
 * Take a look at the content of *.out* and *.err* files in *slurmout* directory
 * If all goes well, job should run within 10 minutes and will generate two *.RData* files
 
