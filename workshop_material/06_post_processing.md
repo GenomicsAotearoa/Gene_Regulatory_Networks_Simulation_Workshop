@@ -121,7 +121,7 @@ The first thing we need is a list of all simulation files. There is a function i
 ```r
 ## Don't forget to update the pattern to reflect how you named your simulation outputs
 ## For example, replace 'oangelin' by the group name you chose
-> sim_files <- list.files(path = "~/sism_2021/output_simulations", pattern = "_oangelin.RData")
+> sim_files <- list.files(path = "./", pattern = "_oangelin.RData")
 > head(sim_files)
 
 [1] "simulation_1_group_1.RData"   "simulation_10_group_1.RData"  "simulation_100_group_1.RData" "simulation_101_group_1.RData"
@@ -143,10 +143,10 @@ To import each of these simulations, we could use a basic for loop, which would 
 
 ```r
 > library(dplyr) ## for the bind_rows function
-
+> # DO NOT RUN
 > sim_df <- c()
 + for(file in sim_files){
-+   load(paste0("~/sism_2021/output_simulations/", file))
++   load(file)
 +   sim_df <- bind_rows(sim_df, sim$Simulation)
 + }
 ```
@@ -157,7 +157,7 @@ To get the list of data-frame, the R function `lapply()` does just what we want:
 
 ```r
 > sim_df <- lapply(sim_files, function(file){
-+   load(paste0("~/sism_2021/output_simulations/", file))
++   load(file)
 +   sim$Simulation
 + }) %>% 
 +   reduce(bind_rows)
@@ -169,7 +169,7 @@ But as we've seen earlier, there are some modifications that we want to apply to
 
 ```diff
 sim_df <- lapply(sim_files, function(file){
-  load(paste0("~/sism_2021/output_simulations/", file))
+  load(file)
 - sim$Simulation
 + mergeAlleleAbundance(sim$Simulation)
 }) %>% 
@@ -197,7 +197,7 @@ Maybe you noticed that `Simulation index = 2*(File index - 1) + trial`:
 - sim_df <- lapply(sim_files, function(file){
 + sim_df <- lapply(1:n_sim, function(i){
 +  file <- sim_files[i]
-  load(paste0("~/sism_2021/output_simulations/", file))
+  load(file)
   
   mergeAlleleAbundance(sim$Simulation) %>% 
 +    mutate(trial = trial + 2*(i - 1))
@@ -210,7 +210,7 @@ Finally, we'll transform the data-frame into a tibble, just to make our lives ea
 ```diff
 sim_df <- lapply(1:n_sim, function(i){
   file <- sim_files[i]
-  load(paste0("~/sism_2021/output_simulations/", file))
+  load(file)
   
   mergeAlleleAbundance(sim$Simulation) %>% 
     mutate(trial = trial + 2*(i - 1))
@@ -266,7 +266,8 @@ Have a go at it first! When you are ready, one possible plot is presented below:
 +   theme_bw() + ## white background, black axes, etc
 +   theme(legend.position = "bottom",
 +         plot.title = element_text(hjust = 0.5),    ## center the title
-+         plot.subtitle = element_text(hjust = 0.5)) ## and the subtitle
++         plot.subtitle = element_text(hjust = 0.5), ## and the subtitle
++         text = element_text(size = 18))            ## and increase font size  
 ```
 
 ![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
