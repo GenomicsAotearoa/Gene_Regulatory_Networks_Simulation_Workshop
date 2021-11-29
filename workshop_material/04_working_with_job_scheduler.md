@@ -1,7 +1,8 @@
 ---
 accordion: 
   - title: Excersise 4.1
-    content:```bash
+    content: |
+            ```bash
             #summary of current states of compute nodes known to the scheduler
             $ sinfo
 
