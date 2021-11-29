@@ -57,7 +57,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 Let's run the following commands and discuss the outputs
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
-      Hello!
+      <h2 id="heading1" class="accordion-item">Hello!</h2>
   </div>
 </div>
 
