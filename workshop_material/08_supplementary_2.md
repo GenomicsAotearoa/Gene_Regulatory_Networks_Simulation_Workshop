@@ -7,7 +7,7 @@
 {:toc}
 
 
->><details markdown=block>
+>><details markdown="block">
 >><summary>**A Summary**</summary>
 >>
 >>These are the details of the summary
