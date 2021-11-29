@@ -3,6 +3,7 @@ accordion:
   - title: Exercise 4.1
     content: test content
 ---
+
 ```bash
 #summary of current states of compute nodes known to the scheduler
 $ sinfo
@@ -16,6 +17,7 @@ $ sinfo -N -l
 #Explore the capacity of a compute node
 $ sinfo -n wch001 -o "%n %c %m"
 ```
+
 # 4. Working with job scheduler
 
 <p style="text-align:left;">
@@ -73,6 +75,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 
 >A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
 Let's run the following commands and discuss the outputs
+
 
 {% include accordion.html %}
 
