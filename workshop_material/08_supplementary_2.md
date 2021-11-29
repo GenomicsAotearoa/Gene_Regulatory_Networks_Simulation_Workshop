@@ -6,16 +6,17 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
+{::options parse_block_html="true" /}
+<details>
+<summary markdown="span">**A Summary**</summary>
 
->><details>
->><summary markdown="span">**A Summary**</summary>
->>{::options parse_block_html="true" /}
->>These are the details of the summary
->> ```bash
->> cd ~
->> mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
->> ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
->> ```
->>{::options parse_block_html="false" /}
->></details>
+These are the details of the summary
 
+ ```bash
+cd ~
+mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
+ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
+```
+
+</details>
+{::options parse_block_html="false" /}
