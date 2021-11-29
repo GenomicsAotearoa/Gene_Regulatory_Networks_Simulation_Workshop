@@ -7,18 +7,13 @@
 {:toc}
 
 
-<details>
-<summary>Preview</summary>
+>><details>
+>><summary>Preview</summary>
 
-{% highlight ruby %}
-puts 'Expanded message'
-{% endhighlight %}
 
-</details>
+trying expand
 
-[expand]
-Long content here
-and here
-...
-[/expand]
+>></details>
+
+
 
