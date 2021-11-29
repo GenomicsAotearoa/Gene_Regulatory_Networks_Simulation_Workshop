@@ -2,7 +2,7 @@
 title: "Scaling-up Gene Regulatory Network Simulations"
 subtitle: "with an introduction to parallelisation and High Performance Computing"
 author: "Olivia Angelin-Bonnet, New Zealand eScience Infrastructure"
-date: "01 December 2021"
+date: "01-02 December 2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -65,6 +65,7 @@ Models and simulations allow us to:
 
 * Test hypotheses:
   - without going through expensive and time-consuming experiments;
+  
   - that wouldn’t be ethical or even feasible to test in real life:
   
 --
@@ -93,7 +94,7 @@ Modelling and simulations are used in many fields of science, e.g.:
 
 --
 
-* **Chemistry**, molecular biology: molecules interaction models;
+* **Chemistry**, **molecular biology**: molecules interaction models;
 
 --
 
@@ -121,7 +122,7 @@ Modelling and simulations are used in many fields of science, e.g.:
 
 --
 
-* Construction of whole-cell computational model: [Kar *et al.*, Cell (2012)](https://doi.org/10.1016/j.cell.2012.05.044)
+* Construction of whole-cell computational model of the human pathogen *Mycoplasma genitalium*: [Kar *et al.*, Cell (2012)](https://doi.org/10.1016/j.cell.2012.05.044)
 
 ---
 class: inverse, center, middle
@@ -147,8 +148,11 @@ class: inverse, center, middle
 --
 
 * Gene expression regulated by different types of molecules:
+
   - proteins
+  
   - regulatory non-coding RNAs
+  
   - small metabolites
 
 ---
@@ -167,7 +171,7 @@ Expression of a target gene can be controlled in different ways:
 
 --
 
-* Regulation of gene products' **decay** (RNAs and proteins)
+* Regulation of **gene products' decay** (RNAs and proteins)
 
 --
 
@@ -234,7 +238,7 @@ class: inverse, center, middle
 
 ## Building blocks of a GRN model
 
-* A graph representing the regulatory interactions between the genes;
+* A list of regulatory interactions between the genes (often represented as a graph);
 
 --
 
@@ -248,7 +252,7 @@ class: inverse, center, middle
 
 <br />
 
-There are many types of models that can be used to model GRNs
+There are many types of models that can be used to model GRNs!
 
 ---
 
@@ -275,7 +279,7 @@ There are many types of models that can be used to model GRNs
 ## Discrete and stochastic models
 
 .center[
-<img src="images/ssa_model_example.png" width="600">
+<img src="images/ssa_model_example.png" width="650">
 
 <small>R code to reproduce the last two examples available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). </small>
 ]
@@ -297,9 +301,9 @@ Each type of model has its own advantages and drawbacks.
 
 In this workshop, we'll focus on discrete and stochastic models:
 
-* good options to simulate species with very low abundance per cell (e.g. regulatory molecules);
+* good options to simulate species with very **low abundance per cell** (e.g. regulatory molecules);
 
-* computationally heavy: restricts the size of the models that can be simulated.
+* **computationally heavy**: restricts the size of the models that can be simulated.
 
 ---
 
@@ -309,7 +313,9 @@ In this workshop, we'll focus on discrete and stochastic models:
 
 * [CaiNet](https://gitlab.com/GebhardtLab/cainet): mix of probabilistic and deterministic equations;
 
-* [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/): stochastic modelling with time-delay.
+* [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/): stochastic modelling with time-delay;
+
+* [**sismonr**](https://CRAN.R-project.org/package=sismonr): R package for stochastic modelling.
 
 ---
 class: inverse, center, middle
@@ -346,7 +352,7 @@ Reactions represented with a **stoichiometry matrix**:
 
 ## Mathematical representation of a stochastic model
 
-State of a system represented as vector of species abundance at a given time point:
+**System state** represented as vector of species abundance at a given time point:
 
 <br />
 
@@ -369,6 +375,8 @@ To simulate the system, need to know which reaction will fire when:
 Propensity depends on:
 
 * constant rate of reaction;
+
+--
 
 * state of the system at the current time point:
   
@@ -449,9 +457,9 @@ In our example:
 
 * There exist many variations of the SSA:
 
-  - exact versions: simulate the occurrence of every single reaction;
+  - **exact** versions: simulate the occurrence of every single reaction;
   
-  - approximate versions: trade-off between accuracy and computational burden.
+  - **approximate** versions: trade-off between accuracy and computational burden.
   
 --
 
@@ -529,7 +537,7 @@ sismonr uses the [XRJulia](https://cran.r-project.org/package=XRJulia](https://c
 Solution:
 
 ```{r eval = FALSE}
-XRJulia::newJuliaEvaluator(port = as.integer(456))
+> XRJulia::newJuliaEvaluator(port = as.integer(456))
 ```
 
 ---
@@ -557,3 +565,17 @@ class: inverse, center, middle
 
 
 This table can also be found [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html#practice-time).
+
+---
+
+## Login to NeSI Mahuika Jupyter
+
+Instructions in the [Supplementary Material](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html)
+
+<br />
+
+**IMPORTANT:** do not forget to change your working directory!
+
+.center[
+<img src="nesi_images/jupyter_fileexplorer.png">
+]
