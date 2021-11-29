@@ -7,12 +7,23 @@
 {:toc}
 
 
->><details>
->><summary>Preview</summary>
->>
->>trying expand
->>
->></details>
+<details>
+  <summary>Click to expand!</summary>
+  
+  ## Heading
+  1. Item
+  2. list
+     * Item
+     * Item
+```js
+	console.log('code');
+```
+
+- code
+	```js
+		console.log('also code');
+	```
+</details>
 
 
 
