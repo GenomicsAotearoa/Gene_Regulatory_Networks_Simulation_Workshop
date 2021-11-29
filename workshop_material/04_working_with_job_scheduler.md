@@ -56,39 +56,33 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 >A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
 Let's run the following commands and discuss the outputs
 
-
-
+      
 <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-       Excersise #1
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+<div class="accordion-item">
+<h2 id="heading1" class="accordion-item">
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+Exercise #1
+</button>
+</h2>
+<div id="collapseOne" class="accordion-collapse collapse hide" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+```bash
+#summary of current states of compute nodes known to the scheduler
+$ sinfo
 
-          
-      bash
-      #summary of current states of compute nodes known to the scheduler
-      $ sinfo
-      
-      #similar to above but expanded
-      $ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
-      
-      #will print a long output as it is one row per compute node in the cluster
-      $ sinfo -N -l
-      
-      #Explore the capacity of a compute node
-      $ sinfo -n wch001 -o "%n %c %m"
-      
-        
-          
-      </div>
-    </div>
-  </div>
+#similar to above but expanded
+$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
+
+#will print a long output as it is one row per compute node in the cluster
+$ sinfo -N -l
+
+#Explore the capacity of a compute node
+$ sinfo -n wch001 -o "%n %c %m"
+```
 </div>
-
+</div>
+</div>
+</div>
 
 ## Life cycle of a slurm job
 
