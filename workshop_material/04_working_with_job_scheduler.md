@@ -56,6 +56,8 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 >A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
 Let's run the following commands and discuss the outputs
 
+
+
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
@@ -66,6 +68,7 @@ Let's run the following commands and discuss the outputs
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
 
+          
       ```bash
       #summary of current states of compute nodes known to the scheduler
       $ sinfo
@@ -80,10 +83,13 @@ Let's run the following commands and discuss the outputs
       $ sinfo -n wch001 -o "%n %c %m"
       ```
         
+          
       </div>
     </div>
   </div>
 </div>
+
+
 ## Life cycle of a slurm job
 
 <br>
