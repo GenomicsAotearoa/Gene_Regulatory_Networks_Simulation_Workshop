@@ -6,9 +6,9 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-Check whether the expand option can be used
-[expand]
-check whether the text can be expanded
-[/expand]
 
+<details markdown=block>
+<summary markdown=span>A Summary</summary>
+These are the details of the summary
+</details>
 
