@@ -58,7 +58,25 @@ Let's run the following commands and discuss the outputs
 <div class="accordion" id="accordionExample">
 <div class="accordion-item">
 <h2 id="heading1" class="accordion-item">Hello!</h2>
-<div class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionExample">Hello content</div>
+<div class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+```bash
+#summary of current states of compute nodes known to the scheduler
+$ sinfo
+
+#similar to above but expanded
+$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
+
+#will print a long output as it is one row per compute node in the cluster
+$ sinfo -N -l
+
+#Explore the capacity of a compute node
+$ sinfo -n wch001 -o "%n %c %m"
+```
+
+</div>
+</div>
 </div>
 </div>
 
