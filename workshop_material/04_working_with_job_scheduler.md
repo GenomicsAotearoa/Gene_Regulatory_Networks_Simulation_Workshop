@@ -69,7 +69,7 @@ Let's run the following commands and discuss the outputs
       <div class="accordion-body">
 
           
-      ```bash
+      bash
       #summary of current states of compute nodes known to the scheduler
       $ sinfo
       
@@ -81,7 +81,7 @@ Let's run the following commands and discuss the outputs
       
       #Explore the capacity of a compute node
       $ sinfo -n wch001 -o "%n %c %m"
-      ```
+      
         
           
       </div>
