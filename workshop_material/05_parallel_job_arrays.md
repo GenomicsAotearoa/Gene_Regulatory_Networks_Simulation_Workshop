@@ -25,7 +25,7 @@ This means, that in contrast to the language-specific parallelism methods requir
 >  * Correct. However, these concepts/specifications in Parallel computing is important for the *scaling up* part of the workshop. 
 >
 >Okay, but can't we just call it witchcraft or black magic and move on ? 🧙‍♀️
->  * Yes we can but this will help us with writing efficient, reliable code which can run in parallel. Therefore, let's spend sometime going through theory and few exercises 🤓
+>  * Yes we can but this will help us with writing efficient, reliable code which can run in parallel. Therefore, let's spend a little bit of time going through theory and few exercises 🤓
 
 ---
 
