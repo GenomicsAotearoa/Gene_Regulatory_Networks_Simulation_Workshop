@@ -76,8 +76,6 @@ Let's run the following commands and discuss the outputs
 
 {% include accordion.html %}
 
-</details>
-
 ## Life cycle of a slurm job
 
 <br>
