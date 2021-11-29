@@ -26,7 +26,7 @@ sismonr handles communications between R and Julia via the [XRJulia](https://cra
 By default, this connection is set up on a random port, but there are ways to decide on the port to use: by executing, at the start of your R session, the following command:
 
 ```r
-XRJulia::newJuliaEvaluator(port = as.integer(456))
+> XRJulia::newJuliaEvaluator(port = as.integer(456))
 ```
 you are creating a new Julia process and the socket connection between the R session and the Julia process will use port 456. We won't need to use this for now, but you will find it useful later on :)
 
@@ -66,10 +66,10 @@ Before getting started, here are some abbreviations that are often used within s
 We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem()`.
 
 ``` r
-set.seed(12) # important for reproducibility of "random" results in R!
-small_grn <- createInSilicoSystem(G = 10, # number of genes in the GRN
-                                  PC.p = 1, # proportion of genes that are protein-coding
-                                  ploidy = 2) # ploidy of the system
+> set.seed(12) # important for reproducibility of "random" results in R!
+> small_grn <- createInSilicoSystem(G = 10, # number of genes in the GRN
++                                   PC.p = 1, # proportion of genes that are protein-coding
++                                   ploidy = 2) # ploidy of the system
 ```
 
 Note that the first time you run a sismonr command, you might have to wait a few seconds, as sismonr needs to open a new Julia process on your computer to execute some of the internal commands (such as the generation of a random GRN).
@@ -77,7 +77,7 @@ Note that the first time you run a sismonr command, you might have to wait a few
 You can visualise the GRN you just created with the following command (the resulting graph is interactive, try to hover over nodes or edges with your mouse, move nodes or click on nodes):
 
 ``` r
-plotGRN(small_grn)
+> plotGRN(small_grn)
 ```
 
 {% include sismonr_network.html%}
@@ -85,10 +85,8 @@ plotGRN(small_grn)
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
 
 ```r
-getGenes(small_grn)
-```
+> getGenes(small_grn)
 
-```
    id coding TargetReaction PTMform ActiveForm       TCrate      TLrate       RDrate       PDrate
 1   1     PC             TC       0         P1 0.0010706485 0.115208445 0.0006563273 0.0003594616
 2   2     PC             PD       0         P2 0.0007063012 1.096787613 0.0002886745 0.0008614784
@@ -105,10 +103,8 @@ getGenes(small_grn)
 and:
 
 ```r
-getEdges(small_grn)
-```
+> getEdges(small_grn)
 
-```
    from to TargetReaction RegSign RegBy
 1     4 10             TC       1    PC
 2     5 10             TC      -1    PC
@@ -129,17 +125,17 @@ Note that you can modify the properties of your system by changing the values in
 The `createInSilicoSystem` function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:
 
 ``` r
-?insilicosystemargs 
+> ?insilicosystemargs 
 ```
 
 For example, you can generate a network of 5 genes with only protein-coding genes that are regulators of transcription with:
 
 ``` r
-set.seed(45)
-another_grn <- createInSilicoSystem(G = 5, 
-                                    PC.p = 1, 
-                                    PC.TC.p = 1) # all protein-coding genes are
-                                                 # regulators of transcription
+> set.seed(45)
+> another_grn <- createInSilicoSystem(G = 5, 
++                                     PC.p = 1, 
++                                     PC.TC.p = 1) # all protein-coding genes are
+                                                   # regulators of transcription
 ```
 
 
@@ -150,16 +146,16 @@ In addition, you can add genes in your GRN, and add or remove regulatory relatio
 When adding a gene, you can specify its kinetic parameters, e.g. its transcription rate (in RNA/sec), RNA decay rate, etc.
 
 ``` r
-small_grn2 <- addGene(small_grn, 
-                      coding = "PC", 
-                      TCrate = 0.01,
-                      RDrate = 0.005)
+> small_grn2 <- addGene(small_grn, 
++                       coding = "PC", 
++                       TCrate = 0.01,
++                       RDrate = 0.005)
 ```
 
 Same thing when adding an edge to the GRN: you can decide if the regulation is activative or repressive, and the different rates of the regulation:
 
 ``` r
-small_grn3 <- addEdge(small_grn2, regID = 11, tarID = 8, regsign = "1")
+> small_grn3 <- addEdge(small_grn2, regID = 11, tarID = 8, regsign = "1")
 ```
 
 ### Simulating genetically diverse *in silico* individuals
@@ -169,16 +165,16 @@ Two individuals from a same species are not genetically identical. They carry th
 Once you've created a GRN with sismonr, you can generate *in silico* individuals with the `createInSilicoPopulation` function. For example, let us generate 3 random *in silico* individuals; we'll assume that for each gene, they can carry one of 2 possible alleles (this can be customised further but we won't go into details).
 
 ``` r
-set.seed(123)
-small_pop <- createInSilicoPopulation(3, # number of individuals
-                                      small_grn, # our GRN
-                                      ngenevariants = 2) # how many alleles exist per gene
+> set.seed(123)
+> small_pop <- createInSilicoPopulation(3, # number of individuals
++                                       small_grn, # our GRN
++                                       ngenevariants = 2) # how many alleles exist per gene
 ```
 
 We can visualise the difference between the individuals via:
 
 ```r
-plotMutations(small_pop, small_grn, nGenesPerRow = 5)
+> plotMutations(small_pop, small_grn, nGenesPerRow = 5)
 ```
 
 ![A plot of *in silico* individuals](./images/plot_mutations.png)
@@ -190,7 +186,7 @@ For example, *in silico* individual `Ind1` has no mutation on any of its copies 
 **Tip**: to increase the size of the figure generated in a Jupyter notebook cell, add the following command at the top of the cell:
 
 ```r
-options(repr.plot.width=18, repr.plot.height=12)
+> options(repr.plot.width=18, repr.plot.height=12)
 ```
 
 ### Generating a stochastic model with the sismonr package
@@ -300,7 +296,7 @@ The list of reactions and associated rates is what sismonr uses to simulate the 
 **Tip**: The `getReactions()` function from sismonr allows you to see the list of biochemical reactions and associated rates for a GRN. There are two ways to use the function. Providing only the GRN object as an input to the function, as follows:
 
 ```r
-getReactions(small_grn)
+> getReactions(small_grn)
 ```
 
 will return a data-frame with the list of biochemical reactions, their name and the formula used by sismonr to compute their constant rate.
@@ -308,7 +304,7 @@ will return a data-frame with the list of biochemical reactions, their name and 
 If you also provide the _in silico_ inviduals as an input to the function, like so:
 
 ```r
-getReactions(small_grn, small_pop)
+> getReactions(small_grn, small_pop)
 ```
 
 the resulting data-frame will contain, in addition to the columns previously described, one column for each *in silico* individual giving the constant rate of the reactions for this individual.
@@ -359,16 +355,14 @@ Alternatively, it can be downloaded [here](https://github.com/GenomicsAotearoa/G
 You will start by creating a copy of this object in your working directory, for easier access. In a Jupyter terminal, type:
 
 ```bash
-cp /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData ~/sism_2021/
+$ cp /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData ~/sism_2021/
 ```
 
 You can check that it worked with:
 
 ```bash
-ls -l ~/sism_2021/
-```
+$ ls -l ~/sism_2021/
 
-```
 total 0
 -r--r-----+ 1 oangelin nesi02659 5417 Nov 22 17:05 sismonr_anthocyanin_system.RData
 ```
@@ -382,19 +376,19 @@ Start by opening a sismonr kernel (see the instructions [here](https://genomicsa
 We will first load the sismonr package, and the model and *in silico* plants we want to simulate.
 
 ```r
-library(sismonr)
+> library(sismonr)
 
-load("~/sism_2021/sismonr_anthocyanin_system.RData")
+> load("~/sism_2021/sismonr_anthocyanin_system.RData")
 ```
 
 Feel free to inspect the different aspects of the model (using for example `plotGRN`, `plotMutations` or `getReactions`). We can run one simulation for each of the two *in silico* plants via the command:
 
 ```r
-set.seed(123)
-sim <- simulateInSilicoSystem(colsystem,
-                              plants, 
-                              simtime = 1200,
-                              ntrials = 1)
+> set.seed(123)
+> sim <- simulateInSilicoSystem(colsystem,
++                               plants, 
++                               simtime = 1200,
++                               ntrials = 1)
 ```
 
 Where `simtime` is the time (in seconds) for which we want to simulate the expression of the genes; `ntrials` corresponds to the number of times we want to repeat the simulation for each *in silico* individual.
@@ -403,11 +397,11 @@ This should take a couple of minutes to complete. Once this is done, you can vis
 
 
 ```r
-plotSimulation(sim$Simulation, 
-               molecules = names(colours), 
-               mergeComplexes = FALSE,
-               labels = id2names[names(colours)],
-               colours = colours)
+> plotSimulation(sim$Simulation, 
++                molecules = names(colours), 
++                mergeComplexes = FALSE,
++                labels = id2names[names(colours)],
++                colours = colours)
 ```
 
 <img src="images/colsystem_simulations_1trial.png" alt="Simulated gene expression for the anthocyanin biosynthesis regulation pathway" width="1000"/>
@@ -432,10 +426,8 @@ The simulation above is nice, and allows us to get an idea of the dynamics of ge
 However, you will have noticed that each simulation takes a long time to run! sismonr records the simulation running time (in seconds) for each individual:
 
 ```r
-sim$runningtime
-```
+> sim$runningtime
 
-```
 [1] 187.59 178.13
 ```
 
@@ -444,10 +436,10 @@ which corresponds to approx. 3 minutes per simulation. So if we were to run, say
 <sup>*</sup> : actually, this estimate depends on how you run these 500 simulations. The running time of 3 minutes per simulation includes the time to transform the sismonr GRN object into a list of biochemical reactions, and to compute for each _in silico_ individual the different reaction rates. If you were to run 2 simulations for each plant, with:
 
 ```r
-sim <- simulateInSilicoSystem(colsystem,
-                              plants, 
-                              simtime = 1200,
-                              ntrials = 2)
+> sim <- simulateInSilicoSystem(colsystem,
++                               plants, 
++                               simtime = 1200,
++                               ntrials = 2)
 ```
 
 you should notice that it doesn't take much more time than to run only one simulation per plant. This will not hold however if you start running a large number of simulations (e.g. setting `ntrials = 10` will take more time to run).
