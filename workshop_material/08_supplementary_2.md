@@ -11,13 +11,12 @@
 <summary>System Requirements</summary>
 
 {% highlight ruby %}
-
 ```bash
  cd ~
  mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
  ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
  ```
-{% endhighlight %}
+ {% endhighlight %}
 
 </details>
 
