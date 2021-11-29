@@ -7,8 +7,14 @@
 {:toc}
 
 
-<details markdown=block>
-<summary markdown=span>A Summary</summary>
-These are the details of the summary
-</details>
+>><details markdown=block>
+>><summary markdown=span>**A Summary**</summary>
+>>
+>>These are the details of the summary
+>> ```bash
+>> cd ~
+>> mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
+>> ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
+>> ```
+>></details>
 
