@@ -145,7 +145,7 @@ To import each of these simulations, we could use a basic for loop, which would 
 > library(dplyr) ## for the bind_rows function
 
 > sim_df <- c()
-+ for(file in sim_files){
+> for(file in sim_files){
 +   load(paste0("~/sism_2021/output_simulations/", file))
 +   sim_df <- bind_rows(sim_df, sim$Simulation)
 + }
@@ -165,7 +165,7 @@ To get the list of data-frame, the R function `lapply()` does just what we want:
 
 ### Modifying the simulation outputs
 
-But as we've seen earlier, there are some modifications that we want to apply to the simulation results to make it more interesting for us. One of these modifications is to apply the `mergeAlleleAbundance` function:
+But as we've seen earlier, there are some modifications that we want to apply to the simulation results to make it more interesting for us. One of these modifications is to apply the `mergeAlleleAbundance` function (changes in the code are highlighted in red for lines that are removed and green for lines that are added):
 
 ```diff
 sim_df <- lapply(sim_files, function(file){
@@ -198,8 +198,9 @@ Maybe you noticed that `Simulation index = 2*(File index - 1) + trial`:
 + sim_df <- lapply(1:n_sim, function(i){
 +  file <- sim_files[i]
   load(paste0("~/sism_2021/output_simulations/", file))
-  
-  mergeAlleleAbundance(sim$Simulation) %>% 
+
+-  mergeAlleleAbundance(sim$Simulation)
++  mergeAlleleAbundance(sim$Simulation) %>% 
 +    mutate(trial = trial + 2*(i - 1))
 }) %>% 
   reduce(bind_rows)
