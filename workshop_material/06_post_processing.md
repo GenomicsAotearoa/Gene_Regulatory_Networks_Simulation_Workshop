@@ -271,6 +271,6 @@ Yay, you've reached the end of this workshop! Feel free to make use of this know
 
 ---
 
-<p align="left"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_automating_large_number_of_tasks.html">&lt; 5. Automating large number of tasks  </a></b></p>
+<p align="left"><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_parallel_job_arrays.html">&lt; 5. Parallel Job Arrays  </a></b></p>
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
