@@ -1,3 +1,22 @@
+---
+accordion: 
+  - title: Exercise 4.1
+    content:```bash
+
+#summary of current states of compute nodes known to the scheduler
+$ sinfo
+
+#similar to above but expanded
+$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
+
+#will print a long output as it is one row per compute node in the cluster
+$ sinfo -N -l
+
+#Explore the capacity of a compute node
+$ sinfo -n wch001 -o "%n %c %m"
+``` 
+---
+
 # 4. Working with job scheduler
 
 <p style="text-align:left;">
@@ -56,23 +75,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 >A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
 Let's run the following commands and discuss the outputs
 
-<details markdown="block">
-<summary markdown="span"><button name="button" style="background-color:blue; border-color:blue; color:white"><b>Exercise 4.1</b></button></summary>
-
->```bash
->
->#summary of current states of compute nodes known to the scheduler
->$ sinfo
->
->#similar to above but expanded
->$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
->
->#will print a long output as it is one row per compute node in the cluster
->$ sinfo -N -l
->
->#Explore the capacity of a compute node
->$ sinfo -n wch001 -o "%n %c %m"
->```
+{% include accordion.html %}
 
 </details>
 
