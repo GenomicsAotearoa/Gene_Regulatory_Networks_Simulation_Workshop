@@ -6,10 +6,8 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-<details>
-  <summary>System Requirements</summary>
-  
-  {::options parse_block_html="true" /}  
+{::options parse_block_html="true" /} 
+<details><summary>System Requirements</summary>
 
 ```bash
  cd ~
@@ -17,10 +15,7 @@
  ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
  ```
 
- {::options parse_block_html="false" /} 
-
-
 </details>
-
+{::options parse_block_html="false" /} 
 
 
