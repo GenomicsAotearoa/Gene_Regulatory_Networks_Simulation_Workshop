@@ -40,6 +40,7 @@ Before getting started, have a look at the [Supplementary data](./workshop_mater
 5. [Parallel job arrays](./workshop_material/05_parallel_job_arrays.md)
 6. [Post-processing](./workshop_material/06_post_processing.md)
 7. [Supplementary-material](./workshop_material/07_supplementary.md)
+8. [Supplementary-material-2](./workshop_material/08_supplementary_2.md)
 
 ## Schedule
 
