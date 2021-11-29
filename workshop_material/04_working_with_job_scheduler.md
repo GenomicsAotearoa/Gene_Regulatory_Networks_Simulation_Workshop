@@ -61,7 +61,7 @@ Let's run the following commands and discuss the outputs
 <div class="accordion-item">
 <h2 id="heading1" class="accordion-item">
 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-Exercise #1
+### Exercise #1
 </button>
 </h2>
 <div id="collapseOne" class="accordion-collapse collapse hide" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
