@@ -1,26 +1,21 @@
 ---
 accordion: 
-  - title: this is item 1
-    content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-  - title: this is item 2
-    content: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  - title: Excersise 4.1
+    content:```bash
+    #summary of current states of compute nodes known to the scheduler
+    $ sinfo
+
+    #similar to above but expanded
+    $ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
+
+    #will print a long output as it is one row per compute node in the cluster
+    $ sinfo -N -l
+
+    #Explore the capacity of a compute node
+    $ sinfo -n wch001 -o "%n %c %m"
+    ```
 ---
 
-{% include accordion.html %}
-
-```bash
-#summary of current states of compute nodes known to the scheduler
-$ sinfo
-
-#similar to above but expanded
-$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
-
-#will print a long output as it is one row per compute node in the cluster
-$ sinfo -N -l
-
-#Explore the capacity of a compute node
-$ sinfo -n wch001 -o "%n %c %m"
-```
 
 # 4. Working with job scheduler
 
@@ -88,8 +83,6 @@ Let's run the following commands and discuss the outputs
 <br>
 <p align="center"><img src="nesi_images/slurm_flow.png" alt="drawing" width="1000"/></p> 
 <br>
-
-{% include accordion.html %}
 
 
 ## Anatomy of a slurm script and submitting first slurm job 🧐
