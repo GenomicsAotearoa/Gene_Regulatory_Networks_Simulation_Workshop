@@ -6,14 +6,13 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-<details><summary>
-trying out drop down lists
-</summary>
+<details><summary>trying out drop down lists</summary>
+<p>
 
  ```bash
  cd ~
  mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
  ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2021
  ```
-
+</p>
  </details>
