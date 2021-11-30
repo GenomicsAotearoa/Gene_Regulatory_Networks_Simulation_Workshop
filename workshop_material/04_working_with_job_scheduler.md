@@ -158,7 +158,7 @@ $ sbatch firstslurm.sl
 
 ### STDOUT/STDERR from jobs
 
-**STDOUT** and **STDERR** from jobs are, by default, written to a file called `slurm-<jobid>.out` and `slurm-<jobid>.err` in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in `slurm-12345.out` and `slurm-12345.err`.
+**STDOUT** and **STDERR** from jobs are, by default, written to a file called `slurm-<**JOBID**>.out` and `slurm-<**JOBID**>.err` in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in `slurm-12345.out` and `slurm-12345.err`.
 
  When things go wrong, first step of **debugging** (STORY TIME !) starts with a referral to these files. 
 
@@ -206,7 +206,7 @@ $ sbatch example1_arraysum.sl
 
 >use `squeue -u $USER` and `sacct` again to evaluate the job status
 >
->Once the job ran into completion, use `nn_seff jobid` command to print the resource utilisation statistics 
+>Once the job ran into completion, use `nn_seff **JOBID**` command to print the resource utilisation statistics (Replace **JOBID** with the corresponding number)
 >
 >```bash
 >$ nn_seff 23263188
@@ -234,20 +234,21 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
     * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
     * `#SBATCH --acctg-freq 1`  - By default, data will be gathered every 30 seconds. Given our job finishes in ~33 seconds, we will gather data every 1 second
     
-* Once the above edits are done, submit the job as before with `sbatch example1_arraysum.sl`. Do take a note of the jobid
+* Once the above edits are done, submit the job as before with `sbatch example1_arraysum.sl`. Do take a note of the **JOBID**
 
 ```bash
 
-#collate the data into an HDF5 file using the command
-$ sh5util -j jobid
-sh5util: Merging node-step files into ./job_jobid.h5
+#collate the data into an HDF5 file using the command. Replace **JOBID** with the corresponding number 
+$ sh5util -j **JOBID**
+sh5util: Merging node-step files into ./job_**JOBID**.h5
 
 #Download the python script to analyse and plot data in above .h5 file
 $ curl -O https://raw.githubusercontent.com/DininduSenanayake/NeSI-Mahuika_slurm_profiling/master/profile_plot_Jul2020.py
 
-#execute the script on .h5 file. We will need one of the Python 3 modules to do this. Ignore the deprecating warning 
+#execute the script on .h5 file. We will need one of the Python 3 modules to do this. Ignore the deprecating warning. 
+#Replace **JOBID** with the corresponding number
 $ module purge && module load Python/3.8.2-gimkl-2020a
-$ python profile_plot_Jul2020.py job_jobid.h5
+$ python profile_plot_Jul2020.py job_**JOBID**.h5
 
 #This should generate a .png file where the filename is in the format of job_23258404_profile.png
 ``` 
