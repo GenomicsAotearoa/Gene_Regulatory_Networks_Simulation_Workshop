@@ -57,7 +57,7 @@ A quick note on `sinfo`(Query the current state of nodes) which is not a command
 
 
 ### Exercise 4.1
-{% capture exercise1_content %}
+{% capture e4dot1 %}
 Let's run the following commands and discuss the outputs
 
 ```bash
@@ -75,7 +75,7 @@ $ sinfo -n wch001 -o "%n %c %m"
 ```
 {% endcapture %}
 
-{% include exercise.html title="Exercise 4.1" content=exercise1_content%}
+{% include exercise.html title="e4dot1" content=e4dot1%}
       
 ## Life cycle of a slurm job
 
