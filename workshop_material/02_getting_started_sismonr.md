@@ -45,7 +45,7 @@ For this next section, you will need to login to NeSI Mahuika Jupyter and to ope
 Before opening a Jupyter Notebook, we will create a folder to save our work from this section:
 
 <br>
-<p align="center"><img src="nesi_images/getting_started_newfolder.png" alt="drawing" width="900"/></p> 
+<p align="center"><img src="nesi_images/getting_started_newfolder_2.png" alt="drawing" width="900"/></p> 
 <br>
 
 Now we can open a sismonr Jupyter Notebook:
