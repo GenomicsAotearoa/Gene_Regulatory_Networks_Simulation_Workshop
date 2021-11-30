@@ -169,7 +169,12 @@ $ sacct
 
 ### STDOUT/STDERR from jobs
 
+* STDOUT - your process writes conventional output to this file handle
+* STDERR - your process writes diagnostic output to this file handle.
+
 **STDOUT** and **STDERR** from jobs are, by default, written to a file called `slurm-JOBID.out` and `slurm-JOBID.err` in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in `slurm-12345.out` and `slurm-12345.err`.
+
+
 
  When things go wrong, first step of **debugging** (STORY TIME !) starts with a referral to these files. 
 
