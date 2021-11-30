@@ -15,11 +15,13 @@
 
 In the previous section, you have seen how to run a slurm array job. Now it is time to check whether the arrays completed without failing! And if some of the arrays did fail, we would like to identify them to re-run them.
 
-As we have seen in the previous sections, the `sacct` command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output of this command and paste it in your slurm script for the `array` option, in order to re-run only those arrays that failed. In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID:
+As we have seen in the previous sections, the `sacct` command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output of this command and paste it in your slurm script for the `array` option, in order to re-run only those arrays that failed. Type the following command in the terminal:
 
 ```bash
 $ sacct -j $JOB_ID -X -n -s TO,F,OOM -o jobid | cut -d "_" -f2 | tr -s ' \n' ','
 ```
+
+In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID.
 
 Your turn! Did any of your arrays failed? If so, what would you change before re-running them?
 
@@ -29,7 +31,7 @@ Now, it is time to analyse the simulations that we generated.
 
 ### Copying the simulation outputs to relevant directory
 
-In the simulation script, we made sure to save each simulation into a `.RData` file. First, make sure that you are in the appropriate directory with:
+In the simulation script, we made sure to save each simulation into a `.RData` file. First, make sure that you are in the appropriate directory by typing in the terminal:
 
 ```bash
 $ pwd
@@ -46,10 +48,20 @@ of course replacing `member456` by the username of the person that has the simul
 
 ### Looking at one simulation output
 
+Start a new sismonr Jupyter Notebook in the folder containing the simulations output. In the first cell, add and execute:
+
+```r
+library(sismonr)
+library(tibble)
+library(dplyr)
+library(purrr)
+library(ggplot2)
+```
+
 A single `.RData` file can be then loaded into R with:
 
 ```r
-> load("simulation_1_group_1.RData")
+load("simulation_1_group_1.RData")
 ```
 
 The output of sismonr is a list composed of 3 elements:
@@ -65,8 +77,10 @@ We are only interested in the `Simulation` data-frame.
 If you try to load one of your simulation files and have a look at this data-frame, it should look something like this (note that I'm using `as_tibble()` to get a nicer visualisation of the data-frame):
 
 ```r
-> as_tibble(sim$Simulation)
+as_tibble(sim$Simulation)
+```
 
+```r
 # A tibble: 4,804 × 203
     time trial R1GCN1 P1GCN1 R4GCN2 P4GCN2 R5GCN2 P5GCN2 R6GCN1 P6GCN1 R2GCN2 P2GCN2 R7GCN2 P7GCN2 R5GCN1 P5GCN1 R3GCN1 P3GCN1 R4GCN1 P4GCN1 R3GCN2 P3GCN2
    <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -92,8 +106,11 @@ If you try to load one of your simulation files and have a look at this data-fra
 Notice that each species has a suffix on the form `GCN1` or `GCN2`. This is because sismonr tracks the allele of origin of each molecule. As we are simulating a diploid system, each gene is present in 2 copies (two alleles), and so the RNAs and proteins of a given gene can originate from either of these two alleles. This can be really handy when looking at the impact of mutations of different alleles. In this case however, we don't care about the allele of origin of the different species. Instead, we would rather have the abundance of all RNAs or proteins for a given gene into one column. To obtain that, we can use the sismonr function `mergeAlleleAbundance`:
 
 ```r
-> merged_simulation <- mergeAlleleAbundance(sim$Simulation)
-> as_tibble(merged_simulation)
+merged_simulation <- mergeAlleleAbundance(sim$Simulation)
+```
+
+```r
+as_tibble(merged_simulation)
 
 # A tibble: 4,804 × 27
     time trial Ind      R1    P1    R4    P4    R5    P5    R6    P6    R2    P2    R7    P7    R3    P3  CTC1  CTC5  CTC2  CTC6  CTC3  CTC7  CTC8  CTC4
@@ -127,8 +144,8 @@ The first thing we need is a list of all simulation files. There is a function i
 ```r
 ## Don't forget to update the pattern to reflect how you named your simulation outputs
 ## For example, replace 'group_1' by your group ID
-> sim_files <- list.files(path = "./", pattern = "_group_1.RData")
-> head(sim_files)
+sim_files <- list.files(path = "./", pattern = "_group_1.RData")
+head(sim_files)
 
 [1] "simulation_1_group_1.RData"   "simulation_10_group_1.RData"  "simulation_100_group_1.RData" "simulation_101_group_1.RData"
 [5] "simulation_102_group_1.RData" "simulation_103_group_1.RData"
@@ -137,8 +154,8 @@ The first thing we need is a list of all simulation files. There is a function i
 You can check that there are 250 files:
 
 ```r
-> n_sim <- length(sim_files)
-> n_sim
+n_sim <- length(sim_files)
+n_sim
 
 250
 ```
@@ -148,13 +165,12 @@ You can check that there are 250 files:
 To import each of these simulations, we could use a basic `for` loop, which would look something like this:
 
 ```r
-> library(dplyr) ## for the bind_rows function
-> # DO NOT RUN
-> sim_df <- c()
-+ for(file in sim_files){
-+   load(file)
-+   sim_df <- bind_rows(sim_df, sim$Simulation)
-+ }
+# DO NOT RUN
+sim_df <- c()
+for(file in sim_files){
+  load(file)
+  sim_df <- bind_rows(sim_df, sim$Simulation)
+}
 ```
 
 Which is really not ideal from a memory and computational time perspective. However, there is a nice alternative, which relies on the package `purrr`. Specifically, purrr provides a function, `reduce`, which applies a given function to a list of data-frames. In our case, if we can obtain a list of all simulations, we can apply the `bind_rows` function from `dplyr` to it, through `reduce`, to combine the individual simulations into one data-frame. And an added bonus: it works with the tidyverse pipe! 
@@ -162,12 +178,12 @@ Which is really not ideal from a memory and computational time perspective. Howe
 To get the list of data-frame, the R function `lapply()` does just what we want: it acts as a for loop, except that it returns the output of the different iterations as a list. So we could use something like:
 
 ```r
-> # AGAIN DO NOT RUN
-> sim_df <- lapply(sim_files, function(file){
-+   load(file)
-+   sim$Simulation
-+ }) %>% 
-+   reduce(bind_rows)
+# AGAIN DO NOT RUN
+sim_df <- lapply(sim_files, function(file){
+  load(file)
+  sim$Simulation
+}) %>% 
+  reduce(bind_rows)
 ```
 
 ### Modifying the simulation outputs
@@ -230,15 +246,15 @@ sim_df <- lapply(1:n_sim, function(i){
 The final code (which is the one you want to run) is:
 
 ```r
-> sim_df <- lapply(1:n_sim, function(i){
-+   file <- sim_files[i]
-+   load(file)
-+  
-+   mergeAlleleAbundance(sim$Simulation) %>% 
-+       mutate(trial = trial + 2*(i - 1))
-+ }) %>% 
-+   reduce(bind_rows) %>% 
-+   as_tibble()
+sim_df <- lapply(1:n_sim, function(i){
+  file <- sim_files[i]
+  load(file)
+ 
+  mergeAlleleAbundance(sim$Simulation) %>% 
+      mutate(trial = trial + 2*(i - 1))
+}) %>% 
+  reduce(bind_rows) %>% 
+  as_tibble()
 ```
 
 ## Visualising the simulations
@@ -246,15 +262,15 @@ The final code (which is the one you want to run) is:
 Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plots:
 
 ```r
-> load("~/sism_2021/sismonr_anthocyanin_system.RData")
+load("~/sism_2021/sismonr_anthocyanin_system.RData")
 ```
 
 ```r
-> plotSimulation(sim_df,
-+                molecules = names(colours),
-+                mergeComplexes = FALSE,
-+                labels = id2names[names(colours)],
-+                colours = colours)
+plotSimulation(sim_df,
+               molecules = names(colours),
+               mergeComplexes = FALSE,
+               labels = id2names[names(colours)],
+               colours = colours)
 ```
 ![A plot of the 500 simulations](./images/colsystem_simulations_500trials.png)
 
@@ -267,28 +283,28 @@ One of the interesting results from these simulations is that we can confirm tha
 Have a go at it first! When you are ready, one possible plot is presented below:
 
 ```r
-> sim_df %>% 
-+   filter(time == 1200) %>% ## only keep the last time point of each simulation
-+   select(trial, Ind, "P7") %>% ## we want to focus on DFR proteins abundance 
-+   ## for a better plot, show wild-type plant first, and give each individual a nice label 
-+   ## (rather than "Ind1" and "Ind2")
-+   mutate(Ind = factor(Ind, 
-+                       levels = c("Ind1", "Ind2"), 
-+                       labels = c("Wild-type", "MYBrep overexpressed"))) %>% 
-+   ## Plot section:                    
-+   ggplot(aes(x = P7, fill = Ind)) + 
-+   geom_histogram(alpha = 0.5, colour = "gray20", bins = 50) + ## alpha = transparency of the bars
-+   scale_fill_brewer(palette = "Set1", direction = -1) + ## choose nice colours
-+   labs(x = "DFR protein abundance", ## x axis title
-+        y = "Count (simulations)", ## y axis title
-+        fill = "Plant", ## colour legend title
-+        title = "DFR expression is reduced in mutant plants", ## informative title
-+        subtitle = "Results from 500 simulations") + ## and subtitle
-+   theme_bw() + ## white background, black axes, etc
-+   theme(legend.position = "bottom",
-+         plot.title = element_text(hjust = 0.5),    ## center the title
-+         plot.subtitle = element_text(hjust = 0.5), ## and the subtitle
-+         text = element_text(size = 18))            ## and increase font size  
+sim_df %>% 
+  filter(time == 1200) %>% ## only keep the last time point of each simulation
+  select(trial, Ind, "P7") %>% ## we want to focus on DFR proteins abundance 
+  ## for a better plot, show wild-type plant first, and give each individual a nice label 
+  ## (rather than "Ind1" and "Ind2")
+  mutate(Ind = factor(Ind, 
+                      levels = c("Ind1", "Ind2"), 
+                      labels = c("Wild-type", "MYBrep overexpressed"))) %>% 
+  ## Plot section:                    
+  ggplot(aes(x = P7, fill = Ind)) + 
+  geom_histogram(alpha = 0.5, colour = "gray20", bins = 50) + ## alpha = transparency of the bars
+  scale_fill_brewer(palette = "Set1", direction = -1) + ## choose nice colours
+  labs(x = "DFR protein abundance", ## x axis title
+       y = "Count (simulations)", ## y axis title
+       fill = "Plant", ## colour legend title
+       title = "DFR expression is reduced in mutant plants", ## informative title
+       subtitle = "Results from 500 simulations") + ## and subtitle
+  theme_bw() + ## white background, black axes, etc
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),    ## center the title
+        plot.subtitle = element_text(hjust = 0.5), ## and the subtitle
+        text = element_text(size = 18))            ## and increase font size  
 ```
 
 ![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
