@@ -75,6 +75,8 @@ Before getting started, here are some abbreviations that are often used within s
 We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem()`.
 
 ``` r
+> library(sismonr) # load the sismonr package
+>
 > set.seed(12) # important for reproducibility of "random" results in R!
 > small_grn <- createInSilicoSystem(G = 10, # number of genes in the GRN
 +                                   PC.p = 1, # proportion of genes that are protein-coding
