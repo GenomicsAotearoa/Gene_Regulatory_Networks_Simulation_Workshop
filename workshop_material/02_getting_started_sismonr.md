@@ -40,16 +40,19 @@ This is why, if you decide to use sismonr on your own computer, you will have to
 
 ### Practice time!
 
-For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter.
+For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel.
 
-Once you have created your working directory, and **before starting a Jupyter notebook**, we'll create a folder to save our work from this section. In the terminal, execute the following commands:
+Once you have created your working directory, we'll create a folder to save our work from this section:
+
+<br>
+<p align="center"><img src="nesi_images/getting_started_newfolder.png" alt="drawing" width="900"/></p> 
+<br>
+
 
 ```bash
 $ mkdir -p ~/sism_2021/2_gettingstarted
 $ cd ~/sism_2021/2_gettingstarted
 ```
-
-Now you can create a Jupyter notebook as per the instructions [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html).
 
 Before getting started, here are some abbreviations that are often used within sismonr:
 
@@ -75,8 +78,6 @@ Before getting started, here are some abbreviations that are often used within s
 We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem()`.
 
 ``` r
-> library(sismonr) # load the sismonr package
->
 > set.seed(12) # important for reproducibility of "random" results in R!
 > small_grn <- createInSilicoSystem(G = 10, # number of genes in the GRN
 +                                   PC.p = 1, # proportion of genes that are protein-coding
