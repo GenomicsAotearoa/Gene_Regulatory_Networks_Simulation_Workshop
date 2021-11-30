@@ -110,7 +110,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 ---
 ### Exercise 4.2
-
+{% capture e4dot2 %}
 Let's put these directives together and compile our first slurm script
 
 * First create a new working directory and write the script
@@ -159,7 +159,9 @@ $ squeue -u $USER
 ```bash
 $ sacct
 ```
+{% endcapture %}
 
+{% include exercise.html title="e4dot2" content=e4dot2%}
 ---
 
 ### STDOUT/STDERR from jobs
