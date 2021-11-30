@@ -192,6 +192,7 @@ Understanding the resources you have available and how to use them most efficien
 ---
 
 ### Exercise 4.3 
+{% capture e4dot3 %}
 
 * Let's submit another slurm job and review its resource utilisation
 
@@ -230,6 +231,9 @@ $ sbatch example1_arraysum.sl
 >Mem Efficiency: 21.94%  224.68 MB of 1.00 GB
 >```
 
+{% endcapture %}
+
+{% include exercise.html title="e4dot3" content=e4dot3%}
 ---
 
 ## slurm profiling
@@ -237,6 +241,7 @@ $ sbatch example1_arraysum.sl
 Although `nn_seff` command is a quick and easy way to determine the resource utilisation, it relies on **peak** values (data gets recorded every 30 seconds) which doesn't allows us to examine resource usage over the run-time of the job. There are number of in-built/external tools to achieve the latter which will require some effort to understand its deployment, tracing and interpretation. Therefore, we will use **slurm native profiling** to evaluate resource usage over run-time. This is a simple and elegant solution.
 
 ### Exercise 4.4
+{% capture e4dot4 %}
 
 * Edit `example1_arraysum.sl ` by adding the following slurm directives
     * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
@@ -265,7 +270,13 @@ $ python profile_plot_Jul2020.py job_JOBID.h5
 <p align="center"><img src="nesi_images/slurm_profile.png" alt="drawing" width="1000"/></p> 
 <br>
 
+{% endcapture %}
+
+{% include exercise.html title="e4dot4" content=e4dot4%}
+
 ### Exercise 4.5 😬	
+{% capture e4dot5 %}
+
 
 >Let's submit your first sismonr slum job. 
 >* First step is to copy the already written R script to current working directory
@@ -296,6 +307,10 @@ $ python profile_plot_Jul2020.py job_JOBID.h5
 >
 >Rscript --vanilla simulate_colsystem_1second.R 
 >```
+
+{% endcapture %}
+
+{% include exercise.html title="e4dot5" content=e4dot5%}
 ---
 
 <p style="text-align:left;">
