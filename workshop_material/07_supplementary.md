@@ -11,7 +11,10 @@
 
  1. <p>Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)</p>
  2. <p>Enter NeSI username, HPC password and 6 digit second factor token <br><img src="nesi_images/jupyter_login_labels_updated.png" alt="drawing" width="720"/></p>
- 3. <p>Choose server options as below<br><img src="nesi_images/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p>
+ 3. <p>Choose server options as below
+ >> <br><p>Please do make sure to choose the correct project code `nesi02659`, number of CPUs `CPUs=4` and memory `8 GB`.</p>
+
+ <br><img src="nesi_images/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p>
  
 
 ## S.2.Opening a Jupyter teminal, create a working directory, switch Jupyter file explorer to correct path and open sismonr Jupyter kernel (sismonr/R-4.1.0) 
