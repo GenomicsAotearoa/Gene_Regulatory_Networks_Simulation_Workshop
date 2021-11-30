@@ -115,7 +115,18 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >
 >srun ./omp_helloworld
 >```
->* Submit the script with `sbatch openmp_hw.sl` and review the content of  .out file *openmp_hw_jobid.out* upon completion 
+>>**Explanation**
+>><p>Slurm by default doesn’t know what cores to assign to what process it runs. For threaded applications, you need to make sure that all the cores you request are on the same node.
+>>
+>>The OpenMP script is an example that all the cores are on the same node, and lets Slurm know which process gets the cores that you requested for threading.
+>>
+>>`OMP_NUM_THREADS` environment variable is used to specify the default number of threads to use in parallel regions. By adjusting the value of the `OMP_NUM_THREADS` environment variable, one can adjust the number of execution threads.</p>
+>
+>* Submit the script with `sbatch openmp_hw.sl` and review the content of  .out file *openmp_hw_jobid.out* upon completion .i.e.
+>
+>```bash
+>$ sbatch openmp_hw.sl
+>``` 
 
 {% endcapture %}
 
