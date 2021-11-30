@@ -53,35 +53,35 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 
 ---
 
->A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
+A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring.
+
+
+### Exercise 4.1
+{% capture e4dot1 %}
 Let's run the following commands and discuss the outputs
 
-<details markdown="block">
-<summary markdown="span"><button name="button" style="background-color:blue; border-color:blue; color:white"><b>Exercise 4.1</b></button></summary>
+```bash
+#summary of current states of compute nodes known to the scheduler
+$ sinfo
 
->```bash
->
->#summary of current states of compute nodes known to the scheduler
->$ sinfo
->
->#similar to above but expanded
->$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
->
->#will print a long output as it is one row per compute node in the cluster
->$ sinfo -N -l
->
->#Explore the capacity of a compute node
->$ sinfo -n wch001 -o "%n %c %m"
->```
+#similar to above but expanded
+$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
 
-</details>
+#will print a long output as it is one row per compute node in the cluster
+$ sinfo -N -l
 
+#Explore the capacity of a compute node
+$ sinfo -n wch001 -o "%n %c %m"
+```
+{% endcapture %}
+
+{% include exercise.html title="e4dot1" content=e4dot1%}
+      
 ## Life cycle of a slurm job
 
 <br>
 <p align="center"><img src="nesi_images/slurm_flow.png" alt="drawing" width="1000"/></p> 
 <br>
-
 
 
 ## Anatomy of a slurm script and submitting first slurm job 🧐
