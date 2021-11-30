@@ -212,7 +212,7 @@ $ sbatch example1_arraysum.sl
 
 >use `squeue -u $USER` and `sacct` again to evaluate the job status
 >
->Once the job ran into completion, use `nn_seff **JOBID**` command to print the resource utilisation statistics (Replace **JOBID** with the corresponding number)
+>Once the job ran into completion, use `nn_seff JOBID` command to print the resource utilisation statistics (Replace **JOBID** with the corresponding number)
 >
 >```bash
 >$ nn_seff 23263188
@@ -245,7 +245,7 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 ```bash
 
 #collate the data into an HDF5 file using the command. Replace **JOBID** with the corresponding number 
-$ sh5util -j **JOBID**
+$ sh5util -j <strong>JOBID</strong>
 sh5util: Merging node-step files into ./job_**JOBID**.h5
 
 #Download the python script to analyse and plot data in above .h5 file
