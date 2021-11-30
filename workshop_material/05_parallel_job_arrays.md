@@ -263,7 +263,7 @@ Let's start compiling our first slurm array script
 > * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
 > * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
 
-* Once you submit the job with `sbatch firstslurm_array.sl`, take a not on the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
+* Once you submit the job with `sbatch firstslurm_array.sl`, take a note of the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
 
 >```bash
 >$ squeue -j 23284978
