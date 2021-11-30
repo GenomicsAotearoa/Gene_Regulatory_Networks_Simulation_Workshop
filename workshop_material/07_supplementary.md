@@ -35,7 +35,7 @@
 >Only in an instance where the current session was not started according the instructions on **S.1.** (above) OR the current session is completely unresponsive 
 
 <br>
-<p align="center"><img src="nesi_images/restart_jupyter_server_session.png" alt="drawing" width="800"/></p> 
+<p align="center"><img src="nesi_images/restart_jupyter_server_session.png" alt="drawing" width="1000"/></p> 
 <br>
 
 ## S.4.Local setup
