@@ -282,6 +282,8 @@ One of the interesting results from these simulations is that we can confirm tha
 
 Have a go at it first! When you are ready, one possible plot is presented below:
 
+{% capture e6dot1 %}
+
 ```r
 sim_df %>% 
   filter(time == 1200) %>% ## only keep the last time point of each simulation
@@ -308,6 +310,10 @@ sim_df %>%
 ```
 
 ![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
+
+{% endcapture %}
+
+{% include exercise.html title="e6dot1" content=e6dot1%}
 
 
 ## Conclusion
