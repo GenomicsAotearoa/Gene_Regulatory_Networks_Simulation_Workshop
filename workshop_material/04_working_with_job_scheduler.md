@@ -152,7 +152,7 @@ $ nano firstslurm.sl
 ```bash
 $ sbatch firstslurm.sl
 ```
->Execute `squeue -u usrename` and `sacct`. Discuss the outputs
+>Execute `squeue -u $USER` and `sacct`. Discuss the outputs
 
 ---
 
@@ -204,7 +204,7 @@ $ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_examples/example1_arrays
 $ sbatch example1_arraysum.sl 
 ```
 
->use `squeue -u username` and `sacct` again to evaluate the job status
+>use `squeue -u $USER` and `sacct` again to evaluate the job status
 >
 >Once the job ran into completion, use `nn_seff jobid` command to print the resource utilisation statistics 
 >
