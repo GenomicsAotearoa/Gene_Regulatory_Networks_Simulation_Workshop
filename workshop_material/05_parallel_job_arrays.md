@@ -105,7 +105,7 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >#SBATCH --mem-per-cpu   100
 >#SBATCH --output        openmp_hw_%j.out
 >#SBATCH --export        none
->
+>unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL
 >module purge
 >
@@ -156,6 +156,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >#SBATCH --mem-per-cpu   100
 >#SBATCH --output        mpi_hw_%j.out
 >#SBATCH --export        none
+>unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL
 >
 >module purge && module load OpenMPI/4.1.1-GCC-9.2.0
@@ -250,7 +251,7 @@ Let's start compiling our first slurm array script
 >#SBATCH --mem           100
 >#SBATCH --array         1-5
 >#SBATCH --export        NONE
->
+>unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL	
 >
 >srun sleep 40
@@ -310,7 +311,7 @@ Let's start compiling our first slurm array script
 >#SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of
 >#SBATCH --error         slurmout/sims_250_test_%a.err # the output and error files
 >#SBATCH --export NONE
->
+>unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL
 >
 >export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_${SLURM_JOB_ID}_${SLURM_ARRAY_TASK_ID}
