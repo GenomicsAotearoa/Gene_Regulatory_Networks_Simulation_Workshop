@@ -338,7 +338,9 @@ simulation_500_2_TEAMNAME.RData
 ### Exercise 5.5 (Group)
 
 >* Host will assign you to a breakout room (zoom) or a group. 
->* Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a **single** array job with 250 indexes
+>* Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a **single** array job with 250 indexes.
+>* As a group, write a slurm script based on `500sims_2arrayindex.sl` from Exercise 5.4 to run 250 arrays. 
+>* Then, choose **one person** in the group who will submit the job. The simulations output should be created in the chosen's person working directory. In the next section, the other members of the group will have to copy these output files for the post-processing step.
 
 ---
 
