@@ -309,7 +309,7 @@ Let's start compiling our first slurm array script
 >#SBATCH --cpus-per-task 2                    
 >#SBATCH --array         1-2
 >#SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of
->#SBATCH --error         slurmout/sims_250_test_%a.err # the output and error files
+>#SBATCH --error         slurmout/sims_250_test_%A_%a.err # the output and error files
 >#SBATCH --export NONE
 >unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL
