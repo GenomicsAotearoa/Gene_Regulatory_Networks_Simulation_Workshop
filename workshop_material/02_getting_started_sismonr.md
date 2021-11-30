@@ -40,19 +40,17 @@ This is why, if you decide to use sismonr on your own computer, you will have to
 
 ### Practice time!
 
-For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel.
+For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html) for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel. **Follow instructions up to S.2 2 (Guide Jupyter file explorer (left panel) to above working directory) included.**
 
-Once you have created your working directory, we'll create a folder to save our work from this section:
+Before opening a Jupyter Notebook, we will create a folder to save our work from this section:
 
 <br>
 <p align="center"><img src="nesi_images/getting_started_newfolder.png" alt="drawing" width="900"/></p> 
 <br>
 
+Now we can open a sismonr Jupyter Notebook:
 
-```bash
-$ mkdir -p ~/sism_2021/2_gettingstarted
-$ cd ~/sism_2021/2_gettingstarted
-```
+<p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="900"/></p>
 
 Before getting started, here are some abbreviations that are often used within sismonr:
 
