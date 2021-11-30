@@ -193,7 +193,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >```
 >
 >**NOTE**: .out file will print 6 x  `Hello world from processor wbn125, rank 4 out of 6 processors` message (or something along those lines)
-* `wbn125` - this is compute node ID. It will be different for everyone as we have hundreds of compute nodes and this job will land in two (`--nodes 2`)  out of those hundreds. 
+* `wbn125` - this is the compute node ID. It will be different for everyone as we have hundreds of compute nodes and this job will land on two (`--nodes 2`)  out of those hundreds. 
 * `processor` - actual instance of the program that are running 
 * `rank` - MPI allows you to create logical **groups** of processes, and in each group, a process is identified by its **rank**. This is an integer in the range of [0,N-1] where N is the size of the group. 
 
