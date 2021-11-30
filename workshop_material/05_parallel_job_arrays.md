@@ -171,6 +171,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >#SBATCH --job-name      mpi_helloworld
 >#SBATCH --cpus-per-task 1
 >#SBATCH --ntasks        6
+>#SBATCH --nodes         2
 >#SBATCH --mem-per-cpu   100
 >#SBATCH --output        mpi_hw_%j.out
 >#SBATCH --export        none
@@ -181,7 +182,15 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >
 >srun ./mpi_helloworld
 >```
->* Submit the script with `sbatch mpi_hw.sl` and review the content of  .out file *mpi_hw_jobid.out* upon completion 
+>>**Explanation**
+>>`srun` command executes the program. The  `--ntasks` is the number of MPI processes to run.
+>>
+>>The script executed 6 processes and the incremented integer values in .out file will show the communication between the processes. These proocesses will be *distributed* across two compute nodes (`--nodes 2`).
+>
+>* Submit the script with `sbatch mpi_hw.sl` and review the content of  .out file *mpi_hw_jobid.out* upon completion .i.e.
+> ```bash
+>$ sbatch mpi_hw.sl
+>```
 
 {% endcapture %}
 
