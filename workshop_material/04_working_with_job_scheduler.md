@@ -150,7 +150,7 @@ $ nano firstslurm.sl
 * Submit the script with `sbatch` command
 
 ```bash
-$ sbatch firstslum.sl
+$ sbatch firstslurm.sl
 ```
 >Execute `squeue -u usrename` and `sacct`. Discuss the outputs
 
