@@ -53,19 +53,13 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 
 ---
 
->A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring. 
+A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring.
+
+
+## Exercise 4.1
+{% capture exercise1_content %}
 Let's run the following commands and discuss the outputs
 
-      
-<div class="accordion" id="accordionExample">
-<div class="accordion-item">
-<h2 id="heading1" class="accordion-item">
-<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-### Exercise #1
-</button>
-</h2>
-<div id="collapseOne" class="accordion-collapse collapse hide" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-<div class="accordion-body">
 ```bash
 #summary of current states of compute nodes known to the scheduler
 $ sinfo
@@ -79,11 +73,10 @@ $ sinfo -N -l
 #Explore the capacity of a compute node
 $ sinfo -n wch001 -o "%n %c %m"
 ```
-</div>
-</div>
-</div>
-</div>
+{% endcapture %}
 
+{% include exercise.html title="Exercise 4.1" content=exercise1_content%}
+      
 ## Life cycle of a slurm job
 
 <br>
