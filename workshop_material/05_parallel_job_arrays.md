@@ -74,6 +74,8 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 <br>
 
 ### Exercise 5.1
+{% capture e5dot1 %}
+
 
 >Let's try out a multi-threading example script with OpenMP which is an application programming interface that supports multi-platform shared-memory 
 >
@@ -115,7 +117,10 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >```
 >* Submit the script with `sbatch openmp_hw.sl` and review the content of  .out file *openmp_hw_jobid.out* upon completion 
 
----
+{% endcapture %}
+
+{% include exercise.html title="e5dot1" content=e5dot1%}
+
 
 ## MPI (**M**essage **P**assing **I**nterface)
 
@@ -131,6 +136,8 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 * Flexible
 
 ### Exercise 5.2
+{% capture e5dot2 %}
+
 
 >Let's try out a MPI example 
 >
@@ -165,6 +172,9 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >```
 >* Submit the script with `sbatch mpi_hw.sl` and review the content of  .out file *mpi_hw_jobid.out* upon completion 
 
+{% endcapture %}
+
+{% include exercise.html title="e5dot2" content=e5dot2%}
 
 ## Parallel Performance 
 
@@ -221,6 +231,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 <br>
 
 ### Exercise 5.3
+{% capture e5dot3 %}
 
 Let's start compiling our first slurm array script
 
@@ -277,10 +288,13 @@ Let's start compiling our first slurm array script
 >23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
 >```
 
----
----
+{% endcapture %}
+
+{% include exercise.html title="e5dot3" content=e5dot3%}
 
 ### Exercise 5.4
+{% capture e5dot4 %}
+
 
 >Objective of this exercise is to to run slurm array with two indexes each running 2 simulations.  
 
@@ -333,14 +347,21 @@ Let's start compiling our first slurm array script
 simulation_500_1_TEAMNAME.RData
 simulation_500_2_TEAMNAME.RData
 ```
----
----
+{% endcapture %}
+
+{% include exercise.html title="e5dot4" content=e5dot4%}
+
 ### Exercise 5.5 (Group)
+{% capture e5dot5 %}
 
 >* Host will assign you to a breakout room (zoom) or a group. 
 >* Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a **single** array job with 250 indexes.
 >* As a group, write a slurm script based on `500sims_2arrayindex.sl` from Exercise 5.4 to run 250 arrays. 
 >* Then, choose **one person** in the group who will submit the job. The simulations output should be created in the chosen's person working directory. In the next section, the other members of the group will have to copy these output files for the post-processing step.
+
+{% endcapture %}
+
+{% include exercise.html title="e5dot5" content=e5dot5%}
 
 ---
 
