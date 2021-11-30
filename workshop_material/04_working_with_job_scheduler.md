@@ -164,7 +164,7 @@ $ sacct
 
 ### STDOUT/STDERR from jobs
 
-**STDOUT** and **STDERR** from jobs are, by default, written to a file called `slurm-<**JOBID**>.out` and `slurm-<**JOBID**>.err` in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in `slurm-12345.out` and `slurm-12345.err`.
+**STDOUT** and **STDERR** from jobs are, by default, written to a file called `slurm-JOBID.out` and `slurm-JOBID.err` in the working directory for the job (unless the job script changes this, this will be the directory where you submitted the job). So for a job with ID 12345 STDOUT and STDERR would be in `slurm-12345.out` and `slurm-12345.err`.
 
  When things go wrong, first step of **debugging** (STORY TIME !) starts with a referral to these files. 
 
@@ -245,8 +245,8 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 ```bash
 
 #collate the data into an HDF5 file using the command. Replace **JOBID** with the corresponding number 
-$ sh5util -j <strong>JOBID</strong>
-sh5util: Merging node-step files into ./job_**JOBID**.h5
+$ sh5util -j JOBID
+sh5util: Merging node-step files into ./job_JOBID.h5
 
 #Download the python script to analyse and plot data in above .h5 file
 $ curl -O https://raw.githubusercontent.com/DininduSenanayake/NeSI-Mahuika_slurm_profiling/master/profile_plot_Jul2020.py
@@ -254,7 +254,7 @@ $ curl -O https://raw.githubusercontent.com/DininduSenanayake/NeSI-Mahuika_slurm
 #execute the script on .h5 file. We will need one of the Python 3 modules to do this. Ignore the deprecating warning. 
 #Replace **JOBID** with the corresponding number
 $ module purge && module load Python/3.8.2-gimkl-2020a
-$ python profile_plot_Jul2020.py job_**JOBID**.h5
+$ python profile_plot_Jul2020.py job_JOBID.h5
 
 #This should generate a .png file where the filename is in the format of job_23258404_profile.png
 ``` 
