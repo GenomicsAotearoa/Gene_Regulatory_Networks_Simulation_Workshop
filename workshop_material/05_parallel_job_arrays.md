@@ -79,7 +79,7 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 >
 >```bash
 >#confirm the working directory 
->$pwd 
+>$ pwd 
 >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
 >
 >#create a new directory for this episode, cd into it
