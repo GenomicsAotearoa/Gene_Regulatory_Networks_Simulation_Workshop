@@ -31,7 +31,7 @@ By the end of this workshop, participants should be able to:
 
 ## Content
 
-Before getting started, have a look at the [Supplementary data](./workshop_material/10_supplementary.md) for instructions on how to connect to NeSI Mahuika Jupyter.
+Before getting started, have a look at the [Supplementary data](./workshop_material/07_supplementary.md) for instructions on how to connect to NeSI Mahuika Jupyter.
 
 1. [Introduction](./workshop_material/01_introduction.md)
 2. [Getting started with sismonr](./workshop_material/02_getting_started_sismonr.md)
