@@ -30,7 +30,15 @@
 
 3. <p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="600"/></p>
 
-## S.3.Local setup
+## S.3.Restart Jupyter Server Session 
+
+>Only in an instance where the current session was not started according the instructions on **S.1.** (above) OR the current session is completely unresponsive 
+
+<br>
+<p align="center"><img src="nesi_images/restart_jupyter_server_session.png" alt="drawing" width="800"/></p> 
+<br>
+
+## S.4.Local setup
 
 The sismonr package depends on the programming language [Julia](https://julialang.org/). It is preferable to install Julia on your computer before installing sismonr.
 
