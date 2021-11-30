@@ -147,6 +147,8 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 >```
 >**Content of  `mpi_hw.sl` is as below**
 >```bash
+>#!/bin/bash
+>
 >#SBATCH --account       nesi02659
 >#SBATCH --job-name      mpi_helloworld
 >#SBATCH --cpus-per-task 1
