@@ -141,7 +141,7 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 
 {% endcapture %}
 
-{% include exercise.html title="e5dot0" content=e5dot01%}
+{% include exercise.html title="e5dot01" content=e5dot01%}
 
 ## MPI (**M**essage **P**assing **I**nterface) - (Optional)
 {% capture e5dot02 %}
