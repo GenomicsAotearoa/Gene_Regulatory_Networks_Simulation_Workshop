@@ -344,8 +344,8 @@ Let's start compiling our first slurm array script
 
 
 >```bash
->#Change working directory to /5_parallel/slurm_arrays/Exercise_5.4
->$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/5_parallel/slurm_arrays/Exercise_5.4 
+>#Change working directory to Exercise_5.4
+>$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_5.4 
 >
 >#Run the ls command you should 2 files and a directory named slurmout
 >$ ls -F
