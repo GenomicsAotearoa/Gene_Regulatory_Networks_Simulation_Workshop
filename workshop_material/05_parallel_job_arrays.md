@@ -347,7 +347,7 @@ Let's start compiling our first slurm array script
 >#Change working directory to Exercise_5.4
 >$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_5.4 
 >
->#Run the ls command you should 2 files and a directory named slurmout
+>#Run ls command you should 2 files and a directory named slurmout
 >$ ls -F
 >250sims_2arrayindex.sl  simulate_colsystem_array_2sim.R  slurmout/
 >
