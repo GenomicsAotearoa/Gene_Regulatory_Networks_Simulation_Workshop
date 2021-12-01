@@ -297,7 +297,7 @@ Let's start compiling our first slurm array script
 >
 >#SBATCH --account       nesi02659
 >#SBATCH --job-name      first_slurm_Array
->#SBATCH --time          00:00:50
+>#SBATCH --time          00:02:30
 >#SBATCH --output        slurmout/sleeparray.%A.%a.out
 >#SBATCH --cpus-per-task 1
 >#SBATCH --mem           100
@@ -308,9 +308,9 @@ Let's start compiling our first slurm array script
 >export SLURM_EXPORT_ENV=ALL	
 >
 >###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
->srun sleep 40
+>srun sleep 120
 >
->echo "I am a slurm job and I slept for 40 seconds but this time in Parallel"
+>echo "I am a slurm job and I slept for 120 seconds but this time in Parallel"
 >echo "This is the result for ${SLURM_ARRAY_TASK_ID}"
 >```
 
