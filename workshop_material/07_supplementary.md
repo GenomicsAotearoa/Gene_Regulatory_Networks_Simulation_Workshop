@@ -36,7 +36,7 @@
 
 ## S.3.Restart Jupyter Server Session 
 
->Only in an instance where the current session was not started according the instructions on **S.1.** (above) OR the current session is completely unresponsive 
+>Only in an instance where the current session was not started according to the instructions on **S.1.** (above) OR the current session is completely unresponsive 
 
 <br>
 <p align="center"><img src="nesi_images/restart_jupyter_server_session.png" alt="drawing" width="1000"/></p> 
