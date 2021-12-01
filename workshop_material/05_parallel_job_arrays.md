@@ -65,7 +65,7 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 
 {% include exercise.html title="e5dot0" content=e5dot0%}
  
-## Multi-threading
+## Multi-threading (Optional)
 {% capture e5dot01 %}
 
 
@@ -143,7 +143,7 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 
 {% include exercise.html title="e5dot0" content=e5dot01%}
 
-## MPI (**M**essage **P**assing **I**nterface)
+## MPI (**M**essage **P**assing **I**nterface) - (Optional)
 {% capture e5dot02 %}
 
 MPI is a specification for the developers and users of message passing libraries. By itself, it is NOT a library - but rather the specification of what such a library should be.
@@ -217,6 +217,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 {% include exercise.html title="e5dot0" content=e5dot02%}
 
 ## Parallel Performance 
+{% capture e5dot03 %}
 
 In general, there are two advantages to running applications in parallel: (1) applications will run more quickly and we can get our solutions faster, and (2) we can solve larger, more complex problems.
 
@@ -255,6 +256,9 @@ The laws and thoughts above only apply to cases where all processors are equally
 
 Scalibility isn’t everything! It’s also important to make the best use of all processors at hand before increasing the number of processors.
 
+{% endcapture %}
+
+{% include exercise.html title="e5dot0" content=e5dot03%}
 
 ## Slurm job arrays
 
