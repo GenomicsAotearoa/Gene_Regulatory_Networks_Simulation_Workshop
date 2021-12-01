@@ -214,7 +214,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 
 {% endcapture %}
 
-{% include exercise.html title="e5dot0" content=e5dot02%}
+{% include exercise.html title="e5dot02" content=e5dot02%}
 
 ## Parallel Performance  (Optional)
 {% capture e5dot03 %}
@@ -258,7 +258,7 @@ Scalibility isn’t everything! It’s also important to make the best use of al
 
 {% endcapture %}
 
-{% include exercise.html title="e5dot0" content=e5dot03%}
+{% include exercise.html title="e5dot03" content=e5dot03%}
 
 ## Slurm job arrays
 
