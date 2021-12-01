@@ -60,8 +60,14 @@ Let's break this down a bit by using the schematic use for illustrating HPC arch
 >    * Two people working on the same problem (processes on different nodes attached to the interconnect)
 >    * How do they collaborate (to work on a single problem)
 >    * Explicit communication (for example by phone. Also, no shared data)
+
+{% endcapture %}
+
+{% include exercise.html title="e5dot0" content=e5dot0%}
  
 ## Multi-threading
+{% capture e5dot01 %}
+
 
 Multi-threading is a method of parallelisation whereby the initial single thread of a process forks into a number of parallel threads, generally via a library such as OpenMP (Open MultiProcessing), TBB (Threading Building Blocks), or pthread (POSIX threads).
 
@@ -133,8 +139,12 @@ Let's take a look at the difference between a serial job and a multi-threaded jo
 
 {% include exercise.html title="e5dot1" content=e5dot1%}
 
+{% endcapture %}
+
+{% include exercise.html title="e5dot0" content=e5dot01%}
 
 ## MPI (**M**essage **P**assing **I**nterface)
+{% capture e5dot02 %}
 
 MPI is a specification for the developers and users of message passing libraries. By itself, it is NOT a library - but rather the specification of what such a library should be.
 
@@ -204,7 +214,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 
 {% endcapture %}
 
-{% include exercise.html title="e5dot0" content=e5dot0%}
+{% include exercise.html title="e5dot0" content=e5dot02%}
 
 ## Parallel Performance 
 
