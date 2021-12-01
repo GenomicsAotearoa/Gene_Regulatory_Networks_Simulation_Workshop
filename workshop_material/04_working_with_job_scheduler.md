@@ -246,11 +246,23 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 ### Exercise 4.4
 {% capture e4dot4 %}
 
-* Edit `example1_arraysum.sl ` by adding the following slurm directives
-    * `#SBATCH --profile task`  - CPU, Memory and I/O data collected
-    * `#SBATCH --acctg-freq 1`  - By default, data will be gathered every 30 seconds. Given our job finishes in ~33 seconds, we will gather data every 1 second
+```bash
+#Change the working directory to Exercise_4.4
+$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_4.4
+
+#Run ls command and you should see three files (one .R,sl and one .py - We will discuss the purpose of this .py file after submitting the job) and one directory named slurmout
+$ ls -F
+example1_arraysum.R  example1_arraysum.sl  profile_plot_Jul2020.py  slurmout/
+
+#Review the slurm script with cat Or another text editor and submit with sbatch
+$ sbatch example1_arraysum.sl 
+```
     
-* Once the above edits are done, submit the job as before with `sbatch example1_arraysum.sl`. Do take a note of the **JOBID**
+* Do take a note of the **JOBID** as we are going to need it for next step. Otherwise, we use `squeue -u $USER` OR `sacct` command as before to monitor the status
+* Also, you can `watch` the status of this job via `$ watch -n 1 -d "squeue -j JOBID"`. 
+    *  `watch` command execute a program periodically, showing output fullscreen. Exiting the `watch` screen by done by pressing `Ctrl+x` 
+
+* Let's create slurm profile graphs
 
 ```bash
 
@@ -258,12 +270,11 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 $ sh5util -j JOBID
 sh5util: Merging node-step files into ./job_JOBID.h5
 
-#Download the python script to analyse and plot data in above .h5 file
-$ curl -O https://raw.githubusercontent.com/DininduSenanayake/NeSI-Mahuika_slurm_profiling/master/profile_plot_Jul2020.py
-
 #execute the script on .h5 file. We will need one of the Python 3 modules to do this. Ignore the deprecating warning. 
+$ module purge 
+$ module load Python/3.8.2-gimkl-2020a
+
 #Replace **JOBID** with the corresponding number
-$ module purge && module load Python/3.8.2-gimkl-2020a
 $ python profile_plot_Jul2020.py job_JOBID.h5
 
 #This should generate a .png file where the filename is in the format of job_23258404_profile.png
@@ -285,9 +296,9 @@ $ python profile_plot_Jul2020.py job_JOBID.h5
 >* First step is to copy the already written R script to current working directory
 >
 >```bash
->#please do make sure the working directory is 4_wwscheduler
+>#please do make sure the working directory is Exercise_4.5
 >$ pwd
->/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/4_wwscheduler
+>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_4.5
 >
 >#copy the network file
 >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_small_sim/simulate_colsystem_1second.R ./
