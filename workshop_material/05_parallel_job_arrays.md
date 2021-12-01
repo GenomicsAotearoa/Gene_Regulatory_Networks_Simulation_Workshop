@@ -216,7 +216,7 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 
 {% include exercise.html title="e5dot0" content=e5dot02%}
 
-## Parallel Performance 
+## Parallel Performance  (Optional)
 {% capture e5dot03 %}
 
 In general, there are two advantages to running applications in parallel: (1) applications will run more quickly and we can get our solutions faster, and (2) we can solve larger, more complex problems.
