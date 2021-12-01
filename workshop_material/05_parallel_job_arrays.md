@@ -330,6 +330,8 @@ Let's start compiling our first slurm array script
 >23284978_4    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
 >23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
 >```
+>
+>* Once the job is completed, take a look at the `slurmout/` directory. There should be 5 x .out files
 
 {% endcapture %}
 
