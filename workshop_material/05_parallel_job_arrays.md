@@ -29,7 +29,8 @@ This means, that in contrast to the language-specific parallelism methods requir
 
 ---
 
-## Shared memory vs Distributed memory
+## Shared memory vs Distributed memory (Optional)
+{% capture e5dot0 %}
 
 
 ---
@@ -200,6 +201,10 @@ Simply stated, the goal of the Message Passing Interface is to provide a widely 
 {% endcapture %}
 
 {% include exercise.html title="e5dot2" content=e5dot2%}
+
+{% endcapture %}
+
+{% include exercise.html title="e5dot0" content=e5dot0%}
 
 ## Parallel Performance 
 
