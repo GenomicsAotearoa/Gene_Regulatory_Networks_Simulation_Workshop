@@ -283,15 +283,12 @@ Let's start compiling our first slurm array script
 
 >```bash
 >
->#confirm the working directory is correct
->$ pwd
->/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel
+>#Change the working directory to Exercise_5.3
+>$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_5.3
 >
->#Create a new sub-directory and name it slurm_arrays and change the directory to this
->$ mkdir -p slurm_arrays/{Exercise_5.3/slurmout,Exercise_5.4/slurmout,Exercise_5.5/slurmout} && cd slurm_arrays/Exercise_5.3
->
->#use a text editor of choice to create a file named firstslurm_array.sl - we will use nano here
->$ nano firstslurm_array.sl
+>#You should see a single .sl and a directory named slurmout
+>$ ls -F 
+>firstslurm_array.sl  slurmout/
 >```
 
 >Content of `firstslurm_array.sl` should be as below. Please discuss as you make progress
@@ -306,9 +303,11 @@ Let's start compiling our first slurm array script
 >#SBATCH --mem           100
 >#SBATCH --array         1-5
 >#SBATCH --export        NONE
+>###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
 >unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL	
 >
+>###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
 >srun sleep 40
 >
 >echo "I am a slurm job and I slept for 40 seconds but this time in Parallel"
