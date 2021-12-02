@@ -41,7 +41,7 @@ $ pwd
 **IMPORTANT:** there should be only once person per group that submitted the job, and so the other members of the group should first copy the results of the simulation via the command:
 
 ```bash
-$ cp /nesi/project/nesi02659/sismonr_workshop/workingdir/member456/Exercise_5.5/simulation_. /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_5.5/
+$ cp /nesi/project/nesi02659/sismonr_workshop/workingdir/member456/Exercise_5.5/simulation_* /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_5.5/
 ```
 
 of course replacing `member456` by the username of the person that has the simulations.
