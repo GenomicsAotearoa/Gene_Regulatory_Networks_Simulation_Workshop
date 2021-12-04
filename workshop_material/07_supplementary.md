@@ -32,7 +32,7 @@
     
 2. <p>Guide Jupyter file explorer (left panel) to above working directory<br><img src="nesi_images/jupyter_fileexplorer.png" alt="drawing" width="900"/></p> 
 
-3. <p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="600"/></p>
+3. <p>Open 'sismonr/R-4.1.0 kernel'<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="600"/></p>
 
 ## S.3.Restart Jupyter Server Session 
 
