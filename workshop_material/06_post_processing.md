@@ -25,6 +25,11 @@ In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID.
 
 Your turn! Did any of your arrays failed? If so, what would you change before re-running them?
 
+>>**Index** 
+>>* `TO` = Timed Out
+>>* `F` = Failed
+>>* `OOM` = Out Of Memory
+
 ## Interpreting the sismonr output
 
 Now, it is time to analyse the simulations that we generated. 
