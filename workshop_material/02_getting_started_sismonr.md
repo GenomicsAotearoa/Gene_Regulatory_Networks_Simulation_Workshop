@@ -1,9 +1,9 @@
 # 2. Getting started with sismonr
 
 <p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html">&lt; 1. Introduction</a></b>
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html" style="background: var(--bs-green);">&lt; 1. Introduction</a></b>
     <span style="float:right;">
-     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html" style="background: var(--bs-teal);">3. Scaling up your work &gt;</a></b>
+     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html" style="background: var(--bs-green);">3. Scaling up your work &gt;</a></b>
     </span>
 </p>
 
