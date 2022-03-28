@@ -225,7 +225,7 @@ The sismonr packages uses under the hood the Julia module [BioSimulator.jl](http
 ---
 
 <p align="right">
-  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &gt;</a></b>
+  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &raquo;</a></b>
 </p>
 
 <p align="center">
