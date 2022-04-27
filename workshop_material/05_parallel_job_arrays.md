@@ -373,7 +373,7 @@ Let's start compiling our first slurm array script
 >#SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of
 >#SBATCH --error         slurmout/sims_250_test_%A_%a.err # the output and error files
 >
->###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
+
 >unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL
 >
