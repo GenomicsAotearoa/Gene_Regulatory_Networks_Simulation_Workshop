@@ -302,7 +302,6 @@ Let's start compiling our first slurm array script
 >#SBATCH --cpus-per-task 1
 >#SBATCH --mem           100
 >#SBATCH --array         1-5
->#SBATCH --export        NONE
 >###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
 >unset SLURM_MEM_PER_NODE
 >export SLURM_EXPORT_ENV=ALL	
