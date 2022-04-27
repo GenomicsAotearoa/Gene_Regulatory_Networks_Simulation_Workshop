@@ -373,7 +373,6 @@ Let's start compiling our first slurm array script
 >#SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of
 >#SBATCH --error         slurmout/sims_250_test_%A_%a.err # the output and error files
 >
-
 >export SLURM_EXPORT_ENV=ALL
 >
 >###Some processes can generate temporary files which can be redirected from RAM memory to scratch(nobackup) to reduce the Memory footprint
