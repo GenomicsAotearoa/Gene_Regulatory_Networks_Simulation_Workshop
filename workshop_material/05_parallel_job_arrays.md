@@ -302,7 +302,6 @@ Let's start compiling our first slurm array script
 >#SBATCH --cpus-per-task 1
 >#SBATCH --mem           100
 >#SBATCH --array         1-5
-
 >
 >###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
 >srun sleep 120
