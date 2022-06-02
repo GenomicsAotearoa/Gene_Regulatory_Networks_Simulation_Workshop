@@ -79,7 +79,7 @@ $ sinfo -n wch001 -o "%n %c %m"
 ## Life cycle of a slurm job
 
 <br>
-<p align="center"><img src="nesi_images/slurm_flow.png" alt="drawing" width="1000"/></p> 
+<p align="center"><img src="nesi_images/batch_system_flow .png" alt="drawing" width="1000"/></p> 
 <br>
 
 
