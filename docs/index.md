@@ -1,8 +1,3 @@
----
-layout: homepage
----
-
-This advanced workshop is an introduction to the stochastic simulation of Gene Regulatory Networks (GRNs) using the R package `sismonr`. You will learn the basics of simulating GRNs, and how to scale up simulations on a HPC.
 
 ## Prerequisites
 
