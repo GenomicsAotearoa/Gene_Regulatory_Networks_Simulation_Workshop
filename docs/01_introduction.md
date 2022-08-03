@@ -224,6 +224,8 @@ There are many implementations of the different versions of the Stochastic Simul
 
 The sismonr packages uses under the hood the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/) to perform the stochastic simulations. You will learn a bit more about how sismonr links R and Julia in the next section.
 
+
+
 ---
 
 <p align="right">
