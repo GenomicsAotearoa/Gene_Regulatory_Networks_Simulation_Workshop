@@ -6,7 +6,7 @@ site_url: "https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulatio
 #Repository information
 
 repo_name:   GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop  
-repo_url: https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git
+repo_url: https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git
 
 
 theme:
