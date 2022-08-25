@@ -1,5 +1,9 @@
 <center>
-# Scaling Gene
+# Scaling Gene Regulatory Networks Simulations
+</center>
+
+<center>
+![image](./images/2022_geneRegEditASPECTOriginal.png)
 </center>
 
 ## Prerequisites
