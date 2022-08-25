@@ -1,5 +1,5 @@
 <center>
-# Scaling Gene Regulatory Networks Simulations
+# **Scaling Gene Regulatory Networks Simulations**
 </center>
 
 <center>
