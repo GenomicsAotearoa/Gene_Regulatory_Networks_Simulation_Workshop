@@ -1,15 +1,5 @@
 # 6. Post-processing
 
-<p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_parallel_job_arrays.html">&laquo; 5. Parallel Job Arrays  </a></b>
-    <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b>
-    </span>
-</p>
-
-## Outline
-* Do not remove this line (it will not be displayed)
-{:toc}
 
 ## Checking that the job array worked
 
