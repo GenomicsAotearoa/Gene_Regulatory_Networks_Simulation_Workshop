@@ -44,7 +44,7 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring.
 
 
-???+ question "Exercise 4.1"
+??? question "Exercise 4.1"
 
      Let's run the following commands and discuss the outputs
 
@@ -94,62 +94,59 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 |                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime.                    |
 
 ---
-### Exercise 4.2
-{% capture e4dot2 %}
-Let's put these directives together and compile our first slurm script
+??? question "Exercise 4.2"
 
-* First create a new working directory and write the script
 
-```bash
+    * First create a new working directory and write the script
 
-#Change working directory to your personal wd
-$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
+    ```bash
 
-#confirm the path is correct (me123 is just a place holder for the place where you should see your username)
-$ pwd
-/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
+    #Change working directory to your personal wd
+    $ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER  
 
-#create a new directory for this section and change the directory to it
-$ mkdir 4_wwscheduler && cd 4_wwscheduler
+    #confirm the path is correct (me123 is just a place holder for the place where you should see your username)
+    $ pwd
+    /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/  
 
-#use a text editor of choice to create a file named firstslurm.sl - we will use nano here
-$ nano firstslurm.sl
-```
->Content of `firstslurm.sl` should be as below. Please discuss as you make progress
->
->```bash
->#!/bin/bash 
->
->#SBATCH --job-name      myfirstslurmjob
->#SBATCH --account       nesi02659
->#SBATCH --time          00:01:00
->#SBATCH --cpus-per-task 1
->#SBATCH --mem           512
->#SBATCH --output        slurmjob.%j.out
->
->sleep 40
->
->echo "I am a slurm job and I slept for 40 seconds"
->
->echo "$SLURM_JOB_ID END"
->```
+    #create a new directory for this section and change the directory to it
+    $ mkdir 4_wwscheduler && cd 4_wwscheduler   
 
-* **Save** and **Exit**
-* Submit the script with `sbatch` command
+    #use a text editor of choice to create a file named firstslurm.sl - we will use nano here
+    $ nano firstslurm.sl
+    ```
+    >Content of `firstslurm.sl` should be as below. Please discuss as you make progress
+    >
+    >```bash
+    >#!/bin/bash 
+    >
+    >#SBATCH --job-name      myfirstslurmjob
+    >#SBATCH --account       nesi02659
+    >#SBATCH --time          00:01:00
+    >#SBATCH --cpus-per-task 1
+    >#SBATCH --mem           512
+    >#SBATCH --output        slurmjob.%j.out
+    >
+    >sleep 40
+    >
+    >echo "I am a slurm job and I slept for 40 seconds"
+    >
+    >echo "$SLURM_JOB_ID END"
+    >```    
 
-```bash
-$ sbatch firstslurm.sl
-```
->Execute `squeue --me` and `sacct`. Discuss the outputs .i.e.
-```bash
-$ squeue --me
-```
-```bash
-$ sacct
-```
-{% endcapture %}
+    * **Save** and **Exit**
+    * Submit the script with `sbatch` command   
 
-{% include exercise.html title="e4dot2" content=e4dot2%}
+    ```bash
+    $ sbatch firstslurm.sl
+    ```
+    >Execute `squeue --me` and `sacct`. Discuss the outputs .i.e.
+    ```bash
+    $ squeue --me
+    ```
+    ```bash
+    $ sacct
+    ```
+
 ---
 
 ### STDOUT/STDERR from jobs
