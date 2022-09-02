@@ -264,38 +264,38 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 
 
 
-???+ question "Exercise 4.5 😬"	
+??? question "Exercise 4.5 😬"	
 
 
->Let's submit your first sismonr slum job. 
->* First step is to copy the already written R script to current working directory
->
->```bash
->#please do make sure the working directory is Exercise_4.5
->$ pwd
->/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_4.5
->
->#copy the network file
->$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_small_sim/simulate_colsystem_1second.R ./
->```
->* Now build a slurm script with the following parameters
->    * We would like the name of the slurm script file to be ***firstsim_slurm.sl***
->    * job-name can be anything you want 
->    * `--cpus-per-task 1` and `--mem 1G` (this is based on test runs)
->    * `--time 00:12:00` ( we expect the job to run within 10.2 minutes. Let's give it a bit more as runtime can affected by other factors)
->    * Give any filename to `--out` but make sure the .out gets written into `slurmout` directory
->    * Let's add profiling as well. Given the job runs for ~10 minutes, let's leave slurm alone and *not* ask it to gather data every 1 second. Instead, we will run it with the **default** 30 second time points .i.e. Don't need a `--acctg-freq 1` directive
->    * Now to the bash commands section of the slurm script.  😱😱😱😱😱
->
->```bash
->export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_$SLURM_JOB_ID
->mkdir -p $TMPDIR
->
->module purge
->module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
->
->Rscript --vanilla simulate_colsystem_1second.R 
->```
+    >Let's submit your first sismonr slum job. 
+    >* First step is to copy the already written R script to current working directory
+    >
+    >```bash
+    >#please do make sure the working directory is Exercise_4.5
+    >$ pwd
+    >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_4.5
+    >
+    >#copy the network file
+    >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_small_sim/simulate_colsystem_1second.R ./
+    >```
+    >* Now build a slurm script with the following parameters
+    >    * We would like the name of the slurm script file to be ***firstsim_slurm.sl***
+    >    * job-name can be anything you want 
+    >    * `--cpus-per-task 1` and `--mem 1G` (this is based on test runs)
+    >    * `--time 00:12:00` ( we expect the job to run within 10.2 minutes. Let's give it a bit more as runtime can affected by other factors)
+    >    * Give any filename to `--out` but make sure the .out gets written into `slurmout` directory
+    >    * Let's add profiling as well. Given the job runs for ~10 minutes, let's leave slurm alone and *not* ask it to gather data every 1 second. Instead, we will run it with the **default** 30 second time points .i.e. Don't need a `--acctg-freq 1` directive
+    >    * Now to the bash commands section of the slurm script.  😱😱😱😱😱
+    >
+    >```bash
+    >export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_$SLURM_JOB_ID
+    >mkdir -p $TMPDIR
+    >
+    >module purge
+    >module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
+    >
+    >Rscript --vanilla simulate_colsystem_1second.R 
+    >```
 
 ---
 
