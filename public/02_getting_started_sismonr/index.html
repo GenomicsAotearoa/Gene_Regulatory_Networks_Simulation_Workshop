@@ -1,0 +1,1066 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/02_getting_started_sismonr/">
+      
+      <link rel="icon" href="../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>2. Getting started with sismonr - Scaling Gene Regulatory Networks Simulations</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-getting-started-with-sismonr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Scaling Gene Regulatory Networks Simulations" class="md-header__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Scaling Gene Regulatory Networks Simulations
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Getting started with sismonr
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Scaling Gene Regulatory Networks Simulations" class="md-nav__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Scaling Gene Regulatory Networks Simulations
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_introduction/" class="md-nav__link">
+        1. Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2. Getting started with sismonr
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2. Getting started with sismonr
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-the-sismonr-package" class="md-nav__link">
+    Introduction to the sismonr package
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to the sismonr package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-sismonr-links-r-and-julia" class="md-nav__link">
+    How sismonr links R and Julia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-time" class="md-nav__link">
+    Practice time!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-random-grn" class="md-nav__link">
+    Generating a random GRN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-a-grn" class="md-nav__link">
+    Modifying a GRN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-genetically-diverse-in-silico-individuals" class="md-nav__link">
+    Simulating genetically diverse in silico individuals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-stochastic-model-with-the-sismonr-package" class="md-nav__link">
+    Generating a stochastic model with the sismonr package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workshops-challenge-modelling-the-anthocyanin-biosynthesis-regulation-pathway-in-eudicots" class="md-nav__link">
+    Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-first-simulation-interactive" class="md-nav__link">
+    Running a first simulation (interactive)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-is-scaling-up-important" class="md-nav__link">
+    Why is scaling-up important
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_scaling_up/" class="md-nav__link">
+        3. Scaling up your work
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_working_with_job_scheduler/" class="md-nav__link">
+        4. Working with job scheduler
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_parallel_job_arrays/" class="md-nav__link">
+        5. Parallel Job Arrays
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_post_processing/" class="md-nav__link">
+        6. Post-processing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_supplementary/" class="md-nav__link">
+        Supplementary
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_supplementary_2/" class="md-nav__link">
+        Supplementary 2
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-the-sismonr-package" class="md-nav__link">
+    Introduction to the sismonr package
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to the sismonr package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-sismonr-links-r-and-julia" class="md-nav__link">
+    How sismonr links R and Julia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-time" class="md-nav__link">
+    Practice time!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-random-grn" class="md-nav__link">
+    Generating a random GRN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-a-grn" class="md-nav__link">
+    Modifying a GRN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-genetically-diverse-in-silico-individuals" class="md-nav__link">
+    Simulating genetically diverse in silico individuals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-a-stochastic-model-with-the-sismonr-package" class="md-nav__link">
+    Generating a stochastic model with the sismonr package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workshops-challenge-modelling-the-anthocyanin-biosynthesis-regulation-pathway-in-eudicots" class="md-nav__link">
+    Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-first-simulation-interactive" class="md-nav__link">
+    Running a first simulation (interactive)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-is-scaling-up-important" class="md-nav__link">
+    Why is scaling-up important
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git/edit/master/docs/02_getting_started_sismonr.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="2-getting-started-with-sismonr">2. Getting started with sismonr<a class="headerlink" href="#2-getting-started-with-sismonr" title="Permanent link">&para;</a></h1>
+<p style="text-align:left;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1. Introduction</a></b>
+    <span style="float:right;">
+     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html" style="background: var(--bs-green);font-weight:bold">3. Scaling up your work &raquo;</a></b>
+    </span>
+</p>
+
+<h2 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
+<ul>
+<li toc="toc">Do not remove this line (it will not be displayed)</li>
+</ul>
+<h2 id="introduction-to-the-sismonr-package">Introduction to the sismonr package<a class="headerlink" href="#introduction-to-the-sismonr-package" title="Permanent link">&para;</a></h2>
+<p>The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulation). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different <em>in silico</em> individuals, that carry different versions (or alleles) of the genes present in the GRN (think of it as simulating gene expression from different subjects). This is quite useful to simulate gene expression under different scenarios such as gene knock-outs for example. If you are interested, a full tutorial is available <a href="https://oliviaab.github.io/sismonr/">here</a>.</p>
+<p>One particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!</p>
+<h3 id="how-sismonr-links-r-and-julia">How sismonr links R and Julia<a class="headerlink" href="#how-sismonr-links-r-and-julia" title="Permanent link">&para;</a></h3>
+<p>Before we get into the fun part, which is getting to play with the sismonr package, it is important to know a little bit about sismonr works. More specifically, we will now briefly cover how sismonr uses Julia to run the simulations and other computations. This will be important when scaling-up our work from a local machine to a HPC environment.</p>
+<p>sismonr handles communications between R and Julia via the <a href="https://cran.r-project.org/package=XRJulia](https://cran.r-project.org/package=XRJulia)">XRJulia</a> R package. The first time you use a function from the sismonr package that requires Julia, sismonr (via XRJulia functions) opens a new julia process on your computer, and sets up a socket connection between the R session and the new julia process. </p>
+<p>By default, this connection is set up on a random port, but there are ways to decide on the port to use: by executing, at the start of your R session, the following command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">XRJulia</span><span class="o">::</span><span class="nf">newJuliaEvaluator</span><span class="p">(</span><span class="n">port</span> <span class="o">=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="m">456</span><span class="p">))</span>
+</code></pre></div>
+you are creating a new Julia process and the socket connection between the R session and the Julia process will use port 456. We won't need to use this for now, but you will find it useful later on :)</p>
+<p>Once the Julia process is started, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.</p>
+<p><img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="900"/></p>
+<p><small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small></p>
+<p>This is why, if you decide to use sismonr on your own computer, you will have to install Julia first, and make sure that R can find the Julia executable (for example by adding Julia to the PATH, which is done for you when installing Julia).</p>
+<h3 id="practice-time">Practice time!<a class="headerlink" href="#practice-time" title="Permanent link">&para;</a></h3>
+<p>For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See <a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html">here</a> for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel. <strong>Follow instructions up to S.2 2 (Guide Jupyter file explorer (left panel) to above working directory) included.</strong></p>
+<p>Before opening a Jupyter Notebook, we will create a folder to save our work from this section:</p>
+<p><br></p>
+<p align="center"><img src="nesi_images/getting_started_newfolder_2.png" alt="drawing" width="900"/></p>
+<p><br></p>
+<p>Now we can open a sismonr Jupyter Notebook:</p>
+<p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="900"/></p>
+
+<p>Before getting started, here are some abbreviations that are often used within sismonr:</p>
+<table>
+<thead>
+<tr>
+<th>Abbreviations</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TC</td>
+<td>Transcription</td>
+</tr>
+<tr>
+<td>TL</td>
+<td>Translation</td>
+</tr>
+<tr>
+<td>RD</td>
+<td>RNA decay</td>
+</tr>
+<tr>
+<td>PD</td>
+<td>Protein decay</td>
+</tr>
+<tr>
+<td>PTM</td>
+<td>Post-translational modification</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PC</td>
+<td>Protein-coding</td>
+</tr>
+<tr>
+<td>NC</td>
+<td>Noncoding</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>R</td>
+<td>RNA</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Protein</td>
+</tr>
+<tr>
+<td>Pm</td>
+<td>Modified protein</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Regulatory complex</td>
+</tr>
+</tbody>
+</table>
+<h3 id="generating-a-random-grn">Generating a random GRN<a class="headerlink" href="#generating-a-random-grn" title="Permanent link">&para;</a></h3>
+<p>We will start by generating a small random GRN with sismonr, using the function <code>createInSilicoSystem()</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">sismonr</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nf">set.seed</span><span class="p">(</span><span class="m">12</span><span class="p">)</span> <span class="c1"># important for reproducibility of &quot;random&quot; results in R!</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">small_grn</span> <span class="o">&lt;-</span> <span class="nf">createInSilicoSystem</span><span class="p">(</span><span class="n">G</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="c1"># number of genes in the GRN</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                                  <span class="n">PC.p</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="c1"># proportion of genes that are protein-coding</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>                                  <span class="n">ploidy</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="c1"># ploidy of the system</span>
+</code></pre></div>
+<p>Note that the first time you run a sismonr command, you might have to wait a few seconds, as sismonr needs to open a new Julia process on your computer to execute some of the internal commands (such as the generation of a random GRN).</p>
+<p>You can visualise the GRN you just created with the following command (the resulting graph is interactive, try to hover over nodes or edges with your mouse, move nodes or click on nodes):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">plotGRN</span><span class="p">(</span><span class="n">small_grn</span><span class="p">)</span>
+</code></pre></div>
+<p>{% include sismonr_network.html%}</p>
+<p>Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">getGenes</span><span class="p">(</span><span class="n">small_grn</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>   id coding TargetReaction PTMform ActiveForm       TCrate      TLrate       RDrate       PDrate
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>1   1     PC             TC       0         P1 0.0010706485 0.115208445 0.0006563273 0.0003594616
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>2   2     PC             PD       0         P2 0.0007063012 1.096787613 0.0002886745 0.0008614784
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>3   3     PC             TC       0         P3 0.0010690560 0.016254643 0.0004565128 0.0002589524
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>4   4     PC             TC       0         P4 0.0020231676 0.006923935 0.0008362586 0.0011683879
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>5   5     PC             TC       0         P5 0.0017721606 0.021329358 0.0011665348 0.0004787676
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>6   6     PC             TL       0         P6 0.0011366749 0.017786830 0.0008228596 0.0002831087
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>7   7     PC             TL       0         P7 0.0052234381 0.060540559 0.0007973883 0.0007609887
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>8   8     PC             TL       0         P8 0.0026365016 0.017948936 0.0006848954 0.0003388916
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>9   9     PC             TL       0         P9 0.0030150020 0.140724990 0.0006802817 0.0002328448
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>10 10     PC             TC       0        P10 0.0015819471 0.007701612 0.0006157945 0.0005439300
+</code></pre></div></p>
+<p>and:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nf">getEdges</span><span class="p">(</span><span class="n">small_grn</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>   from to TargetReaction RegSign RegBy
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>1     4 10             TC       1    PC
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>2     5 10             TC      -1    PC
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>3     3  2             TC      -1    PC
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>4     1  3             TC       1    PC
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>5     3  3             TC       1    PC
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>6     5  5             TC       1    PC
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>7  CTC1  9             TC      -1     C
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>8     7  2             TL       1    PC
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>9     9  4             TL      -1    PC
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>10    6  7             TL      -1    PC
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>11    8  7             TL      -1    PC
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>12    2  1             PD       1    PC
+</code></pre></div>
+<p>Note that you can modify the properties of your system by changing the values in these data-frames.</p>
+<p>The <code>createInSilicoSystem</code> function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">?</span><span class="n">insilicosystemargs</span> 
+</code></pre></div>
+<p>For example, you can generate a network of 5 genes with only protein-coding genes that are regulators of transcription with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nf">set.seed</span><span class="p">(</span><span class="m">45</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">another_grn</span> <span class="o">&lt;-</span> <span class="nf">createInSilicoSystem</span><span class="p">(</span><span class="n">G</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> 
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>                                    <span class="n">PC.p</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> 
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>                                    <span class="n">PC.TC.p</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="c1"># all protein-coding genes are</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>                                                 <span class="c1"># regulators of transcription</span>
+</code></pre></div>
+<h3 id="modifying-a-grn">Modifying a GRN<a class="headerlink" href="#modifying-a-grn" title="Permanent link">&para;</a></h3>
+<p>In addition, you can add genes in your GRN, and add or remove regulatory relationships between genes (currently it is not possible to remove genes, this option will be added in the future).</p>
+<p>When adding a gene, you can specify its kinetic parameters, e.g. its transcription rate (in RNA/sec), RNA decay rate, etc.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">small_grn2</span> <span class="o">&lt;-</span> <span class="nf">addGene</span><span class="p">(</span><span class="n">small_grn</span><span class="p">,</span> 
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>                      <span class="n">coding</span> <span class="o">=</span> <span class="s">&quot;PC&quot;</span><span class="p">,</span> 
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>                      <span class="n">TCrate</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>                      <span class="n">RDrate</span> <span class="o">=</span> <span class="m">0.005</span><span class="p">)</span>
+</code></pre></div>
+<p>Same thing when adding an edge to the GRN: you can decide if the regulation is activative or repressive, and the different rates of the regulation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">small_grn3</span> <span class="o">&lt;-</span> <span class="nf">addEdge</span><span class="p">(</span><span class="n">small_grn2</span><span class="p">,</span> <span class="n">regID</span> <span class="o">=</span> <span class="m">11</span><span class="p">,</span> <span class="n">tarID</span> <span class="o">=</span> <span class="m">8</span><span class="p">,</span> <span class="n">regsign</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="simulating-genetically-diverse-in-silico-individuals">Simulating genetically diverse <em>in silico</em> individuals<a class="headerlink" href="#simulating-genetically-diverse-in-silico-individuals" title="Permanent link">&para;</a></h3>
+<p>Two individuals from a same species are not genetically identical. They carry the different versions (called alleles) of the same genes. Genetic mutations in or around a gene influence the dynamics of gene expression. To account for that, sismonr does not directly simulate the expression of genes in a GRN, but simulates the expression of the genes for different <em>in silico</em> individuals. More details can be found in the <a href="https://oliviaab.github.io/sismonr/#creating-an-in-silico-population">sismonr tutorial</a>. </p>
+<p>Once you've created a GRN with sismonr, you can generate <em>in silico</em> individuals with the <code>createInSilicoPopulation</code> function. For example, let us generate 3 random <em>in silico</em> individuals; we'll assume that for each gene, they can carry one of 2 possible alleles (this can be customised further but we won't go into details).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">small_pop</span> <span class="o">&lt;-</span> <span class="nf">createInSilicoPopulation</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="c1"># number of individuals</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>                                      <span class="n">small_grn</span><span class="p">,</span> <span class="c1"># our GRN</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>                                      <span class="n">ngenevariants</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="c1"># how many alleles exist per gene</span>
+</code></pre></div>
+<p>We can visualise the difference between the individuals via:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nf">plotMutations</span><span class="p">(</span><span class="n">small_pop</span><span class="p">,</span> <span class="n">small_grn</span><span class="p">,</span> <span class="n">nGenesPerRow</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="A plot of *in silico* individuals" src="../images/plot_mutations.png" /></p>
+<p><small>A plot representing, for each <em>in silico</em> individual (rows) and each gene (columns), the effect (colour) of genetic mutations on different aspects of the gene's expression (x-axis) for each allele (y-axis) carried by the individual. For noncoding genes, some QTL effect coefficients are not relevant (the ones related to protein or translation) and are represented in gray.</small></p>
+<p>For example, <em>in silico</em> individual <code>Ind1</code> has no mutation on any of its copies of gene 1. It carries two different alleles of gene 2.</p>
+<p><strong>Tip</strong>: to increase the size of the figure generated in a Jupyter notebook cell, add the following command at the top of the cell:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">18</span><span class="p">,</span> <span class="n">repr.plot.height</span><span class="o">=</span><span class="m">12</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="generating-a-stochastic-model-with-the-sismonr-package">Generating a stochastic model with the sismonr package<a class="headerlink" href="#generating-a-stochastic-model-with-the-sismonr-package" title="Permanent link">&para;</a></h3>
+<p>As mentioned previously, simulators rely on a set of rules to convert the GRN into a mathematical or statistical model that can be used to simulate gene expression over time. This set of rules will depend on the type of model we want to construct (boolean, deterministic, etc).</p>
+<p>In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is no correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. As an example, the sismonr uses the following rules:</p>
+<p><img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/></p>
+<p><small>This is how sismonr models different type of expression regulation. Each arrow <span class="arithmatex">\(i \rightarrow j\)</span> in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small></p>
+<p>For example, the following small GRN:</p>
+<p><img src="images/example_GRN1.png" alt="A small GRN with 3 genes" width="500"/></p>
+<p><small>A small GRN with 3 genes; gene 1 activates the transcription of gene 2; gene 2 activates the transcription of gene 3; and gene 3 represses the transcription of gene 1. </small></p>
+<p>is transformed into the following set of reactions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">## Binding/unbinding of regulators to/from their target&#39;s DNA</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">Pr2reg1F</span> <span class="o">+</span> <span class="n">P1</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1B</span> 
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">Pr2reg1B</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1F</span> <span class="o">+</span> <span class="n">P1</span> 
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">Pr3reg2F</span> <span class="o">+</span> <span class="n">P2</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2B</span> 
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">Pr3reg2B</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2F</span> <span class="o">+</span> <span class="n">P2</span> 
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">Pr1reg3F</span> <span class="o">+</span> <span class="n">P3</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3B</span> 
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="n">Pr1reg3B</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3F</span> <span class="o">+</span> <span class="n">P3</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="c1">## Basal and regulated transcription</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="n">Pr1reg3F</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3F</span> <span class="o">+</span> <span class="n">R1</span> 
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">Pr2reg1F</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1F</span> <span class="o">+</span> <span class="n">R2</span> 
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="n">Pr2reg1B</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1B</span> <span class="o">+</span> <span class="n">R2</span> 
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="n">Pr3reg2F</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2F</span> <span class="o">+</span> <span class="n">R3</span> 
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="n">Pr3reg2B</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2B</span> <span class="o">+</span> <span class="n">R3</span> 
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1">## Translation</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="n">R1</span> <span class="o">--&gt;</span> <span class="n">R1</span> <span class="o">+</span> <span class="n">P1</span> 
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="n">R2</span> <span class="o">--&gt;</span> <span class="n">R2</span> <span class="o">+</span> <span class="n">P2</span> 
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="n">R3</span> <span class="o">--&gt;</span> <span class="n">R3</span> <span class="o">+</span> <span class="n">P3</span> 
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="c1">## RNA decay</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="n">R1</span> <span class="o">--&gt;</span> <span class="m">0</span> 
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="n">R2</span> <span class="o">--&gt;</span> <span class="m">0</span> 
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="n">R3</span> <span class="o">--&gt;</span> <span class="m">0</span> 
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="c1">## Protein decay (including those bound to DNA)</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="n">P1</span> <span class="o">--&gt;</span> <span class="m">0</span> 
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="n">Pr2reg1B</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1F</span> 
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="n">P2</span> <span class="o">--&gt;</span> <span class="m">0</span> 
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="n">Pr3reg2B</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2F</span> 
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="n">P3</span> <span class="o">--&gt;</span> <span class="m">0</span> 
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="n">Pr1reg3B</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3F</span>
+</code></pre></div>
+<p>where :</p>
+<ul>
+<li><code>PrXregY</code> represents the DNA region of gene X where regulator Y binds; <code>PrXregYF</code> represents the region with no bound regulator (free), and <code>PrXregYB</code> represents the region with a regulator bound to it</li>
+<li><code>RX</code> represents the RNA produced by gene X;</li>
+<li><code>PX</code> represents the protein produced by gene X.</li>
+</ul>
+<p>(It's actually a bit more complicated than that, as sismonr accounts for the ploidy of the system, i.e. how many copies of each gene are present, and tracks each copy separately).</p>
+<p>If you are interested, the code to reproduce this example is available <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_reactions_example.R">here</a>.</p>
+<p>One crucial thing to understand is that a reaction in a stochastic system is a simplified representation of a set of true biochemical reactions happening in the biological system. For example, in the example above, the reaction <code>R1 --&gt; R1 + P1</code>, which represents the translation of gene 1, ignores the fact that the translation of a messenger RNA is a very complex process involving many steps and molecular actors.</p>
+<p>Decisions must also be made about the rate of the different reactions, as well as the initial abundance of the molecules when the simulation starts. This is again a very complex step in the creation of a model, as it is quite arduous to precisely estimate the rate of different biochemical reactions <em>in vivo</em>.</p>
+<p>When constructing a stochastic model for a given GRN, sismonr computes for each reaction in the model a constant rate (i.e. the probability of one molecule of each reactant to collide and undergo the reaction in one unit of time), which depends on the properties of the genes (e.g. transcription rate) and of the GRN (e.g. strength of regulation). These rates will be influenced by "genetic mutations" that differentiate the <em>in silico</em> individuals modelled by sismonr.</p>
+<p>Here are the rates of each reaction for two genetically different <em>in silico</em> individuals:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>                  <span class="n">reaction</span> <span class="n">rate_Ind1</span> <span class="n">rate_Ind2</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">Pr2reg1F</span> <span class="o">+</span> <span class="n">P1</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1B</span>  <span class="m">5.89e-06</span>  <span class="m">5.27e-06</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">Pr2reg1B</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1F</span> <span class="o">+</span> <span class="n">P1</span>  <span class="m">2.45e-03</span>  <span class="m">2.45e-03</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">Pr3reg2F</span> <span class="o">+</span> <span class="n">P2</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2B</span>  <span class="m">3.46e-05</span>  <span class="m">3.32e-05</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">Pr3reg2B</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2F</span> <span class="o">+</span> <span class="n">P2</span>  <span class="m">2.86e-03</span>  <span class="m">2.86e-03</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">Pr1reg3F</span> <span class="o">+</span> <span class="n">P3</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3B</span>  <span class="m">1.36e-06</span>  <span class="m">1.25e-06</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">Pr1reg3B</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3F</span> <span class="o">+</span> <span class="n">P3</span>  <span class="m">9.84e-04</span>  <span class="m">9.84e-04</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">Pr1reg3F</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3F</span> <span class="o">+</span> <span class="n">R1</span>  <span class="m">6.54e-04</span>  <span class="m">6.54e-04</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="n">Pr2reg1F</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1F</span> <span class="o">+</span> <span class="n">R2</span>  <span class="m">1.13e-03</span>  <span class="m">1.22e-03</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="n">Pr2reg1B</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1B</span> <span class="o">+</span> <span class="n">R2</span>  <span class="m">7.75e-03</span>  <span class="m">8.39e-03</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="n">Pr3reg2F</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2F</span> <span class="o">+</span> <span class="n">R3</span>  <span class="m">1.63e-03</span>  <span class="m">1.54e-03</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">Pr3reg2B</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2B</span> <span class="o">+</span> <span class="n">R3</span>  <span class="m">8.28e-03</span>  <span class="m">7.84e-03</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>            <span class="n">R1</span> <span class="o">--&gt;</span> <span class="n">R1</span> <span class="o">+</span> <span class="n">P1</span>  <span class="m">1.02e-01</span>  <span class="m">1.02e-01</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>            <span class="n">R2</span> <span class="o">--&gt;</span> <span class="n">R2</span> <span class="o">+</span> <span class="n">P2</span>  <span class="m">8.88e-03</span>  <span class="m">8.69e-03</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>            <span class="n">R3</span> <span class="o">--&gt;</span> <span class="n">R3</span> <span class="o">+</span> <span class="n">P3</span>  <span class="m">3.09e-01</span>  <span class="m">3.22e-01</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>                  <span class="n">R1</span> <span class="o">--&gt;</span> <span class="m">0</span>  <span class="m">6.20e-04</span>  <span class="m">6.20e-04</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>                  <span class="n">R2</span> <span class="o">--&gt;</span> <span class="m">0</span>  <span class="m">6.48e-04</span>  <span class="m">5.78e-04</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>                  <span class="n">R3</span> <span class="o">--&gt;</span> <span class="m">0</span>  <span class="m">4.55e-04</span>  <span class="m">4.57e-04</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>                  <span class="n">P1</span> <span class="o">--&gt;</span> <span class="m">0</span>  <span class="m">1.95e-04</span>  <span class="m">1.95e-04</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>     <span class="n">Pr2reg1B</span> <span class="o">--&gt;</span> <span class="n">Pr2reg1F</span>  <span class="m">1.95e-04</span>  <span class="m">1.95e-04</span>
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>                  <span class="n">P2</span> <span class="o">--&gt;</span> <span class="m">0</span>  <span class="m">1.23e-04</span>  <span class="m">1.13e-04</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>     <span class="n">Pr3reg2B</span> <span class="o">--&gt;</span> <span class="n">Pr3reg2F</span>  <span class="m">1.23e-04</span>  <span class="m">1.13e-04</span>
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>                  <span class="n">P3</span> <span class="o">--&gt;</span> <span class="m">0</span>  <span class="m">1.02e-03</span>  <span class="m">1.05e-03</span>
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>     <span class="n">Pr1reg3B</span> <span class="o">--&gt;</span> <span class="n">Pr1reg3F</span>  <span class="m">1.02e-03</span>  <span class="m">1.05e-03</span>
+</code></pre></div>
+<p>The list of reactions and associated rates is what sismonr uses to simulate the expression of the genes over time for each <em>in silico</em> individual.</p>
+<p><strong>Tip</strong>: The <code>getReactions()</code> function from sismonr allows you to see the list of biochemical reactions and associated rates for a GRN. There are two ways to use the function. Providing only the GRN object as an input to the function, as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nf">getReactions</span><span class="p">(</span><span class="n">small_grn</span><span class="p">)</span>
+</code></pre></div>
+<p>will return a data-frame with the list of biochemical reactions, their name and the formula used by sismonr to compute their constant rate.</p>
+<p>If you also provide the <em>in silico</em> inviduals as an input to the function, like so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nf">getReactions</span><span class="p">(</span><span class="n">small_grn</span><span class="p">,</span> <span class="n">small_pop</span><span class="p">)</span>
+</code></pre></div>
+<p>the resulting data-frame will contain, in addition to the columns previously described, one column for each <em>in silico</em> individual giving the constant rate of the reactions for this individual.</p>
+<h2 id="workshops-challenge-modelling-the-anthocyanin-biosynthesis-regulation-pathway-in-eudicots">Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots<a class="headerlink" href="#workshops-challenge-modelling-the-anthocyanin-biosynthesis-regulation-pathway-in-eudicots" title="Permanent link">&para;</a></h2>
+<p>For this workshop, we will work on a model for the <a href="https://en.wikipedia.org/wiki/Anthocyanin">anthocyanin</a> biosynthesis regulation pathway in <a href="https://en.wikipedia.org/wiki/Eudicots">eudicots</a>. Anthocyanins are pgiments providing colouration to plants, flowers and fruits. This model was developed (mainly) based on the following sources:</p>
+<ul>
+<li>
+<p>Albert, Nick W., et al. "A conserved network of transcriptional activators and repressors regulates anthocyanin pigmentation in eudicots." <em>The Plant Cell</em> 26.3 (2014): 962-980. <a href="https://doi.org/10.1105/tpc.113.122069">https://doi.org/10.1105/tpc.113.122069</a></p>
+</li>
+<li>
+<p>Liu, Ying, et al. "Anthocyanin biosynthesis and degradation mechanisms in Solanaceous vegetables: a review." <em>Frontiers in Chemistry</em> 6 (2018): 52.<a href="https://doi.org/10.3389/fchem.2018.00052">https://doi.org/10.3389/fchem.2018.00052</a></p>
+</li>
+<li>
+<p>Xu, Wenjia, Christian Dubos, and Loïc Lepiniec. "Transcriptional control of flavonoid biosynthesis by MYB–bHLH–WDR complexes." <em>Trends in plant science</em> 20.3 (2015): 176-185. <a href="https://doi.org/10.1016/j.tplants.2014.12.001">https://doi.org/10.1016/j.tplants.2014.12.001</a></p>
+</li>
+<li>
+<p>Baudry, Antoine, et al. "TT2, TT8, and TTG1 synergistically specify the expression of BANYULS and proanthocyanidin biosynthesis in Arabidopsis thaliana." <em>The Plant Journal</em> 39.3 (2004): 366-380. <a href="https://doi.org/10.1111/j.1365-313X.2004.02138.x">https://doi.org/10.1111/j.1365-313X.2004.02138.x</a></p>
+</li>
+</ul>
+<p>An animation of the GRN is presented below:</p>
+<p><img src="images/anthocyanin_model_animation.gif" alt="The sismonr stochastic system rules" width="700"/></p>
+<p><small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found <a href="https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png">here</a>. </small></p>
+<p>The GRN starts with 3 protein-genes, <em>MYB</em>, <em>bHLH1</em> and <em>WDR</em>. While <em>bHLH1</em> and <em>WDR</em> are constitutively expressed (i.e. constantly produce proteins), <em>MYB</em> is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the <em>bHLH2</em> gene.</p>
+<p>The synthesised bHLH2 proteins form a second regulatory complex with the MYB and WDR proteins (termed MBW2). This complex then activates the transcription of downstream genes encoding for enzymes involved in the anthocyanin biosynthesis pathway. The presence of these enzymes result in the production of anthocyanin. Here we use the <em>DFR</em> gene as a representative example of MBW2's targets. We will assume that the abundance of DFR proteins acts as a proxy for the production of anthocyanins. </p>
+<p>In addition, the MBW2 complex also activates the transcription of two repressors genes, <em>MYBrep</em> and <em>R3-MYB</em>, which form a negative feedback loop in the GRN. Both genes repress the activity of the network through different means. The MYBrep proteins bind the MBW2 complex (this new complex is termed MBWr), which becomes a repressor complex. It will inhibit the transcription of <em>bHLH2</em>, which in turn reduces the expression of the downstream enzymes and thus modulates the production of anthocyanin. The R3-MYB exert instead a passive repression on the system, by binding to bHLH1 and bHLH2 proteins, thus reducing the number of available bHLH1 and bHLH2 proteins in the system. In consequence, this reduces the number of MBW1 and MBW2 complexes in the system and in turn reduces the activity of the network.</p>
+<p>The goal of this workshop will be to simulate the expression of the different genes in the pathway over a period of 1,200 seconds (20 minutes) after induction of the MYB gene. We will simulate the GRN for two different <em>in silico</em> plants:</p>
+<ul>
+<li>
+<p>A wild type plant: the different kinetic parameters are set to the default values;</p>
+</li>
+<li>
+<p>A mutant plant in which the <em>MYBrep</em> gene is overexpressed: the transcription rate of the gene is increased 50-fold. This can be achieved experimentally by transforming a plant, in order to modify the promoter of the target gene.</p>
+</li>
+</ul>
+<p>Because the simulations are stochastic, it is better to simulate the GRN a large number of times in order to obtain a good overview of the system behaviour. We will aim to produce 2,000 simulations.</p>
+<p>In order to save time, the GRN and the <em>in silico</em> plants have already been generated with sismonr. The R script used to generate it can be found <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R">here</a>. The sismonr objects representing the anthocyanin biosynthesis regulation network and the <em>in silico</em> plants are saved in the following <code>.RData</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData
+</code></pre></div>
+<p>Alternatively, it can be downloaded <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/raw/main/data/sismonr_anthocyanin_system.RData">here</a>. </p>
+<p>You will start by creating a copy of this object in your working directory, for easier access. In a terminal, type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$ cp /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData ~/sism_2021/
+</code></pre></div>
+<p>You can check that it worked with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ ls -l ~/sism_2021/
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>total <span class="m">0</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>-r--r-----+ <span class="m">1</span> oangelin nesi02659 <span class="m">5417</span> Nov <span class="m">22</span> <span class="m">17</span>:05 sismonr_anthocyanin_system.RData
+</code></pre></div>
+<h2 id="running-a-first-simulation-interactive">Running a first simulation (interactive)<a class="headerlink" href="#running-a-first-simulation-interactive" title="Permanent link">&para;</a></h2>
+<p>You will start by running one simulation on your local machine. This is the first thing to do if you are planning to run simulations on NeSI: first, make sure your code actually works! For this workshop, a jupyter kernel will act as your local machine. </p>
+<p>Start by opening a sismonr kernel (see the instructions <a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html">here</a>).</p>
+<p>We will first load the sismonr package, and the model and <em>in silico</em> plants we want to simulate. </p>
+<p>Create a new sismonr Jupyter Notebook and add:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">sismonr</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nf">load</span><span class="p">(</span><span class="s">&quot;~/sism_2021/sismonr_anthocyanin_system.RData&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Feel free to inspect the different aspects of the model (using for example <code>plotGRN</code>, <code>plotMutations</code> or <code>getReactions</code>). We can run one simulation for each of the two <em>in silico</em> plants via the command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">sim</span> <span class="o">&lt;-</span> <span class="nf">simulateInSilicoSystem</span><span class="p">(</span><span class="n">colsystem</span><span class="p">,</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>                              <span class="n">plants</span><span class="p">,</span> 
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>                              <span class="n">simtime</span> <span class="o">=</span> <span class="m">1200</span><span class="p">,</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>                              <span class="n">ntrials</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</code></pre></div>
+<p>Where <code>simtime</code> is the time (in seconds) for which we want to simulate the expression of the genes; <code>ntrials</code> corresponds to the number of times we want to repeat the simulation for each <em>in silico</em> individual.</p>
+<p>This should take a couple of minutes to complete. Once this is done, you can visualise the result with the <code>plotSimulation</code> function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nf">plotSimulation</span><span class="p">(</span><span class="n">sim</span><span class="o">$</span><span class="n">Simulation</span><span class="p">,</span> 
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>               <span class="n">molecules</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">colours</span><span class="p">),</span> 
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>               <span class="n">mergeComplexes</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>               <span class="n">labels</span> <span class="o">=</span> <span class="n">id2names</span><span class="p">[</span><span class="nf">names</span><span class="p">(</span><span class="n">colours</span><span class="p">)],</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>               <span class="n">colours</span> <span class="o">=</span> <span class="n">colours</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/colsystem_simulations_1trial.png" alt="Simulated gene expression for the anthocyanin biosynthesis regulation pathway" width="1000"/></p>
+<p><small> Simulated gene expression for the anthocyanin biosynthesis regulation pathway. The legend shows under which form (i.e. RNA, protein or regulatory copmplex) each component can be found. For example, MYB is present in both the 'RNAs' and the 'Proteins' plots, while MBW1 is a regulatory complex, and thus only appears in the 'Complexes' plot. </small></p>
+<p>Pretty neat! We can see that when the <em>MYBrep</em> gene is overexpressed, the activity of the pathway is reduced, and so the downstream enzymes responsible for the synthesis of anthocyanin (represented here by the <em>DFR</em> gene) are produced in smaller quantities. This leads to a reduction in the colouration of the plant.</p>
+<h2 id="why-is-scaling-up-important">Why is scaling-up important<a class="headerlink" href="#why-is-scaling-up-important" title="Permanent link">&para;</a></h2>
+<p>The simulation above is nice, and allows us to get an idea of the dynamics of gene expression in both wild-type and mutated conditions. However, one stochastic simulation is not enough to draw robust conclusions. Ideally, the simulations should be repeated a large number of time in order to obtain distributions, rather than single values, for the abundance of different gene products. With a large number of simulations, we can then perform hypothesis testing, and draw solid conclusions. As an example, here is some of the output we can obtain after running 500 simulations:</p>
+<p><img alt="A plot of the 500 simulations" src="../images/colsystem_simulations_500trials.png" /></p>
+<p><img alt="DFR protein abundance in the two plants" src="../images/colsystem_simulations_fdr_histogram.png" /></p>
+<p>However, you will have noticed that each simulation takes a long time to run! sismonr records the simulation running time (in seconds) for each individual:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">sim</span><span class="o">$</span><span class="n">runningtime</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>[1] 187.59 178.13
+</code></pre></div>
+<p>which corresponds to approx. 3 minutes per simulation. So if we were to run, say, 2,000 simulations for each plant, it would take approximately 100 hours<sup>*</sup> ! This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.</p>
+<p><sup>*</sup> : actually, this estimate depends on how you run these 500 simulations. The running time of 3 minutes per simulation includes the time to transform the sismonr GRN object into a list of biochemical reactions, and to compute for each <em>in silico</em> individual the different reaction rates. If you were to run 2 simulations for each plant, with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">sim</span> <span class="o">&lt;-</span> <span class="nf">simulateInSilicoSystem</span><span class="p">(</span><span class="n">colsystem</span><span class="p">,</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>                              <span class="n">plants</span><span class="p">,</span> 
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>                              <span class="n">simtime</span> <span class="o">=</span> <span class="m">1200</span><span class="p">,</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>                              <span class="n">ntrials</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</code></pre></div>
+<p>you should notice that it doesn't take much more time than to run only one simulation per plant. This will not hold however if you start running a large number of simulations (e.g. setting <code>ntrials = 10</code> will take more time to run).</p>
+<hr />
+<p style="text-align:left;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1. Introduction</a></b>
+    <span style="float:right;">
+     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html" style="background: var(--bs-green);font-weight:bold">3. Scaling up your work &raquo;</a></b>
+    </span>
+</p>
+
+<p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../01_introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              1. Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../03_scaling_up/" class="md-footer__link md-footer__link--next" aria-label="Next: 3. Scaling up your work" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              3. Scaling up your work
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

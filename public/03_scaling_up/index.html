@@ -10,21 +10,21 @@
         <meta name="author" content="Genomics Aotearoa & NeSI">
       
       
-        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/03_scaling_up/">
       
-      <link rel="icon" href="images/nesi_ga.png">
+      <link rel="icon" href="../images/nesi_ga.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
     
     
       
-        <title>Scaling Gene Regulatory Networks Simulations</title>
+        <title>3. Scaling up your work - Scaling Gene Regulatory Networks Simulations</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.1d29e8d0.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
       
       
@@ -40,7 +40,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scaling-gene-regulatory-networks-simulations" class="md-skip">
+        <a href="#3-scaling-up-your-work" class="md-skip">
           Skip to content
         </a>
       
@@ -82,9 +82,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Scaling Gene Regulatory Networks Simulations" class="md-header__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
+    <a href=".." title="Scaling Gene Regulatory Networks Simulations" class="md-header__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
       
-  <img src="images/nesi_ga.png" alt="logo">
+  <img src="../images/nesi_ga.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              3. Scaling up your work
             
           </span>
         </div>
@@ -210,9 +210,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Scaling Gene Regulatory Networks Simulations" class="md-nav__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
+    <a href=".." title="Scaling Gene Regulatory Networks Simulations" class="md-nav__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
       
-  <img src="images/nesi_ga.png" alt="logo">
+  <img src="../images/nesi_ga.png" alt="logo">
 
     </a>
     Scaling Gene Regulatory Networks Simulations
@@ -238,6 +238,51 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_introduction/" class="md-nav__link">
+        1. Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_getting_started_sismonr/" class="md-nav__link">
+        2. Getting started with sismonr
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -250,12 +295,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Home
+          3. Scaling up your work
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        Home
+      <a href="./" class="md-nav__link md-nav__link--active">
+        3. Scaling up your work
       </a>
       
         
@@ -274,37 +319,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#outline" class="md-nav__link">
+    Outline
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    Learning objectives
+  <a href="#introduction-to-hpc" class="md-nav__link">
+    Introduction to HPC
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to HPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-high-performance-computing" class="md-nav__link">
+    Defining high-performance computing
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#some-of-the-things-we-wont-cover-in-this-workshop" class="md-nav__link">
-    Some of the things we won't cover in this workshop
+        
+          <li class="md-nav__item">
+  <a href="#hpc-architectures" class="md-nav__link">
+    HPC architectures
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#content" class="md-nav__link">
-    Content
+        
+          <li class="md-nav__item">
+  <a href="#nesi-mahuika-cluster-architecture" class="md-nav__link">
+    NeSI Mahuika Cluster architecture
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#schedule" class="md-nav__link">
-    Schedule
+        
+          <li class="md-nav__item">
+  <a href="#accessing-software-via-modules" class="md-nav__link">
+    Accessing software via modules
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -324,52 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="01_introduction/" class="md-nav__link">
-        1. Introduction
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="02_getting_started_sismonr/" class="md-nav__link">
-        2. Getting started with sismonr
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="03_scaling_up/" class="md-nav__link">
-        3. Scaling up your work
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="04_working_with_job_scheduler/" class="md-nav__link">
+      <a href="../04_working_with_job_scheduler/" class="md-nav__link">
         4. Working with job scheduler
       </a>
     </li>
@@ -384,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="05_parallel_job_arrays/" class="md-nav__link">
+      <a href="../05_parallel_job_arrays/" class="md-nav__link">
         5. Parallel Job Arrays
       </a>
     </li>
@@ -399,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="06_post_processing/" class="md-nav__link">
+      <a href="../06_post_processing/" class="md-nav__link">
         6. Post-processing
       </a>
     </li>
@@ -414,7 +427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="07_supplementary/" class="md-nav__link">
+      <a href="../07_supplementary/" class="md-nav__link">
         Supplementary
       </a>
     </li>
@@ -429,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="08_supplementary_2/" class="md-nav__link">
+      <a href="../08_supplementary_2/" class="md-nav__link">
         Supplementary 2
       </a>
     </li>
@@ -463,37 +476,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#outline" class="md-nav__link">
+    Outline
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    Learning objectives
+  <a href="#introduction-to-hpc" class="md-nav__link">
+    Introduction to HPC
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to HPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-high-performance-computing" class="md-nav__link">
+    Defining high-performance computing
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#some-of-the-things-we-wont-cover-in-this-workshop" class="md-nav__link">
-    Some of the things we won't cover in this workshop
+        
+          <li class="md-nav__item">
+  <a href="#hpc-architectures" class="md-nav__link">
+    HPC architectures
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#content" class="md-nav__link">
-    Content
+        
+          <li class="md-nav__item">
+  <a href="#nesi-mahuika-cluster-architecture" class="md-nav__link">
+    NeSI Mahuika Cluster architecture
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#schedule" class="md-nav__link">
-    Schedule
+        
+          <li class="md-nav__item">
+  <a href="#accessing-software-via-modules" class="md-nav__link">
+    Accessing software via modules
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -509,105 +535,110 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git/edit/master/docs/03_scaling_up.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<p><center></p>
-<h1 id="scaling-gene-regulatory-networks-simulations"><strong>Scaling Gene Regulatory Networks Simulations</strong><a class="headerlink" href="#scaling-gene-regulatory-networks-simulations" title="Permanent link">&para;</a></h1>
-<p></center></p>
-<p><center>
-<img alt="image" src="images/2022_geneRegEditASPECTOriginal.png" />
-</center></p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h1 id="3-scaling-up-your-work">3. Scaling up your work<a class="headerlink" href="#3-scaling-up-your-work" title="Permanent link">&para;</a></h1>
+<p style="text-align:left;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html" style="background: var(--bs-green);font-weight:bold">&laquo; 2. Getting started with sismonr</a></b>
+    <span style="float:right;">
+     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html" style="background: var(--bs-green);font-weight:bold">4. Working with job Scheduler &raquo;</a></b>
+    </span>
+</p>
+
+<h2 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Familiarity with bash and R</li>
-<li>Basic molecular biology knowledge preferred (gene expression and regulation)</li>
-<li>HPC knowledge preferred</li>
+<li toc="toc">Do not remove this line (it will not be displayed)</li>
 </ul>
-<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>By the end of this workshop, participants should be able to:</p>
+<h2 id="introduction-to-hpc">Introduction to HPC<a class="headerlink" href="#introduction-to-hpc" title="Permanent link">&para;</a></h2>
+<h3 id="defining-high-performance-computing">Defining high-performance computing<a class="headerlink" href="#defining-high-performance-computing" title="Permanent link">&para;</a></h3>
+<p>The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers (HPC). However, this leads to our next question what is a HPC .</p>
+<blockquote>
+<blockquote>
+<p>A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.</p>
+</blockquote>
+</blockquote>
+<p><br></p>
+<p>While modern computers can do a lot (and a lot more than their equivalents 10-20 years ago), there are limits to what they can do and the speed at which they are able to do this. One way to overcome these limits is to pool computers together to create a cluster of computers. These pooled resources can then be used to run software that requires more total memory, or need more processors to complete in a reasonable time.</p>
+
+<p>One way to do this is to take a group of computers and link them together via a network switch. Consider a case where you have five 4-core computers. By connecting them together, you could run jobs on 20 cores, which could result in your software running faster.</p>
+
+<h3 id="hpc-architectures">HPC architectures<a class="headerlink" href="#hpc-architectures" title="Permanent link">&para;</a></h3>
+<p>Most HPC systems follow the ideas described above of taking many computers and linking them via network switches. What distinguishes a high-performance computer from the computer clusters described above is:</p>
+<p><br></p>
 <ul>
-<li>explain the concept of modelling and simulations, and how simulations can help answer research questions;</li>
-<li>briefly describe the main steps of gene expression, and explain what is a Gene Regulatory Network;</li>
-<li>list several classes of GRN models;</li>
-<li>generate a small random GRN with the sismonr package and simulate the expression of its gene;</li>
-<li>submit and manage jobs on a cluster using a scheduler and use software through environment modules;</li>
-<li>automate a large number of tasks on a HPC using array jobs.</li>
+<li>The number of computers/nodes </li>
+<li>The strength of each individual computer/node </li>
+<li>The network interconnect – this dictates the communication speed between nodes. The faster this speed is, the more a group of individual nodes will act like a unit.</li>
 </ul>
-<h2 id="some-of-the-things-we-wont-cover-in-this-workshop">Some of the things we won't cover in this workshop<a class="headerlink" href="#some-of-the-things-we-wont-cover-in-this-workshop" title="Permanent link">&para;</a></h2>
+<h3 id="nesi-mahuika-cluster-architecture">NeSI Mahuika Cluster architecture<a class="headerlink" href="#nesi-mahuika-cluster-architecture" title="Permanent link">&para;</a></h3>
+<p>NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different node types. The ones visible to researchers are:</p>
 <ul>
-<li>how to construct a mathematical or statistical model for a specific biological system of interest;</li>
-<li>How to estimate model parameters based on experimental data;</li>
-<li>How to reconstruct a GRN from experimental data;</li>
-<li>Any questions we don't have an answer for :)</li>
+<li>Login nodes</li>
+<li>Compute nodes
+<br></li>
 </ul>
-<h2 id="content">Content<a class="headerlink" href="#content" title="Permanent link">&para;</a></h2>
-<p>Before getting started, have a look at the <a href="./workshop_material/07_supplementary.md">Supplementary data</a> for instructions on how to connect to NeSI Mahuika Jupyter.</p>
-<ol>
-<li><a href="./workshop_material/01_introduction.md">Introduction</a></li>
-<li><a href="./workshop_material/02_getting_started_sismonr.md">Getting started with sismonr</a></li>
-<li><a href="./workshop_material/03_scaling_up.md">Scaling up your work</a></li>
-<li><a href="./workshop_material/04_working_with_job_scheduler.md">Working with job scheduler</a></li>
-<li><a href="./workshop_material/05_parallel_job_arrays.md">Parallel job arrays</a></li>
-<li><a href="./workshop_material/06_post_processing.md">Post-processing</a></li>
-<li><a href="./workshop_material/07_supplementary.md">Supplementary-material</a></li>
-<li><a href="./workshop_material/08_supplementary_2.md">Supplementary-material-2</a></li>
-</ol>
-<h2 id="schedule">Schedule<a class="headerlink" href="#schedule" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Day</th>
-<th>Time</th>
-<th>Topic</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1<sup>st</sup> day:</td>
-<td>10am-12:30pm</td>
-<td>1. Introduction</td>
-</tr>
-<tr>
-<td></td>
-<td>12:30pm-1:30pm</td>
-<td><em>Lunch break</em></td>
-</tr>
-<tr>
-<td></td>
-<td>1:30pm-2:30pm</td>
-<td>2. Getting started with sismonr</td>
-</tr>
-<tr>
-<td></td>
-<td>2:30pm-4pm</td>
-<td>3. Scaling up your work<br>4. Working with job scheduler</td>
-</tr>
-<tr>
-<td>2<sup>nd</sup> day:</td>
-<td>10am-12pm</td>
-<td>5. Automating large number of tasks</td>
-</tr>
-<tr>
-<td></td>
-<td>12pm-1pm</td>
-<td><em>Lunch break</em></td>
-</tr>
-<tr>
-<td></td>
-<td>1pm-3pm</td>
-<td>5. Post-processing</td>
-</tr>
-<tr>
-<td></td>
-<td>3pm-4pm</td>
-<td>Question time</td>
-</tr>
-</tbody>
-</table>
+<p align="center"><img src="nesi_images/hpc_arch_new_fixalignment.png" alt="drawing" width="700"/></p>
+<p><br></p>
+<p><br></p>
+<p align="center"><img src="nesi_images/node_overview.png" alt="drawing" width="500"/></p>
+<p><br>
+In reality</p>
+<p align="center"><img src="nesi_images/mahuika_maui_real.png" alt="drawing" width="700"/></p>
+
+<h3 id="accessing-software-via-modules">Accessing software via modules<a class="headerlink" href="#accessing-software-via-modules" title="Permanent link">&para;</a></h3>
+<p>On a high-performance computing system, it is quite rare that the software we want to use is available when we log in. It is installed, but we will need to “load” it before it can run.</p>
+<p>Before we start using individual software packages, however, we should understand the reasoning behind this approach. The three biggest factors are:</p>
+<ul>
+<li>software incompatibilities</li>
+<li>versioning</li>
+<li>dependencies</li>
+</ul>
+<p>One of the workarounds for this issue is Environment modules. A module is a self-contained description of a software package — it contains the settings required to run a software package and, usually, encodes required dependencies on other software packages.</p>
+<p>There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is <code>Lmod</code> where the <code>module</code> command is used to interact with environment modules.</p>
+<p><strong>Common commands - module</strong></p>
+<ul>
+<li>View available modules</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#View all modules</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ module avail
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># View all modules which match the keyword in their name</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>$ module avail KEYWORD
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># View all modules which match the keyword in their name or description</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>$ module spider KEYWORD
+</code></pre></div>
+* Load a specific program</p>
+<div class="highlight"><pre><span></span><code>&gt;Note: All modules on NeSI have version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ module load MY_APPLICATION
+</code></pre></div>
+<ul>
+<li>Unload all current modules</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ module purge
+</code></pre></div>
+<blockquote>
+<p>Please <strong>do not</strong> use <code>$module --force purge</code></p>
+</blockquote>
+<ul>
+<li>Swap a currently loaded module for a different one</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ module switch CURRENT_MODULE DESIRED_MODULE
+</code></pre></div>
+<hr />
+<p style="text-align:left;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html" style="background: var(--bs-green);font-weight:bold">&laquo; 2. Getting started with sismonr</a></b>
+    <span style="float:right;">
+     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html" style="background: var(--bs-green);font-weight:bold">4. Working with job Scheduler &raquo;</a></b>
+    </span>
+</p>
+
+<p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
 
               
             </article>
@@ -622,15 +653,30 @@
     
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
+        
+        <a href="../02_getting_started_sismonr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Getting started with sismonr" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              2. Getting started with sismonr
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="01_introduction/" class="md-footer__link md-footer__link--next" aria-label="Next: 1. Introduction" rel="next">
+        <a href="../04_working_with_job_scheduler/" class="md-footer__link md-footer__link--next" aria-label="Next: 4. Working with job scheduler" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              1. Introduction
+              4. Working with job scheduler
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -660,12 +706,12 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
       
-        <script src="javascripts/mathjax.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
