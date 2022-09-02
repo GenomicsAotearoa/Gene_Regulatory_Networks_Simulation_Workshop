@@ -288,7 +288,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     * Once the job is completed, take a look at the `slurmout/` directory. There should be 5 x .out files
 
 
-???+ question "Exercise 5.4"
+??? question "Exercise 5.4"
 
 
 
