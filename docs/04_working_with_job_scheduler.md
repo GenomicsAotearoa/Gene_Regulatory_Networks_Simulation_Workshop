@@ -264,7 +264,7 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 
 
 
-### Exercise 4.5 😬	
+???+ question "Exercise 4.5 😬"	
 {% capture e4dot5 %}
 
 
