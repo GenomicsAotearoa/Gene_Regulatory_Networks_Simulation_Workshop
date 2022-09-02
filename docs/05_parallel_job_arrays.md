@@ -360,11 +360,4 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 
 ---
 
-<p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html">&laquo;  4. Working with job scheduler</a></b>
-    <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/06_post_processing.html">6. Post-processing &raquo;</a></b>
-    </span>
-</p>
-
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
