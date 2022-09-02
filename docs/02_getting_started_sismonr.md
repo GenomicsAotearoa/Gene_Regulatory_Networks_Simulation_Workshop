@@ -39,9 +39,9 @@ Before opening a Jupyter Notebook, we will create a folder to save our work from
 
 Now we can open a sismonr Jupyter Notebook:
 
-<p>Open sismonr/R-4.1.0 kernel
+
 <br>![image](./nesi_images/sismonr_kernel.png){width="900"}</br>
-</p>
+
 
 Before getting started, here are some abbreviations that are often used within sismonr:
 
@@ -66,7 +66,7 @@ Before getting started, here are some abbreviations that are often used within s
 
 We will start by generating a small random GRN with sismonr, using the function `createInSilicoSystem()`.
 
-``` r
+```r
 library(sismonr)
 set.seed(12) # important for reproducibility of "random" results in R!
 small_grn <- createInSilicoSystem(G = 10, # number of genes in the GRN
@@ -78,7 +78,7 @@ Note that the first time you run a sismonr command, you might have to wait a few
 
 You can visualise the GRN you just created with the following command (the resulting graph is interactive, try to hover over nodes or edges with your mouse, move nodes or click on nodes):
 
-``` r
+```r
 plotGRN(small_grn)
 ```
 
@@ -129,7 +129,7 @@ Note that you can modify the properties of your system by changing the values in
 
 The `createInSilicoSystem` function accepts many arguments allowing the user to customise the GRN to be created. You can find a list of these by tying:
 
-``` r
+```r
 ?insilicosystemargs 
 ```
 
