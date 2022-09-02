@@ -215,9 +215,6 @@ $ sbatch example1_arraysum.sl
 >Mem Efficiency: 21.94%  224.68 MB of 1.00 GB
 >```
 
-{% endcapture %}
-
-{% include exercise.html title="e4dot3" content=e4dot3%}
 ---
 
 ## slurm profiling
