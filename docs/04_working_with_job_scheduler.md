@@ -10,19 +10,19 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
 * Manages the reservation of resources and job execution on these resources 
 * Allows users to “fire and forget” large, long calculations or many jobs (“production runs”)
 
-Why do we need a scheduler ?
+!!! info "Why do we need a scheduler ?"
 
-* To ensure the machine is utilised as fully as possible
-* To ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
-* To track usage - for accounting and budget control
-* To mediate access to other resources e.g. software licences
+    * To ensure the machine is utilised as fully as possible
+    * To ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
+    * To track usage - for accounting and budget control
+    * To mediate access to other resources e.g. software licences
 
-Commonly used schedulers
+    **Commonly used schedulers**
 
-* Slurm
-* PBS , Torque
-* Grid Engine
-* LSF – IBM Systems
+    * Slurm
+    * PBS , Torque
+    * Grid Engine
+    * LSF – IBM Systems
 
 
 All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. The main commands you will use with Slurm on NeSI Mahuika cluster are:
@@ -44,31 +44,28 @@ All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* sch
 A quick note on `sinfo`(Query the current state of nodes) which is not a command a researcher will use regularly but helps HPC admins and support staff with monitoring.
 
 
-### Exercise 4.1
-{% capture e4dot1 %}
-Let's run the following commands and discuss the outputs
+???+ question "Exercise 4.1"
 
-```bash
-#summary of current states of compute nodes known to the scheduler
-$ sinfo
+     Let's run the following commands and discuss the outputs
 
-#similar to above but expanded
-$ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
+     ```bash
+     #summary of current states of compute nodes known to the scheduler
+     $ sinfo
 
-#will print a long output as it is one row per compute node in the cluster
-$ sinfo -N -l
+     #similar to above but expanded
+     $ sinfo --format="%16P %.8m %.5a %10T %.5D %80N"
 
-#Explore the capacity of a compute node
-$ sinfo -n wch001 -o "%n %c %m"
-```
-{% endcapture %}
+     #will print a long output as it is one row per compute node in the cluster
+     $ sinfo -N -l
 
-{% include exercise.html title="e4dot1" content=e4dot1%}
-      
+     #Explore the capacity of a compute node
+     $ sinfo -n wch001 -o "%n %c %m"
+     ```
+
 ## Life cycle of a slurm job
 
 <br>
-<p align="center"><img src="nesi_images/batch_system_flow .png" alt="drawing" width="1000"/></p> 
+![image](./nesi_images/batch_system_flow%20.png)
 <br>
 
 
