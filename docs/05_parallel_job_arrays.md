@@ -121,84 +121,73 @@ This means, that in contrast to the language-specific parallelism methods requir
         ``` 
 
 
-???+ abstract "MPI (Message Passing Interface) - (Optional)"
+??? abstract "MPI (Message Passing Interface) - (Optional)"
 
     MPI is a specification for the developers and users of message passing libraries. By itself, it is NOT a library - but rather the specification of what such a library should be.
-    
+
     MPI primarily addresses the message-passing parallel programming model: data is moved from the address space of one process to that of another process through cooperative operations on each process.
-    
+
     Simply stated, the goal of the Message Passing Interface is to provide a widely used standard for writing message passing programs. The interface attempts to be:
-    
+
     * Practical
     * Portable
+
     * Efficient
-    * Flexible
+    * Flexible    
     
-    ### Exercise 5.2
-    {% capture e5dot2 %}
-    
-    
-    >Let's try out a MPI example 
-    >
-    >```bash
-    >#make sure you have changed the current working directory to 5_parallel/mpi
-    >$ pwd 
-    >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/mpi
-    >
-    >#copy the pre-compiled mpi program to current working directory
-    >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/mpi/mpi_helloworld ./
-    >
-    >#use a text editor of choice to create a file named mpi_hw.sl - we will use nano here
-    >$ nano mpi_hw.sl
-    >```
-    >**Content of  `mpi_hw.sl` is as below**
-    >```bash
-    >#!/bin/bash
-    >
-    >#SBATCH --account       nesi02659
-    >#SBATCH --job-name      mpi_helloworld
-    >#SBATCH --cpus-per-task 1
-    >#SBATCH --ntasks        6
-    >#SBATCH --nodes         2
-    >#SBATCH --mem-per-cpu   100
-    >#SBATCH --output        mpi_hw_%j.out
-    >#SBATCH --export        none
-    >unset SLURM_MEM_PER_NODE
-    >export SLURM_EXPORT_ENV=ALL
-    >
-    >module purge && module load OpenMPI/4.1.1-GCC-9.2.0
-    >
-    >srun ./mpi_helloworld
-    >```
-    >>**Explanation**
-    >>`srun` command executes the program. The  `--ntasks` is the number of MPI processes to run.
-    >>
-    >>The script executed 6 processes and the incremented integer values in .out file will show the communication between the processes. These proocesses will be *distributed* across two compute nodes (`--nodes 2`).
-    >
-    >* Submit the script with `sbatch mpi_hw.sl` and review the content of  .out file *mpi_hw_jobid.out* upon completion .i.e.
-    > ```bash
-    >$ sbatch mpi_hw.sl
-    >```
-    >
-    >**NOTE**: .out file will print 6 x  `Hello world from processor wbn125, rank 4 out of 6 processors` message (or something along those lines)
-    * `wbn125` - this is the compute node ID. It will be different for everyone as we have hundreds of compute nodes and this job will land on two (`--nodes 2`)  out of those hundreds. 
-    * `processor` - actual instance of the program that are running 
-    * `rank` - MPI allows you to create logical **groups** of processes, and in each group, a process is identified by its **rank**. This is an integer in the range of [0,N-1] where N is the size of the group. 
-    
-    {% endcapture %}
-    
-    {% include exercise.html title="e5dot2" content=e5dot2%}
-    
-    {% endcapture %}
-    
-    {% include exercise.html title="e5dot02" content=e5dot02%}
-    
-## Parallel Performance  (Optional)
-{% capture e5dot03 %}
+    ??? question "Exercise 5.2"
 
-In general, there are two advantages to running applications in parallel: (1) applications will run more quickly and we can get our solutions faster, and (2) we can solve larger, more complex problems.
+        Let's try out a MPI example 
+    
+        ```bash
 
-In an ideal world, if we increase the number of cores we are using by a factor of 10, we should be able to either get the solution to our current problem 10 times faster, or to run a system 10 times bigger in the same amount of time as now.
+        #make sure you have changed the current working directory to 5_parallel/mpi
+        $ pwd 
+        /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/mpi
+
+        #copy the pre-compiled mpi program to current working directory
+        $ cp /nesi/project/nesi02659/sismonr_workshop/dev/mpi/mpi_helloworld ./
+
+        #use a text editor of choice to create a file named mpi_hw.sl - we will use nano here
+        $ nano mpi_hw.sl
+        ```
+        **Content of  `mpi_hw.sl` is as below**
+        ```bash
+        #!/bin/bash
+
+        #SBATCH --account       nesi02659
+        #SBATCH --job-name      mpi_helloworld
+        #SBATCH --cpus-per-task 1
+        #SBATCH --ntasks        6
+        #SBATCH --nodes         2
+        #SBATCH --mem-per-cpu   100
+        #SBATCH --output        mpi_hw_%j.out
+        #SBATCH --export        none
+        unset SLURM_MEM_PER_NODE
+        export SLURM_EXPORT_ENV=ALL
+
+        module purge && module load OpenMPI/4.1.1-GCC-9.2.0
+
+        srun ./mpi_helloworld
+        ```
+        >**Explanation**
+        >`srun` command executes the program. The  `--ntasks` is the number of MPI processes to run.
+        >
+        >The script executed 6 processes and the incremented integer values in .out file will show the communication between the processes. These proocesses will be *distributed* across two compute nodes (`--nodes 2`).
+
+        * Submit the script with `sbatch mpi_hw.sl` and review the content of  .out file *mpi_hw_jobid.out* upon completion .i.e.
+         ```bash
+        $ sbatch mpi_hw.sl
+        ```
+
+        **NOTE**: .out file will print 6 x  `Hello world from processor wbn125, rank 4 out of 6 processors` message (or something along those lines)
+         `wbn125` - this is the compute node ID. It will be different for everyone as we have hundreds of compute nodes and this job will land on two (`--nodes 2`)  out of those hundreds. 
+         `processor` - actual instance of the program that are running 
+
+        * `rank` - MPI allows you to create logical **groups** of processes, and in each group, a process is identified by its **rank**. This is an integer in the range of [0,N-1] where N is the size of the group. 
+
+In general, there are two advantages to running applications in parallel: (1) applications will run more quickly and we can get our solutions faster, and (2) we can solve larger, more complex problems.In an ideal world, if we increase the number of cores we are using by a factor of 10, we should be able to either get the solution to our current problem 10 times faster, or to run a system 10 times bigger in the same amount of time as now.
+
 
 Unfortunately, this is often not the case…
 
