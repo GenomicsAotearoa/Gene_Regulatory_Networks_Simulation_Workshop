@@ -200,13 +200,13 @@ As mentioned previously, simulators rely on a set of rules to convert the GRN in
 
 In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is no correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. As an example, the sismonr uses the following rules:
 
-<img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/>
 
-<small>This is how sismonr models different type of expression regulation. Each arrow $i \rightarrow j$ in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small>
+![image](./images/sismonr_stochastic_system.png){width="700"}
+<br><center><small>This is how sismonr models different type of expression regulation. Each arrow $i \rightarrow j$ in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small></center></br>
 
 For example, the following small GRN:
 
-<img src="images/example_GRN1.png" alt="A small GRN with 3 genes" width="500"/>
+![image](./images/example_GRN1.png){width="500"}
 
 <small>A small GRN with 3 genes; gene 1 activates the transcription of gene 2; gene 2 activates the transcription of gene 3; and gene 3 represses the transcription of gene 1. </small>
 
