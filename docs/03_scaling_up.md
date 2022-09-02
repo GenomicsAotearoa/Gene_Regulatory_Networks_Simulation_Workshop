@@ -1,23 +1,14 @@
 # 3. Scaling up your work
 
-<p style="text-align:left;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html" style="background: var(--bs-green);font-weight:bold">&laquo; 2. Getting started with sismonr</a></b>
-    <span style="float:right;">
-     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html" style="background: var(--bs-green);font-weight:bold">4. Working with job Scheduler &raquo;</a></b>
-    </span>
-</p>
-
-## Outline
-* Do not remove this line (it will not be displayed)
-{:toc}
-
 ## Introduction to HPC
 
 ### Defining high-performance computing
 
 The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers (HPC). However, this leads to our next question what is a HPC .
 
->>A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.
+!!! info "HPC"
+
+    A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.
 
 <br>
 <p>While modern computers can do a lot (and a lot more than their equivalents 10-20 years ago), there are limits to what they can do and the speed at which they are able to do this. One way to overcome these limits is to pool computers together to create a cluster of computers. These pooled resources can then be used to run software that requires more total memory, or need more processors to complete in a reasonable time.</p>
@@ -26,12 +17,14 @@ The simplest way of defining high-performance computing is by saying that it is 
 
 ### HPC architectures
 
-<p>Most HPC systems follow the ideas described above of taking many computers and linking them via network switches. What distinguishes a high-performance computer from the computer clusters described above is:</p>
+<p>Most HPC systems follow the ideas described above of taking many computers and linking them via network switches.  described above is:</p>
 <br>
 
-* The number of computers/nodes 
-* The strength of each individual computer/node 
-* The network interconnect – this dictates the communication speed between nodes. The faster this speed is, the more a group of individual nodes will act like a unit.
+!!! info "What distinguishes a high-performance computer from the computer clusters"
+
+    * The number of computers/nodes 
+    * The strength of each individual computer/node 
+    * The network interconnect – this dictates the communication speed between nodes. The faster this speed is, the more a group of individual nodes will act like a unit.
 
 
 ### NeSI Mahuika Cluster architecture
@@ -41,15 +34,18 @@ NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different n
 * Login nodes
 * Compute nodes
 <br>
-<p align="center"><img src="nesi_images/hpc_arch_new_fixalignment.png" alt="drawing" width="700"/></p> 
+![image](./nesi_images/hpc_arch_new_fixalignment.png){width="700"}
 <br>
 
-<br>
-<p align="center"><img src="nesi_images/node_overview.png" alt="drawing" width="500"/></p> 
-<br>
+<br><center>
+![image](./nesi_images/node_overview.png){width="500"}
+</center><br>
+
 In reality
 
-<p align="center"><img src="nesi_images/mahuika_maui_real.png" alt="drawing" width="700"/></p>
+<center>
+![image](./nesi_images/mahuika_maui_real.png){width="700"}
+</center>
 
 ### Accessing software via modules
 
