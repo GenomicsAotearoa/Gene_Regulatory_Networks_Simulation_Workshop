@@ -1,17 +1,6 @@
 # 1. Introduction
 
-<p style="text-align:left;">
-  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">&laquo; Back to homepage</a></b> 
-  <span style="float:right;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &raquo;</a></b>
-  </span>
-</p>
-
-## Outline
-* Do not remove this line (it will not be displayed)
-{:toc}
-
-Slides are available [here](/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/workshop_slides.html).
+Slides are available [here](../Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/workshop_slides.html).
 
 ## Why simulations are important in research
 
@@ -132,9 +121,8 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 Each type of model has its own advantages and drawbacks.
 
-<img src="images/comparison_type_models.png" alt="Summary of the main differences between different classes of GRN models" width="700"/>
-
-<small>A very schematic representation of some of the differences between different classes of GRN models.</small>
+![image](./images/comparison_type_models.png){width="700"}
+<br<<center><small>A very schematic representation of some of the differences between different classes of GRN models.</small></center></br>
 
 In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restricts the simulations to models of GRNs of small size. In a next section, you will learn more about how to simulate expression data from stochastic models using the Stochastic Simulation Algorithm.
 
@@ -162,9 +150,9 @@ A stochastic model consists of:
 - a list of biochemical reactions that can occur in the system: e.g. substrate 1 (S1) binds with enzyme A (EA) to form a complex (C1A), represented on the form S1 + EA → C1A
 - a list of constant rates, one per reaction, that represent for  a given reaction the probability of one molecule of each reactant colliding and undergoing the reaction in the next time step.
 
-<img src="images/list_reactions_species_example.png" alt="Example of a stochastic model." width="700"/>
 
-<small>Example of a stochastic model.</small>
+![image](./images/list_reactions_species_example.png){width="700"}
+<br><center><small>Example of a stochastic model.</small></center></br>
 
 Mathematically, the biochemical reactions are usually represented with a **stoichiometry matrix**, in which each row corresponds to a species and each column to a reaction. The cells indicate the change in abundance of the different species resulting from one occurrence of the reactions; negative values indicate the reactants of the reactions, while positive values indicate their products.
 
@@ -175,9 +163,9 @@ Mathematically, the biochemical reactions are usually represented with a **stoic
 We can represent the state of the system at a given time point $t$ as a vector of species abundance: $\mathbf{X}(t) = \left( X_1(t), \ldots, X_N(t) \right)$, where $X_i(t)$ is the abundance of species $i$ at time $t$. We already know what the system state is at time point $t = 0$: this is the initial abundance of the species that we decided on. The goal of  the simulation is to simulate the system state over a period of time (say until time point $t_{max}$):
 
 
-<img src="images/system_state_example.png" alt="The system state." width="700"/>
 
-<small>The system state.</small>
+![image](./images/system_state_example.png){width="700"}
+<br><center><small>The system state.</small></center></br>
 
 
 In order to do that, we need to simulate the series of occurrence of the reactions. But how do we know which reaction will occur first? and when? We can answer these questions by calculating for each reaction its propensity: the probability of the reaction to "fire" (to occur) in the next unit (small) time-step. The propensity of a reaction depends on:
@@ -191,9 +179,8 @@ $p_j(\mathbf{X}) = r_i \times \sum\limits_{\text{reactants }j} X_j(t)$
 
 Which gives, for the reactions in our example:
 
-<img src="images/propensities_example.png" alt="Propensities of some of the reactions." width="700"/>
-
-<small>Propensities of some of the reactions.</small>
+![image](./images/propensities_example.png){width="700}
+<br><center><small>Propensities of some of the reactions.</small></center></br>
 
 A typical Stochastic Simulation Algorithm will generate the simulation as follows:
 
@@ -207,9 +194,9 @@ A typical Stochastic Simulation Algorithm will generate the simulation as follow
 An example is shown below: 
 
 
-<img src="images/steps_ssa_example.png" alt="Example of one iteration of the SSA." width="700"/>
 
-<small>Example of one iteration of the SSA.</small>
+![image](./images/steps_ssa_example.png){width="700"}
+<br><center><small>Example of one iteration of the SSA.</small></center></br>
 
 This means that the Stochastic Simulation Algorithm simulates the occurrence of every single reaction in the system. The downside of that is that if several reactions have high propensities, then the interval of time sampled at each iteration of the algorithm will be really small, and so the algorithm will have to go through many iterations before reaching the end of the simulation. This occurs typically when some of the species are present in very high abundance in the system.
 
@@ -227,11 +214,3 @@ The sismonr packages uses under the hood the Julia module [BioSimulator.jl](http
 
 
 ---
-
-<p align="right">
-  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html">2. Getting started with sismonr &raquo;</a></b>
-</p>
-
-<p align="center">
-  <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b>
-</p>
