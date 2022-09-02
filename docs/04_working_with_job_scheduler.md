@@ -221,7 +221,7 @@ Understanding the resources you have available and how to use them most efficien
 
 Although `nn_seff` command is a quick and easy way to determine the resource utilisation, it relies on **peak** values (data gets recorded every 30 seconds) which doesn't allows us to examine resource usage over the run-time of the job. There are number of in-built/external tools to achieve the latter which will require some effort to understand its deployment, tracing and interpretation. Therefore, we will use **slurm native profiling** to evaluate resource usage over run-time. This is a simple and elegant solution.
 
-### Exercise 4.4
+???+ question "Exercise 4.4"
 {% capture e4dot4 %}
 
 ```bash
