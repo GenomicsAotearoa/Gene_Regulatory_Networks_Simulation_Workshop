@@ -35,11 +35,13 @@ Before opening a Jupyter Notebook, we will create a folder to save our work from
 
 <br>
 ![image](./nesi_images/getting_started_newfolder_2.png){width="900"}
-<br>
+</br>
 
 Now we can open a sismonr Jupyter Notebook:
 
-<p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="900"/></p>
+<p>Open sismonr/R-4.1.0 kernel
+<br>![image](./nesi_images/sismonr_kernel.png){width="900"}</br>
+</p>
 
 Before getting started, here are some abbreviations that are often used within sismonr:
 
