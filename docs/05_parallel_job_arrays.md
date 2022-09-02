@@ -162,9 +162,6 @@ This means, that in contrast to the language-specific parallelism methods requir
         #SBATCH --nodes         2
         #SBATCH --mem-per-cpu   100
         #SBATCH --output        mpi_hw_%j.out
-        #SBATCH --export        none
-        unset SLURM_MEM_PER_NODE
-        export SLURM_EXPORT_ENV=ALL
 
         module purge && module load OpenMPI/4.1.1-GCC-9.2.0
 
