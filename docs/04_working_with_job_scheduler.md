@@ -1,11 +1,5 @@
 # 4. Working with job scheduler
 
-<p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">&laquo; 3. Scaling up</a></b>
-    <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_parallel_job_arrays.html">5. Parallel Job Arrays  &raquo;</a></b>
-    </span>
-</p>
 
 ## Outline
 * Do not remove this line (it will not be displayed)
@@ -325,12 +319,5 @@ $ python profile_plot_Jul2020.py job_JOBID.h5
 
 {% include exercise.html title="e4dot5" content=e4dot5%}
 ---
-
-<p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html">&lt; 3. Scaling up</a></b>
-    <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_parallel_job_arrays.html">5. Parallel Job Arrays  &gt;</a></b>
-    </span>
-</p>
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
