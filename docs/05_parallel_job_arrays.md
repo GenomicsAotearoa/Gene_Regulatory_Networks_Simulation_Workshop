@@ -29,7 +29,7 @@ This means, that in contrast to the language-specific parallelism methods requir
      | Shared memory                                           | Distributed memory |
      |:-----                                                   |:----- |
      |In a shared memory model all processors have access to a pool of common memory that they can freely use.  | In a distributed memory model a separate segment of memory is available to each processor. Because memory isn’t shared inherently, information that must be shared between processes is sent over a network.|
-     |<img src="nesi_images/shared_memory.png" alt="drawing" width="500"/>|<img src="nesi_images/distributed_memory.png" alt="drawing" width="400"/>
+     |![image](./nesi_images/shared_memory.png){width="500"}|![image](./nesi_images/distributed_memory.png){width="400"}
      
      ---
      
