@@ -212,7 +212,7 @@ For example, the following small GRN:
 
 is transformed into the following set of reactions:
 
-``` r
+```r
 ## Binding/unbinding of regulators to/from their target's DNA
 Pr2reg1F + P1 --> Pr2reg1B 
 Pr2reg1B --> Pr2reg1F + P1 
@@ -330,8 +330,7 @@ For this workshop, we will work on a model for the [anthocyanin](https://en.wiki
 
 An animation of the GRN is presented below:
 
-
-<img src="images/anthocyanin_model_animation.gif" alt="The sismonr stochastic system rules" width="700"/>
+![image](./images/anthocyanin_model_animation.gif){width="700"}
 
 <small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png). </small>
 
@@ -351,7 +350,7 @@ Because the simulations are stochastic, it is better to simulate the GRN a large
 
 In order to save time, the GRN and the *in silico* plants have already been generated with sismonr. The R script used to generate it can be found [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/generate_sismonr_system.R). The sismonr objects representing the anthocyanin biosynthesis regulation network and the *in silico* plants are saved in the following `.RData` file:
 
-```
+```bash
 /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData
 ```
 
@@ -411,7 +410,7 @@ plotSimulation(sim$Simulation,
                colours = colours)
 ```
 
-<img src="images/colsystem_simulations_1trial.png" alt="Simulated gene expression for the anthocyanin biosynthesis regulation pathway" width="1000"/>
+![image](./images/colsystem_simulations_1trial.png){width="1000"}
 
 <small> Simulated gene expression for the anthocyanin biosynthesis regulation pathway. The legend shows under which form (i.e. RNA, protein or regulatory copmplex) each component can be found. For example, MYB is present in both the 'RNAs' and the 'Proteins' plots, while MBW1 is a regulatory complex, and thus only appears in the 'Complexes' plot. </small>
 
