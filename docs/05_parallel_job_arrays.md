@@ -54,82 +54,74 @@ This means, that in contrast to the language-specific parallelism methods requir
 
  
 ???+ abstract "Multi-threading (Optional)"
-{% capture e5dot01 %}
 
 
-Multi-threading is a method of parallelisation whereby the initial single thread of a process forks into a number of parallel threads, generally via a library such as OpenMP (Open MultiProcessing), TBB (Threading Building Blocks), or pthread (POSIX threads).
+    Multi-threading is a method of parallelisation whereby the initial single thread of a process forks into a number of parallel threads, generally via a library such as OpenMP (Open MultiProcessing), TBB (Threading Building Blocks), or pthread (POSIX threads).
 
-Let's take a look at the difference between a serial job and a multi-threaded job
+    Let's take a look at the difference between a serial job and a multi-threaded job
 
-<br>
-<p align="center"><img src="nesi_images/serial_process.png" alt="drawing" width="500"/></p> 
-<br>
-<br>
-<p align="center"><img src="nesi_images/multi_threading_process.png" alt="drawing" width="550"/></p> 
-<br>
+    <br>
+    <center>![image](./nesi_images/serial_process.png){width="500"}
+    <br>
+    <br>
+    <p align="center"><img src="nesi_images/multi_threading_process.png" alt="drawing" width="550"/></p> 
+    <br>
 
-### Exercise 5.1
-{% capture e5dot1 %}
+    ### Exercise 5.1
+    {% capture e5dot1 %}
 
 
->Let's try out a multi-threading example script with OpenMP which is an application programming interface that supports multi-platform shared-memory 
->
->```bash
->#confirm the working directory 
->$ pwd 
->/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
->
->#create a new directory for this episode, cd into it
->$ mkdir 5_parallel && cd 5_parallel
->
->#Create two more working directories for this exercise and the next one and change to `openmp` directory
->$ mkdir {openmp,mpi} && cd openmp
->
->#Copy the pre-compiled `omp_helloworld` to current working directory
->$ cp /nesi/project/nesi02659/sismonr_workshop/dev/openmp/omp_helloworld ./
->
->#use a text editor of choice to create a file named openmp_hw.sl - we will use nano here
->$ nano openmp_hw.sl
->```
->**Content of `openmp_hw.sl` is as below**
->
->```bash
->#!/bin/bash
->
->#SBATCH --account       nesi02659
->#SBATCH --job-name      openmp_helloworld
->#SBATCH --cpus-per-task 6
->#SBATCH --mem-per-cpu   100
->#SBATCH --output        openmp_hw_%j.out
->#SBATCH --export        none
->unset SLURM_MEM_PER_NODE
->export SLURM_EXPORT_ENV=ALL
->module purge
->
->export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
->
->srun ./omp_helloworld
->```
->>**Explanation**
->><p>Slurm by default doesn’t know what cores to assign to what process it runs. For threaded applications, you need to make sure that all the cores you request are on the same node.
->>
->>The OpenMP script is an example that all the cores are on the same node, and lets Slurm know which process gets the cores that you requested for threading.
->>
->>`OMP_NUM_THREADS` environment variable is used to specify the default number of threads to use in parallel regions. By adjusting the value of the `OMP_NUM_THREADS` environment variable, one can adjust the number of execution threads.</p>
->
->* Submit the script with `sbatch openmp_hw.sl` and review the content of  .out file *openmp_hw_jobid.out* upon completion .i.e.
->
->```bash
->$ sbatch openmp_hw.sl
->``` 
+    >Let's try out a multi-threading example script with OpenMP which is an application programming interface that supports multi-platform shared-memory 
+    >
+    >```bash
+    >#confirm the working directory 
+    >$ pwd 
+    >/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
+    >
+    >#create a new directory for this episode, cd into it
+    >$ mkdir 5_parallel && cd 5_parallel
+    >
+    >#Create two more working directories for this exercise and the next one and change to `openmp` directory
+    >$ mkdir {openmp,mpi} && cd openmp
+    >
+    >#Copy the pre-compiled `omp_helloworld` to current working directory
+    >$ cp /nesi/project/nesi02659/sismonr_workshop/dev/openmp/omp_helloworld ./
+    >
+    >#use a text editor of choice to create a file named openmp_hw.sl - we will use nano here
+    >$ nano openmp_hw.sl
+    >```
+    >**Content of `openmp_hw.sl` is as below**
+    >
+    >```bash
+    >#!/bin/bash
+    >
+    >#SBATCH --account       nesi02659
+    >#SBATCH --job-name      openmp_helloworld
+    >#SBATCH --cpus-per-task 6
+    >#SBATCH --mem-per-cpu   100
+    >#SBATCH --output        openmp_hw_%j.out
+    >#SBATCH --export        none
+    >unset SLURM_MEM_PER_NODE
+    >export SLURM_EXPORT_ENV=ALL
+    >module purge
+    >
+    >export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
+    >
+    >srun ./omp_helloworld
+    >```
+    >>**Explanation**
+    >><p>Slurm by default doesn’t know what cores to assign to what process it runs. For threaded applications, you need to make sure that all the cores you request are on the same node.
+    >>
+    >>The OpenMP script is an example that all the cores are on the same node, and lets Slurm know which process gets the cores that you requested for threading.
+    >>
+    >>`OMP_NUM_THREADS` environment variable is used to specify the default number of threads to use in parallel regions. By adjusting the value of the `OMP_NUM_THREADS` environment variable, one can adjust the number of execution threads.</p>
+    >
+    >* Submit the script with `sbatch openmp_hw.sl` and review the content of  .out file *openmp_hw_jobid.out* upon completion .i.e.
+    >
+    >```bash
+    >$ sbatch openmp_hw.sl
+    >``` 
 
-{% endcapture %}
-
-{% include exercise.html title="e5dot1" content=e5dot1%}
-
-{% endcapture %}
-
-{% include exercise.html title="e5dot01" content=e5dot01%}
 
 ## MPI (**M**essage **P**assing **I**nterface) - (Optional)
 {% capture e5dot02 %}
