@@ -1,0 +1,1170 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/05_parallel_job_arrays/">
+      
+      <link rel="icon" href="../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>5. Parallel Job Arrays - Scaling Gene Regulatory Networks Simulations</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5-parallel-job-arrays" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Scaling Gene Regulatory Networks Simulations" class="md-header__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Scaling Gene Regulatory Networks Simulations
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. Parallel Job Arrays
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Scaling Gene Regulatory Networks Simulations" class="md-nav__button md-logo" aria-label="Scaling Gene Regulatory Networks Simulations" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Scaling Gene Regulatory Networks Simulations
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_introduction/" class="md-nav__link">
+        1. Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_getting_started_sismonr/" class="md-nav__link">
+        2. Getting started with sismonr
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_scaling_up/" class="md-nav__link">
+        3. Scaling up your work
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_working_with_job_scheduler/" class="md-nav__link">
+        4. Working with job scheduler
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5. Parallel Job Arrays
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        5. Parallel Job Arrays
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-parallel-computing" class="md-nav__link">
+    Introduction to parallel computing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-memory-vs-distributed-memory-optional" class="md-nav__link">
+    Shared memory vs Distributed memory (Optional)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-threading-optional" class="md-nav__link">
+    Multi-threading (Optional)
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-threading (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-51" class="md-nav__link">
+    Exercise 5.1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-message-passing-interface-optional" class="md-nav__link">
+    MPI (**M**essage **P**assing **I**nterface) - (Optional)
+  </a>
+  
+    <nav class="md-nav" aria-label="MPI (**M**essage **P**assing **I**nterface) - (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-52" class="md-nav__link">
+    Exercise 5.2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-performance-optional" class="md-nav__link">
+    Parallel Performance  (Optional)
+  </a>
+  
+    <nav class="md-nav" aria-label="Parallel Performance  (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strong-vs-weak-scaling" class="md-nav__link">
+    Strong vs. weak scaling
+  </a>
+  
+    <nav class="md-nav" aria-label="Strong vs. weak scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amdhals-law-and-strong-scaling" class="md-nav__link">
+    Amdhal’s law and strong scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gustafsons-law-and-weak-scaling" class="md-nav__link">
+    Gustafson’s law and weak scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-imbalance" class="md-nav__link">
+    Load imbalance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slurm-job-arrays" class="md-nav__link">
+    Slurm job arrays
+  </a>
+  
+    <nav class="md-nav" aria-label="Slurm job arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-53" class="md-nav__link">
+    Exercise 5.3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-54" class="md-nav__link">
+    Exercise 5.4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-55-group" class="md-nav__link">
+    Exercise 5.5 (Group)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_post_processing/" class="md-nav__link">
+        6. Post-processing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_supplementary/" class="md-nav__link">
+        Supplementary
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_supplementary_2/" class="md-nav__link">
+        Supplementary 2
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-parallel-computing" class="md-nav__link">
+    Introduction to parallel computing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-memory-vs-distributed-memory-optional" class="md-nav__link">
+    Shared memory vs Distributed memory (Optional)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-threading-optional" class="md-nav__link">
+    Multi-threading (Optional)
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-threading (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-51" class="md-nav__link">
+    Exercise 5.1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-message-passing-interface-optional" class="md-nav__link">
+    MPI (**M**essage **P**assing **I**nterface) - (Optional)
+  </a>
+  
+    <nav class="md-nav" aria-label="MPI (**M**essage **P**assing **I**nterface) - (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-52" class="md-nav__link">
+    Exercise 5.2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-performance-optional" class="md-nav__link">
+    Parallel Performance  (Optional)
+  </a>
+  
+    <nav class="md-nav" aria-label="Parallel Performance  (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strong-vs-weak-scaling" class="md-nav__link">
+    Strong vs. weak scaling
+  </a>
+  
+    <nav class="md-nav" aria-label="Strong vs. weak scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amdhals-law-and-strong-scaling" class="md-nav__link">
+    Amdhal’s law and strong scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gustafsons-law-and-weak-scaling" class="md-nav__link">
+    Gustafson’s law and weak scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-imbalance" class="md-nav__link">
+    Load imbalance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slurm-job-arrays" class="md-nav__link">
+    Slurm job arrays
+  </a>
+  
+    <nav class="md-nav" aria-label="Slurm job arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-53" class="md-nav__link">
+    Exercise 5.3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-54" class="md-nav__link">
+    Exercise 5.4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-55-group" class="md-nav__link">
+    Exercise 5.5 (Group)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop.git/edit/master/docs/05_parallel_job_arrays.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="5-parallel-job-arrays">5. Parallel Job Arrays<a class="headerlink" href="#5-parallel-job-arrays" title="Permanent link">&para;</a></h1>
+<p style="text-align:left;">
+    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html">&laquo;  4. Working with job scheduler</a></b>
+    <span style="float:right;">
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/06_post_processing.html">6. Post-processing &raquo;</a></b>
+    </span>
+</p>
+
+<h2 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
+<ul>
+<li toc="toc">Do not remove this line (it will not be displayed)</li>
+</ul>
+<h2 id="introduction-to-parallel-computing">Introduction to parallel computing<a class="headerlink" href="#introduction-to-parallel-computing" title="Permanent link">&para;</a></h2>
+<p>STORY TIME !</p>
+<p>Many scientific software applications are written to take advantage of multiple CPUs in some way. But often this must be specifically requested by the user at the time they run the program, rather than happening automatically.</p>
+<p>The scheduler provides the simplest method for running parallel computations. SLURM schedules thousands of simultaneous calculations on NeSI clusters  and will gladly execute many of your jobs at once, as long as there are available resources.</p>
+<p>This means, that in contrast to the language-specific parallelism methods required by shared memory ( OpenMP, etc. 😕), distributed memory (MPI,etc. 😕😕), and various threading  methods built into languages like Python, Matlab, and R, slurm can provide <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarassingly parallel</a> calculations. These calculations, more generously called “perfectly parallel” do not require any exchange of information between individual jobs which would otherwise require a high-speed network and intelligent algorithm for communicating these data. (🤔) They scale perfectly which means that twice as much calculation can be completed in the same amount of time with twice as much hardware. This is not always <em>true</em> for true or imperfect parallel calculations</p>
+<blockquote>
+<p>Shared memory, Distributed memory, OpenMP, MPI ? ....none of these terms are associated with Gene Regulation 😠 
+ * Correct. However, these concepts/specifications in Parallel computing is important for the <em>scaling up</em> part of the workshop. </p>
+<p>Okay, but can't we just call it witchcraft or black magic and move on ? 🧙‍♀️
+ * Yes we can but this will help us with writing efficient, reliable code which can run in parallel. Therefore, let's spend a little bit of time going through theory and few exercises 🤓</p>
+</blockquote>
+<hr />
+<h2 id="shared-memory-vs-distributed-memory-optional">Shared memory vs Distributed memory (Optional)<a class="headerlink" href="#shared-memory-vs-distributed-memory-optional" title="Permanent link">&para;</a></h2>
+<p>{% capture e5dot0 %}</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th align="left">Shared memory</th>
+<th align="left">Distributed memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">In a shared memory model all processors have access to a pool of common memory that they can freely use.</td>
+<td align="left">In a distributed memory model a separate segment of memory is available to each processor. Because memory isn’t shared inherently, information that must be shared between processes is sent over a network.</td>
+</tr>
+<tr>
+<td align="left"><img src="nesi_images/shared_memory.png" alt="drawing" width="500"/></td>
+<td align="left"><img src="nesi_images/distributed_memory.png" alt="drawing" width="400"/></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Let's break this down a bit by using the schematic use for illustrating HPC architecture </p>
+<p><br></p>
+<p align="center"><img src="nesi_images/shared_distributed_hpc_arch.png" alt="drawing" width="500"/></p>
+<p><br></p>
+<blockquote>
+<p><em>Analogy</em>
+* Shared memory:
+   * One very large whiteboard in a two-person office (the shared memory)
+   * Two people working on the same problem (threads running on different cores attached to the memory)
+   * How do they collaborate (working together but not interfering)
+   * need <em>private</em> data</p>
+<ul>
+<li>Distributed memory</li>
+<li>Two whiteboards in different single-person offices (distributed memory)</li>
+<li>Two people working on the same problem (processes on different nodes attached to the interconnect)</li>
+<li>How do they collaborate (to work on a single problem)</li>
+<li>Explicit communication (for example by phone. Also, no shared data)</li>
+</ul>
+</blockquote>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot0" content=e5dot0%}</p>
+<h2 id="multi-threading-optional">Multi-threading (Optional)<a class="headerlink" href="#multi-threading-optional" title="Permanent link">&para;</a></h2>
+<p>{% capture e5dot01 %}</p>
+<p>Multi-threading is a method of parallelisation whereby the initial single thread of a process forks into a number of parallel threads, generally via a library such as OpenMP (Open MultiProcessing), TBB (Threading Building Blocks), or pthread (POSIX threads).</p>
+<p>Let's take a look at the difference between a serial job and a multi-threaded job</p>
+<p><br></p>
+<p align="center"><img src="nesi_images/serial_process.png" alt="drawing" width="500"/></p>
+<p><br>
+<br></p>
+<p align="center"><img src="nesi_images/multi_threading_process.png" alt="drawing" width="550"/></p>
+<p><br></p>
+<h3 id="exercise-51">Exercise 5.1<a class="headerlink" href="#exercise-51" title="Permanent link">&para;</a></h3>
+<p>{% capture e5dot1 %}</p>
+<blockquote>
+<p>Let's try out a multi-threading example script with OpenMP which is an application programming interface that supports multi-platform shared-memory </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#confirm the working directory </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ <span class="nb">pwd</span> 
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#create a new directory for this episode, cd into it</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>$ mkdir 5_parallel <span class="o">&amp;&amp;</span> <span class="nb">cd</span> 5_parallel
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">#Create two more working directories for this exercise and the next one and change to `openmp` directory</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>$ mkdir <span class="o">{</span>openmp,mpi<span class="o">}</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> openmp
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">#Copy the pre-compiled `omp_helloworld` to current working directory</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/openmp/omp_helloworld ./
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">#use a text editor of choice to create a file named openmp_hw.sl - we will use nano here</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>$ nano openmp_hw.sl
+</code></pre></div>
+<strong>Content of <code>openmp_hw.sl</code> is as below</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">#SBATCH --job-name      openmp_helloworld</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">#SBATCH --cpus-per-task 6</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">#SBATCH --mem-per-cpu   100</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1">#SBATCH --output        openmp_hw_%j.out</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">#SBATCH --export        none</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">unset</span> SLURM_MEM_PER_NODE
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>module purge
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="si">${</span><span class="nv">SLURM_CPUS_PER_TASK</span><span class="si">}</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>srun ./omp_helloworld
+</code></pre></div>
+<blockquote>
+<p><strong>Explanation</strong>
+<p>Slurm by default doesn’t know what cores to assign to what process it runs. For threaded applications, you need to make sure that all the cores you request are on the same node.</p>
+<p>The OpenMP script is an example that all the cores are on the same node, and lets Slurm know which process gets the cores that you requested for threading.</p>
+<p><code>OMP_NUM_THREADS</code> environment variable is used to specify the default number of threads to use in parallel regions. By adjusting the value of the <code>OMP_NUM_THREADS</code> environment variable, one can adjust the number of execution threads.</p></p>
+</blockquote>
+<ul>
+<li>Submit the script with <code>sbatch openmp_hw.sl</code> and review the content of  .out file <em>openmp_hw_jobid.out</em> upon completion .i.e.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ sbatch openmp_hw.sl
+</code></pre></div>
+</blockquote>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot1" content=e5dot1%}</p>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot01" content=e5dot01%}</p>
+<h2 id="mpi-message-passing-interface-optional">MPI (**M**essage **P**assing **I**nterface) - (Optional)<a class="headerlink" href="#mpi-message-passing-interface-optional" title="Permanent link">&para;</a></h2>
+<p>{% capture e5dot02 %}</p>
+<p>MPI is a specification for the developers and users of message passing libraries. By itself, it is NOT a library - but rather the specification of what such a library should be.</p>
+<p>MPI primarily addresses the message-passing parallel programming model: data is moved from the address space of one process to that of another process through cooperative operations on each process.</p>
+<p>Simply stated, the goal of the Message Passing Interface is to provide a widely used standard for writing message passing programs. The interface attempts to be:</p>
+<ul>
+<li>Practical</li>
+<li>Portable</li>
+<li>Efficient</li>
+<li>Flexible</li>
+</ul>
+<h3 id="exercise-52">Exercise 5.2<a class="headerlink" href="#exercise-52" title="Permanent link">&para;</a></h3>
+<p>{% capture e5dot2 %}</p>
+<blockquote>
+<p>Let's try out a MPI example </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#make sure you have changed the current working directory to 5_parallel/mpi</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$ <span class="nb">pwd</span> 
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/5_parallel/mpi
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#copy the pre-compiled mpi program to current working directory</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/mpi/mpi_helloworld ./
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#use a text editor of choice to create a file named mpi_hw.sl - we will use nano here</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>$ nano mpi_hw.sl
+</code></pre></div>
+<strong>Content of  <code>mpi_hw.sl</code> is as below</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">#SBATCH --job-name      mpi_helloworld</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">#SBATCH --cpus-per-task 1</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#SBATCH --ntasks        6</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">#SBATCH --nodes         2</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1">#SBATCH --mem-per-cpu   100</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1">#SBATCH --output        mpi_hw_%j.out</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">#SBATCH --export        none</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nb">unset</span> SLURM_MEM_PER_NODE
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>module purge <span class="o">&amp;&amp;</span> module load OpenMPI/4.1.1-GCC-9.2.0
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>srun ./mpi_helloworld
+</code></pre></div></p>
+<blockquote>
+<p><strong>Explanation</strong>
+<code>srun</code> command executes the program. The  <code>--ntasks</code> is the number of MPI processes to run.</p>
+<p>The script executed 6 processes and the incremented integer values in .out file will show the communication between the processes. These proocesses will be <em>distributed</em> across two compute nodes (<code>--nodes 2</code>).</p>
+</blockquote>
+<ul>
+<li>Submit the script with <code>sbatch mpi_hw.sl</code> and review the content of  .out file <em>mpi_hw_jobid.out</em> upon completion .i.e.
+<code>bash
+$ sbatch mpi_hw.sl</code></li>
+</ul>
+<p><strong>NOTE</strong>: .out file will print 6 x  <code>Hello world from processor wbn125, rank 4 out of 6 processors</code> message (or something along those lines)
+* <code>wbn125</code> - this is the compute node ID. It will be different for everyone as we have hundreds of compute nodes and this job will land on two (<code>--nodes 2</code>)  out of those hundreds. 
+* <code>processor</code> - actual instance of the program that are running 
+* <code>rank</code> - MPI allows you to create logical <strong>groups</strong> of processes, and in each group, a process is identified by its <strong>rank</strong>. This is an integer in the range of [0,N-1] where N is the size of the group. </p>
+</blockquote>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot2" content=e5dot2%}</p>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot02" content=e5dot02%}</p>
+<h2 id="parallel-performance-optional">Parallel Performance  (Optional)<a class="headerlink" href="#parallel-performance-optional" title="Permanent link">&para;</a></h2>
+<p>{% capture e5dot03 %}</p>
+<p>In general, there are two advantages to running applications in parallel: (1) applications will run more quickly and we can get our solutions faster, and (2) we can solve larger, more complex problems.</p>
+<p>In an ideal world, if we increase the number of cores we are using by a factor of 10, we should be able to either get the solution to our current problem 10 times faster, or to run a system 10 times bigger in the same amount of time as now.</p>
+<p>Unfortunately, this is often not the case…</p>
+<h3 id="strong-vs-weak-scaling">Strong vs. weak scaling<a class="headerlink" href="#strong-vs-weak-scaling" title="Permanent link">&para;</a></h3>
+<p>Scaling describes how the runtime of a parallel application changes as the number of processors is increased. Usually, there are two types of scaling of interest:</p>
+<ul>
+<li><strong>strong scaling</strong> is obtained by increasing the number of processors P used for a problem of fixed size/complexity N. As the number of processors increases, the amount of work per processor should decrease.</li>
+<li><strong>weak scaling</strong> is obtained by increasing both the number of processors and the system size/complexity, with both of these being increased at the same rate.</li>
+</ul>
+<p>Ideally, for strong scaling, the runtime will keep decreasing in direct proportion to the growing number of processors used. For weak scaling, the ideal situation is for the runtime to remain constant as the system size, and number of processors used, are increased. In general, good strong scaling is more relevant for most scientific problems, but is also more difficult to achieve than weak scaling.</p>
+<h4 id="amdhals-law-and-strong-scaling">Amdhal’s law and strong scaling<a class="headerlink" href="#amdhals-law-and-strong-scaling" title="Permanent link">&para;</a></h4>
+<p>The limitations of strong scaling are best illustrated by Amdhal’s law: “The performance improvement to be gained by parallelisation is limited by the proportion of the code which is serial”. As more processors are used, the runtime becomes more and more dominated by the serial portion of a code.</p>
+<p><br></p>
+<p align="center"><img src="nesi_images/amdhal.png" alt="drawing" width="490"/></p>
+<p><br></p>
+<h4 id="gustafsons-law-and-weak-scaling">Gustafson’s law and weak scaling<a class="headerlink" href="#gustafsons-law-and-weak-scaling" title="Permanent link">&para;</a></h4>
+<p>Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.</p>
+<p><br></p>
+<p align="center"><img src="nesi_images/gustaffason.png" alt="drawing" width="490"/></p>
+<p><br></p>
+<h4 id="load-imbalance">Load imbalance<a class="headerlink" href="#load-imbalance" title="Permanent link">&para;</a></h4>
+<p>The laws and thoughts above only apply to cases where all processors are equally busy. What happens if some processors run out of work while others are still busy?</p>
+<p>Scalibility isn’t everything! It’s also important to make the best use of all processors at hand before increasing the number of processors.</p>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot03" content=e5dot03%}</p>
+<h2 id="slurm-job-arrays">Slurm job arrays<a class="headerlink" href="#slurm-job-arrays" title="Permanent link">&para;</a></h2>
+<p>Job arrays offer a mechanism for submitting and managing collections of similar jobs quickly and easily; job arrays with millions of tasks can be submitted in milliseconds (subject to configured size limits). All jobs must have the same initial options (e.g. size, time limit, etc.)</p>
+<p>In brief, Job arrays allow you to leverage Slurm’s ability to create multiple jobs from one script. Many of the situations where this is useful include:</p>
+<ul>
+<li>Establishing a list of commands to run and have a job created from each command in the list.</li>
+<li>Running many parameters against one set of data or analysis program.</li>
+<li>Running the same program multiple times with different sets of data. </li>
+</ul>
+<p><br></p>
+<p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p>
+<p><br></p>
+<h3 id="exercise-53">Exercise 5.3<a class="headerlink" href="#exercise-53" title="Permanent link">&para;</a></h3>
+<p>{% capture e5dot3 %}</p>
+<p>Let's start compiling our first slurm array script</p>
+<ul>
+<li>Purpose is to execute the same <code>sleep 40</code> command we used in <em>Working with job scheduler</em> episode but we want to run five iterations of it </li>
+</ul>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#Change the working directory to Exercise_5.3</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$ <span class="nb">cd</span> /nesi/project/nesi02659/sismonr_workshop/workingdir/<span class="nv">$USER</span>/Exercise_5.3
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">#You should see a single .sl and a directory named slurmout</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>$ ls -F 
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>firstslurm_array.sl  slurmout/
+</code></pre></div>
+<p>Content of <code>firstslurm_array.sl</code> should be as below. Please discuss as you make progress
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">#SBATCH --job-name      first_slurm_Array</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">#SBATCH --time          00:02:30</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">#SBATCH --output        slurmout/sleeparray.%A.%a.out</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1">#SBATCH --cpus-per-task 1</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">#SBATCH --mem           100</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">#SBATCH --array         1-5</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1">###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>srun sleep <span class="m">120</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nb">echo</span> <span class="s2">&quot;I am a slurm job and I slept for 120 seconds but this time in Parallel&quot;</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nb">echo</span> <span class="s2">&quot;This is the result for </span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+<p>Let's review some of those new slurm directives and variables prior to submitting the script
+* Job arrays are only supported for batch jobs and the array index values are specified using the <code>--array</code> or <code>-a</code> option. This is the most important directive in an array script
+* .out filename %A and %a where : %A will be replaced by the value of <code>SLURM_ARRAY_JOB_ID</code> (will be set to the first job ID of the array)  and %a will be replaced by the value of <code>SLURM_ARRAY_TASK_ID</code>(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job</p>
+</blockquote>
+<ul>
+<li>Once you submit the job with <code>sbatch firstslurm_array.sl</code>, take a note of the jobid and run the command <code>squeue -j jobid</code>. For an example, let's use the hypothetical job id 23284978 and view the output</li>
+</ul>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ squeue -j <span class="m">23284978</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST<span class="o">(</span>REASON<span class="o">)</span>    
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>23284978_1    me123  nesi02659 first_slurm_   <span class="m">2</span>    100M large   Nov <span class="m">28</span> <span class="m">09</span>:26        <span class="m">0</span>:57 RUNNING  wbn094              
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>23284978_2    me123  nesi02659 first_slurm_   <span class="m">2</span>    100M large   Nov <span class="m">28</span> <span class="m">09</span>:26        <span class="m">0</span>:57 RUNNING  wbn094              
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>23284978_3    me123  nesi02659 first_slurm_   <span class="m">2</span>    100M large   Nov <span class="m">28</span> <span class="m">09</span>:26        <span class="m">0</span>:57 RUNNING  wbn096              
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>23284978_4    me123  nesi02659 first_slurm_   <span class="m">2</span>    100M large   Nov <span class="m">28</span> <span class="m">09</span>:26        <span class="m">0</span>:57 RUNNING  wbn096              
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>23284978_5    me123  nesi02659 first_slurm_   <span class="m">2</span>    100M large   Nov <span class="m">28</span> <span class="m">09</span>:26        <span class="m">0</span>:57 RUNNING  wbn096   
+</code></pre></div>
+<ul>
+<li>Once the job is completed, take a look at the <code>slurmout/</code> directory. There should be 5 x .out files</li>
+</ul>
+</blockquote>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot3" content=e5dot3%}</p>
+<h3 id="exercise-54">Exercise 5.4<a class="headerlink" href="#exercise-54" title="Permanent link">&para;</a></h3>
+<p>{% capture e5dot4 %}</p>
+<blockquote>
+<p>Objective of this exercise is to to run slurm array with two indexes each running 2 simulations.  </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">#Change working directory to Exercise_5.4</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>$ <span class="nb">cd</span> /nesi/project/nesi02659/sismonr_workshop/workingdir/<span class="nv">$USER</span>/Exercise_5.4 
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">#Run ls command you should 2 files and a directory named slurmout</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>$ ls -F
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>250sims_2arrayindex.sl  simulate_colsystem_array_2sim.R  slurmout/
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">#use cat command to view the content of slurm script 250sims_2arrayindex.sl(or open it via nano, vim or another text editor)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$ cat 250sims_2arrayindex.sl
+</code></pre></div>
+<p>Let's review some of those new slurm directives and variables prior to submitting the script
+* Job arrays are only supported for batch jobs and the array index values are specified using the <code>--array</code> or <code>-a</code> option. This is the most important directive in an array script
+* .out filename %A and %a where : %A will be replaced by the value of <code>SLURM_ARRAY_JOB_ID</code> (will be set to the first job ID of the array)  and %a will be replaced by the value of <code>SLURM_ARRAY_TASK_ID</code>(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
+Content of <code>250sims_2arrayindex.sl</code> should be as below. Please discuss as you make progress</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">#SBATCH --job-name      simulations_250_test             </span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1">#SBATCH --time          00:15:00                 </span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1">#SBATCH --mem           2GB </span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">#SBATCH --cpus-per-task 2                    </span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">#SBATCH --array         1-2</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1">#SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1">#SBATCH --error         slurmout/sims_250_test_%A_%a.err # the output and error files</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1">###Some processes can generate temporary files which can be redirected from RAM memory to scratch(nobackup) to reduce the Memory footprint</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="nb">export</span> <span class="nv">TMPDIR</span><span class="o">=</span>/nesi/nobackup/nesi02659/tmp/tmp_<span class="si">${</span><span class="nv">SLURM_JOB_ID</span><span class="si">}</span>_<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>mkdir -p <span class="nv">$TMPDIR</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1">#Sismonr specific variable</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="nb">export</span> <span class="nv">GROUP_ID</span><span class="o">=</span><span class="m">1</span>.01
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>module purge
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>srun Rscript simulate_colsystem_array_2sim.R
+</code></pre></div>
+</blockquote>
+<ul>
+<li>Submit the script with  <code>sbatch 250sims_2arrayindex.sl</code>, take a not on the jobid and run the command <code>squeue -j jobid</code>. </li>
+<li>Take a look at the content of <em>.out</em> and <em>.err</em> files in <em>slurmout</em> directory</li>
+<li>If all goes well, job should run within 10 minutes and will generate two <em>.RData</em> files in current working directory .i.e. <code>Exercise_5.4</code></li>
+</ul>
+<p _="%" endcapture="endcapture"><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>simulation_1_group1.01.RData
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>simulation_2_group1.01.RData
+</code></pre></div></p>
+<p>{% include exercise.html title="e5dot4" content=e5dot4%}</p>
+<h3 id="exercise-55-group">Exercise 5.5 (Group)<a class="headerlink" href="#exercise-55-group" title="Permanent link">&para;</a></h3>
+<p>{% capture e5dot5 %}</p>
+<blockquote>
+<ul>
+<li>Host will assign you to a breakout room (zoom) or a group. </li>
+<li>Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a <strong>single</strong> array job with 250 indexes.</li>
+<li>Start with changing the working directory to <code>Exercise_5.5</code></li>
+<li>As a group, write a slurm script based on <code>250sims_2arrayindex.sl</code> from Exercise 5.4 to run 250 arrays. Also, don't forget that you do need a copy of the <code>simulate_colsystem_array_2sim.R</code> in current workig directory (OR use the relative/absolute path of working directory from previous exercise) Double check...Triple check before submission. 🙂</li>
+<li>Then, choose <strong>one person</strong> in the group who will submit the job. The simulations output should be created in the working directory of the person who submitted the job. In the next section, the other members of the group will have to copy these output files for the post-processing step.(Or the instructors will provide a copy for you)</li>
+</ul>
+</blockquote>
+<p>{% endcapture %}</p>
+<p>{% include exercise.html title="e5dot5" content=e5dot5%}</p>
+<hr />
+<p style="text-align:left;">
+    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html">&laquo;  4. Working with job scheduler</a></b>
+    <span style="float:right;">
+     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/06_post_processing.html">6. Post-processing &raquo;</a></b>
+    </span>
+</p>
+
+<p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../04_working_with_job_scheduler/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4. Working with job scheduler" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              4. Working with job scheduler
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../06_post_processing/" class="md-footer__link md-footer__link--next" aria-label="Next: 6. Post-processing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              6. Post-processing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
