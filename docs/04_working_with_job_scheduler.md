@@ -265,7 +265,6 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 
 
 ???+ question "Exercise 4.5 😬"	
-{% capture e4dot5 %}
 
 
 >Let's submit your first sismonr slum job. 
@@ -298,9 +297,6 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
 >Rscript --vanilla simulate_colsystem_1second.R 
 >```
 
-{% endcapture %}
-
-{% include exercise.html title="e4dot5" content=e4dot5%}
 ---
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
