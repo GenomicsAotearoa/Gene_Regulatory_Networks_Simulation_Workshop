@@ -156,9 +156,9 @@ A stochastic model consists of:
 
 Mathematically, the biochemical reactions are usually represented with a **stoichiometry matrix**, in which each row corresponds to a species and each column to a reaction. The cells indicate the change in abundance of the different species resulting from one occurrence of the reactions; negative values indicate the reactants of the reactions, while positive values indicate their products.
 
-<img src="images/stoichiometry_matrix_example.png" alt="The stoichiometry of the stochastic model." width="1000"/>
 
-<small>The stoichiometry matrix of the example stochastic model. Notice that in reactions 3 and 4, a species appears as both a reactant and a product, and so is not represented in the stoichiometry matrix. This is because the species is necessary for the reaction, but is not degraded or transformed by the reaction.</small>
+![image](./images/stoichiometry_matrix_example.png){width="1000"}
+<br><center><small>The stoichiometry matrix of the example stochastic model. Notice that in reactions 3 and 4, a species appears as both a reactant and a product, and so is not represented in the stoichiometry matrix. This is because the species is necessary for the reaction, but is not degraded or transformed by the reaction.</small></center></br>
 
 We can represent the state of the system at a given time point $t$ as a vector of species abundance: $\mathbf{X}(t) = \left( X_1(t), \ldots, X_N(t) \right)$, where $X_i(t)$ is the abundance of species $i$ at time $t$. We already know what the system state is at time point $t = 0$: this is the initial abundance of the species that we decided on. The goal of  the simulation is to simulate the system state over a period of time (say until time point $t_{max}$):
 
