@@ -181,39 +181,39 @@ Understanding the resources you have available and how to use them most efficien
 
 ---
 
-???+ question "Exercise 4.3" 
+??? question "Exercise 4.3" 
 
-* Let's submit another slurm job and review its resource utilisation
+    * Let's submit another slurm job and review its resource utilisation
 
-```bash
-#Change the working directory to Exercise_4.3
-$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_4.3
+    ```bash
+    #Change the working directory to Exercise_4.3
+    $ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_4.3
 
-#Run ls command and you should see two files (one .R and one sl) and one directory named slurmout
-$ ls -F
-example1_arraysum.R  example1_arraysum.sl  slurmout/
+    #Run ls command and you should see two files (one .R and one sl) and one directory named slurmout
+    $ ls -F
+    example1_arraysum.R  example1_arraysum.sl  slurmout/
 
-#Review the slurm script with cat Or another text editor and submit with sbatch
-$ sbatch example1_arraysum.sl 
-```
+    #Review the slurm script with cat Or another text editor and submit with sbatch
+    $ sbatch example1_arraysum.sl 
+    ```
 
->use `squeue --me` and `sacct` again to evaluate the job status
->
->Once the job ran into completion, use `nn_seff JOBID` command to print the resource utilisation statistics (Replace **JOBID** with the corresponding number)
->
->```bash
->$ nn_seff 23263188
->Job ID: 23263188
->Cluster: mahuika
->User/Group: me1234/me123
->State: COMPLETED (exit code 0)
->Cores: 1
->Tasks: 1
->Nodes: 1
->Job Wall-time:  20.56%  00:00:37 of 00:03:00 time limit
->CPU Efficiency: 178.38%  00:01:06 of 00:00:37 core-walltime
->Mem Efficiency: 21.94%  224.68 MB of 1.00 GB
->```
+    >use `squeue --me` and `sacct` again to evaluate the job status
+    >
+    >Once the job ran into completion, use `nn_seff JOBID` command to print the resource utilisation statistics (Replace **JOBID** with the corresponding number)
+    >
+    >```bash
+    >$ nn_seff 23263188
+    >Job ID: 23263188
+    >Cluster: mahuika
+    >User/Group: me1234/me123
+    >State: COMPLETED (exit code 0)
+    >Cores: 1
+    >Tasks: 1
+    >Nodes: 1
+    >Job Wall-time:  20.56%  00:00:37 of 00:03:00 time limit
+    >CPU Efficiency: 178.38%  00:01:06 of 00:00:37 core-walltime
+    >Mem Efficiency: 21.94%  224.68 MB of 1.00 GB
+    >```
 
 ---
 
