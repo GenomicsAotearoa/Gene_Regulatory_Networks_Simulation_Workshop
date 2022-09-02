@@ -288,7 +288,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     * Once the job is completed, take a look at the `slurmout/` directory. There should be 5 x .out files
 
 
-### Exercise 5.4
+???+ question "Exercise 5.4"
 
 
 
@@ -296,23 +296,23 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     ```bash
     #Change working directory to Exercise_5.4
     $ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_5.4 
-    
+
     #Run ls command you should 2 files and a directory named slurmout
     $ ls -F
     250sims_2arrayindex.sl  simulate_colsystem_array_2sim.R  slurmout/
-    
+
     #use cat command to view the content of slurm script 250sims_2arrayindex.sl(or open it via nano, vim or another text editor)
     $ cat 250sims_2arrayindex.sl
     ```
-    
+
     Let's review some of those new slurm directives and variables prior to submitting the script
      * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
      * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
     Content of `250sims_2arrayindex.sl` should be as below. Please discuss as you make progress
-    
+
     ```bash
     #!/bin/bash -e
-    
+
     #SBATCH --account       nesi02659
     #SBATCH --job-name      simulations_250_test             
     #SBATCH --time          00:15:00                 
@@ -321,25 +321,25 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     #SBATCH --array         1-2
     #SBATCH --output        slurmout/sims_250_test_%A_%a.out # Include the array ID in the names of
     #SBATCH --error         slurmout/sims_250_test_%A_%a.err # the output and error files
-    
-    
+
+
     ###Some processes can generate temporary files which can be redirected from RAM memory to scratch(nobackup) to reduce the Memory footprint
     export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_${SLURM_JOB_ID}_${SLURM_ARRAY_TASK_ID}
     mkdir -p $TMPDIR
-    
+
     #Sismonr specific variable
     export GROUP_ID=1.01
-    
+
     module purge
     module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
-    
+
     srun Rscript simulate_colsystem_array_2sim.R
     ```
-    
+
     * Submit the script with  `sbatch 250sims_2arrayindex.sl`, take a not on the jobid and run the command `squeue -j jobid`. 
     * Take a look at the content of *.out* and *.err* files in *slurmout* directory
     * If all goes well, job should run within 10 minutes and will generate two *.RData* files in current working directory .i.e. `Exercise_5.4`
-    
+
     ```
     simulation_1_group1.01.RData
     simulation_2_group1.01.RData
