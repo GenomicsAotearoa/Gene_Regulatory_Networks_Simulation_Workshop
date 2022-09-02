@@ -219,9 +219,6 @@ The laws and thoughts above only apply to cases where all processors are equally
 
 Scalibility isn’t everything! It’s also important to make the best use of all processors at hand before increasing the number of processors.
 
-{% endcapture %}
-
-{% include exercise.html title="e5dot03" content=e5dot03%}
 
 ## Slurm job arrays
 
@@ -234,7 +231,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 * Running the same program multiple times with different sets of data. 
 
 <br>
-<p align="center"><img src="nesi_images/life_cycle_of _anarray.png" alt="drawing" width="700"/></p> 
+<center>![image](./nesi_images/life_cycle_of%20_anarray.png){width="700"}</center>
 <br>
 
 ### Exercise 5.3
