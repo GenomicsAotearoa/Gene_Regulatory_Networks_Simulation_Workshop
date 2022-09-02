@@ -182,7 +182,6 @@ Understanding the resources you have available and how to use them most efficien
 ---
 
 ### Exercise 4.3 
-{% capture e4dot3 %}
 
 * Let's submit another slurm job and review its resource utilisation
 
