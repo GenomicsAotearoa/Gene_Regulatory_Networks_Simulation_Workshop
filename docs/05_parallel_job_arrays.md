@@ -22,7 +22,7 @@ This means, that in contrast to the language-specific parallelism methods requir
 
 ---
 
-???+ abstract "Shared memory vs Distributed memory (Optional)"
+??? abstract "Shared memory vs Distributed memory (Optional)"
 
      ---
      
@@ -53,7 +53,7 @@ This means, that in contrast to the language-specific parallelism methods requir
      >    * Explicit communication (for example by phone. Also, no shared data)
 
  
-## Multi-threading (Optional)
+???+ abstract "Multi-threading (Optional)"
 {% capture e5dot01 %}
 
 
