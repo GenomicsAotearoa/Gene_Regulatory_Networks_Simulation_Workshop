@@ -21,9 +21,9 @@ you are creating a new Julia process and the socket connection between the R ses
 
 Once the Julia process is started, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.
 
-<img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="900"/>
 
-<small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small>
+![image](./images/sismonr_r_julia.gif){width="900"}
+<br><center><small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small></center></br>
 
 This is why, if you decide to use sismonr on your own computer, you will have to install Julia first, and make sure that R can find the Julia executable (for example by adding Julia to the PATH, which is done for you when installing Julia).
 
