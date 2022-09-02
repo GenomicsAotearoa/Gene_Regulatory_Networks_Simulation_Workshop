@@ -304,13 +304,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#outline" class="md-nav__link">
-    Outline
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#introduction-to-the-sismonr-package" class="md-nav__link">
     Introduction to the sismonr package
   </a>
@@ -511,13 +504,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#outline" class="md-nav__link">
-    Outline
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#introduction-to-the-sismonr-package" class="md-nav__link">
     Introduction to the sismonr package
   </a>
@@ -612,17 +598,6 @@
 
 
 <h1 id="2-getting-started-with-sismonr">2. Getting started with sismonr<a class="headerlink" href="#2-getting-started-with-sismonr" title="Permanent link">&para;</a></h1>
-<p style="text-align:left;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1. Introduction</a></b>
-    <span style="float:right;">
-     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html" style="background: var(--bs-green);font-weight:bold">3. Scaling up your work &raquo;</a></b>
-    </span>
-</p>
-
-<h2 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
-<ul>
-<li toc="toc">Do not remove this line (it will not be displayed)</li>
-</ul>
 <h2 id="introduction-to-the-sismonr-package">Introduction to the sismonr package<a class="headerlink" href="#introduction-to-the-sismonr-package" title="Permanent link">&para;</a></h2>
 <p>The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulation). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different <em>in silico</em> individuals, that carry different versions (or alleles) of the genes present in the GRN (think of it as simulating gene expression from different subjects). This is quite useful to simulate gene expression under different scenarios such as gene knock-outs for example. If you are interested, a full tutorial is available <a href="https://oliviaab.github.io/sismonr/">here</a>.</p>
 <p>One particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!</p>
@@ -634,18 +609,17 @@
 </code></pre></div>
 you are creating a new Julia process and the socket connection between the R session and the Julia process will use port 456. We won't need to use this for now, but you will find it useful later on :)</p>
 <p>Once the Julia process is started, whenever sismonr needs to run some computations in Julia, the necessary R objects are sent to the Julia process, which executes the required commands. Once done, the Julia process sends back the results to the R session. This way, the user doesn't have to interact with Julia at all.</p>
-<p><img src="images/sismonr_r_julia.gif" alt="How sismonr/XRJulia link R and Julia" width="900"/></p>
-<p><small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small></p>
+<p><img alt="image" src="../images/sismonr_r_julia.gif" width="900" />
+<br><center><small> A very schematic representation of how sismonr uses the XRJulia package to run simulations in Julia from a R session. </small></center></br></p>
 <p>This is why, if you decide to use sismonr on your own computer, you will have to install Julia first, and make sure that R can find the Julia executable (for example by adding Julia to the PATH, which is done for you when installing Julia).</p>
 <h3 id="practice-time">Practice time!<a class="headerlink" href="#practice-time" title="Permanent link">&para;</a></h3>
 <p>For this next section, you will need to login to NeSI Mahuika Jupyter and to open a sismonr Jupyter notebook. See <a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html">here</a> for instructions on how to login to NeSI Mahuika Jupyter and how to open a sismonr Jupyter kernel. <strong>Follow instructions up to S.2 2 (Guide Jupyter file explorer (left panel) to above working directory) included.</strong></p>
 <p>Before opening a Jupyter Notebook, we will create a folder to save our work from this section:</p>
-<p><br></p>
-<p align="center"><img src="nesi_images/getting_started_newfolder_2.png" alt="drawing" width="900"/></p>
-<p><br></p>
+<p><br>
+<img alt="image" src="../nesi_images/getting_started_newfolder_2.png" width="900" />
+</br></p>
 <p>Now we can open a sismonr Jupyter Notebook:</p>
-<p>Open sismonr/R-4.1.0 kernel<br><img src="nesi_images/sismonr_kernel.png" alt="drawing" width="900"/></p>
-
+<p><br><img alt="image" src="../nesi_images/sismonr_kernel.png" width="900" /></br></p>
 <p>Before getting started, here are some abbreviations that are often used within sismonr:</p>
 <table>
 <thead>
@@ -796,10 +770,10 @@ you are creating a new Julia process and the socket connection between the R ses
 <h3 id="generating-a-stochastic-model-with-the-sismonr-package">Generating a stochastic model with the sismonr package<a class="headerlink" href="#generating-a-stochastic-model-with-the-sismonr-package" title="Permanent link">&para;</a></h3>
 <p>As mentioned previously, simulators rely on a set of rules to convert the GRN into a mathematical or statistical model that can be used to simulate gene expression over time. This set of rules will depend on the type of model we want to construct (boolean, deterministic, etc).</p>
 <p>In the case of a stochastic model, we must decide how to transform a graph representing regulatory interactions between genes into a set of biochemical reactions. There is no correct answer. The modelling decisions will influence the precision of the model, with biological accuracy balancing computational efficiency. As an example, the sismonr uses the following rules:</p>
-<p><img src="images/sismonr_stochastic_system.png" alt="The sismonr stochastic system rules" width="700"/></p>
-<p><small>This is how sismonr models different type of expression regulation. Each arrow <span class="arithmatex">\(i \rightarrow j\)</span> in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small></p>
+<p><img alt="image" src="../images/sismonr_stochastic_system.png" width="700" />
+<br><center><small>This is how sismonr models different type of expression regulation. Each arrow <span class="arithmatex">\(i \rightarrow j\)</span> in the GRN is transformed into a set of biochemical reactions with associated rates, as presented. </small></center></br></p>
 <p>For example, the following small GRN:</p>
-<p><img src="images/example_GRN1.png" alt="A small GRN with 3 genes" width="500"/></p>
+<p><img alt="image" src="../images/example_GRN1.png" width="500" /></p>
 <p><small>A small GRN with 3 genes; gene 1 activates the transcription of gene 2; gene 2 activates the transcription of gene 3; and gene 3 represses the transcription of gene 1. </small></p>
 <p>is transformed into the following set of reactions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">## Binding/unbinding of regulators to/from their target&#39;s DNA</span>
@@ -902,7 +876,7 @@ you are creating a new Julia process and the socket connection between the R ses
 </li>
 </ul>
 <p>An animation of the GRN is presented below:</p>
-<p><img src="images/anthocyanin_model_animation.gif" alt="The sismonr stochastic system rules" width="700"/></p>
+<p><img alt="image" src="../images/anthocyanin_model_animation.gif" width="700" /></p>
 <p><small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found <a href="https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png">here</a>. </small></p>
 <p>The GRN starts with 3 protein-genes, <em>MYB</em>, <em>bHLH1</em> and <em>WDR</em>. While <em>bHLH1</em> and <em>WDR</em> are constitutively expressed (i.e. constantly produce proteins), <em>MYB</em> is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the <em>bHLH2</em> gene.</p>
 <p>The synthesised bHLH2 proteins form a second regulatory complex with the MYB and WDR proteins (termed MBW2). This complex then activates the transcription of downstream genes encoding for enzymes involved in the anthocyanin biosynthesis pathway. The presence of these enzymes result in the production of anthocyanin. Here we use the <em>DFR</em> gene as a representative example of MBW2's targets. We will assume that the abundance of DFR proteins acts as a proxy for the production of anthocyanins. </p>
@@ -954,7 +928,7 @@ you are creating a new Julia process and the socket connection between the R ses
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>               <span class="n">labels</span> <span class="o">=</span> <span class="n">id2names</span><span class="p">[</span><span class="nf">names</span><span class="p">(</span><span class="n">colours</span><span class="p">)],</span>
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>               <span class="n">colours</span> <span class="o">=</span> <span class="n">colours</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="images/colsystem_simulations_1trial.png" alt="Simulated gene expression for the anthocyanin biosynthesis regulation pathway" width="1000"/></p>
+<p><img alt="image" src="../images/colsystem_simulations_1trial.png" width="1000" /></p>
 <p><small> Simulated gene expression for the anthocyanin biosynthesis regulation pathway. The legend shows under which form (i.e. RNA, protein or regulatory copmplex) each component can be found. For example, MYB is present in both the 'RNAs' and the 'Proteins' plots, while MBW1 is a regulatory complex, and thus only appears in the 'Complexes' plot. </small></p>
 <p>Pretty neat! We can see that when the <em>MYBrep</em> gene is overexpressed, the activity of the pathway is reduced, and so the downstream enzymes responsible for the synthesis of anthocyanin (represented here by the <em>DFR</em> gene) are produced in smaller quantities. This leads to a reduction in the colouration of the plant.</p>
 <h2 id="why-is-scaling-up-important">Why is scaling-up important<a class="headerlink" href="#why-is-scaling-up-important" title="Permanent link">&para;</a></h2>
@@ -975,13 +949,6 @@ you are creating a new Julia process and the socket connection between the R ses
 </code></pre></div>
 <p>you should notice that it doesn't take much more time than to run only one simulation per plant. This will not hold however if you start running a large number of simulations (e.g. setting <code>ntrials = 10</code> will take more time to run).</p>
 <hr />
-<p style="text-align:left;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/01_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1. Introduction</a></b>
-    <span style="float:right;">
-     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/03_scaling_up.html" style="background: var(--bs-green);font-weight:bold">3. Scaling up your work &raquo;</a></b>
-    </span>
-</p>
-
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
 
               
