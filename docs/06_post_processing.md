@@ -15,10 +15,10 @@ In the command, you'll need to replace `$JOB_ID` by your actual slurm job ID.
 
 Your turn! Did any of your arrays failed? If so, what would you change before re-running them?
 
->>**Index** 
->>* `TO` = Timed Out
->>* `F` = Failed
->>* `OOM` = Out Of Memory
+!!! info "**Index**" 
+    * `TO` = Timed Out
+    * `F` = Failed
+    * `OOM` = Out Of Memory
 
 ## Interpreting the sismonr output
 
@@ -277,38 +277,35 @@ One of the interesting results from these simulations is that we can confirm tha
 
 Have a go at it first! When you are ready, one possible plot is presented below:
 
-{% capture e6dot1 %}
+??? example
 
-```r
-sim_df %>% 
-  filter(time == 1200) %>% ## only keep the last time point of each simulation
-  select(trial, Ind, "P7") %>% ## we want to focus on DFR proteins abundance 
-  ## for a better plot, show wild-type plant first, and give each individual a nice label 
-  ## (rather than "Ind1" and "Ind2")
-  mutate(Ind = factor(Ind, 
-                      levels = c("Ind1", "Ind2"), 
-                      labels = c("Wild-type", "MYBrep overexpressed"))) %>% 
-  ## Plot section:                    
-  ggplot(aes(x = P7, fill = Ind)) + 
-  geom_histogram(alpha = 0.5, colour = "gray20", bins = 50) + ## alpha = transparency of the bars
-  scale_fill_brewer(palette = "Set1", direction = -1) + ## choose nice colours
-  labs(x = "DFR protein abundance", ## x axis title
-       y = "Count (simulations)", ## y axis title
-       fill = "Plant", ## colour legend title
-       title = "DFR expression is reduced in mutant plants", ## informative title
-       subtitle = "Results from 500 simulations") + ## and subtitle
-  theme_bw() + ## white background, black axes, etc
-  theme(legend.position = "bottom",
-        plot.title = element_text(hjust = 0.5),    ## center the title
-        plot.subtitle = element_text(hjust = 0.5), ## and the subtitle
-        text = element_text(size = 18))            ## and increase font size  
-```
+    ```r
+    sim_df %>% 
+      filter(time == 1200) %>% ## only keep the last time point of each simulation
+      select(trial, Ind, "P7") %>% ## we want to focus on DFR proteins abundance 
+      ## for a better plot, show wild-type plant first, and give each individual a nice label 
+      ## (rather than "Ind1" and "Ind2")
+      mutate(Ind = factor(Ind, 
+                          levels = c("Ind1", "Ind2"), 
+                          labels = c("Wild-type", "MYBrep overexpressed"))) %>% 
+      ## Plot section:                    
+      ggplot(aes(x = P7, fill = Ind)) + 
+      geom_histogram(alpha = 0.5, colour = "gray20", bins = 50) + ## alpha = transparency of the bars
+      scale_fill_brewer(palette = "Set1", direction = -1) + ## choose nice colours
+      labs(x = "DFR protein abundance", ## x axis title
+           y = "Count (simulations)", ## y axis title
+           fill = "Plant", ## colour legend title
+           title = "DFR expression is reduced in mutant plants", ## informative title
+           subtitle = "Results from 500 simulations") + ## and subtitle
+      theme_bw() + ## white background, black axes, etc
+      theme(legend.position = "bottom",
+            plot.title = element_text(hjust = 0.5),    ## center the title
+            plot.subtitle = element_text(hjust = 0.5), ## and the subtitle
+            text = element_text(size = 18))            ## and increase font size  
+    ```
 
-![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
+    ![DFR protein abundance in the two plants](./images/colsystem_simulations_fdr_histogram.png)
 
-{% endcapture %}
-
-{% include exercise.html title="e6dot1" content=e6dot1%}
 
 
 ## Conclusion
