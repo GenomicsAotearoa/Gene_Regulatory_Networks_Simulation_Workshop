@@ -235,59 +235,58 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 <br>
 
 ???+ question "Exercise 5.3"
-{% capture e5dot3 %}
 
-Let's start compiling our first slurm array script
-
-* Purpose is to execute the same `sleep 40 ` command we used in *Working with job scheduler* episode but we want to run five iterations of it 
-
-```bash
-
-#Change the working directory to Exercise_5.3
-$ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_5.3
-
-#You should see a single .sl and a directory named slurmout
-$ ls -F 
-firstslurm_array.sl  slurmout/
-```
-Content of `firstslurm_array.sl` should be as below. Please discuss as you make progress
-```bash
-#!/bin/bash -e
-
-#SBATCH --account       nesi02659
-#SBATCH --job-name      first_slurm_Array
-#SBATCH --time          00:02:30
-#SBATCH --output        slurmout/sleeparray.%A.%a.out
-#SBATCH --cpus-per-task 1
-#SBATCH --mem           100
-#SBATCH --array         1-5
-
-###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
-srun sleep 120
-
-echo "I am a slurm job and I slept for 120 seconds but this time in Parallel"
-echo "This is the result for ${SLURM_ARRAY_TASK_ID}"
-```
-
->Let's review some of those new slurm directives and variables prior to submitting the script
-> * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
-> * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
-
-* Once you submit the job with `sbatch firstslurm_array.sl`, take a note of the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
-
-```bash
-$ squeue -j 23284978
-
-JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
-23284978_1    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn094              
-23284978_2    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn094              
-23284978_3    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
-23284978_4    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
-23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
-```
-
-* Once the job is completed, take a look at the `slurmout/` directory. There should be 5 x .out files
-
+    Let's start compiling our first slurm array script
+    
+    * Purpose is to execute the same `sleep 40 ` command we used in *Working with job scheduler* episode but we want to run five iterations of it 
+    
+    ```bash
+    
+    #Change the working directory to Exercise_5.3
+    $ cd /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER/Exercise_5.3
+    
+    #You should see a single .sl and a directory named slurmout
+    $ ls -F 
+    firstslurm_array.sl  slurmout/
+    ```
+    Content of `firstslurm_array.sl` should be as below. Please discuss as you make progress
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      first_slurm_Array
+    #SBATCH --time          00:02:30
+    #SBATCH --output        slurmout/sleeparray.%A.%a.out
+    #SBATCH --cpus-per-task 1
+    #SBATCH --mem           100
+    #SBATCH --array         1-5
+    
+    ###Some Jupyter specific variabes to submit srun commands from Jupyter Terminal
+    srun sleep 120
+    
+    echo "I am a slurm job and I slept for 120 seconds but this time in Parallel"
+    echo "This is the result for ${SLURM_ARRAY_TASK_ID}"
+    ```
+    
+    >Let's review some of those new slurm directives and variables prior to submitting the script
+    > * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
+    > * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
+    
+    * Once you submit the job with `sbatch firstslurm_array.sl`, take a note of the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
+    
+    ```bash
+    $ squeue -j 23284978
+    
+    JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
+    23284978_1    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn094              
+    23284978_2    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn094              
+    23284978_3    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
+    23284978_4    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096              
+    23284978_5    me123  nesi02659 first_slurm_   2    100M large   Nov 28 09:26        0:57 RUNNING  wbn096   
+    ```
+    
+    * Once the job is completed, take a look at the `slurmout/` directory. There should be 5 x .out files
+    
 
 ### Exercise 5.4
 {% capture e5dot4 %}
