@@ -37,37 +37,38 @@
     <center>![image](./nesi_images/restart_jupyter_server_session.png){width="1000"}</center>
     <br>
 
-## S.4.Local setup
+??? tip "S.4.Local setup"
 
-The sismonr package depends on the programming language [Julia](https://julialang.org/). It is preferable to install Julia on your computer before installing sismonr.
+    The sismonr package depends on the programming language [Julia](https://julialang.org/). It is preferable to install Julia on your computer before installing sismonr.
+    
+    **Installing Julia**
 
-### Installing Julia
-To install Julia, go to [https://julialang.org/downloads/](https://julialang.org/downloads/) and follow the instructions. The sismonr package currently works with version >= 1.0.
-
-Please make sure to include the Julia executable in your environmental variable PATH. **Linux users** can use the following command in the terminal:
-```
-sudo ln -s path_to_julia_folder/bin/julia /usr/local/bin/julia
-```
-to create a symbolic link to julia inside the `/usr/local/bin` folder.
-
-**Windows users** can open the Control Panel and go to System > Advanced system settings > Environment variables. Select the PATH variable, click on Edit > New and copy-paste the path `path_to_julia_folder/bin`.
-
-You may need to restart your computer.
-
-### Installing sismonr
-
-sismonr is available on the CRAN. You can install sismonr from R or Rstudio using the following commands:
-
-```r
-install.packages("sismonr")
-```
-
-Alternatively, to download the latest development version, you can use:
-
-```r
-library(devtools)
-install_github("oliviaAB/sismonr")
-```
----
+    To install Julia, go to [https://julialang.org/downloads/](https://julialang.org/downloads/) and follow the instructions. The sismonr package currently works with version >= 1.0.
+    
+    Please make sure to include the Julia executable in your environmental variable PATH. **Linux users** can use the following command in the terminal:
+    ```
+    sudo ln -s path_to_julia_folder/bin/julia /usr/local/bin/julia
+    ```
+    to create a symbolic link to julia inside the `/usr/local/bin` folder.
+    
+    **Windows users** can open the Control Panel and go to System > Advanced system settings > Environment variables. Select the PATH variable, click on Edit > New and copy-paste the path `path_to_julia_folder/bin`.
+    
+    You may need to restart your computer.
+    
+    **Installing sismonr**
+    
+    sismonr is available on the CRAN. You can install sismonr from R or Rstudio using the following commands:
+    
+    ```r
+    install.packages("sismonr")
+    ```
+    
+    Alternatively, to download the latest development version, you can use:
+    
+    ```r
+    library(devtools)
+    install_github("oliviaAB/sismonr")
+    ```
+    
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
