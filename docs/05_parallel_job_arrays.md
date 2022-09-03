@@ -14,9 +14,9 @@ STORY TIME !
     
     This means, that in contrast to the language-specific parallelism methods required by shared memory ( OpenMP, etc. 😕), distributed memory (MPI,etc. 😵‍💫), and various threading  methods built into languages like Python, Matlab, and R, slurm can provide [embarassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) calculations. These calculations, more generously called “perfectly parallel” do not require any exchange of information between individual jobs which would otherwise require a high-speed network and intelligent algorithm for communicating these data. (🤔) They scale perfectly which means that twice as much calculation can be completed in the same amount of time with twice as much hardware. This is not always *true* for true or imperfect parallel calculations
     
-!!! tip "😠"
+!!! tip "😈"
 
-    Shared memory, Distributed memory, OpenMP, MPI ? ....none of these terms are associated with Gene Regulation 👿
+    Shared memory, Distributed memory, OpenMP, MPI ? ....none of these terms are associated with Gene Regulation 😠
 
     * Correct & not having an in-depth knowledge on these topics will not affect the end goal of this workshop 
 
