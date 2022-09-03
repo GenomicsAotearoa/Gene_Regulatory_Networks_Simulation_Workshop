@@ -1,5 +1,7 @@
 # 3. Scaling up your work
 
+<center>![image](./nesi_images/scaling.png){width="350"}</center>
+
 ## Introduction to HPC
 
 ### Defining high-performance computing
