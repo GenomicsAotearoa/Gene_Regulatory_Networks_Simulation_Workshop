@@ -1,5 +1,7 @@
 # 5. Parallel Job Arrays
 
+<center>![image](./nesi_images/parallel_comp.png){width="450"}</center>
+
 ## Introduction to parallel computing
 
 STORY TIME !
