@@ -1,7 +1,7 @@
-# Supplementary
+# Supplementary.1
 
 
-??? tip "S.1.NeSI Mahuika Jupyter login"
+??? tip "S.1.1.NeSI Mahuika Jupyter login"
 
 
      1. <p>Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)</p>
@@ -13,7 +13,7 @@
      <br>![image](./nesi_images/jupyter_server2022.png)
  
 
-??? tip "S.2.Opening a Jupyter teminal, create a working directory, switch Jupyter file explorer to correct path and open sismonr Jupyter kernel (sismonr/R-4.1.0)" 
+??? tip "S.1.2.Opening a Jupyter teminal, create a working directory, switch Jupyter file explorer to correct path and open sismonr Jupyter kernel (sismonr/R-4.1.0)" 
 
      1. <p>Start a terminal session from the JupyterLab launcher<br>![image](./nesi_images/jupyterLauncher.png){width="500"}</p>
      

@@ -51,8 +51,8 @@ Before getting started, have a look at the [Supplementary data](./07_supplementa
 |4. [Working with job scheduler](./04_working_with_job_scheduler.md)|Introduction to HPC Job Schedulers, Slurm Scheduler & life cycle of a Slurm job, Assessing resource utilisation and profiling|
 |5. [Parallel job arrays](./05_parallel_job_arrays.md)|Introduction to specifications in Parallel Computing, Slurm Job arrays and Exercises on Scaling networks|
 |6. [Post-processing](./06_post_processing.md)|Interpreting `sismonr` output and Visualising the simlulations|
-|7. [Supplementary-material](./07_supplementary.md)||
-|8. [Supplementary-material-2](./08_supplementary_2.md)||
+|7. [Supplementary-material.1](./07_supplementary.md)||
+|8. [Supplementary-material.2](./08_supplementary_2.md)||
 
 - - -
 
