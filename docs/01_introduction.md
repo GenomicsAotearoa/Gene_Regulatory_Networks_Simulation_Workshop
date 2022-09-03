@@ -1,6 +1,6 @@
 # 1. Introduction
 
-Slides are available [here](../Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/workshop_slides.html).
+Slides are available [here](workshop_slides.html).
 
 ## Why simulations are important in research
 

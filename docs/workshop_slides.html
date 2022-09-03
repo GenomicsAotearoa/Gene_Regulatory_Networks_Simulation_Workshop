@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Scaling-up Gene Regulatory Network Simulations</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olivia Angelin-Bonnet, New Zealand eScience Infrastructure" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Scaling-up Gene Regulatory Network Simulations
+## with an introduction to parallelisation and High Performance Computing
+### Olivia Angelin-Bonnet, New Zealand eScience Infrastructure
+### 01-02 December 2021
+
+---
+
+class: center, middle
+
+# 1. Introduction
+
+
+
+
+---
+class: inverse, center, middle
+
+## Why simulations are important in research
+
+---
+# Why simulations are important in research
+
+&lt;br /&gt;
+&lt;br /&gt;
+
+.pull-left[
+&lt;img src="slides_images/julia-koblitz-RlOAwXt2fEA-unsplash.jpg"&gt;
+&lt;small&gt;Photo by &lt;a href="https://unsplash.com/@jkoblitz?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Julia Koblitz&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/experiment?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt; &lt;/small&gt;
+]
+
+.pull-right[
+&lt;img src="slides_images/chuttersnap-UmncJq4KPcA-unsplash.jpg"&gt;
+&lt;small&gt;Photo by &lt;a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;CHUTTERSNAP&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/experiment?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/small&gt;
+]
+
+---
+
+## Why simulations are important in research
+
+&lt;br /&gt;
+
+&gt; **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
+
+&lt;br /&gt;
+
+&gt; **Simulation**: Data about the system generated using a mathematical or statistical model.
+
+---
+
+## Why simulations are important in research
+
+Models and simulations allow us to:
+
+* Explain experimental data (through model fitting and refinement);
+
+--
+
+* Test hypotheses:
+  - without going through expensive and time-consuming experiments;
+  
+  - that wouldn’t be ethical or even feasible to test in real life:
+  
+--
+
+* Make predictions about new interventions/scenarios;
+
+--
+
+* Communicate knowledge.
+
+---
+
+## Why simulations are important in research
+
+Modelling and simulations are used in many fields of science, e.g.:
+
+* **Epidemiology**: modelling of infectious diseases (see this [talk on COVID-19 modelling](https://www.youtube.com/watch?v=OhECexc9jt4));
+
+--
+ 
+* **Ecology**: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
+
+--
+
+* **Medicine**: construction of organ models, prediction of drug-target binding and drug efficiency;
+
+--
+
+* **Chemistry**, **molecular biology**: molecules interaction models;
+
+--
+
+* **Astrophysics**: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw));
+
+--
+
+* and many more!
+
+---
+
+## Why simulations are important in research
+
+&gt; **Systems Biology**: the study of the interaction between biological entities through modelling and simulations
+
+
+--
+
+* Interdisciplinary field: builds on physics, chemistry, biology, computer science, statistics, mathematics, etc
+
+--
+
+* Interest in understanding the emerging properties of biological systems arising from local interactions between molecular components
+
+
+--
+
+* Construction of whole-cell computational model of the human pathogen *Mycoplasma genitalium*: [Kar *et al.*, Cell (2012)](https://doi.org/10.1016/j.cell.2012.05.044)
+
+---
+class: inverse, center, middle
+
+# What are Gene Regulatory Networks?
+
+---
+
+## An overview of gene expression
+
+.center[
+  &lt;img src="images/gene_expression_schema.png" width="600"&gt;
+  
+&lt;small&gt;Credit: Fondation Merieux &lt;/small&gt;
+]
+
+---
+
+## Regulation of gene expression
+
+* Cells adapt to changes in environment by modulating the expression of their genes
+
+--
+
+* Gene expression regulated by different types of molecules:
+
+  - proteins
+  
+  - regulatory non-coding RNAs
+  
+  - small metabolites
+
+---
+
+## Regulation of gene expression
+
+Expression of a target gene can be controlled in different ways:
+
+--
+
+* Regulation of **transcription** (regulatory proteins called transcription factors or TFs)
+  
+--
+
+* Regulation of **translation**  
+
+--
+
+* Regulation of **gene products' decay** (RNAs and proteins)
+
+--
+
+* **Post-translational** regulation (modification of sequence or shape of target proteins)
+
+--
+
+&lt;br /&gt;
+
+Regulation that increases the target's expression `\(\rightarrow\)` **activation**
+
+Regulation that reduces/suppresses the target's expression `\(\rightarrow\)` **repression**
+
+---
+
+## Gene Regulatory Networks
+
+.center[
+&lt;img src="images/grn.jpg" width="500"&gt;
+
+&lt;small&gt;From Ma, Sisi, et al. "De-novo learning of genome-scale regulatory networks in S. cerevisiae." *Plos one* 9.9 (2014): e106479. (available under license [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) )&lt;/small&gt;
+]
+
+---
+
+## Gene Regulatory Networks
+
+Not all genes linked to all others: relationship between regulator and target usually very specific
+
+* most targets controlled only by a few regulators;
+
+* most regulators control only a few targets;
+
+* some "hub" or "master" regulators.
+
+---
+class: inverse, center, middle
+
+## Simulating Gene Regulatory Networks
+
+---
+
+## Why simulating GRNs?
+
+* to test hypotheses about the GRN (e.g. by comparing simulations to experimental data);
+
+--
+
+* to predict the response to a specific condition;
+
+--
+
+* to predict the response of the system to a modification of the GRN;
+
+--
+
+* to understand the emerging properties of the system;
+
+--
+
+* to evaluate the performance of statistical tools used for GRN reconstruction from gene expression data.
+
+---
+
+## Building blocks of a GRN model
+
+* A list of regulatory interactions between the genes (often represented as a graph);
+
+--
+
+* A set of rules to convert the regulations into a mathematical or statistical model;
+
+--
+
+* (optional, depends on the model): A set of numerical parameters specifying the rate of the different reactions in the model.
+
+--
+
+&lt;br /&gt;
+
+There are many types of models that can be used to model GRNs!
+
+---
+
+## Logical models
+
+.center[
+&lt;img src="images/boolean_model_example.png" width="600"&gt;
+
+&lt;small&gt;Example adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). &lt;https://doi.org/10.1038/nrm2503&gt;. &lt;/small&gt;
+]
+
+---
+
+## Continuous and deterministic models
+
+.center[
+&lt;img src="images/ode_model_example.png" width="550"&gt;
+
+&lt;small&gt;Example adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. *Nat Rev Mol Cell Biol 9*, 770--780 (2008). &lt;https://doi.org/10.1038/nrm2503&gt;. &lt;/small&gt;
+]
+
+---
+
+## Discrete and stochastic models
+
+.center[
+&lt;img src="images/ssa_model_example.png" width="650"&gt;
+
+&lt;small&gt;R code to reproduce the last two examples available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). &lt;/small&gt;
+]
+
+---
+
+## Different types of GRN models
+
+Each type of model has its own advantages and drawbacks.
+
+.center[
+&lt;img src="images/comparison_type_models.png" width="550"&gt;
+]
+
+
+---
+
+## Different types of GRN models
+
+In this workshop, we'll focus on discrete and stochastic models:
+
+* good options to simulate species with very **low abundance per cell** (e.g. regulatory molecules);
+
+* **computationally heavy**: restricts the size of the models that can be simulated.
+
+---
+
+## Some tools to simulate GRNs (not exhaustive!)
+
+* [GeneNetWeaver](http://gnw.sourceforge.net/): for deterministic or semi-stochastic modelling;
+
+* [CaiNet](https://gitlab.com/GebhardtLab/cainet): mix of probabilistic and deterministic equations;
+
+* [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/): stochastic modelling with time-delay;
+
+* [**sismonr**](https://CRAN.R-project.org/package=sismonr): R package for stochastic modelling.
+
+---
+class: inverse, center, middle
+
+## A brief introduction to the Stochastic Simulation Algorithm
+
+---
+
+## A stochastic model
+
+A stochastic model consists of:
+
+&lt;br /&gt;
+
+.center[
+&lt;img src="images/list_reactions_species_example.png"&gt;
+]
+
+---
+
+## Mathematical representation of a stochastic model
+
+Reactions represented with a **stoichiometry matrix**:
+
+&lt;br /&gt;
+
+&lt;br /&gt;
+
+.center[
+&lt;img src="images/stoichiometry_matrix_example.png"&gt;
+]
+
+---
+
+## Mathematical representation of a stochastic model
+
+**System state** represented as vector of species abundance at a given time point:
+
+&lt;br /&gt;
+
+.center[
+&lt;img src="images/system_state_example.png" width="600"&gt;
+]
+
+---
+
+## Reactions propensities
+
+To simulate the system, need to know which reaction will fire when:
+
+&gt; Reaction **propensity**: probability of the reaction to occur in the next (small) unit time step
+
+--
+
+&lt;br /&gt;
+
+Propensity depends on:
+
+* constant rate of reaction;
+
+--
+
+* state of the system at the current time point:
+  
+  - few reactants present in the system `\(\rightarrow\)` low chance of the reaction occurring;
+  
+  - reactants abundant in the system: `\(\rightarrow\)` high chance of the reaction occurring.
+  
+  
+---
+
+## Reactions propensities
+
+.pull-left[
+In our example: 
+]
+.pull-right[
+&lt;img src="images/list_reactions_example.png" width="300"&gt;
+]
+
+
+.center[
+&lt;img src="images/propensities_example.png" width="500"&gt;
+]
+
+---
+
+## Basic concept of the Stochastic Simulation Algorithm
+
+* Initialisation: set `\(t = 0\)`, and initial system state as initial species abundance.
+
+--
+
+1. Compute reactions propensities, based on current system state.
+
+--
+
+2. **Randomly** generate time increment `\(\tau\)` during which next reaction occurs.
+
+--
+
+3. **Randomly** select which reaction will occur between `\(t\)` and `\(t+ \tau\)`.
+
+--
+
+4. Update time to `\(t + \tau\)` and system state based on which reaction occurred.
+
+--
+
+5. Repeat steps 1 to 4, until `\(t = t_{max}\)`.
+
+---
+
+## An example of one SSA iteration
+
+.center[
+&lt;img src="images/steps_ssa_example.png" width="600"&gt;
+]
+
+---
+
+## Advantage and drawback
+
+* Advantage: every single reaction simulated!
+
+--
+
+* Downside: if many reactions with high propensities, each time increment will be really small `\(\rightarrow\)` will take a long time to get to the end of the simulation
+
+&lt;br /&gt;
+
+.center[
+&lt;img src="images/comparison_tau_ssa.png"&gt;
+]
+
+---
+
+## Many versions of the SSA!
+
+* There exist many variations of the SSA:
+
+  - **exact** versions: simulate the occurrence of every single reaction;
+  
+  - **approximate** versions: trade-off between accuracy and computational burden.
+  
+--
+
+* Several implementations of the SSA:
+  - R: [GillespieSSA](https://cran.r-project.org/package=GillespieSSA), [adaptivetau](https://cran.r-project.org/package=adaptivetau)
+  - python: [gillespie](https://github.com/sueskind/gillespie)
+  - Julia: [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/)&lt;sup&gt;*&lt;/sup&gt; 
+
+.footnote[[*] Used by the sismonr package that we are going to use!]
+
+---
+class: center, middle
+
+# 2. Getting started with sismonr
+
+---
+class: inverse, center, middle
+
+## Introduction to the sismonr package
+
+---
+
+## The sismonr package
+
+* sismonr was developed for the purpose of generating benchmark datasets to assess the performance of network reconstruction methods
+
+--
+
+* Objectives:
+  - include the effect of **small genetic mutations** in the GRN to mimic genetic variability between individuals;
+
+--
+
+  - allow the simulation of **polyploid** systems (i.e. more that 2 copies of each gene present in the system);
+  
+--
+
+  - model **post-transcriptional** regulation;
+  
+--
+
+  - transparent model, **customisable** by the user;
+  
+--
+
+  - generate **random but plausible GRNs** or use GRN provided by user.
+  
+--
+
+&lt;br /&gt;
+
+A complete sismonr tutorial is available [here](https://oliviaab.github.io/sismonr/).
+
+---
+
+## sismonr: linking R and Julia
+
+&lt;img src="slides_images/R_logo.png" width="50"&gt; can be slow for intensite computations `\(\rightarrow\)` sismonr uses &lt;img src="slides_images/julia_logo.png" width="70"&gt; under the hood!
+
+--
+
+.center[
+sismonr uses the [XRJulia](https://cran.r-project.org/package=XRJulia](https://cran.r-project.org/package=XRJulia) package to link R and Julia:
+&lt;img src="images/sismonr_r_julia.gif"&gt;
+]
+
+---
+
+## sismonr: linking R and Julia
+
+* Socket connection initialised on a random port `\(\rightarrow\)` can get messy when working on a HPC...
+
+--
+
+Solution:
+
+
+```r
+&gt; XRJulia::newJuliaEvaluator(port = as.integer(456))
+```
+
+---
+class: inverse, center, middle
+
+## Practice time!
+
+---
+
+## Some sismonr abbreviations
+
+| Abbreviations | Meaning                         |
+|---------------|---------------------------------|
+| TC            | Transcription                   |
+| TL            | Translation                     |
+| RD            | RNA decay                       |
+| PD            | Protein decay                   |
+| PTM           | Post-translational modification |
+| PC            | Protein-coding                  |
+| NC            | Noncoding                       |
+| R             | RNA                             |
+| P             | Protein                         |
+| Pm            | Modified protein                |
+| C             | Regulatory complex              |
+
+
+This table can also be found [here](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html#practice-time).
+
+---
+
+## Login to NeSI Mahuika Jupyter
+
+Instructions in the [Supplementary Material](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/07_supplementary.html)
+
+&lt;br /&gt;
+
+**IMPORTANT:** do not forget to change your working directory!
+
+.center[
+&lt;img src="nesi_images/jupyter_fileexplorer.png"&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
