@@ -10,17 +10,18 @@ STORY TIME !
     
     The scheduler provides the simplest method for running parallel computations. SLURM schedules thousands of simultaneous calculations on NeSI clusters  and will gladly execute many of your jobs at once, as long as there are available resources.
     
-    This means, that in contrast to the language-specific parallelism methods required by shared memory ( OpenMP, etc. 😕), distributed memory (MPI,etc. 😕😕), and various threading  methods built into languages like Python, Matlab, and R, slurm can provide [embarassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) calculations. These calculations, more generously called “perfectly parallel” do not require any exchange of information between individual jobs which would otherwise require a high-speed network and intelligent algorithm for communicating these data. (🤔) They scale perfectly which means that twice as much calculation can be completed in the same amount of time with twice as much hardware. This is not always *true* for true or imperfect parallel calculations
+    This means, that in contrast to the language-specific parallelism methods required by shared memory ( OpenMP, etc. 😕), distributed memory (MPI,etc. 😵‍💫), and various threading  methods built into languages like Python, Matlab, and R, slurm can provide [embarassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) calculations. These calculations, more generously called “perfectly parallel” do not require any exchange of information between individual jobs which would otherwise require a high-speed network and intelligent algorithm for communicating these data. (🤔) They scale perfectly which means that twice as much calculation can be completed in the same amount of time with twice as much hardware. This is not always *true* for true or imperfect parallel calculations
     
 !!! tip "😠"
 
-    Shared memory, Distributed memory, OpenMP, MPI ? ....none of these terms are associated with Gene Regulation 😠 
+    Shared memory, Distributed memory, OpenMP, MPI ? ....none of these terms are associated with Gene Regulation 👿
 
-    * Correct. However, these concepts/specifications in Parallel computing is important for the *scaling up* part of the workshop. 
+    * Correct & not having an in-depth knowledge on these topics will not affect the end goal of this workshop 
 
-    Okay, but can't we just call it witchcraft or black magic and move on ? 🧙‍♀️
+    Okay, so we just call it witchcraft or black magic and move on ? 🧙‍♀️
     
-    * Yes we can but this will help us with writing efficient, reliable code which can run in parallel. Therefore, let's spend a little bit of time going through theory and few exercises 🤓
+    * Yes we can 🥳
+    * However, If you are writing a custom R, Julia or Python library for simulations (or for another purpose which requires scaling), those specifications will assist you with making the library more efficient and reliable 🤓
 
 ---
 
