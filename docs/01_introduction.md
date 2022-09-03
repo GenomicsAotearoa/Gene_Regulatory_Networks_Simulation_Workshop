@@ -6,36 +6,38 @@ Slides are available [here](workshop_slides.html).
 
 One way to answer a research question is through observations and experiments. A scientist can go in the field or the lab to collect data, and analyse them to answer the question. However, this is not the only way to "do" research. The construction of mathematical or statistical models can be an alternative way of testing and generating new hypotheses. It can help us answer questions as "simple" as predicting the movement of planets in the Solar system, or as complex as providing a weather forecast.
 
-> **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
+!!! quote ""
 
-> **Simulation**: Data about the system generated using a mathematical or statistical model.
+    **Model**: mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
 
-Modelling and simulations are very powerful tools. In particular, they allow us to:
+    **Simulation**: Data about the system generated using a mathematical or statistical model.
 
-* explain experimental data, through model fitting and refinement;
+!!! quote "Modelling and simulations are very powerful tools. In particular, they allow us to:"
 
-* test hypotheses:
-  - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of knocking out a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
+    * explain experimental data, through model fitting and refinement;
+    
+    * test hypotheses:
+      - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of knocking out a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
+    
+      - that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
+    
+    * make predictions about new interventions/scenarios: e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...;
+    
+    * communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
 
-  - that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
+!!! info "Modelling and simulations are used in many fields of science, including for example:"
 
-* make predictions about new interventions/scenarios: e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...;
+    -   **Epidemiology**: modelling of infectious diseases; for example to predict the spreading of a pandemic and to assess the effects of different prevention measures (see for example a very interesting [talk from Dr Rachel Binny](https://www.youtube.com/watch?v=OhECexc9jt4) on the modelling of the COVID19 response in New Zealand);
 
-* communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
+    -   **Ecology**: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
 
-Modelling and simulations are used in many fields of science, including for example:
+    -   **Medicine**: construction of organ models, prediction of drug-target binding and drug efficiency;
 
--   **Epidemiology**: modelling of infectious diseases; for example to predict the spreading of a pandemic and to assess the effects of different prevention measures (see for example a very interesting [talk from Dr Rachel Binny](https://www.youtube.com/watch?v=OhECexc9jt4) on the modelling of the COVID19 response in New Zealand);
+    -   **Chemistry**, **molecular biology**: molecules interaction models;
 
--   **Ecology**: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
+    -   **Astrophysics**: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
 
--   **Medicine**: construction of organ models, prediction of drug-target binding and drug efficiency;
-
--   **Chemistry**, **molecular biology**: molecules interaction models;
-
--   **Astrophysics**: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw)), etc;
-
--   and many more!
+    -   and many more!
 
 In biology, the study of the interactions between biological entities through modelling and simulations is known as Systems Biology ([Macilwain, 2011](https://doi.org/10.1016/j.cell.2011.02.044)). It is a very interdisciplinary field, building from numerous disciplines (physics, chemistry, biology, computer science, statistics, mathematics, etc). In particular, Systems biologists are interested in understanding the emerging properties of biological systems arising from local interactions between molecular components. This led for example to the construction of a whole-cell computational model ([Kar *et al.*, 2012](https://doi.org/10.1016/j.cell.2012.05.044)).
 
