@@ -72,7 +72,7 @@ Regulators can control the expression of a given target gene by affecting differ
     -   **Regulation of translation**: the regulatory molecule controls the synthesis of proteins from the target mRNAs.
     -   **Decay regulation**: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded by triggering their decay or protecting them from degradation.
     -   **Post-translational regulation**: the regulator modifies the conformation or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
-    
+
 Regulators that increase the expression of their target are called **activators**; those decreasing the expression of their target are called **repressors**. Typically, the relationship between regulator and target is quite specific, with most regulators controlling the expression of only a few target genes, and most genes being controlled by a small set of regulators.
 
 Information about the regulatory relationships between genes can be summarised into graphs, which we call Gene Regulatory Networks (GRN). In a GRN, nodes represent genes, and a directed arrow from gene A to gene B indicates that the products of gene A control the expression of gene B. An example of GRN is given below.
@@ -87,19 +87,23 @@ A given environmental cue typically triggers the activation of a specific regula
 
 One way to understand the dynamics of GRNs is through simulation; i.e. by simulating the expression over time of genes involved in a GRN. Simulating GRNs allows us to:
 
--   Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
--   predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell in the presence of a hormone);
--   predict the behaviour of the system in response to modifications of the GRN (e.g. what happens when a critical gene is mutated in a cancer cell?);
--   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
--   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
+!!! quote ""
+
+    -   Test hypotheses about the GRN (by comparing gene expression data collected experimentally to simulations based on our current understanding of the network);
+    -   predict the response of an organism to a specific condition (e.g. predict the behaviour of a human cell in the presence of a hormone);
+    -   predict the behaviour of the system in response to modifications of the GRN (e.g. what happens when a critical gene is mutated in a cancer cell?);
+    -   understand the emerging properties of the system (e.g. a specific pattern of regulation leading to a particular cellular behaviour);
+    -   To evaluate the performance of statistical tools used to reconstruct GRNs from gene expression data (this is the main reason why `sismonr` was developed).
 
 A model of GRN is generally comprised of 2 or 3 components:
 
-- A list of genes and of regulatory interactions between the genes (often presented as a graph);
+!!! quote ""
 
-- A set of rules to convert the regulatory interactions into mathematical or statistical equations;
+    - A list of genes and of regulatory interactions between the genes (often presented as a graph);
 
-- A set of numerical parameters that specify the rate of the different reactions in the model (optional, depends on the type of model used).
+    - A set of rules to convert the regulatory interactions into mathematical or statistical equations;
+
+    - A set of numerical parameters that specify the rate of the different reactions in the model (optional, depends on the type of model used).
 
 
 ### Classes of GRN models
