@@ -42,9 +42,9 @@ One way to answer a research question is through observations and experiments. A
 In biology, the study of the interactions between biological entities through modelling and simulations is known as Systems Biology ([Macilwain, 2011](https://doi.org/10.1016/j.cell.2011.02.044)). It is a very interdisciplinary field, building from numerous disciplines (physics, chemistry, biology, computer science, statistics, mathematics, etc). In particular, Systems biologists are interested in understanding the emerging properties of biological systems arising from local interactions between molecular components. This led for example to the construction of a whole-cell computational model ([Kar *et al.*, 2012](https://doi.org/10.1016/j.cell.2012.05.044)).
 
 !!! quote ""
-    In this workshop, we are going to work on one of the topics of Systems Biology, which is simulating the expression of genes involved in a Gene Regulatory Network.
+    **In this workshop, we are going to work on one of the topics of Systems Biology, which is simulating the expression of genes involved in a Gene Regulatory Network.**
 
-## What are Gene Regulatory Networks?
+## What are Gene Regulatory Networks ?
 
 ### An overview of gene expression
 
