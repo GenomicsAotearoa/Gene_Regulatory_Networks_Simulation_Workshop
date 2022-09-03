@@ -1,5 +1,6 @@
 # 4. Working with job scheduler
 
+<center>![image](./nesi_images/scheduler_image.png){width="500"}</center>
 ## Introduction to slurm scheduler and directives
 
 An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what and when? How do we ensure that a task is run with the resources it needs? This job is handled by a special piece of software called the scheduler. On an HPC system, the scheduler manages which jobs run where and when. In brief, scheduler is a 
