@@ -15,14 +15,14 @@ One way to answer a research question is through observations and experiments. A
 !!! quote "Modelling and simulations are very powerful tools. In particular, they allow us to:"
 
     * explain experimental data, through model fitting and refinement;
-    
+
     * test hypotheses:
       - without going through expensive and time-consuming experiments. For example, with a model of gene expression in a cell, we can predict the impact of knocking out a gene, without going through all the steps necessary to genetically modify a cell in the lab and then record the expression of its genes;
-    
+
       - that wouldn't be ethical or even feasible to test in real life: e.g. testing the impact of a drug on human embryo development, understanding the merger of two galaxies;
-    
+
     * make predictions about new interventions/scenarios: e.g. what would be the consequences of new mutation in a crop, or the impact of different prevention policies on the spreading of a pandemic...;
-    
+
     * communicate knowledge: e.g. simulations can be use to generate an animation of the formation of a star.
 
 !!! info "Modelling and simulations are used in many fields of science, including for example:"
@@ -41,7 +41,8 @@ One way to answer a research question is through observations and experiments. A
 
 In biology, the study of the interactions between biological entities through modelling and simulations is known as Systems Biology ([Macilwain, 2011](https://doi.org/10.1016/j.cell.2011.02.044)). It is a very interdisciplinary field, building from numerous disciplines (physics, chemistry, biology, computer science, statistics, mathematics, etc). In particular, Systems biologists are interested in understanding the emerging properties of biological systems arising from local interactions between molecular components. This led for example to the construction of a whole-cell computational model ([Kar *et al.*, 2012](https://doi.org/10.1016/j.cell.2012.05.044)).
 
-In this workshop, we are going to work on one of the topics of Systems Biology, which is simulating the expression of genes involved in a Gene Regulatory Network.
+!!! quote ""
+    In this workshop, we are going to work on one of the topics of Systems Biology, which is simulating the expression of genes involved in a Gene Regulatory Network.
 
 ## What are Gene Regulatory Networks?
 
