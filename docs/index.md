@@ -12,24 +12,32 @@
 - Basic molecular biology knowledge preferred (gene expression and regulation)
 - HPC knowledge preferred
 
+- - -
+
 ## Learning objectives
 
 By the end of this workshop, participants should be able to:
 
-- explain the concept of modelling and simulations, and how simulations can help answer research questions;
-- briefly describe the main steps of gene expression, and explain what is a Gene Regulatory Network;
-- list several classes of GRN models;
-- generate a small random GRN with the sismonr package and simulate the expression of its gene;
-- submit and manage jobs on a cluster using a scheduler and use software through environment modules;
-- automate a large number of tasks on a HPC using array jobs.
+!!! quote ""
 
+    - explain the concept of modelling and simulations, and how simulations can help answer research questions;
+    - briefly describe the main steps of gene expression, and explain what is a Gene Regulatory Network;
+    - list several classes of GRN models;
+    - generate a small random GRN with the sismonr package and simulate the expression of its gene;
+    - submit and manage jobs on a cluster using a scheduler and use software through environment modules;
+    - automate a large number of tasks on a HPC using array jobs.
 
-## Some of the things we won't cover in this workshop
+- - - 
 
-- how to construct a mathematical or statistical model for a specific biological system of interest;
-- How to estimate model parameters based on experimental data;
-- How to reconstruct a GRN from experimental data;
-- Any questions we don't have an answer for :)
+## Some of the things we won't cover in this workshop 🙅
+
+- How to : 
+    - construct a mathematical or statistical model for a specific biological system of interest;
+    - estimate model parameters based on experimental data;
+    - reconstruct a GRN from experimental data;
+- Any questions we don't have an answer for 🤦
+
+- - -
 
 ## Content
 
@@ -43,6 +51,8 @@ Before getting started, have a look at the [Supplementary data](./workshop_mater
 6. [Post-processing](./workshop_material/06_post_processing.md)
 7. [Supplementary-material](./workshop_material/07_supplementary.md)
 8. [Supplementary-material-2](./workshop_material/08_supplementary_2.md)
+
+- - -
 
 ## Schedule
 
