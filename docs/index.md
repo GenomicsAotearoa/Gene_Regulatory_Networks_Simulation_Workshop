@@ -3,7 +3,7 @@
 </center>
 
 <center>
-![image](./images/2022_geneRegEditASPECTOriginal.png)
+![image](./nesi_images/main_logo_f_workshop.png)
 </center>
 
 ## Prerequisites
