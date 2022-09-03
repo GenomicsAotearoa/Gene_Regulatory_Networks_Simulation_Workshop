@@ -1,5 +1,7 @@
 # 2. Getting started with sismonr
 
+<center>![image](./nesi_images/sismonr_logo.png){width="200"}</center>
+
 ## Introduction to the sismonr package
 
 !!! quote ""
