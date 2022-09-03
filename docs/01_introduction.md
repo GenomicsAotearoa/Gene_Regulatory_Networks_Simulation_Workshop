@@ -2,6 +2,9 @@
 
 Slides are available [here](workshop_slides.html).
 
+
+<center>![image](./nesi_images/biological_circuit.png){width="500"}</center>
+
 ## Why simulations are important in research
 
 One way to answer a research question is through observations and experiments. A scientist can go in the field or the lab to collect data, and analyse them to answer the question. However, this is not the only way to "do" research. The construction of mathematical or statistical models can be an alternative way of testing and generating new hypotheses. It can help us answer questions as "simple" as predicting the movement of planets in the Solar system, or as complex as providing a weather forecast.
