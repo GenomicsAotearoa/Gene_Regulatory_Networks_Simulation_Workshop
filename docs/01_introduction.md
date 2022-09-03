@@ -130,10 +130,10 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 <small>Example of a discrete and stochastic model. a) The GRN modelled. b) The list of biochemical reactions occuring in the modelled system, with the rate of each reaction indicated above the reaction arrow. c) One simulation obtained with the Stochastic Simulation Algorithm. The code to reproduce this example is available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R). </small>
 
-Each type of model has its own advantages and drawbacks.
+!!! warning "Each type of model has its own advantages and drawbacks."
 
-![image](./images/comparison_type_models.png){width="700"}
-<br<<center><small>A very schematic representation of some of the differences between different classes of GRN models.</small></center></br>
+    ![image](./images/comparison_type_models.png){width="700"}
+    <br<<center><small>A very schematic representation of some of the differences between different classes of GRN models.</small></center></br>
 
 In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restricts the simulations to models of GRNs of small size. In a next section, you will learn more about how to simulate expression data from stochastic models using the Stochastic Simulation Algorithm.
 
