@@ -56,7 +56,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent="">
   
     
     
@@ -111,7 +111,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
@@ -120,7 +120,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
@@ -129,7 +129,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-green" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
           
             <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
@@ -599,7 +599,9 @@
 
 <h1 id="2-getting-started-with-sismonr">2. Getting started with sismonr<a class="headerlink" href="#2-getting-started-with-sismonr" title="Permanent link">&para;</a></h1>
 <h2 id="introduction-to-the-sismonr-package">Introduction to the sismonr package<a class="headerlink" href="#introduction-to-the-sismonr-package" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
 <p>The sismonr package was developed for the purpose of generating benchmark datasets, in order to assess the performance of statistical methods that reconstruct GRNs from experimental datasets such as RNAseq data. Therefore, sismonr allows the user to generate random GRNs that mimic some of the properties of biological regulatory networks. Alternatively, the user can construct their own regulatory network. sismonr can supports different types of regulation (e.g. transcription, translation or decay regulation). Genes can code for proteins or for non-coding regulatory RNAs; gene products can form regulatory complexes. One unique features of sismonr is that it allows the user to define the ploidy of the system, i.e. how many copies of each gene are present in the system. Lastly, sismonr simulates the expression of the genes in a GRN for different <em>in silico</em> individuals, that carry different versions (or alleles) of the genes present in the GRN (think of it as simulating gene expression from different subjects). This is quite useful to simulate gene expression under different scenarios such as gene knock-outs for example. If you are interested, a full tutorial is available <a href="https://oliviaab.github.io/sismonr/">here</a>.</p>
+</div>
 <p>One particularity of sismonr is that it is available as an R package; but internally it uses the programming language Julia to speed up some of the calculations. No worries though, you don't need to know anything about Julia to use sismonr!</p>
 <h3 id="how-sismonr-links-r-and-julia">How sismonr links R and Julia<a class="headerlink" href="#how-sismonr-links-r-and-julia" title="Permanent link">&para;</a></h3>
 <p>Before we get into the fun part, which is getting to play with the sismonr package, it is important to know a little bit about sismonr works. More specifically, we will now briefly cover how sismonr uses Julia to run the simulations and other computations. This will be important when scaling-up our work from a local machine to a HPC environment.</p>
@@ -621,6 +623,7 @@ you are creating a new Julia process and the socket connection between the R ses
 <p>Now we can open a sismonr Jupyter Notebook:</p>
 <p><br><img alt="image" src="../nesi_images/sismonr_kernel.png" width="900" /></br></p>
 <p>Before getting started, here are some abbreviations that are often used within sismonr:</p>
+<p><center></p>
 <table>
 <thead>
 <tr>
@@ -683,6 +686,7 @@ you are creating a new Julia process and the socket connection between the R ses
 </tr>
 </tbody>
 </table>
+<p></center></p>
 <h3 id="generating-a-random-grn">Generating a random GRN<a class="headerlink" href="#generating-a-random-grn" title="Permanent link">&para;</a></h3>
 <p>We will start by generating a small random GRN with sismonr, using the function <code>createInSilicoSystem()</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">sismonr</span><span class="p">)</span>
@@ -861,6 +865,7 @@ you are creating a new Julia process and the socket connection between the R ses
 <p>the resulting data-frame will contain, in addition to the columns previously described, one column for each <em>in silico</em> individual giving the constant rate of the reactions for this individual.</p>
 <h2 id="workshops-challenge-modelling-the-anthocyanin-biosynthesis-regulation-pathway-in-eudicots">Workshop's challenge: modelling the anthocyanin biosynthesis regulation pathway in eudicots<a class="headerlink" href="#workshops-challenge-modelling-the-anthocyanin-biosynthesis-regulation-pathway-in-eudicots" title="Permanent link">&para;</a></h2>
 <p>For this workshop, we will work on a model for the <a href="https://en.wikipedia.org/wiki/Anthocyanin">anthocyanin</a> biosynthesis regulation pathway in <a href="https://en.wikipedia.org/wiki/Eudicots">eudicots</a>. Anthocyanins are pgiments providing colouration to plants, flowers and fruits. This model was developed (mainly) based on the following sources:</p>
+<div class="admonition quote">
 <ul>
 <li>
 <p>Albert, Nick W., et al. "A conserved network of transcriptional activators and repressors regulates anthocyanin pigmentation in eudicots." <em>The Plant Cell</em> 26.3 (2014): 962-980. <a href="https://doi.org/10.1105/tpc.113.122069">https://doi.org/10.1105/tpc.113.122069</a></p>
@@ -875,7 +880,8 @@ you are creating a new Julia process and the socket connection between the R ses
 <p>Baudry, Antoine, et al. "TT2, TT8, and TTG1 synergistically specify the expression of BANYULS and proanthocyanidin biosynthesis in Arabidopsis thaliana." <em>The Plant Journal</em> 39.3 (2004): 366-380. <a href="https://doi.org/10.1111/j.1365-313X.2004.02138.x">https://doi.org/10.1111/j.1365-313X.2004.02138.x</a></p>
 </li>
 </ul>
-<p>An animation of the GRN is presented below:</p>
+</div>
+<p>An animation of the GRN is presented below: 🤓</p>
 <p><img alt="image" src="../images/anthocyanin_model_animation.gif" width="700" /></p>
 <p><small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found <a href="https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png">here</a>. </small></p>
 <p>The GRN starts with 3 protein-genes, <em>MYB</em>, <em>bHLH1</em> and <em>WDR</em>. While <em>bHLH1</em> and <em>WDR</em> are constitutively expressed (i.e. constantly produce proteins), <em>MYB</em> is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the <em>bHLH2</em> gene.</p>

@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/01_introduction/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/02_getting_started_sismonr/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/03_scaling_up/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/04_working_with_job_scheduler/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/05_parallel_job_arrays/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/06_post_processing/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/07_supplementary/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/08_supplementary_2/</loc>
-         <lastmod>2022-09-02</lastmod>
+         <lastmod>2022-09-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
