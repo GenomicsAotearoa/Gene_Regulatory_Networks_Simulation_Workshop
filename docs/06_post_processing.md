@@ -314,6 +314,5 @@ Yay, you've reached the end of this workshop! Feel free to make use of this know
 
 ---
 
-<p align="left"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_parallel_job_arrays.html">&laquo; 5. Parallel Job Arrays  </a></b></p>
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>

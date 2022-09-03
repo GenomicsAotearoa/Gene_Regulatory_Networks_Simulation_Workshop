@@ -364,13 +364,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#outline" class="md-nav__link">
-    Outline
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#checking-that-the-job-array-worked" class="md-nav__link">
     Checking that the job array worked
   </a>
@@ -524,13 +517,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#outline" class="md-nav__link">
-    Outline
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#checking-that-the-job-array-worked" class="md-nav__link">
     Checking that the job array worked
   </a>
@@ -638,17 +624,6 @@
 
 
 <h1 id="6-post-processing">6. Post-processing<a class="headerlink" href="#6-post-processing" title="Permanent link">&para;</a></h1>
-<p style="text-align:left;">
-    <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/05_parallel_job_arrays.html">&laquo; 5. Parallel Job Arrays  </a></b>
-    <span style="float:right;">
-     <b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b>
-    </span>
-</p>
-
-<h2 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
-<ul>
-<li toc="toc">Do not remove this line (it will not be displayed)</li>
-</ul>
 <h2 id="checking-that-the-job-array-worked">Checking that the job array worked<a class="headerlink" href="#checking-that-the-job-array-worked" title="Permanent link">&para;</a></h2>
 <p>In the previous section, you have seen how to run a slurm array job. Now it is time to check whether the arrays completed without failing! And if some of the arrays did fail, we would like to identify them to re-run them.</p>
 <p>As we have seen in the previous sections, the <code>sacct</code> command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output of this command and paste it in your slurm script for the <code>array</code> option, in order to re-run only those arrays that failed. Type the following command in the terminal:</p>
@@ -656,14 +631,14 @@
 </code></pre></div>
 <p>In the command, you'll need to replace <code>$JOB_ID</code> by your actual slurm job ID.</p>
 <p>Your turn! Did any of your arrays failed? If so, what would you change before re-running them?</p>
-<blockquote>
-<blockquote>
-<p><strong>Index</strong> 
-* <code>TO</code> = Timed Out
-* <code>F</code> = Failed
-* <code>OOM</code> = Out Of Memory</p>
-</blockquote>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title"><strong>Index</strong></p>
+<ul>
+<li><code>TO</code> = Timed Out</li>
+<li><code>F</code> = Failed</li>
+<li><code>OOM</code> = Out Of Memory</li>
+</ul>
+</div>
 <h2 id="interpreting-the-sismonr-output">Interpreting the sismonr output<a class="headerlink" href="#interpreting-the-sismonr-output" title="Permanent link">&para;</a></h2>
 <p>Now, it is time to analyse the simulations that we generated. </p>
 <h3 id="copying-the-simulation-outputs-to-relevant-directory">Copying the simulation outputs to relevant directory<a class="headerlink" href="#copying-the-simulation-outputs-to-relevant-directory" title="Permanent link">&para;</a></h3>
@@ -851,7 +826,8 @@
 <h2 id="comparing-dfr-expression-between-the-two-plants">Comparing DFR expression between the two plants<a class="headerlink" href="#comparing-dfr-expression-between-the-two-plants" title="Permanent link">&para;</a></h2>
 <p>One of the interesting results from these simulations is that we can confirm that the expression of anthocyanin biosynthesis-related genes is reduced in the mutant plant. We can visualise it, by creating a graph (say, a histogram, although a boxplot or density plot would work just as well) of the DFR protein abundance at t = 20 minutes (t = 1,200s) in the two plants. As a reminder, the DFR gene is gene 7 in our sismonr GRN. In the simulation data-frame, the column <code>R7</code> corresponds to the RNAs of gene 7, and the column <code>P7</code> corresponds to the proteins of gene 7.</p>
 <p>Have a go at it first! When you are ready, one possible plot is presented below:</p>
-<p>{% capture e6dot1 %}</p>
+<details class="example">
+<summary>Example</summary>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">sim_df</span> <span class="o">%&gt;%</span> 
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>  <span class="nf">filter</span><span class="p">(</span><span class="n">time</span> <span class="o">==</span> <span class="m">1200</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">## only keep the last time point of each simulation</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>  <span class="nf">select</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">Ind</span><span class="p">,</span> <span class="s">&quot;P7&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">## we want to focus on DFR proteins abundance </span>
@@ -876,8 +852,7 @@
 <a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>        <span class="n">text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">18</span><span class="p">))</span>            <span class="c1">## and increase font size  </span>
 </code></pre></div>
 <p><img alt="DFR protein abundance in the two plants" src="../images/colsystem_simulations_fdr_histogram.png" /></p>
-<p>{% endcapture %}</p>
-<p>{% include exercise.html title="e6dot1" content=e6dot1%}</p>
+</details>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Yay, you've reached the end of this workshop! Feel free to make use of this knowledge in your own research projects :)</p>
 <hr />
