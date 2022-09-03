@@ -55,7 +55,7 @@ The instructions necessary to a cell's functioning are encoded in its DNA, which
     1.  **Transcription**: the sequence of nucleotides that forms the gene is copied into a "free-floating" version called messenger RNA (mRNA), as the result of a complex series of biochemical interactions involving enzymes and other molecules.
     2.  **Translation**: the messenger RNA is used as a template to create proteins; each consecutive triplet of nucleotides is translated into a specific amino acid (the building blocks of proteins). The correspondence between triplets of nucleotides and amino acids is known as the genetic code. A sequence of amino acids is thus created from the messenger RNA template, and, once completed, constitutes the synthesised protein.
     3.  **Post-translational modifications**: once synthesised, a protein may have to undergo some transformations before attaining its functional state. Such modifications include changes in its conformation (i.e. the way in which the sequence of amino acids is folded in the 3D space), cleavage of a portion of the amino acid sequence, addition of molecular signals to specific amino acids, or binding to other proteins to form protein complexes.
-    
+
 ![Schema of the gene expression process](./images/gene_expression_schema.png)
 
 <small>Image credit: Fondation Merieux</small>
@@ -66,11 +66,13 @@ Cells respond and adapt to changes in the environment or other inter- and intra-
 
 Regulators can control the expression of a given target gene by affecting different steps of the target's expression:
 
--   **Regulation of transcription**: this is the most well-known type of gene expression regulation. The regulatory molecule (a protein that regulates transcription is called a transcription factor) controls the production of messenger RNAs from the target gene.
--   **Regulation of translation**: the regulatory molecule controls the synthesis of proteins from the target mRNAs.
--   **Decay regulation**: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded by triggering their decay or protecting them from degradation.
--   **Post-translational regulation**: the regulator modifies the conformation or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
+!!! quote ""
 
+    -   **Regulation of transcription**: this is the most well-known type of gene expression regulation. The regulatory molecule (a protein that regulates transcription is called a transcription factor) controls the production of messenger RNAs from the target gene.
+    -   **Regulation of translation**: the regulatory molecule controls the synthesis of proteins from the target mRNAs.
+    -   **Decay regulation**: the regulatory molecule affects the rate at which the target mRNAs or proteins are degraded by triggering their decay or protecting them from degradation.
+    -   **Post-translational regulation**: the regulator modifies the conformation or sequence of its target proteins, thus affecting the ability of the target protein to perform its cellular function.
+    
 Regulators that increase the expression of their target are called **activators**; those decreasing the expression of their target are called **repressors**. Typically, the relationship between regulator and target is quite specific, with most regulators controlling the expression of only a few target genes, and most genes being controlled by a small set of regulators.
 
 Information about the regulatory relationships between genes can be summarised into graphs, which we call Gene Regulatory Networks (GRN). In a GRN, nodes represent genes, and a directed arrow from gene A to gene B indicates that the products of gene A control the expression of gene B. An example of GRN is given below.
