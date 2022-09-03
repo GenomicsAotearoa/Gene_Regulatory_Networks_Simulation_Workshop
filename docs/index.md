@@ -41,16 +41,16 @@ By the end of this workshop, participants should be able to:
 
 ## Content
 
-Before getting started, have a look at the [Supplementary data](./workshop_material/07_supplementary.md) for instructions on how to connect to NeSI Mahuika Jupyter.
+Before getting started, have a look at the [Supplementary data](./07_supplementary.md) for instructions on how to connect to NeSI Mahuika Jupyter.
 
-1. [Introduction](./workshop_material/01_introduction.md)
-2. [Getting started with sismonr](./workshop_material/02_getting_started_sismonr.md)
-3. [Scaling up your work](./workshop_material/03_scaling_up.md)
-4. [Working with job scheduler](./workshop_material/04_working_with_job_scheduler.md)
-5. [Parallel job arrays](./workshop_material/05_parallel_job_arrays.md)
-6. [Post-processing](./workshop_material/06_post_processing.md)
-7. [Supplementary-material](./workshop_material/07_supplementary.md)
-8. [Supplementary-material-2](./workshop_material/08_supplementary_2.md)
+1. [Introduction](./01_introduction.md)
+2. [Getting started with sismonr](./02_getting_started_sismonr.md)
+3. [Scaling up your work](./03_scaling_up.md)
+4. [Working with job scheduler](./04_working_with_job_scheduler.md)
+5. [Parallel job arrays](./05_parallel_job_arrays.md)
+6. [Post-processing](./06_post_processing.md)
+7. [Supplementary-material](./07_supplementary.md)
+8. [Supplementary-material-2](./08_supplementary_2.md)
 
 - - -
 
