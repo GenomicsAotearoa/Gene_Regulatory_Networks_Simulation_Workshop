@@ -144,9 +144,9 @@ While it is possible to develop "by hand" your own model to simulate the express
 !!! quote ""
 
     **GeneNetWeaver**: [GeneNetWeaver](http://gnw.sourceforge.net/) ([Schaffter et al., 2011](https://doi.org/10.1093/bioinformatics/btr373)) is a Java-implemented software for GRN generation and simulation. Users can either provide their own network graph, or alternatively they can sample a small regulatory network from two possible experimentally derived transcriptional networks (reconstructed respectively from _E. coli_ and _S. cerevisiae_). A deterministic or semi-stochastic model is used to represent the expression of genes and transcription regulations between the genes. The model is then used to simulate time-course RNA and proteins normalised concentration. In addition, it is possible to simulate data for different types of network perturbation, e.g. gene knockouts or knockdowns. 
-    
+
     **CaiNet**: [CaiNet](https://gitlab.com/GebhardtLab/cainet) ([Hettich et al., 2021](https://doi.org/10.1101/872374)) is a Matlab/C++-based interactive tool to construct and simulate GRNs. The user can design in the GUI its own transcription regulatory network, which can include external input signal,  homo- and heterodimerisation (i.e. the binding of two identical or different proteins to form protein complexes), and enzyme-aided metabolic reactions. A model is then constructed, using a mix of probabilistic and deterministic equations. The simulations are sped-up by simulating individually each gene for short time-steps, then synchronising the different gene expression levels across the entire system. In addition, CaiNet offers a module for the inference of GRN topology and parameters from steady-state gene expression data.
-    
+
     **MeSCoT**: [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/) ([Milkevych *et al.*, 2021](https://doi.org/10.1093/g3journal/jkab133)) is a tool for generating and simulating GRNs impacted by genetic mutations and resulting quantitative phenotypes. This is particularly interesting for people working on QTL mapping or GWAS analyses for example. They use stochastic differential equations with time delay to construct the model. 
 
 In this workshop, we will use the [sismonr](https://github.com/oliviaAB/sismonr) R package. sismonr generates GRNs that include protein-coding and non-coding genes, and models different types of expression regulation, such as regulation of transcription, translation, RNA or protein decay, and post-translational modifications. sismonr constructs a stochastic model to simulate the abundance of RNAs and proteins in the system over time. 
@@ -158,10 +158,12 @@ In this section, we will see in more details the different components of a stoch
   
 A stochastic model consists of:
 
-- a list of (molecular) species present in the system of interest: in our case that would be the different genes, RNAs, proteins, etc.
-- a list of initial abundance for each species in the system, i.e. the number of molecules of each species present in the system at the beginning of the simulation;
-- a list of biochemical reactions that can occur in the system: e.g. substrate 1 (S1) binds with enzyme A (EA) to form a complex (C1A), represented on the form S1 + EA → C1A
-- a list of constant rates, one per reaction, that represent for  a given reaction the probability of one molecule of each reactant colliding and undergoing the reaction in the next time step.
+!!! quote ""
+
+    - a list of (molecular) species present in the system of interest: in our case that would be the different genes, RNAs, proteins, etc.
+    - a list of initial abundance for each species in the system, i.e. the number of molecules of each species present in the system at the beginning of the simulation;
+    - a list of biochemical reactions that can occur in the system: e.g. substrate 1 (S1) binds with enzyme A (EA) to form a complex (C1A), represented on the form S1 + EA → C1A
+    - a list of constant rates, one per reaction, that represent for  a given reaction the probability of one molecule of each reactant colliding and undergoing the reaction in the next time step.
 
 
 ![image](./images/list_reactions_species_example.png){width="700"}
@@ -195,35 +197,35 @@ Which gives, for the reactions in our example:
 ![image](./images/propensities_example.png){width="700}
 <br><center><small>Propensities of some of the reactions.</small></center></br>
 
-A typical Stochastic Simulation Algorithm will generate the simulation as follows:
+!!! info "A typical Stochastic Simulation Algorithm will generate the simulation as follows:"
 
-0. Initialisation: Start with the initial system state, and set $t = 0$.
-1. Compute the propensity of all reactions, based on the current state of the system;
-2. Based on the propensities, randomly generate the time increment $\tau$ during which the next reaction will occur;
-3. Based on the propensities, randomly select which reaction will occur between $t$ and $t+ \tau$;
-4. Update time to $t + \tau$, update the system state based on which reaction occurred;
-5. Repeat steps 1 to 4, until $t = t_{max}$ (the desired end time of the simulation).
+    0. Initialisation: Start with the initial system state, and set $t = 0$.
+    1. Compute the propensity of all reactions, based on the current state of the system;
+    2. Based on the propensities, randomly generate the time increment $\tau$ during which the next reaction will occur;
+    3. Based on the propensities, randomly select which reaction will occur between $t$ and $t+ \tau$;
+    4. Update time to $t + \tau$, update the system state based on which reaction occurred;
+    5. Repeat steps 1 to 4, until $t = t_{max}$ (the desired end time of the simulation).
 
-An example is shown below: 
-
-
-
-![image](./images/steps_ssa_example.png){width="700"}
-<br><center><small>Example of one iteration of the SSA.</small></center></br>
-
-This means that the Stochastic Simulation Algorithm simulates the occurrence of every single reaction in the system. The downside of that is that if several reactions have high propensities, then the interval of time sampled at each iteration of the algorithm will be really small, and so the algorithm will have to go through many iterations before reaching the end of the simulation. This occurs typically when some of the species are present in very high abundance in the system.
-
-![Illustration of the computational burden of SSA](./images/comparison_tau_ssa.png)
-
-<small>Illustration of the computational burden of the Stochastic Simulation Algorithm. Left: if reactions all have small propensities, the simulated time intervals are rather large, and the simulation will end quickly. Right: if on the contrary reactions have high propensities, many reactions will occur in short periods of time, and it will take many iterations to reach the end of the simulation.</small>
-
-
-Many variations of this stochastic simulation algorithms have been proposed, to reduce the computational burden of the simulations. Some are exact, i.e. they will simulate the occurrence of each reaction in the system; while other are approximate, i.e. they will try to speed up the calculations at the expense of accuracy.
-
-There are many implementations of the different versions of the Stochastic Simulation Algorithm, in the language of your choice: for example the R packages [GillespieSSA](https://CRAN.R-project.org/package=GillespieSSA) and [adaptivetau](https://CRAN.R-project.org/package=adaptivetau), the Python module [gillespie](https://github.com/sueskind/gillespie), the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/), and many (or at least a few) more.
-
-The sismonr packages uses under the hood the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/) to perform the stochastic simulations. You will learn a bit more about how sismonr links R and Julia in the next section.
-
+    An example is shown below: 
+    
+    
+    
+    ![image](./images/steps_ssa_example.png){width="700"}
+    <br><center><small>Example of one iteration of the SSA.</small></center></br>
+    
+    This means that the Stochastic Simulation Algorithm simulates the occurrence of every single reaction in the system. The downside of that is that if several reactions have high propensities, then the interval of time sampled at each iteration of the algorithm will be really small, and so the algorithm will have to go through many iterations before reaching the end of the simulation. This occurs typically when some of the species are present in very high abundance in the system.
+    
+    ![Illustration of the computational burden of SSA](./images/comparison_tau_ssa.png)
+    
+    <small>Illustration of the computational burden of the Stochastic Simulation Algorithm. Left: if reactions all have small propensities, the simulated time intervals are rather large, and the simulation will end quickly. Right: if on the contrary reactions have high propensities, many reactions will occur in short periods of time, and it will take many iterations to reach the end of the simulation.</small>
+    
+    
+    Many variations of this stochastic simulation algorithms have been proposed, to reduce the computational burden of the simulations. Some are exact, i.e. they will simulate the occurrence of each reaction in the system; while other are approximate, i.e. they will try to speed up the calculations at the expense of accuracy.
+    
+    There are many implementations of the different versions of the Stochastic Simulation Algorithm, in the language of your choice: for example the R packages [GillespieSSA](https://CRAN.R-project.org/package=GillespieSSA) and [adaptivetau](https://CRAN.R-project.org/package=adaptivetau), the Python module [gillespie](https://github.com/sueskind/gillespie), the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/), and many (or at least a few) more.
+    
+    The sismonr packages uses under the hood the Julia module [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/) to perform the stochastic simulations. You will learn a bit more about how sismonr links R and Julia in the next section.
+    
 
 
 ---
