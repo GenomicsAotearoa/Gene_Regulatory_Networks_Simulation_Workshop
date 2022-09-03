@@ -1,10 +1,5 @@
 # Supplementary
 
-<p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
-
-## Outline
-* Do not remove this line (it will not be displayed)
-{:toc}
 
 ## S.1.NeSI Mahuika Jupyter login
 
@@ -15,7 +10,7 @@
  
  >>* make sure to choose the correct project code `nesi02659`, number of CPUs `CPUs=4`, memory `8 GB` prior to pressing <img src="nesi_images/start_button.png" alt="drawing" width="40"/> button.
 
- <br><img src="nesi_images/jupyter_server2022.png" alt="drawing" width="700"/>
+ <br>![image](./nesi_images/jupyter_server2022.png)
  
 
 ## S.2.Opening a Jupyter teminal, create a working directory, switch Jupyter file explorer to correct path and open sismonr Jupyter kernel (sismonr/R-4.1.0) 
