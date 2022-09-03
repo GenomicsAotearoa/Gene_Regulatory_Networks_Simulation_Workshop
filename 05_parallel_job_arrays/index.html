@@ -717,18 +717,22 @@ $ sbatch mpi_hw.sl</code></li>
 </ul>
 <p>Ideally, for strong scaling, the runtime will keep decreasing in direct proportion to the growing number of processors used. For weak scaling, the ideal situation is for the runtime to remain constant as the system size, and number of processors used, are increased. In general, good strong scaling is more relevant for most scientific problems, but is also more difficult to achieve than weak scaling.</p>
 <div class="admonition info">
-<p class="admonition-title">Amdhal’s law and strong scaling</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Amdhal’s law and strong scaling</label><label for="__tabbed_1_2">Gustafson’s law and weak scaling</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>The limitations of strong scaling are best illustrated by Amdhal’s law: “The performance improvement to be gained by parallelisation is limited by the proportion of the code which is serial”. As more processors are used, the runtime becomes more and more dominated by the serial portion of a code.</p>
 <p><br>
 <center><img alt="image" src="../nesi_images/amdhal.png" width="490" /></center>
 <br></p>
 </div>
-<div class="admonition info">
-<p class="admonition-title">Gustafson’s law and weak scaling</p>
+<div class="tabbed-block">
 <p>Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.</p>
 <p><br>
 <center><img alt="image" src="../nesi_images/gustaffason.png" width="490" />
 <br></p>
+</div>
+</div>
+</div>
 </div>
 <h4 id="load-imbalance">Load imbalance<a class="headerlink" href="#load-imbalance" title="Permanent link">&para;</a></h4>
 <p>The laws and thoughts above only apply to cases where all processors are equally busy. What happens if some processors run out of work while others are still busy?</p>
