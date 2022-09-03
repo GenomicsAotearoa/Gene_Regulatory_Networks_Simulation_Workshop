@@ -45,8 +45,8 @@ Before getting started, have a look at the [Supplementary data](./07_supplementa
 
 | **Lesson**                                         | **Overview** | 
 |:---------------------------------------------------|:-------------|
-|1. [Introduction](./01_introduction.md)| |
-|2. [Getting started with sismonr](./02_getting_started_sismonr.md)||
+|1. [Introduction](./01_introduction.md)| General overview of Simulations , Gene Regulatory Networks and Simulating Gene Regulatory networks |
+|2. [Getting started with sismonr](./02_getting_started_sismonr.md)|Describe how `sismonr` package works and running the first simulation|
 |3. [Scaling up your work](./03_scaling_up.md)| Introduction to High Performance Computing|
 |4. [Working with job scheduler](./04_working_with_job_scheduler.md)|Introduction to HPC Job Schedulers, Slurm Scheduler & life cycle of a Slurm job, Assessing resource utilisation and profiling|
 |5. [Parallel job arrays](./05_parallel_job_arrays.md)|Introduction to specifications in Parallel Computing, Slurm Job arrays and Exercises on Scaling networks|
