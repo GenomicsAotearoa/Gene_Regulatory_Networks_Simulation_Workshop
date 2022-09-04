@@ -716,8 +716,11 @@ $ sbatch mpi_hw.sl</code></li>
 <li><strong>weak scaling</strong> is obtained by increasing both the number of processors and the system size/complexity, with both of these being increased at the same rate.</li>
 </ul>
 <p>Ideally, for strong scaling, the runtime will keep decreasing in direct proportion to the growing number of processors used. For weak scaling, the ideal situation is for the runtime to remain constant as the system size, and number of processors used, are increased. In general, good strong scaling is more relevant for most scientific problems, but is also more difficult to achieve than weak scaling.</p>
-<div class="admonition info">
+<div class="admonition quote">
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Amdhal’s law and strong scaling</label><label for="__tabbed_1_2">Gustafson’s law and weak scaling</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Definition</label><label for="__tabbed_2_2">Analogy</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The limitations of strong scaling are best illustrated by Amdhal’s law: “The performance improvement to be gained by parallelisation is limited by the proportion of the code which is serial”. As more processors are used, the runtime becomes more and more dominated by the serial portion of a code.</p>
@@ -726,10 +729,45 @@ $ sbatch mpi_hw.sl</code></li>
 <br></p>
 </div>
 <div class="tabbed-block">
+<p>Consider a trip from Edinburgh to the Empire State building in New York. The distance from Edinburgh to New York is <strong>5,200 km</strong>, and you can either fly with a Jumbo Jet (flight speed <strong>700 km/hr</strong>) or a Concorde (flight speed <strong>2,100 km/hr</strong>). What is the speedup of using the Concorde?</p>
+<p><center><img alt="image" src="../nesi_images/edi_2_jfk.png" width="450" /></center></p>
+<details class="success">
+<summary>Answer</summary>
+<p>The Jumbo Jet will cover that distance in around <strong>7h30</strong>, and the Concorde covers this in <strong>2h00</strong>, so you might think that the speedup is <strong>3.75x</strong>.
+<em>However</em>, in this problem, we are not starting in a plane about to take off! There are additional times to take into consideration:</p>
+<ul>
+<li>Trip to Edinburgh airport: 30 mins</li>
+<li>Security and boarding: 1h30</li>
+<li>US immigrations: 1h00</li>
+<li>Taxi ride to downtown New York: 1h00</li>
+</ul>
+<p>There is a fixed overhead of <strong>4 hrs</strong> that we can’t reduce. When considering this 4-hour overhead, we find that our total trip by Jumbo Jet takes <strong>11h30</strong>, whereas travelling by Concorde takes <strong>6 hrs</strong>. Our speedup is therefore <strong>1.92x</strong> not <strong>3.75x</strong>.
+Amdhal’s law suggests that, the shorter the journey, the more important the fixed (serial) overhead is in determining the total journey time.</p>
+</details>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Definition</label><label for="__tabbed_3_2">Analogy</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.</p>
 <p><br>
 <center><img alt="image" src="../nesi_images/gustaffason.png" width="490" />
 <br></p>
+</div>
+<div class="tabbed-block">
+<p>Let’s consider a new trip, one from Edinburgh to the Sydney Opera House in Australia. The distance from Edinburgh to Sydney is <strong>16,800 km</strong>. As with our trip to New York, you can either fly with a Jumbo Jet (flight speed <strong>700 km/hr</strong>) or a Concorde (flight <strong>speed 2,100 km/hr</strong>). Also, let’s assume that the overhead is similar to that for a trip to New York (so 4 hours). What is the speedup of using the Concorde this time?</p>
+<p><center><img alt="image" src="../nesi_images/edi_2_syd.png" width="450" /></center></p>
+<details class="success">
+<summary>Answer</summary>
+<p>The Jumbo Jet will cover that distance in around <strong>24 hrs</strong> for a total trip time of <strong>28 hrs</strong>, and the Concorde covers this distance in <strong>8hrs</strong> for a total trip time of <strong>12 hrs</strong>. The speedup is therefor <strong>2.3x</strong> (as opposed to <strong>1.9x</strong> for the trip to New York).
+This is Gustafson’s law in effect! Bigger problems scale better. If we increase both distance (i.e. <span class="arithmatex">\(N\)</span>) and maximum speed (i.e. <span class="arithmatex">\(P\)</span>), we maintain the same balance of “serials” to “parallel”, and get a better speedup.</p>
+</details>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
