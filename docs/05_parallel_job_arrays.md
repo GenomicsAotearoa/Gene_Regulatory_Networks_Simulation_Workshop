@@ -204,11 +204,21 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
 
     === "Amdhal’s law and strong scaling"
 
-        The limitations of strong scaling are best illustrated by Amdhal’s law: “The performance improvement to be gained by parallelisation is limited by the proportion of the code which is serial”. As more processors are used, the runtime becomes more and more dominated by the serial portion of a code.
 
-        <br>
-        <center>![image](./nesi_images/amdhal.png){width="490"}</center>
-        <br>
+        === "Definition"
+        
+            The limitations of strong scaling are best illustrated by Amdhal’s law: “The performance improvement to be gained by parallelisation is limited by the proportion of the code which is serial”. As more processors are used, the runtime becomes more and more dominated by the serial portion of a code.
+
+            <br>
+            <center>![image](./nesi_images/amdhal.png){width="490"}</center>
+            <br>
+
+        === "Analogy"
+
+            Consider a trip from Edinburgh to the Empire State building in New York. The distance from Edinburgh to New York is 5,200 km, and you can either fly with a Jumbo Jet (flight speed 700 km/hrs) or a Concorde (flight speed 2,100 km/hrs). What is the speedup of using the Concorde?
+
+            <center>![image](nesi)
+
 
     === "Gustafson’s law and weak scaling"
 
