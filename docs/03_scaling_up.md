@@ -52,7 +52,7 @@ In reality
 
 ### From Hardware to Software
 
-Over 90% HPCs & supercomputers employ Linux as their operating system.  Linux has four essential properties which make it an excellent operating system for the HPCS &  science community:
+Over 90% HPCs & supercomputers employ Linux as their operating system.  Linux has four essential properties which make it an excellent operating system for the HPCs &  science community:
 
 !!! quote ""
 
