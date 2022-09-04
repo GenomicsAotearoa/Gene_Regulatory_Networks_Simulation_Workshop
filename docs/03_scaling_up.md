@@ -52,6 +52,8 @@ In reality
 
 ### From Hardware to Software
 
+Over 90% supercomputers (94.2% to be precise) employ Linux as their operating system. In this post, a sequel to our last posts, we shall attempt to investigate the potentials of Linux which make it suitable and perhaps the best choice for supercomputers OS.
+
 ### Accessing software via modules
 
 On a high-performance computing system, it is quite rare that the software we want to use is available when we log in. It is installed, but we will need to “load” it before it can run.
