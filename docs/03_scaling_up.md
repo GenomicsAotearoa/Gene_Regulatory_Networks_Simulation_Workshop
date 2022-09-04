@@ -119,7 +119,7 @@ $ module spider KEYWORD
 ```
 * Load a specific program
 
-    >Note: All modules on NeSI have version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
+    >Note: All module names on NeSI Software stack have a version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
 
 ```bash
 $ module load MY_APPLICATION
