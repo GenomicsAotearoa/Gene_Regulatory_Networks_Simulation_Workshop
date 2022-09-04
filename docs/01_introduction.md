@@ -135,8 +135,8 @@ There are many types of models that can be developed to simulate GRNs (see [Kale
 
 !!! warning "Each type of model has its own advantages and drawbacks."
 
-    ![image](./images/comparison_type_models.png){width="700"}
-    <br<<center><small>A very schematic representation of some of the differences between different classes of GRN models.</small></center></br>
+    <center>![image](./images/comparison_type_models.png){width="475"}</center>
+    <br><center><small>A very schematic representation of some of the differences between different classes of GRN models.</small></center></br>
 
 In this workshop, we will be focusing on the discrete and stochastic class of models. It explicitly accounts for the stochastic noise inherent to biological systems; it is a good option to simulate GRNs as some of the regulatory molecules might be present in small numbers; but the computational burden restricts the simulations to models of GRNs of small size. In a next section, you will learn more about how to simulate expression data from stochastic models using the Stochastic Simulation Algorithm.
 
