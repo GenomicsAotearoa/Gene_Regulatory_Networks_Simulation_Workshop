@@ -225,10 +225,14 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
         === "Definition"
 
             Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.
-        
+
             <br>
             <center>![image](./nesi_images/gustaffason.png){width="490"}
             <br>
+
+        === "Analogy"
+
+            Let’s consider a new trip, one from Edinburgh to the Sydney Opera House in Australia. The distance from Edinburgh to Sydney is 16,800 km. As with our trip to New York, you can either fly with a Jumbo Jet (flight speed 700 km/hrs) or a Concorde (flight speed 2,100 km/hrs). Also, let’s assume that the overhead is similar to that for a trip to New York (so 4 hours). What is the speedup of using the Concorde this time?
 
 #### Load imbalance
 
