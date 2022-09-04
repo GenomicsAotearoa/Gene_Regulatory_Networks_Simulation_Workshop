@@ -103,49 +103,43 @@ One of the workarounds for this issue is Environment modules. A module is a self
 
 There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is `Lmod` where the `module` command is used to interact with environment modules.
 
-**Common commands - module**
+!!! info "Viewing, Accessing and Deploying software with "module" command""
 
-* View available modules
+    * View available modules
 
-```bash
-#View all modules
-$ module avail
+    ```bash
+    #View all modules
+    $ module avail
 
-# View all modules which match the keyword in their name
-$ module avail KEYWORD
+    # View all modules which match the keyword in their name
+    $ module avail KEYWORD
 
-# View all modules which match the keyword in their name or description
-$ module spider KEYWORD
-```
-* Load a specific program
+    # View all modules which match the keyword in their name or description
+    $ module spider KEYWORD
+    ```
 
-    >Note: All module names on NeSI Software stack have a version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
+    * Load a specific program
 
-```bash
-$ module load MY_APPLICATION
-```
+        >All module names on NeSI Software stack have a version and toolchain/environment suffixes. If none is specified, then the default version of the software is loaded. The default version can be seen with the `module avail modulename` command (corresponding module name will have `(D)` suffix)
+
+    ```bash
+    $ module load MY_APPLICATION
+    ```
 
 
-* Unload all current modules
+    * Unload all current modules
 
-```bash
-$ module purge
-```
->Please **do not** use `$module --force purge`
+    ```bash
+    $ module purge
+    ```
+    >Please **do not** use `$module --force purge`
 
-* Swap a currently loaded module for a different one
+    * Swap a currently loaded module for a different one
 
-```bash
-$ module switch CURRENT_MODULE DESIRED_MODULE
-```
+    ```bash
+    $ module switch CURRENT_MODULE DESIRED_MODULE
+    ```
+- - - 
 
----
-
-<p style="text-align:left;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html" style="background: var(--bs-green);font-weight:bold">&laquo; 2. Getting started with sismonr</a></b>
-    <span style="float:right;">
-     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html" style="background: var(--bs-green);font-weight:bold">4. Working with job Scheduler &raquo;</a></b>
-    </span>
-</p>
 
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
