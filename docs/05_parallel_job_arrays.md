@@ -200,7 +200,7 @@ Scaling describes how the runtime of a parallel application changes as the numbe
 
 Ideally, for strong scaling, the runtime will keep decreasing in direct proportion to the growing number of processors used. For weak scaling, the ideal situation is for the runtime to remain constant as the system size, and number of processors used, are increased. In general, good strong scaling is more relevant for most scientific problems, but is also more difficult to achieve than weak scaling.
 
-!!! info ""
+!!! quote ""
 
     === "Amdhal’s law and strong scaling"
 
@@ -217,16 +217,18 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
 
             Consider a trip from Edinburgh to the Empire State building in New York. The distance from Edinburgh to New York is 5,200 km, and you can either fly with a Jumbo Jet (flight speed 700 km/hrs) or a Concorde (flight speed 2,100 km/hrs). What is the speedup of using the Concorde?
 
-            <center>![image](nesi)
+            <center>![image](./nesi_images/edi_2_jfk.png)</center>
 
 
     === "Gustafson’s law and weak scaling"
 
-        Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.
-    
-        <br>
-        <center>![image](./nesi_images/gustaffason.png){width="490"}
-        <br>
+        === "Definition"
+
+            Gustafson’s law provides a solution to the limitations of strong scaling described. The proposal is simply: we should run larger jobs on larger processor counts. If we run larger problems, then the parallelisable part of the problem will increase. We are still limited by the serial part of the code, but this becomes less important, and we can run on more processors more efficiently.
+        
+            <br>
+            <center>![image](./nesi_images/gustaffason.png){width="490"}
+            <br>
 
 #### Load imbalance
 
