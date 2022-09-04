@@ -234,6 +234,8 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
 
             Let’s consider a new trip, one from Edinburgh to the Sydney Opera House in Australia. The distance from Edinburgh to Sydney is **16,800 km**. As with our trip to New York, you can either fly with a Jumbo Jet (flight speed **700 km/hr**) or a Concorde (flight **speed 2,100 km/hr**). Also, let’s assume that the overhead is similar to that for a trip to New York (so 4 hours). What is the speedup of using the Concorde this time?
 
+            <center>![image](./nesi_images/edi_2_syd.png){width="450"}</center>
+
 #### Load imbalance
 
 The laws and thoughts above only apply to cases where all processors are equally busy. What happens if some processors run out of work while others are still busy?
