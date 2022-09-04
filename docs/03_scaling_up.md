@@ -49,6 +49,7 @@ In reality
 ![image](./nesi_images/mahuika_maui_real.png){width="700"}
 </center>
 
+
 ### Accessing software via modules
 
 On a high-performance computing system, it is quite rare that the software we want to use is available when we log in. It is installed, but we will need to “load” it before it can run.
