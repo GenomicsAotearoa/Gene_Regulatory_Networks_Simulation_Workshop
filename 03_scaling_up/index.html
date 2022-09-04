@@ -348,6 +348,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#from-hardware-to-software" class="md-nav__link">
+    From Hardware to Software
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#accessing-software-via-modules" class="md-nav__link">
     Accessing software via modules
   </a>
@@ -498,6 +505,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#from-hardware-to-software" class="md-nav__link">
+    From Hardware to Software
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#accessing-software-via-modules" class="md-nav__link">
     Accessing software via modules
   </a>
@@ -556,18 +570,60 @@
 <p>NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different node types. The ones visible to researchers are:</p>
 <ul>
 <li>Login nodes</li>
-<li>Compute nodes
-<br>
-<img alt="image" src="../nesi_images/hpc_arch_new_fixalignment.png" width="700" />
-<br></li>
+<li>Compute nodes</li>
 </ul>
+<div class="admonition info">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Overview of HPC Architecture</label><label for="__tabbed_1_2">Composition of a node</label><label for="__tabbed_1_3">In reality</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><br>
+<img alt="image" src="../nesi_images/hpc_arch_new_fixalignment.png" width="700" />
+<br></p>
+</div>
+<div class="tabbed-block">
 <p><br><center>
 <img alt="image" src="../nesi_images/node_overview.png" width="500" />
 </center><br></p>
-<p>In reality</p>
+</div>
+<div class="tabbed-block">
 <p><center>
 <img alt="image" src="../nesi_images/mahuika_maui_real.png" width="700" />
 </center></p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="from-hardware-to-software">From Hardware to Software<a class="headerlink" href="#from-hardware-to-software" title="Permanent link">&para;</a></h3>
+<p>Over 90% HPCs &amp; supercomputers employ Linux as their operating system.  Linux has four essential properties which make it an excellent operating system for the HPCs &amp;  science community:</p>
+<div class="admonition quote">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Performance</label><label for="__tabbed_2_2">Functionality</label><label for="__tabbed_2_3">Flexibility</label><label for="__tabbed_2_4">Portability</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Performance of the operating system can be optimized for specific tasks such as running small portable devices or large supercomputers.</p>
+</div>
+<div class="tabbed-block">
+<p>A number of community-driven scientific applications and libraries have been developed under Linux such as molecular dynamics, linear algebra, and fast-Fourier transforms.</p>
+</div>
+<div class="tabbed-block">
+<p>The system is flexible enough to allow users to build applications with a wide array of support tools such as compilers, scientific libraries, debuggers, and network monitors.</p>
+</div>
+<div class="tabbed-block">
+<p>The operating system, utilities, and libraries have been ported to a wide variety of devices including desktops, clusters, supercomputers, mainframes, embedded systems, and smart phones.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">The Linux operating system is made up of three parts; the <ins>kernel</ins>, the <ins>shell</ins> and the software</p>
+<p>Kernel − The kernel is the heart of the operating system. It interacts with the hardware and most of the tasks like memory management, task scheduling and file management.</p>
+<p><ins><strong>Shell</strong></ins> − The shell is the utility that processes your requests (acts as an interface between the user and the kernel). When you type in a command at your terminal, the shell <em>interprets</em> (operating as in <ins><em>interpreter</em></ins>) the command and calls the program that you want. The shell uses standard syntax for all commands. The shell recognizes a limited set of commands, and you must give commands to the shell in a way that it understands: Each shell command consists of a command name, followed by command options (if any are desired) and command arguments (if any are desired). The command name, options, and arguments, are separated by blank space. </p>
+<ul>
+<li>An <ins><em>interpreter</em></ins> operates in a simple loop: It accepts a command, interprets the command, executes the command, and then waits for another command. The shell displays a "prompt," to notify you that it is ready to accept your command.
+<center>
+<img alt="image" src="../nesi_images/interpreter_loop.png" width="200" />
+</center></li>
+</ul>
+</div>
 <h3 id="accessing-software-via-modules">Accessing software via modules<a class="headerlink" href="#accessing-software-via-modules" title="Permanent link">&para;</a></h3>
 <p>On a high-performance computing system, it is quite rare that the software we want to use is available when we log in. It is installed, but we will need to “load” it before it can run.</p>
 <p>Before we start using individual software packages, however, we should understand the reasoning behind this approach. The three biggest factors are:</p>
@@ -578,11 +634,12 @@
 </ul>
 <p>One of the workarounds for this issue is Environment modules. A module is a self-contained description of a software package — it contains the settings required to run a software package and, usually, encodes required dependencies on other software packages.</p>
 <p>There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is <code>Lmod</code> where the <code>module</code> command is used to interact with environment modules.</p>
-<p><strong>Common commands - module</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Viewing, Accessing and Deploying software with <code>module</code> command"</p>
 <ul>
 <li>View available modules</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#View all modules</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#View all modules</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ module avail
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># View all modules which match the keyword in their name</span>
@@ -591,9 +648,14 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># View all modules which match the keyword in their name or description</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>$ module spider KEYWORD
 </code></pre></div>
-* Load a specific program</p>
-<div class="highlight"><pre><span></span><code>&gt;Note: All modules on NeSI have version and toolchain/environment suffixes. If none is specified, the default version for the tool is loaded. The default version can be seen with the module avail command.
-</code></pre></div>
+<ul>
+<li>
+<p>Load a specific program</p>
+<blockquote>
+<p>All module names on NeSI Software stack have a version and toolchain/environment suffixes. If none is specified, then the default version of the software is loaded. The default version can be seen with the <code>module avail modulename</code> command (corresponding module name will have <code>(D)</code> suffix)</p>
+</blockquote>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ module load MY_APPLICATION
 </code></pre></div>
 <ul>
@@ -609,14 +671,8 @@
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ module switch CURRENT_MODULE DESIRED_MODULE
 </code></pre></div>
+</div>
 <hr />
-<p style="text-align:left;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/02_getting_started_sismonr.html" style="background: var(--bs-green);font-weight:bold">&laquo; 2. Getting started with sismonr</a></b>
-    <span style="float:right;">
-     <b><a class="btn" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/workshop_material/04_working_with_job_scheduler.html" style="background: var(--bs-green);font-weight:bold">4. Working with job Scheduler &raquo;</a></b>
-    </span>
-</p>
-
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
 
               
