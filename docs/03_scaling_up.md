@@ -52,7 +52,24 @@ In reality
 
 ### From Hardware to Software
 
-Over 90% supercomputers (94.2% to be precise) employ Linux as their operating system. In this post, a sequel to our last posts, we shall attempt to investigate the potentials of Linux which make it suitable and perhaps the best choice for supercomputers OS.
+Over 90% HPCs & supercomputers employ Linux as their operating system.  Linux has four essential properties which make it an excellent operating system for the HPCS &  science community:
+
+!!! quote ""
+
+    
+    === "Performance"
+        Performance of the operating system can be optimized for specific tasks such as running small portable devices or large supercomputers.
+
+    === "Functionality"
+        A number of community-driven scientific applications and libraries have been developed under Linux such as molecular dynamics, linear algebra, and fast-Fourier transforms.
+
+    === "Flexibility" 
+        The system is flexible enough to allow users to build applications with a wide array of support tools such as compilers, scientific libraries, debuggers, and network monitors.
+
+    === "Portability"
+        The operating system, utilities, and libraries have been ported to a wide variety of devices including desktops, clusters, supercomputers, mainframes, embedded systems, and smart phones.
+
+
 
 ### Accessing software via modules
 
