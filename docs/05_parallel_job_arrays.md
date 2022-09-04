@@ -217,7 +217,7 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
 
             Consider a trip from Edinburgh to the Empire State building in New York. The distance from Edinburgh to New York is **5,200 km**, and you can either fly with a Jumbo Jet (flight speed **700 km/hr**) or a Concorde (flight speed **2,100 km/hr**). What is the speedup of using the Concorde?
 
-            <center>![image](./nesi_images/edi_2_jfk.png)</center>
+            <center>![image](./nesi_images/edi_2_jfk.png){width="450"}</center>
 
 
     === "Gustafson’s law and weak scaling"
