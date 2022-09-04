@@ -222,12 +222,14 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
             ??? success "Answer"
 
                 The Jumbo Jet will cover that distance in around **7h30**, and the Concorde covers this in **2h00**, so you might think that the speedup is **3.75x**.
-                However, in this problem, we are not starting in a plane about to take off! There are additional times to take into consideration:
-                Trip to Edinburgh airport: 30 mins
-                Security and boarding: 1h30
-                US immigrations: 1h00
-                Taxi ride to downtown New York: 1h00
-                There is a fixed overhead of 4 hrs that we can’t reduce. When considering this 4-hour overhead, we find that our total trip by Jumbo Jet takes 11h30, whereas travelling by Concorde takes 6 hrs. Our speedup is therefore 1.92x not 3.75x.
+                *However*, in this problem, we are not starting in a plane about to take off! There are additional times to take into consideration:
+
+                * Trip to Edinburgh airport: 30 mins
+                * Security and boarding: 1h30
+                * US immigrations: 1h00
+                * Taxi ride to downtown New York: 1h00
+
+                There is a fixed overhead of **4 hrs** that we can’t reduce. When considering this 4-hour overhead, we find that our total trip by Jumbo Jet takes **11h30**, whereas travelling by Concorde takes **6 hrs**. Our speedup is therefore **1.92x** not **3.75x**.
                 Amdhal’s law suggests that, the shorter the journey, the more important the fixed (serial) overhead is in determining the total journey time.
 
 
