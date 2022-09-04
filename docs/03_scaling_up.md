@@ -69,6 +69,16 @@ Over 90% HPCs & supercomputers employ Linux as their operating system.  Linux ha
     === "Portability"
         The operating system, utilities, and libraries have been ported to a wide variety of devices including desktops, clusters, supercomputers, mainframes, embedded systems, and smart phones.
 
+!!! info "The Linux operating system is made up of three parts; the ^^kernel^^, the ^^shell^^ and the software"
+
+    Kernel − The kernel is the heart of the operating system. It interacts with the hardware and most of the tasks like memory management, task scheduling and file management.
+
+    ^^**Shell**^^ − The shell is the utility that processes your requests (acts as an interface between the user and the kernel). When you type in a command at your terminal, the shell *interprets* (operating as in ^^*interpreter*^^) the command and calls the program that you want. The shell uses standard syntax for all commands. The shell recognizes a limited set of commands, and you must give commands to the shell in a way that it understands: Each shell command consists of a command name, followed by command options (if any are desired) and command arguments (if any are desired). The command name, options, and arguments, are separated by blank space. 
+
+    - An ^^*interpreter*^^ operates in a simple loop: It accepts a command, interprets the command, executes the command, and then waits for another command. The shell displays a "prompt," to notify you that it is ready to accept your command.
+    <center>
+    ![image](./nesi_images/interpreter_loop.png){width="200"}
+    </center>
 
 
 ### Accessing software via modules
