@@ -33,21 +33,29 @@ The simplest way of defining high-performance computing is by saying that it is 
 
 NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different node types. The ones visible to researchers are:
 
+
 * Login nodes
 * Compute nodes
-<br>
-![image](./nesi_images/hpc_arch_new_fixalignment.png){width="700"}
-<br>
 
-<br><center>
-![image](./nesi_images/node_overview.png){width="500"}
-</center><br>
+!!! info ""
 
-In reality
+    === "Overview of HPC Architecture"
 
-<center>
-![image](./nesi_images/mahuika_maui_real.png){width="700"}
-</center>
+        <br>
+        ![image](./nesi_images/hpc_arch_new_fixalignment.png){width="700"}
+        <br>
+
+    === "Composition of a node"
+
+        <br><center>
+        ![image](./nesi_images/node_overview.png){width="500"}
+        </center><br>
+
+    === "In reality"
+
+        <center>
+        ![image](./nesi_images/mahuika_maui_real.png){width="700"}
+        </center>
 
 
 ### From Hardware to Software
