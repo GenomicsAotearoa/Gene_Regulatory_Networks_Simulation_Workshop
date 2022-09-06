@@ -872,24 +872,27 @@
 </details>
 <details class="question">
 <summary>Exercise 4.5 😬</summary>
-<blockquote>
 <p>Let's submit your first sismonr slum job. 
 * First step is to copy the already written R script to current working directory</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">#please do make sure the working directory is Exercise_4.5</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">#please do make sure the working directory is Exercise_4.5</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>$ <span class="nb">pwd</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>/nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_4.5
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">#copy the network file</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>$ cp /nesi/project/nesi02659/sismonr_workshop/dev/slurm_small_sim/simulate_colsystem_1second.R ./
 </code></pre></div>
-* Now build a slurm script with the following parameters
-   * We would like the name of the slurm script file to be <strong><em>firstsim_slurm.sl</em></strong>
-   * job-name can be anything you want 
-   * <code>--cpus-per-task 1</code> and <code>--mem 1G</code> (this is based on test runs)
-   * <code>--time 00:12:00</code> ( we expect the job to run within 10.2 minutes. Let's give it a bit more as runtime can affected by other factors)
-   * Give any filename to <code>--out</code> but make sure the .out gets written into <code>slurmout</code> directory
-   * Let's add profiling as well. Given the job runs for ~10 minutes, let's leave slurm alone and <em>not</em> ask it to gather data every 1 second. Instead, we will run it with the <strong>default</strong> 30 second time points .i.e. Don't need a <code>--acctg-freq 1</code> directive
-   * Now to the bash commands section of the slurm script.  😱😱😱😱😱</p>
+<ul>
+<li>Now build a slurm script with the following parameters<ul>
+<li>We would like the name of the slurm script file to be <strong><em>firstsim_slurm.sl</em></strong></li>
+<li>job-name can be anything you want </li>
+<li><code>--cpus-per-task 1</code> and <code>--mem 1G</code> (this is based on test runs)</li>
+<li><code>--time 00:12:00</code> ( we expect the job to run within 10.2 minutes. Let's give it a bit more as runtime can affected by other factors)</li>
+<li>Give any filename to <code>--out</code> but make sure the .out gets written into <code>slurmout</code> directory</li>
+<li>Let's add profiling as well. Given the job runs for ~10 minutes, let's leave slurm alone and <em>not</em> ask it to gather data every 1 second. Instead, we will run it with the <strong>default</strong> 30 second time points .i.e. Don't need a <code>--acctg-freq 1</code> directive</li>
+<li>Now to the bash commands section of the slurm script.  😱😱😱😱😱</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span> <span class="nv">TMPDIR</span><span class="o">=</span>/nesi/nobackup/nesi02659/tmp/tmp_<span class="nv">$SLURM_JOB_ID</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mkdir -p <span class="nv">$TMPDIR</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
@@ -898,7 +901,6 @@
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Rscript --vanilla simulate_colsystem_1second.R 
 </code></pre></div>
-</blockquote>
 </details>
 <hr />
 <p align="center"><b><a href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/">Back to homepage</a></b></p>
