@@ -88,7 +88,7 @@ You can visualise the GRN you just created with the following command (the resul
 ```r
 plotGRN(small_grn)
 ```
-<iframe width=700, height=500 frameBorder=0 src="images/sismonr_network.html"></iframe>
+<iframe width=700, height=500 frameBorder=0 src="./images/sismonr_network.html"></iframe>
 
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
 
@@ -340,7 +340,7 @@ An animation of the GRN is presented below: 🤓
 
 ![image](./images/anthocyanin_model_animation.gif){width="700"}
 
-<small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png). </small>
+<small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](images/anthocyanin_pathway_schema.png). </small>
 
 The GRN starts with 3 protein-genes, *MYB*, *bHLH1* and *WDR*. While *bHLH1* and *WDR* are constitutively expressed (i.e. constantly produce proteins), *MYB* is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the *bHLH2* gene.
 
@@ -395,7 +395,7 @@ library(sismonr)
 load("~/sism_2021/sismonr_anthocyanin_system.RData")
 ```
 
-!!! info "This `.RData` contains the following R objects:"
+!!! info "This `sismonr_anthocyanin_system.RData` file contains the following R objects:"
 
 
     - `colsystem`: the *in silico* GRN constructed with sismonr;
@@ -420,7 +420,7 @@ sim <- simulateInSilicoSystem(colsystem,
 
 Where `simtime` is the time (in seconds) for which we want to simulate the expression of the genes; `ntrials` corresponds to the number of times we want to repeat the simulation for each *in silico* individual.
 
-This should take a couple of minutes to complete. Once this is done, you can visualise the result with the `plotSimulation` function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:
+This should take around six minutes to complete. Once this is done, you can visualise the result with the `plotSimulation` function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:
 
 
 ```r
