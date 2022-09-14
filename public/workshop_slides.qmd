@@ -1,0 +1,493 @@
+---
+title: "Scaling-up Gene Regulatory Network Simulations"
+subtitle: "with an introduction to parallelisation and High Performance Computing"
+author: "Olivia Angelin-Bonnet, New Zealand eScience Infrastructure"
+date: "21-22 September 2022"
+format: 
+  revealjs:
+    theme: simple
+    center-title-slide: true
+    center: true
+    incremental: true
+    fig-align: center
+---
+
+# 1. Introduction
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Why simulations are important in research
+
+------------------------------------------------------------------------
+
+::: columns
+::: {.column width="50%"}
+![Photo by [Julia Koblitz](https://unsplash.com/@jkoblitz?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/experiment?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)](slides_images/julia-koblitz-RlOAwXt2fEA-unsplash.jpg){width="4204"}
+:::
+
+::: {.column width="50%"}
+![Photo by [CHUTTERSNAP](https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/experiment?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)](slides_images/chuttersnap-UmncJq4KPcA-unsplash.jpg){width="3952"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: nonincremental
+
+Model
+
+:   mathematical or statistical representation of a system or phenomenon (cell, ecosystem, solar system, etc).
+
+Simulation
+
+:   Data about the system generated using a mathematical or statistical model.
+:::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Models and simulations allow us to:
+
+-   Explain experimental data (through model fitting and refinement);
+
+-   Test hypotheses:
+
+    ::: nonincremental
+    -   without going through expensive and time-consuming experiments;
+
+    -   that wouldn't be ethical or even feasible to test in real life.
+    :::
+
+-   Make predictions about new interventions/scenarios;
+
+-   Communicate knowledge.
+
+------------------------------------------------------------------------
+
+##  {.smaller .center}
+
+Modelling and simulations are used in many fields of science, e.g.:
+
+-   **Epidemiology**: modelling of infectious diseases (see this [talk on COVID-19 modelling](https://www.youtube.com/watch?v=OhECexc9jt4));
+
+-   **Ecology**: modelling of ecosystems, prediction of species abundance, evaluation of conservation policies;
+
+-   **Medicine**: construction of organ models, prediction of drug-target binding and drug efficiency;
+
+-   **Chemistry**, **molecular biology**: molecules interaction models;
+
+-   **Astrophysics**: modelling of planet formation, galaxy mergers (see [this example](https://www.youtube.com/watch?v=QcDtJ_-jdMw));
+
+-   and many more!
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+::: nonincremental
+
+Systems Biology
+
+:   the study of the interactions between biological entities through modelling and simulations
+:::
+
+-   Interdisciplinary field: builds on physics, chemistry, biology, computer science, statistics, mathematics, etc
+
+-   Interest in understanding the emerging properties of biological systems arising from local interactions between molecular components
+
+-   Construction of whole-cell computational model of the human pathogen *Mycoplasma genitalium*: [Kar *et al.*, Cell (2012)](https://doi.org/10.1016/j.cell.2012.05.044)
+
+# What are Gene Regulatory Networks?
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+An overview of gene expression:
+
+![Credit: Fondation Merieux](images/gene_expression_schema.png){width="625"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Regulation of gene expression:
+
+-   Cells adapt to changes in environment by modulating the expression of their genes
+
+-   Gene expression regulated by different types of molecules:
+
+    ::: nonincremental
+    -   proteins
+
+    -   regulatory non-coding RNAs
+
+    -   small metabolites
+    :::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Expression of a target gene can be controlled in different ways:
+
+-   Regulation of **transcription** (regulatory proteins called transcription factors or TFs)
+
+-   Regulation of **translation**
+
+-   Regulation of **gene products' decay** (RNAs and proteins)
+
+-   **Post-translational** regulation (modification of sequence or shape of target proteins)
+
+. . .
+
+<br/>
+
+::: {.callout-note icon="false"}
+Regulation that increases the target's expression $\rightarrow$ **activation**
+
+Regulation that reduces/suppresses the target's expression $\rightarrow$ **repression**
+:::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+A Gene Regulatory Network:
+
+![From Ma, Sisi, et al. "De-novo learning of genome-scale regulatory networks in S. cerevisiae." Plos one 9.9 (2014): e106479. (available under license [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))](images/grn.jpg)
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Not all genes linked to all others: relationship between regulator and target usually very specific:
+
+-   most targets controlled only by a few regulators;
+
+-   most regulators controlling only a few targets;
+
+-   some "hub" or "master" regulators.
+
+# Simulating Gene Regulatory Networks
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Why simulating GRNS?
+
+-   to test hypotheses about the GRN (e.g. by comparing simulations to experimental data);
+
+-   to predict the response to a specific condition;
+
+-   to predict the response of the system to a modification of the GRN;
+
+-   to understand the emerging properties of the system;
+
+-   to evaluate the performance of statistical tools used for GRN reconstruction from gene expression data.
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Building blocks of a GRN model:
+
+-   A list of **regulatory interactions** between the genes (often represented as a graph);
+
+-   A set of **rules** to convert the regulations into a mathematical or statistical model;
+
+-   (optional, depends on the model): A set of **numerical parameters** specifying the rate of the different reactions in the model.
+
+. . .
+
+::: {.callout-note icon="false"}
+There are many types of models that can be used to model GRNs!
+:::
+
+------------------------------------------------------------------------
+
+## Logical models {.smaller}
+
+![Example adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. Nat Rev Mol Cell Biol 9, 770\--780 (2008). <https://doi.org/10.1038/nrm2503>.](images/boolean_model_example.png)
+
+------------------------------------------------------------------------
+
+## Continuous and deterministic models {.smaller}
+
+![Example adapted from Karlebach, G., Shamir, R. Modelling and analysis of gene regulatory networks. Nat Rev Mol Cell Biol 9, 770\--780 (2008). <https://doi.org/10.1038/nrm2503>.](images/ode_model_example.png)
+
+------------------------------------------------------------------------
+
+## Discrete and stochastic models {.smaller}
+
+![R code to reproduce the last two examples available [here](https://github.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/blob/main/scripts/grn_modelling_examples.R).](images/ssa_model_example.png)
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Each type of model has its own advantages and drawbacks:
+
+![](images/comparison_type_models.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Some tools available to simulate GRNs (not an exhaustive list!)
+
+::: {.fragment .semi-fade-out .nonincremental style="margin-bottom: -0.5cm"}
+-   [GeneNetWeaver](http://gnw.sourceforge.net/): for deterministic or semi-stochastic modelling;
+
+-   [CaiNet](https://gitlab.com/GebhardtLab/cainet): mix of probabilistic and deterministic equations;
+
+-   [MeSCoT](https://genetics.ghpc.au.dk/vimi/mescot/): stochastic modelling with time-delay;
+:::
+
+::: nonincremental
+-   [sismonr](https://CRAN.R-project.org/package=sismonr): R package for stochastic modelling.
+:::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+In this workshop, we'll focus on discrete and stochastic models:
+
+-   good option to simulate species (i.e. molecules) with very **low abundance per cell** (e.g. transcription factors);
+-   but **computationally heavy**, which restricts the size of the models that can be simulated.
+
+# A brief introduction to the Stochastic Simulation Algorithm
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+A stochastic model consists of:
+
+![](images/list_reactions_species_example.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Reactions represented with a **stoichiometry matrix**:
+
+![](images/stoichiometry_matrix_example.png)
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+**System state** represented as vector of species abundance at a given time point:
+
+![](images/system_state_example.png){fig-align="center" width="20%"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+To simulate the evolution of the system over time, we need to know which reaction will fire when.
+
+<br />
+
+. . .
+
+::: nonincremental
+
+Reaction propensity
+
+:   probability of the reaction to occur in the next (small) unit time step
+:::
+
+. . .
+
+Propensity depends on:
+
+-   constant rate of the reaction
+
+-   state of the system at a current time point:
+
+    ::: nonincremental
+    -   few reactants present in the system $\rightarrow$ low chance of the reaction occurring;
+
+    -   reactants abundant in the system: $\rightarrow$ high chance of the reaction occurring.
+    :::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+In our example:
+
+![](images/list_reactions_example.png){fig-align="center" width="35%"}
+
+![](images/propensities_example.png){fig-align="center" width="65%"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Basic concept of the Stochastic Simulation Algorithm:
+
+<br/>
+
+-   Initialisation: set $t = 0$, and initial system state as initial species abundance.
+
+1.  Compute reactions propensities, based on current system state.
+
+2.  **Randomly** generate time increment $\tau$ during which next reaction occurs.
+
+3.  **Randomly** select which reaction will occur between $t$ and $t+ \tau$.
+
+4.  Update time to $t + \tau$ and system state based on which reaction occurred.
+
+5.  Repeat steps 1 to 4, until $t = t_{max}$.
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+An example of one SSA iteration:
+
+![](images/steps_ssa_example.png){fig-align="center" width="40%"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+**Advantage of SSA**: every single reaction is simulated!
+
+. . .
+
+**Downside**: if many reactions with high propensity, each time increment will be really small
+
+$\rightarrow$ will take a long time to get to the end of the simulation
+
+<br/>
+
+![](images/comparison_tau_ssa.png){fig-align="center" width="95%"}
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+There exist many variations of the SSA:
+
+-   **exact** versions: simulate the occurrence of every single reaction;
+
+-   **approximate** versions: trade-off between accuracy and computational burden.
+
+. . .
+
+<br/>
+
+Several implementations of the SSA:
+
+::: nonincremental
+-   R: [GillespieSSA](https://cran.r-project.org/package=GillespieSSA), [adaptivetau](https://cran.r-project.org/package=adaptivetau)
+-   python: [gillespie](https://github.com/sueskind/gillespie)
+-   Julia: [BioSimulator.jl](https://alanderos91.github.io/BioSimulator.jl/stable/) -- *used by the sismonr package that we are going to use!*
+:::
+
+# 2. Getting started with sismonr
+
+# Introduction to the sismonr package
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+sismonr was developed for the purpose of generating benchmark datasets to assess the performance of network reconstruction methods
+
+. . .
+
+<br/>
+
+Objectives:
+
+-   include the effect of **small genetic mutations** in the GRN to mimic genetic variability between individuals;
+
+-   allow the simulation of **polyploid** systems (i.e. more that 2 copies of each gene present in the system);
+
+-   model **post-transcriptional** regulation;
+
+-   transparent model, **customisable** by the user;
+
+-   generate **random but plausible GRNs** or use GRN provided by user.
+
+. . .
+
+::: {.callout-note appearance="minimal" icon="false"}
+## Note
+
+A complete sismonr tutorial is available [here](https://oliviaab.github.io/sismonr/).
+:::
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+![](slides_images/R_logo.png){width="50"} can be slow for intensite computations $\rightarrow$ sismonr uses ![](slides_images/julia_logo.png){width="70"} under the hood!
+
+. . .
+
+<br/>
+
+<center>sismonr uses the [XRJulia](https://cran.r-project.org/package=XRJulia) package to link R and Julia:</center>
+
+![](images/sismonr_r_julia.gif)
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Socket connection initialised on a random port $\rightarrow$ can get messy when working on a HPC...
+
+. . .
+
+<br/>
+
+Solution:
+
+``` r
+XRJulia::newJuliaEvaluator(port = as.integer(456))
+```
+
+------------------------------------------------------------------------
+
+##  {.smaller}
+
+Some sismonr abbreviations:
+
+| Abbreviations | Meaning                         |
+|---------------|---------------------------------|
+| TC            | Transcription                   |
+| TL            | Translation                     |
+| RD            | RNA decay                       |
+| PD            | Protein decay                   |
+| PTM           | Post-translational modification |
+| PC            | Protein-coding                  |
+| NC            | Noncoding                       |
+| R             | RNA                             |
+| P             | Protein                         |
+| Pm            | Modified protein                |
+| C             | Regulatory complex              |
+
+# Practice time!
+
+##  {.smaller}
+
+Instructions to log in to NeSI Mahuika Jupyter in the [Supplementary Material](https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/07_supplementary/).
+
+<br/>
+
+::: callout-important
+Do not forget to change your working directory!
+:::
+
+![](nesi_images/jupyter_fileexplorer.png)

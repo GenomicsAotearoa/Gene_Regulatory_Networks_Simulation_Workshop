@@ -701,7 +701,7 @@ you are creating a new Julia process and the socket connection between the R ses
 <p>You can visualise the GRN you just created with the following command (the resulting graph is interactive, try to hover over nodes or edges with your mouse, move nodes or click on nodes):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">plotGRN</span><span class="p">(</span><span class="n">small_grn</span><span class="p">)</span>
 </code></pre></div>
-<iframe width=700, height=500 frameBorder=0 src="images/sismonr_network.html"></iframe>
+<iframe width=700, height=500 frameBorder=0 src="./images/sismonr_network.html"></iframe>
 
 <p>Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">getGenes</span><span class="p">(</span><span class="n">small_grn</span><span class="p">)</span>
@@ -886,7 +886,7 @@ you are creating a new Julia process and the socket connection between the R ses
 </div>
 <p>An animation of the GRN is presented below: 🤓</p>
 <p><img alt="image" src="../images/anthocyanin_model_animation.gif" width="700" /></p>
-<p><small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found <a href="https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png">here</a>. </small></p>
+<p><small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found <a href="../images/anthocyanin_pathway_schema.png">here</a>. </small></p>
 <p>The GRN starts with 3 protein-genes, <em>MYB</em>, <em>bHLH1</em> and <em>WDR</em>. While <em>bHLH1</em> and <em>WDR</em> are constitutively expressed (i.e. constantly produce proteins), <em>MYB</em> is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the <em>bHLH2</em> gene.</p>
 <p>The synthesised bHLH2 proteins form a second regulatory complex with the MYB and WDR proteins (termed MBW2). This complex then activates the transcription of downstream genes encoding for enzymes involved in the anthocyanin biosynthesis pathway. The presence of these enzymes result in the production of anthocyanin. Here we use the <em>DFR</em> gene as a representative example of MBW2's targets. We will assume that the abundance of DFR proteins acts as a proxy for the production of anthocyanins. </p>
 <p>In addition, the MBW2 complex also activates the transcription of two repressors genes, <em>MYBrep</em> and <em>R3-MYB</em>, which form a negative feedback loop in the GRN. Both genes repress the activity of the network through different means. The MYBrep proteins bind the MBW2 complex (this new complex is termed MBWr), which becomes a repressor complex. It will inhibit the transcription of <em>bHLH2</em>, which in turn reduces the expression of the downstream enzymes and thus modulates the production of anthocyanin. It also directly inhibits the expression of the MBW2 targets, including <em>MYBrep</em> and <em>DFR</em>. The R3-MYB exert instead a passive repression on the system, by binding to bHLH1 and bHLH2 proteins, thus reducing the number of available bHLH1 and bHLH2 proteins in the system. In consequence, this reduces the number of MBW1 and MBW2 complexes in the system and in turn reduces the activity of the network.</p>
@@ -923,7 +923,7 @@ you are creating a new Julia process and the socket connection between the R ses
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nf">load</span><span class="p">(</span><span class="s">&quot;~/sism_2021/sismonr_anthocyanin_system.RData&quot;</span><span class="p">)</span>
 </code></pre></div>
 <div class="admonition info">
-<p class="admonition-title">This <code>.RData</code> contains the following R objects:</p>
+<p class="admonition-title">This <code>sismonr_anthocyanin_system.RData</code> file contains the following R objects:</p>
 <ul>
 <li>
 <p><code>colsystem</code>: the <em>in silico</em> GRN constructed with sismonr;</p>
@@ -948,7 +948,7 @@ you are creating a new Julia process and the socket connection between the R ses
 <a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>                              <span class="n">ntrials</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 </code></pre></div>
 <p>Where <code>simtime</code> is the time (in seconds) for which we want to simulate the expression of the genes; <code>ntrials</code> corresponds to the number of times we want to repeat the simulation for each <em>in silico</em> individual.</p>
-<p>This should take a couple of minutes to complete. Once this is done, you can visualise the result with the <code>plotSimulation</code> function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:</p>
+<p>This should take around six minutes to complete. Once this is done, you can visualise the result with the <code>plotSimulation</code> function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nf">plotSimulation</span><span class="p">(</span><span class="n">sim</span><span class="o">$</span><span class="n">Simulation</span><span class="p">,</span> 
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>               <span class="n">molecules</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">colours</span><span class="p">),</span> 
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>               <span class="n">mergeComplexes</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>

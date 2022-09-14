@@ -818,9 +818,15 @@ Content of <code>firstslurm_array.sl</code> should be as below. Please discuss a
 <a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nb">echo</span> <span class="s2">&quot;This is the result for </span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div></p>
 <blockquote>
-<p>Let's review some of those new slurm directives and variables prior to submitting the script
-* Job arrays are only supported for batch jobs and the array index values are specified using the <code>--array</code> or <code>-a</code> option. This is the most important directive in an array script
-* .out filename %A and %a where : %A will be replaced by the value of <code>SLURM_ARRAY_JOB_ID</code> (will be set to the first job ID of the array)  and %a will be replaced by the value of <code>SLURM_ARRAY_TASK_ID</code>(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job</p>
+<p>Let's review some of those new slurm directives and variables prior to submitting the script</p>
+<ul>
+<li>
+<p>Job arrays are only supported for batch jobs and the array index values are specified using the <code>--array</code> or <code>-a</code> option. This is the most important directive in an array script</p>
+</li>
+<li>
+<p>.out filename %A and %a where : %A will be replaced by the value of <code>SLURM_ARRAY_JOB_ID</code> (will be set to the first job ID of the array)  and %a will be replaced by the value of <code>SLURM_ARRAY_TASK_ID</code>(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job</p>
+</li>
+</ul>
 </blockquote>
 <ul>
 <li>Once you submit the job with <code>sbatch firstslurm_array.sl</code>, take a note of the jobid and run the command <code>squeue -j jobid</code>. For an example, let's use the hypothetical job id 23284978 and view the output</li>
@@ -851,10 +857,12 @@ Content of <code>firstslurm_array.sl</code> should be as below. Please discuss a
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">#use cat command to view the content of slurm script 250sims_2arrayindex.sl(or open it via nano, vim or another text editor)</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$ cat 250sims_2arrayindex.sl
 </code></pre></div></p>
-<p>Let's review some of those new slurm directives and variables prior to submitting the script
- * Job arrays are only supported for batch jobs and the array index values are specified using the <code>--array</code> or <code>-a</code> option. This is the most important directive in an array script
- * .out filename %A and %a where : %A will be replaced by the value of <code>SLURM_ARRAY_JOB_ID</code> (will be set to the first job ID of the array)  and %a will be replaced by the value of <code>SLURM_ARRAY_TASK_ID</code>(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
-Content of <code>250sims_2arrayindex.sl</code> should be as below. Please discuss as you make progress</p>
+<p>Let's review some of those new slurm directives and variables prior to submitting the script</p>
+<ul>
+<li>Job arrays are only supported for batch jobs and the array index values are specified using the <code>--array</code> or <code>-a</code> option. This is the most important directive in an array script</li>
+<li>.out filename %A and %a where : %A will be replaced by the value of <code>SLURM_ARRAY_JOB_ID</code> (will be set to the first job ID of the array)  and %a will be replaced by the value of <code>SLURM_ARRAY_TASK_ID</code>(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job</li>
+</ul>
+<p>Content of <code>250sims_2arrayindex.sl</code> should be as below. Please discuss as you make progress</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/bin/bash -e</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
@@ -872,7 +880,7 @@ Content of <code>250sims_2arrayindex.sl</code> should be as below. Please discus
 <a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>mkdir -p <span class="nv">$TMPDIR</span>
 <a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
 <a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1">#Sismonr specific variable</span>
-<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="nb">export</span> <span class="nv">GROUP_ID</span><span class="o">=</span><span class="m">1</span>.01
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="nb">export</span> <span class="nv">GROUP_ID</span><span class="o">=</span><span class="m">1</span>
 <a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
 <a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>module purge
 <a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
@@ -882,10 +890,10 @@ Content of <code>250sims_2arrayindex.sl</code> should be as below. Please discus
 <ul>
 <li>Submit the script with  <code>sbatch 250sims_2arrayindex.sl</code>, take a not on the jobid and run the command <code>squeue -j jobid</code>. </li>
 <li>Take a look at the content of <em>.out</em> and <em>.err</em> files in <em>slurmout</em> directory</li>
-<li>If all goes well, job should run within 10 minutes and will generate two <em>.RData</em> files in current working directory .i.e. <code>Exercise_5.4</code></li>
+<li>If all goes well, job should run within 10 minutes and will generate two <em>.rds</em> files in current working directory .i.e. <code>Exercise_5.4</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>simulation_1_group1.01.RData
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>simulation_2_group1.01.RData
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>simulation_1_group1.rds
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>simulation_2_group1.rds
 </code></pre></div>
 </details>
 <details class="danger question" open="open">
