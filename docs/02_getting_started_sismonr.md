@@ -88,7 +88,9 @@ You can visualise the GRN you just created with the following command (the resul
 ```r
 plotGRN(small_grn)
 ```
+<div class="map">
 <iframe width=700, height=500 frameBorder=0 src="./images/sismonr_network.html"></iframe>
+</dev>
 
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
 
