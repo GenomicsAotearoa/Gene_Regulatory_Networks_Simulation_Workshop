@@ -33,13 +33,13 @@ $ pwd
 /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_5.5
 ```
 
-**IMPORTANT:** there should be only once person per group that submitted the job, and so the other members of the group should first copy the results of the simulation via the command:
+If you do not have results, you can copy the backup files with:
 
 ```bash
-$ cp /nesi/project/nesi02659/sismonr_workshop/workingdir/member456/Exercise_5.5/simulation_* /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_5.5/
+$ cp /nesi/project/nesi02659/sismonr_workshop/backup_simulations/simulation_* /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/Exercise_5.5/
 ```
 
-of course replacing `member456` by the username of the person that has the simulations.
+of course replacing `me123` with your own username.
 
 ### Looking at one simulation output
 
@@ -49,14 +49,15 @@ Start a new sismonr Jupyter Notebook in the folder containing the simulations ou
 library(sismonr)
 library(tibble)
 library(dplyr)
+library(stringr)
 library(purrr)
 library(ggplot2)
 ```
 
-A single `.RData` file can be then loaded into R with:
+A single `.rds` file can be then loaded into R with:
 
 ```r
-load("simulation_1_group_1.RData")
+sim <- readRDS("simulation_1_group1.RData")
 ```
 
 The output of sismonr is a list composed of 3 elements:
@@ -75,7 +76,7 @@ If you try to load one of your simulation files and have a look at this data-fra
 as_tibble(sim$Simulation)
 ```
 
-```r
+``` r
 # A tibble: 4,804 × 203
     time trial R1GCN1 P1GCN1 R4GCN2 P4GCN2 R5GCN2 P5GCN2 R6GCN1 P6GCN1 R2GCN2 P2GCN2 R7GCN2 P7GCN2 R5GCN1 P5GCN1 R3GCN1 P3GCN1 R4GCN1 P4GCN1 R3GCN2 P3GCN2
    <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
@@ -106,7 +107,9 @@ merged_simulation <- mergeAlleleAbundance(sim$Simulation)
 
 ```r
 as_tibble(merged_simulation)
+```
 
+``` r
 # A tibble: 4,804 × 27
     time trial Ind      R1    P1    R4    P4    R5    P5    R6    P6    R2    P2    R7    P7    R3    P3  CTC1  CTC5  CTC2  CTC6  CTC3  CTC7  CTC8  CTC4
    <dbl> <dbl> <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -125,79 +128,21 @@ as_tibble(merged_simulation)
  
 This time, we have one column for the RNA abundance of each gene, and idem for the proteins and regulatory complexes. This will be much more practical to create some plots.
 
-One more thing to note: in each simulation output, the `trial` column will be filled with `1` and `2`. This is something to keep in mind when we'll load all the simulation outputs, as ideally we would like to have values from `1` to `500`.
- 
-
-## Importing all simulation results in R
-
-The challenge here is we don't have only 1 `.RData` file; in fact, we've just created 250 of them per group! We will need to use a loop of some sort to import all simulations in R.
-
-### Listing all the simulation files
-
-The first thing we need is a list of all simulation files. There is a function in R just for that: `list.files`. It will list all files present in the given directory that match a specific pattern.
+One more thing to note: in each simulation output, the `trial` column will be filled with `1` and `2`. This is something to keep in mind when we'll load all the simulation outputs, as ideally we would like to have values from `1` to `500`. The good news is, we can extract the array ID of a given simulation from the file name, using:
 
 ```r
-## Don't forget to update the pattern to reflect how you named your simulation outputs
-## For example, replace 'group_1' by your group ID
-sim_files <- list.files(path = "./", pattern = "_group_1.RData")
-head(sim_files)
-
-[1] "simulation_1_group_1.RData"   "simulation_10_group_1.RData"  "simulation_100_group_1.RData" "simulation_101_group_1.RData"
-[5] "simulation_102_group_1.RData" "simulation_103_group_1.RData"
+str_extract("simulation_10_group1.rds", "(?<=_)\\d+(?=_)") |>
+  as.numeric()
 ```
-
-You can check that there are 250 files:
 
 ```r
-n_sim <- length(sim_files)
-n_sim
-
-250
+10
 ```
 
-### Creating a loop to import all simulations
-
-To import each of these simulations, we could use a basic `for` loop, which would look something like this:
-
-```r
-# DO NOT RUN
-sim_df <- c()
-for(file in sim_files){
-  load(file)
-  sim_df <- bind_rows(sim_df, sim$Simulation)
-}
-```
-
-Which is really not ideal from a memory and computational time perspective. However, there is a nice alternative, which relies on the package `purrr`. Specifically, purrr provides a function, `reduce`, which applies a given function to a list of data-frames. In our case, if we can obtain a list of all simulations, we can apply the `bind_rows` function from `dplyr` to it, through `reduce`, to combine the individual simulations into one data-frame. And an added bonus: it works with the tidyverse pipe! 
-
-To get the list of data-frame, the R function `lapply()` does just what we want: it acts as a for loop, except that it returns the output of the different iterations as a list. So we could use something like:
-
-```r
-# AGAIN DO NOT RUN
-sim_df <- lapply(sim_files, function(file){
-  load(file)
-  sim$Simulation
-}) %>% 
-  reduce(bind_rows)
-```
-
-### Modifying the simulation outputs
-
-But as we've seen earlier, there are some modifications that we want to apply to the simulation results to make it more interesting for us. One of these modifications is to apply the `mergeAlleleAbundance` function (changes in the code are highlighted in red for lines that are removed and green for lines that are added):
-
-```diff
-sim_df <- lapply(sim_files, function(file){
-  load(file)
-- sim$Simulation
-+ mergeAlleleAbundance(sim$Simulation)
-}) %>% 
-  reduce(bind_rows)
-```
-
-The second modification is about the `trial` column. As it is, the script with return one big data-frame with all 500 simulations, but the `trial` column will be filled with `1` and `2` only, so we won't be able to differentiate the simulations. We can correct that by keeping track of the index of the file that we are currently reading. Then we have to make the transformation:
+Once we have the array ID of a given file name, we can use a little trick to replace the `1` and `2` in the trial column, as follows:
 
 ```
-File index  trial    Simulation index
+  Array ID  trial    Simulation index
          1      1                   1
                 2                   2
          2      1                   3
@@ -208,53 +153,114 @@ File index  trial    Simulation index
                 2                   8
 etc.
 ```
+ 
+ this conversion is obtained via the formula: `Simulation index = trial + 2 x (Array ID - 1)`.
 
-Maybe you noticed that `Simulation index = 2*(File index - 1) + trial`:
+## Importing all simulation results in R
 
-```diff
-- sim_df <- lapply(sim_files, function(file){
-+ sim_df <- lapply(1:n_sim, function(i){
-+  file <- sim_files[i]
-  load(file)
--  mergeAlleleAbundance(sim$Simulation)
-+  mergeAlleleAbundance(sim$Simulation) %>% 
-+    mutate(trial = trial + 2*(i - 1))
-}) %>% 
-  reduce(bind_rows)
-```
+The challenge here is we don't have only 1 `.rds` file; in fact, we've just created 250 of them per group! We will need to use a loop of some sort to import all simulations in R.
 
-Finally, we'll transform the data-frame into a tibble, just to make our lives easier:
+### Listing all the simulation files
 
-```diff
-sim_df <- lapply(1:n_sim, function(i){
-  file <- sim_files[i]
-  load(file)
-  
-  mergeAlleleAbundance(sim$Simulation) %>% 
-    mutate(trial = trial + 2*(i - 1))
-}) %>% 
--  reduce(bind_rows)
-+  reduce(bind_rows) %>% 
-+  as_tibble()
-```
-
-The final code (which is the one you want to run) is:
+The first thing we need is a list of all simulation files. There is a function in R just for that: `list.files`. It will list all files present in the given directory that match a specific pattern.
 
 ```r
-sim_df <- lapply(1:n_sim, function(i){
-  file <- sim_files[i]
-  load(file)
- 
-  mergeAlleleAbundance(sim$Simulation) %>% 
-      mutate(trial = trial + 2*(i - 1))
-}) %>% 
-  reduce(bind_rows) %>% 
-  as_tibble()
+## Don't forget to update the pattern to reflect how you named your simulation outputs
+## For example, replace 'group1' by your group ID
+sim_files <- list.files(path = "./", pattern = "_group1.rds")
+head(sim_files)
+```
+
+```r
+[1] "simulation_1_group1.rds"   "simulation_10_group1.rds"  "simulation_100_group1.rds" "simulation_101_group1.rds"
+[5] "simulation_102_group1.rds" "simulation_103_group1.rds"
+```
+
+You can check that there are 250 files:
+
+```r
+n_sim <- length(sim_files)
+n_sim
+```
+
+```r
+250
+```
+
+### Creating a loop to import all simulations
+
+To import each of these simulations, we could use a basic `for` loop, which would look something like this:
+
+
+!!! warning "**Do not run!**" 
+    ```r
+    sim_df <- c()
+    for(file in sim_files){
+      sim <- readRDS(file)
+      sim_df <- bind_rows(sim_df, sim$Simulation)
+    }
+    ```
+
+
+Which is really not ideal from a memory and computational time perspective. However, there is a nice alternative, which relies on the package `purrr`. Specifically, purrr provides a function, `map_dfr`, which applies a function to each element of a vector, and concatenates the results into a data-frame. In our case, we can write a function that reads in and formats the simulations result given the file name: 
+
+```r
+read_simulation_results <- function(file){
+  
+  ## Reading in the simulation result
+  sim <- readRDS(file)
+
+  ## Extract the simulation array number
+  sim_id <- str_extract(file, "(?<=_)\\d+(?=_)") |>
+              as.numeric(sim_id)
+    
+  ## Merge abundance of the two alleles of a gene
+  ## and adjust the trial ID
+  res <- mergeAlleleAbundance(sim$Simulation) |>
+            as_tibble() |>
+            mutate(trial = trial + 2 * (sim_id - 1))
+    
+  return(res)
+}
+```
+
+We can then apply this function to each file name (stored in the `sim_files` vector). As the function returns a data-frame, we can use `map_dfr()` which:
+
+* applies the `read_simulation_results()` function to each element of the `sim_files` vector;
+
+* concatenate the returned data-frames into one data-frame.
+
+```r
+sim_df <- map_dfr(sim_files, read_simulation_results)
+```
+
+The resulting data-frame `sim_df` should have 1,201,000 rows:
+
+```r
+sim_df
+```
+
+```r
+# A tibble: 1,201,000 × 27
+    time trial Ind      R1    P1    R4    P4    R5    P5    R6    P6    R2    P2    R7    P7    R3    P3  CTC1  CTC5  CTC2  CTC6
+   <dbl> <dbl> <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1     0     1 Ind1      0     0     0     0     0     0     0     0    20   200     0     0   100  1000     0     0     0     0
+ 2     1     1 Ind1     13     0     0     0     0     0     0     0    20     1     0     0    99   901     0     0     0     0
+ 3     2     1 Ind1     24     1     0     0     0     0     0     0    20     1     1     0    97   901     0     0     0     0
+ 4     3     1 Ind1     37     1     0     0     0     0     0     0    20     1     2     0    98   902     1     0     0     0
+ 5     4     1 Ind1     40     1     0     0     0     0     0     0    20     0     1     0    98   901     0     0     0     0
+ 6     5     1 Ind1     48     1     1     0     0     0     1     0    20     0     4     0   101   900     0     0     1     0
+ 7     6     1 Ind1     51     1     1     0     0     0     1     0    20     1     4     0   101   904     0     0     1     0
+ 8     7     1 Ind1     61     2     2     1     0     0     1     0    20     1     4     0   102   900     0     0     0     0
+ 9     8     1 Ind1     62     1     2     1     0     0     0     0    20     1     5     0   102   901     1     0     0     0
+10     9     1 Ind1     60     3     3     1     0     0     0     0    20     0     5     0    99   900     1     0     0     0
+# … with 1,200,990 more rows, and 6 more variables: CTC3 <dbl>, CTC7 <dbl>, CTC8 <dbl>, CTC4 <dbl>, CTC9 <dbl>, CTC10 <dbl>
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ## Visualising the simulations
 
-Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plots:
+Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plot:
 
 ```r
 load("~/sism_2021/sismonr_anthocyanin_system.RData")
