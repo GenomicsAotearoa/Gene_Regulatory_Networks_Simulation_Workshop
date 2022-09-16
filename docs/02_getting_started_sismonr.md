@@ -88,8 +88,7 @@ You can visualise the GRN you just created with the following command (the resul
 ```r
 plotGRN(small_grn)
 ```
-
-{% include sismonr_network.html%}
+<iframe width=700, height=500 frameBorder=0 src="./images/sismonr_network.html"></iframe>
 
 Alternatively, you can get a list of the genes and regulatory relationships in the GRN through:
 
@@ -341,13 +340,13 @@ An animation of the GRN is presented below: 🤓
 
 ![image](./images/anthocyanin_model_animation.gif){width="700"}
 
-<small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](https://raw.githubusercontent.com/GenomicsAotearoa/Gene_Regulatory_Networks_Simulation_Workshop/main/workshop_material/images/anthocyanin_pathway_schema.png). </small>
+<small> Schema of the model of the anthocyanin biosynthesis regulation pathway. A static image of the model can be found [here](images/anthocyanin_pathway_schema.png). </small>
 
 The GRN starts with 3 protein-genes, *MYB*, *bHLH1* and *WDR*. While *bHLH1* and *WDR* are constitutively expressed (i.e. constantly produce proteins), *MYB* is only expressed in response to certain inductive conditions such as the presence of light. Their proteins assemble into a regulatory complex (termed MBW1), which activates the transcription of the *bHLH2* gene.
 
 The synthesised bHLH2 proteins form a second regulatory complex with the MYB and WDR proteins (termed MBW2). This complex then activates the transcription of downstream genes encoding for enzymes involved in the anthocyanin biosynthesis pathway. The presence of these enzymes result in the production of anthocyanin. Here we use the *DFR* gene as a representative example of MBW2's targets. We will assume that the abundance of DFR proteins acts as a proxy for the production of anthocyanins. 
 
-In addition, the MBW2 complex also activates the transcription of two repressors genes, *MYBrep* and *R3-MYB*, which form a negative feedback loop in the GRN. Both genes repress the activity of the network through different means. The MYBrep proteins bind the MBW2 complex (this new complex is termed MBWr), which becomes a repressor complex. It will inhibit the transcription of *bHLH2*, which in turn reduces the expression of the downstream enzymes and thus modulates the production of anthocyanin. The R3-MYB exert instead a passive repression on the system, by binding to bHLH1 and bHLH2 proteins, thus reducing the number of available bHLH1 and bHLH2 proteins in the system. In consequence, this reduces the number of MBW1 and MBW2 complexes in the system and in turn reduces the activity of the network.
+In addition, the MBW2 complex also activates the transcription of two repressors genes, *MYBrep* and *R3-MYB*, which form a negative feedback loop in the GRN. Both genes repress the activity of the network through different means. The MYBrep proteins bind the MBW2 complex (this new complex is termed MBWr), which becomes a repressor complex. It will inhibit the transcription of *bHLH2*, which in turn reduces the expression of the downstream enzymes and thus modulates the production of anthocyanin. It also directly inhibits the expression of the MBW2 targets, including *MYBrep* and *DFR*. The R3-MYB exert instead a passive repression on the system, by binding to bHLH1 and bHLH2 proteins, thus reducing the number of available bHLH1 and bHLH2 proteins in the system. In consequence, this reduces the number of MBW1 and MBW2 complexes in the system and in turn reduces the activity of the network.
 
 The goal of this workshop will be to simulate the expression of the different genes in the pathway over a period of 1,200 seconds (20 minutes) after induction of the MYB gene. We will simulate the GRN for two different *in silico* plants:
 
@@ -396,7 +395,20 @@ library(sismonr)
 load("~/sism_2021/sismonr_anthocyanin_system.RData")
 ```
 
-Feel free to inspect the different aspects of the model (using for example `plotGRN`, `plotMutations` or `getReactions`). We can run one simulation for each of the two *in silico* plants via the command:
+!!! info "This `sismonr_anthocyanin_system.RData` file contains the following R objects:"
+
+
+    - `colsystem`: the *in silico* GRN constructed with sismonr;
+
+    - `plants`: the *in silico* population of individuals corresponding to the GRN;
+
+    - `id2names`: character vector that links the ID of the genes and regulatory complexes in the `colsystem` GRN to their name;
+
+    - `colours`: character vector that assigns each gene and regulatory complex its own colour (for plotting purposes).
+
+    Feel free to inspect the different aspects of the model (using for example `plotGRN(colsystem)`, `plotMutations(plants, colsystem)` or `getReactions(colsystem, plants)`). 
+
+We can run one simulation for each of the two *in silico* plants via the command:
 
 ```r
 set.seed(123)
@@ -408,7 +420,7 @@ sim <- simulateInSilicoSystem(colsystem,
 
 Where `simtime` is the time (in seconds) for which we want to simulate the expression of the genes; `ntrials` corresponds to the number of times we want to repeat the simulation for each *in silico* individual.
 
-This should take a couple of minutes to complete. Once this is done, you can visualise the result with the `plotSimulation` function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:
+This should take around six minutes to complete. Once this is done, you can visualise the result with the `plotSimulation` function. There is the option to display only a certain subset of molecules (we'll ignore all intermediary complexes so as to not clutter the graph), and to provide custom colours and labels for the different components:
 
 
 ```r
@@ -445,7 +457,7 @@ sim$runningtime
 ```
 
 ```
-[1] 187.59 178.13
+[1] 201.192 190.206
 ```
 
 which corresponds to approx. 3 minutes per simulation. So if we were to run, say, 2,000 simulations for each plant, it would take approximately 100 hours<sup>*</sup> ! This is why resources such as NeSI are essential for simulation-based research. In the next sections of this workshop, we will show you how to to (properly) scale-up these simulations on a High Performance Computer.

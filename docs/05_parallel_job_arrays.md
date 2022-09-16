@@ -312,7 +312,9 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     ```
 
     >Let's review some of those new slurm directives and variables prior to submitting the script
+
     > * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
+
     > * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
 
     * Once you submit the job with `sbatch firstslurm_array.sl`, take a note of the jobid and run the command `squeue -j jobid`. For an example, let's use the hypothetical job id 23284978 and view the output
@@ -349,8 +351,10 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     ```
 
     Let's review some of those new slurm directives and variables prior to submitting the script
+
      * Job arrays are only supported for batch jobs and the array index values are specified using the `--array` or `-a` option. This is the most important directive in an array script
      * .out filename %A and %a where : %A will be replaced by the value of `SLURM_ARRAY_JOB_ID` (will be set to the first job ID of the array)  and %a will be replaced by the value of `SLURM_ARRAY_TASK_ID`(will be set to the job array index value). Let's review the meaning of these two variables after submitting the job
+
     Content of `250sims_2arrayindex.sl` should be as below. Please discuss as you make progress
 
     ```bash
@@ -371,7 +375,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     mkdir -p $TMPDIR
 
     #Sismonr specific variable
-    export GROUP_ID=1.01
+    export GROUP_ID=1
 
     module purge
     module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
@@ -381,11 +385,11 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 
     * Submit the script with  `sbatch 250sims_2arrayindex.sl`, take a not on the jobid and run the command `squeue -j jobid`. 
     * Take a look at the content of *.out* and *.err* files in *slurmout* directory
-    * If all goes well, job should run within 10 minutes and will generate two *.RData* files in current working directory .i.e. `Exercise_5.4`
+    * If all goes well, job should run within 10 minutes and will generate two *.rds* files in current working directory .i.e. `Exercise_5.4`
 
     ```
-    simulation_1_group1.01.RData
-    simulation_2_group1.01.RData
+    simulation_1_group1.rds
+    simulation_2_group1.rds
     ```
 
 ???+ danger question "Exercise 5.5 (Group)"

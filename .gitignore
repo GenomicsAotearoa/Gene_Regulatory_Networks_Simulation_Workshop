@@ -40,3 +40,7 @@ vignettes/*.pdf
 
 # Simulations output 
 data/backup_250_simulations
+
+## VScode setting OAB
+.vscode/
+conda_env_sism.yml
