@@ -113,4 +113,13 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-    - Introduction: 'docs/images/sismonr_network.html'
+    - 'docs/images/sismonr_network.html'
+    - index.md
+    - 01_introduction.md
+    - 02_getting_started_sismonr.md
+    - 03_scaling_up.md
+    - 04_working_with_job_scheduler.md
+    - 05_parallel_job_arrays.md
+    - 06_post_processing.md
+    - 07_supplementary.md
+    - 08_supplementary_2.md
