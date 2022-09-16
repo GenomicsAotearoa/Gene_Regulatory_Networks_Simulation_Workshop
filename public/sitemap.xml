@@ -2,83 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/01_introduction/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/02_getting_started_sismonr/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/03_scaling_up/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/04_working_with_job_scheduler/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/05_parallel_job_arrays/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/06_post_processing/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/07_supplementary/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/08_supplementary_2/</loc>
-<<<<<<< HEAD
-         <lastmod>2022-09-12</lastmod>
-=======
-         <lastmod>2022-09-14</lastmod>
->>>>>>> e39007356ec8c8c9328a72a29401241f0aaf9ae7
+         <lastmod>2022-09-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
