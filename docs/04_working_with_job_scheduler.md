@@ -26,7 +26,15 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * LSF – IBM Systems
 
 
-All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. The main commands you will use with Slurm on NeSI Mahuika cluster are:
+All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. 
+
+## Life cycle of a slurm job
+
+<br>
+![image](./nesi_images/batch_system_flow%20.png)
+<br>
+
+The main commands you will use with Slurm on NeSI Mahuika cluster are:
    
 ---
 
@@ -62,12 +70,6 @@ A quick note on `sinfo`(Query the current state of nodes) which is not a command
      #Explore the capacity of a compute node
      $ sinfo -n wch001 -o "%n %c %m"
      ```
-
-## Life cycle of a slurm job
-
-<br>
-![image](./nesi_images/batch_system_flow%20.png)
-<br>
 
 
 ## Anatomy of a slurm script and submitting first slurm job 🧐
