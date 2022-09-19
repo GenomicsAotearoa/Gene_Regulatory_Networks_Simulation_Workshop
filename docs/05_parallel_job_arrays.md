@@ -392,14 +392,11 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
     simulation_2_group1.rds
     ```
 
-???+ danger question "Exercise 5.5 (Group)"
-
-
-    * Host will assign you to a breakout room (zoom) or a group. 
-    * Given the time constraint and the amount of resources required to run all of the simulations, each group will submit a **single** array job with 250 indexes.
+???+ danger question "Exercise 5.5"
+ 
     * Start with changing the working directory to `Exercise_5.5`
-    * As a group, write a slurm script based on `250sims_2arrayindex.sl` from Exercise 5.4 to run 250 arrays. Also, don't forget that you do need a copy of the `simulate_colsystem_array_2sim.R` in current workig directory (OR use the relative/absolute path of working directory from previous exercise) Double check...Triple check before submission. 🙂
-    * Then, choose **one person** in the group who will submit the job. The simulations output should be created in the working directory of the person who submitted the job. In the next section, the other members of the group will have to copy these output files for the post-processing step.(Or the instructors will provide a copy for you)
+    * Write a slurm script based on `250sims_2arrayindex.sl` from Exercise 5.4 to run 250 arrays. Also, don't forget that you do need a copy of the `simulate_colsystem_array_2sim.R` to current workig directory (OR use the relative/absolute path of working directory from previous exercise) Double check...Triple check before submission. 🙂
+    
 
 ---
 
