@@ -610,6 +610,7 @@
 
 
 <h1 id="6-post-processing">6. Post-processing<a class="headerlink" href="#6-post-processing" title="Permanent link">&para;</a></h1>
+<p><center><img alt="image" src="../nesi_images/post-processing.png" width="700" /></center></p>
 <h2 id="checking-that-the-job-array-worked">Checking that the job array worked<a class="headerlink" href="#checking-that-the-job-array-worked" title="Permanent link">&para;</a></h2>
 <p>In the previous section, you have seen how to run a slurm array job. Now it is time to check whether the arrays completed without failing! And if some of the arrays did fail, we would like to identify them to re-run them.</p>
 <p>As we have seen in the previous sections, the <code>sacct</code> command is useful to assess the status of submitted jobs. However, especially if you have many arrays, it can get difficult to find what you are looking for in the output. Fortunately, there is a (rather lengthy) command which allows you to obtain the ID of the arrays that failed in a format compatible with slurm. The advantage is that you can directly copy the output of this command and paste it in your slurm script for the <code>array</code> option, in order to re-run only those arrays that failed. Type the following command in the terminal:</p>
