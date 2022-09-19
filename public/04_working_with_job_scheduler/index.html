@@ -566,8 +566,15 @@
 <li>Grid Engine</li>
 <li>LSF – IBM Systems</li>
 </ul>
+<p><img alt="image" src="../nesi_images/slurm_comms2compute.png" />
+<small>Researchers can not communicate directly to  Compute nodes from the login node. Only way to establish a connection OR send scripts to compute nodes is to use scheduler as the carrier/manager</small></p>
 </div>
-<p>All NeSI clusters use Slurm <em>(Simple Linux Utility for Resource Management)</em> scheduler (or job submission system) to manage resources and how they are made available to users. The main commands you will use with Slurm on NeSI Mahuika cluster are:</p>
+<p>All NeSI clusters use Slurm <em>(Simple Linux Utility for Resource Management)</em> scheduler (or job submission system) to manage resources and how they are made available to users. </p>
+<h2 id="life-cycle-of-a-slurm-job">Life cycle of a slurm job<a class="headerlink" href="#life-cycle-of-a-slurm-job" title="Permanent link">&para;</a></h2>
+<p><br>
+<img alt="image" src="../nesi_images/batch_system_flow%20.png" />
+<br></p>
+<p>The main commands you will use with Slurm on NeSI Mahuika cluster are:</p>
 <hr />
 <table>
 <thead>
@@ -625,10 +632,6 @@
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>$ sinfo -n wch001 -o <span class="s2">&quot;%n %c %m&quot;</span>
 </code></pre></div>
 </details>
-<h2 id="life-cycle-of-a-slurm-job">Life cycle of a slurm job<a class="headerlink" href="#life-cycle-of-a-slurm-job" title="Permanent link">&para;</a></h2>
-<p><br>
-<img alt="image" src="../nesi_images/batch_system_flow%20.png" />
-<br></p>
 <h2 id="anatomy-of-a-slurm-script-and-submitting-first-slurm-job">Anatomy of a slurm script and submitting first slurm job 🧐<a class="headerlink" href="#anatomy-of-a-slurm-script-and-submitting-first-slurm-job" title="Permanent link">&para;</a></h2>
 <p>As with most other scheduler systems, job submission scripts in Slurm consist of a header section with the shell specification and options to the submission command (<code>sbatch</code> in this case) followed by the body of the script that actually runs the commands you want. In the header section, options to <code>sbatch</code> should be prepended with <code>#SBATCH</code>.</p>
 <p><br>
