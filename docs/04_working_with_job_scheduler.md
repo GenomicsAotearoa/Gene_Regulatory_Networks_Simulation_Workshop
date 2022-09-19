@@ -26,6 +26,7 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * LSF – IBM Systems
 
     ![image](./nesi_images/slurm_comms2compute.png)
+    <small>Researchers can not communicate directly to  Compute nodes from the login node. Only way to establish a connection OR send scripts to compute nodes is to use scheduler as the carrier/manager</small>
 
 
 All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. 
