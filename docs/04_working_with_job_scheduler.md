@@ -25,6 +25,8 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * Grid Engine
     * LSF – IBM Systems
 
+    ![image](./nesi_images/slurm_comms2compute.png)
+
 
 All NeSI clusters use Slurm *(Simple Linux Utility for Resource Management)* scheduler (or job submission system) to manage resources and how they are made available to users. 
 
