@@ -67,5 +67,5 @@ Before getting started, have a look at the [Supplementary data](./07_supplementa
 |          | 2:30pm-3.30pm     | 3. Scaling up your work<br>4. Working with job scheduler       |
 | 2nd day: | 10am-12pm      | 5. Automating large number of tasks                            |
 |          | 12pm-1pm       | *Lunch break*                                                  |
-|          | 1pm-2pm        | 5. Post-processing                                             |
-|          | 2pm -        | Question time                                                  |
+|          | 1pm-2.30pm        | 5. Post-processing                                             |
+|          | 2.30pm -        | Question time                                                  |
