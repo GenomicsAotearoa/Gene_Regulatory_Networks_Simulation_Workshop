@@ -64,8 +64,8 @@ Before getting started, have a look at the [Supplementary data](./07_supplementa
 | 1st day: | 10am-12:30pm   | 1. Introduction                                                |
 |          | 12:30pm-1:30pm | *Lunch break*                                                  |
 |          | 1:30pm-2:30pm  | 2. Getting started with sismonr                                |
-|          | 2:30pm-4pm     | 3. Scaling up your work<br>4. Working with job scheduler       |
+|          | 2:30pm-3.30pm     | 3. Scaling up your work<br>4. Working with job scheduler       |
 | 2nd day: | 10am-12pm      | 5. Automating large number of tasks                            |
 |          | 12pm-1pm       | *Lunch break*                                                  |
-|          | 1pm-3pm        | 5. Post-processing                                             |
-|          | 3pm-4pm        | Question time                                                  |
+|          | 1pm-2pm        | 5. Post-processing                                             |
+|          | 2pm -        | Question time                                                  |
