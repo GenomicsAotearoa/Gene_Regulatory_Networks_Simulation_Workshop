@@ -115,7 +115,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
     /nesi/project/nesi02659/sismonr_workshop/workingdir/me123/  
 
     #create a new directory for this section and change the directory to it
-    $ mkdir 4_wwscheduler && cd 4_wwscheduler   
+    $ mkdir Exercise_4.2 && cd Exercise_4.2   
 
     #use a text editor of choice to create a file named firstslurm.sl - we will use nano here
     $ nano firstslurm.sl
