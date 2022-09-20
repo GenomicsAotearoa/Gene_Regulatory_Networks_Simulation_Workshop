@@ -123,7 +123,7 @@ There are a number of different environment module implementations commonly used
         >All module names on NeSI Software stack have a version and toolchain/environment suffixes. If none is specified, then the default version of the software is loaded. The default version can be seen with the `module avail modulename` command (corresponding module name will have `(D)` suffix)
 
     ```bash
-    $ module load MY_APPLICATION
+    $ module load Module_Name
     ```
 
 
