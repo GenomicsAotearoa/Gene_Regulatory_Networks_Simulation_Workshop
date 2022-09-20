@@ -900,13 +900,10 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span> <span class="nv">TMPDIR</span><span class="o">=</span>/nesi/nobackup/nesi02659/tmp/tmp_<span class="nv">$SLURM_JOB_ID</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mkdir -p <span class="nv">$TMPDIR</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>module purge
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>module purge
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Rscript --vanilla simulate_colsystem_1second.R 
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Rscript --vanilla simulate_colsystem_1second.R 
 </code></pre></div>
 </details>
 <hr />
