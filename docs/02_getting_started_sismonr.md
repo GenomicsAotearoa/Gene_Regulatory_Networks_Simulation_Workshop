@@ -368,13 +368,13 @@ Alternatively, it can be downloaded [here](https://github.com/GenomicsAotearoa/G
 You will start by creating a copy of this object in your working directory, for easier access. In a terminal, type:
 
 ```bash
-$ cp /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData ~/sism_2021/
+$ cp /nesi/project/nesi02659/sismonr_workshop/sismonr_anthocyanin_system.RData ~/sism/
 ```
 
 You can check that it worked with:
 
 ```bash
-$ ls -l ~/sism_2021/
+$ ls -l ~/sism/
 
 total 0
 -r--r-----+ 1 oangelin nesi02659 5417 Nov 22 17:05 sismonr_anthocyanin_system.RData
@@ -393,7 +393,7 @@ Create a new sismonr Jupyter Notebook and add:
 ```r
 library(sismonr)
 
-load("~/sism_2021/sismonr_anthocyanin_system.RData")
+load("~/sism/sismonr_anthocyanin_system.RData")
 ```
 
 !!! info "This `sismonr_anthocyanin_system.RData` file contains the following R objects:"
