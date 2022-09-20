@@ -712,8 +712,8 @@ $ sbatch mpi_hw.sl</code></li>
 <h3 id="strong-vs-weak-scaling">Strong vs. weak scaling<a class="headerlink" href="#strong-vs-weak-scaling" title="Permanent link">&para;</a></h3>
 <p>Scaling describes how the runtime of a parallel application changes as the number of processors is increased. Usually, there are two types of scaling of interest:</p>
 <ul>
-<li><strong>strong scaling</strong> is obtained by increasing the number of processors P used for a problem of fixed size/complexity N. As the number of processors increases, the amount of work per processor should decrease.</li>
-<li><strong>weak scaling</strong> is obtained by increasing both the number of processors and the system size/complexity, with both of these being increased at the same rate.</li>
+<li><strong>strong scaling</strong> is obtained by increasing the number of processors <span class="arithmatex">\(P\)</span> used for a problem of fixed <em>size/complexity</em> <span class="arithmatex">\(N\)</span>. As the number of processors increases, the amount of work per processor should decrease.</li>
+<li><strong>weak scaling</strong> is obtained by increasing both the number of processors and the system <em>size/complexity</em>, with both of these being increased at the same rate.</li>
 </ul>
 <p>Ideally, for strong scaling, the runtime will keep decreasing in direct proportion to the growing number of processors used. For weak scaling, the ideal situation is for the runtime to remain constant as the system size, and number of processors used, are increased. In general, good strong scaling is more relevant for most scientific problems, but is also more difficult to achieve than weak scaling.</p>
 <div class="admonition quote">
@@ -762,7 +762,7 @@ Amdhal’s law suggests that, the shorter the journey, the more important the fi
 <p><center><img alt="image" src="../nesi_images/edi_2_syd.png" width="450" /></center></p>
 <details class="success">
 <summary>Answer</summary>
-<p>The Jumbo Jet will cover that distance in around <strong>24 hrs</strong> for a total trip time of <strong>28 hrs</strong>, and the Concorde covers this distance in <strong>8hrs</strong> for a total trip time of <strong>12 hrs</strong>. The speedup is therefor <strong>2.3x</strong> (as opposed to <strong>1.9x</strong> for the trip to New York).
+<p>The Jumbo Jet will cover that distance in around <strong>24 hrs</strong> for a total trip time of <strong>28 hrs</strong>, and the Concorde covers this distance in <strong>8hrs</strong> for a total trip time of <strong>12 hrs</strong>. The speedup is therefore <strong>2.3x</strong> (as opposed to <strong>1.9x</strong> for the trip to New York).
 This is Gustafson’s law in effect! Bigger problems scale better. If we increase both distance (i.e. <span class="arithmatex">\(N\)</span>) and maximum speed (i.e. <span class="arithmatex">\(P\)</span>), we maintain the same balance of “serials” to “parallel”, and get a better speedup.</p>
 </details>
 </div>
