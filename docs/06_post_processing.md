@@ -264,7 +264,7 @@ sim_df
 Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the `plotSimulation` function from sismonr. We first have to load the `sismonr_anthocyanin_system.RData` object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plot:
 
 ```r
-load("~/sism_2021/sismonr_anthocyanin_system.RData")
+load("~/sism/sismonr_anthocyanin_system.RData")
 ```
 
 ```r
