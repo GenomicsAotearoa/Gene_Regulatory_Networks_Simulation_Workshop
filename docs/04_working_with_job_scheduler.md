@@ -298,9 +298,6 @@ Although `nn_seff` command is a quick and easy way to determine the resource uti
         * Now to the bash commands section of the slurm script.  😱😱😱😱😱
     
     ```bash
-    export TMPDIR=/nesi/nobackup/nesi02659/tmp/tmp_$SLURM_JOB_ID
-    mkdir -p $TMPDIR
-    
     module purge
     module load sismonr/2.0.0-gimkl-2020a-R-4.1.0
     
