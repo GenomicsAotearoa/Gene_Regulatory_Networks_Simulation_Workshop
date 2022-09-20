@@ -252,7 +252,7 @@ Ideally, for strong scaling, the runtime will keep decreasing in direct proporti
 
             ??? success "Answer"
 
-                The Jumbo Jet will cover that distance in around **24 hrs** for a total trip time of **28 hrs**, and the Concorde covers this distance in **8hrs** for a total trip time of **12 hrs**. The speedup is therefor **2.3x** (as opposed to **1.9x** for the trip to New York).
+                The Jumbo Jet will cover that distance in around **24 hrs** for a total trip time of **28 hrs**, and the Concorde covers this distance in **8hrs** for a total trip time of **12 hrs**. The speedup is therefore **2.3x** (as opposed to **1.9x** for the trip to New York).
                 This is Gustafson’s law in effect! Bigger problems scale better. If we increase both distance (i.e. $N$) and maximum speed (i.e. $P$), we maintain the same balance of “serials” to “parallel”, and get a better speedup.
 
 
