@@ -195,8 +195,8 @@ Unfortunately, this is often not the case…
 
 Scaling describes how the runtime of a parallel application changes as the number of processors is increased. Usually, there are two types of scaling of interest:
 
-* **strong scaling** is obtained by increasing the number of processors P used for a problem of fixed size/complexity N. As the number of processors increases, the amount of work per processor should decrease.
-* **weak scaling** is obtained by increasing both the number of processors and the system size/complexity, with both of these being increased at the same rate.
+* **strong scaling** is obtained by increasing the number of processors $P$ used for a problem of fixed *size/complexity* $N$. As the number of processors increases, the amount of work per processor should decrease.
+* **weak scaling** is obtained by increasing both the number of processors and the system *size/complexity*, with both of these being increased at the same rate.
 
 Ideally, for strong scaling, the runtime will keep decreasing in direct proportion to the growing number of processors used. For weak scaling, the ideal situation is for the runtime to remain constant as the system size, and number of processors used, are increased. In general, good strong scaling is more relevant for most scientific problems, but is also more difficult to achieve than weak scaling.
 
