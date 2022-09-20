@@ -806,7 +806,7 @@
 </code></pre></div>
 <h2 id="visualising-the-simulations">Visualising the simulations<a class="headerlink" href="#visualising-the-simulations" title="Permanent link">&para;</a></h2>
 <p>Now that we have all 500 simulations into one data-frame, we can easily visualise them! We'll start by using the <code>plotSimulation</code> function from sismonr. We first have to load the <code>sismonr_anthocyanin_system.RData</code> object, which contains the correspondence between species IDs and names, and the colours that we want to use for the plot:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nf">load</span><span class="p">(</span><span class="s">&quot;~/sism_2021/sismonr_anthocyanin_system.RData&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nf">load</span><span class="p">(</span><span class="s">&quot;~/sism/sismonr_anthocyanin_system.RData&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nf">plotSimulation</span><span class="p">(</span><span class="n">sim_df</span><span class="p">,</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>               <span class="n">molecules</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">colours</span><span class="p">),</span>
