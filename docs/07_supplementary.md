@@ -22,7 +22,7 @@
          ```bash
          cd ~
          mkdir -p /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER
-         ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism_2022
+         ln -s  /nesi/project/nesi02659/sismonr_workshop/workingdir/$USER ~/sism
          ```
          
      2. <p>Guide Jupyter file explorer (left panel) to above working directory<br><img src="nesi_images/jupyter_fileexplorer.png" alt="drawing" width="900"/></p> 
