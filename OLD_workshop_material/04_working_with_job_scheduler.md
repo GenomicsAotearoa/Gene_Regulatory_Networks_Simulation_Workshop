@@ -177,6 +177,9 @@ $ sacct
 
  When things go wrong, first step of **debugging** (STORY TIME !) starts with a referral to these files. 
 
+ !!!+ info ""
+      <center>![image](/docs/nesi_images/gracehopper.png)<center>
+
 ## Assessing resource utilisation (cpu, memory, time)
 
 Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing. The three resources that every single job submitted on the platform needs to request are:
