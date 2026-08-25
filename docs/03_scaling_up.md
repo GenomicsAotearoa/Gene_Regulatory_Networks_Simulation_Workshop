@@ -1,6 +1,6 @@
 # 3. Scaling up your work
 
-<center>![image](./nesi_images/scaling.png){width="350"}</center>
+![image](./nesi_images/scaling.png){ .center width="350"}
 
 ## Introduction to HPC
 

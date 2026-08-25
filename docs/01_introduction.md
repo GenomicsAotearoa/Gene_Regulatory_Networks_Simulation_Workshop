@@ -3,7 +3,7 @@
 Slides are available [here](workshop_slides.html).
 
 
-<center>![image](./nesi_images/biological_circuit.png){width="500"}</center>
+![image](./nesi_images/biological_circuit.png){ .center width="500" }
 
 ## Why simulations are important in research
 

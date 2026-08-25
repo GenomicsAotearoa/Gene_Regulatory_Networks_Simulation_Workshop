@@ -1,6 +1,6 @@
 # 5. Parallel Job Arrays
 
-<center>![image](./nesi_images/parallel_comp.png){width="450"}</center>
+![image](./nesi_images/parallel_comp.png){.center width="450"}
 
 ## Introduction to parallel computing
 
@@ -274,7 +274,7 @@ In brief, Job arrays allow you to leverage Slurm’s ability to create multiple 
 * Running the same program multiple times with different sets of data. 
 
 <br>
-<center>![image](./nesi_images/life_cycle_of%20_anarray.png){width="700"}</center>
+![image](./nesi_images/life_cycle_of%20_anarray.png){.center width="700"}
 <br>
 
 ??? question "Exercise 5.3"

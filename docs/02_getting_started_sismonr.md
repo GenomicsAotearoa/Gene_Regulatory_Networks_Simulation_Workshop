@@ -1,6 +1,6 @@
 # 2. Getting started with sismonr
 
-<center>![image](./nesi_images/sismonr_logo.png){width="200"}</center>
+![image](./nesi_images/sismonr_logo.png){ .center width="200"}
 
 ## Introduction to the sismonr package
 
@@ -49,7 +49,7 @@ Now we can open a sismonr Jupyter Notebook:
 
 Before getting started, here are some abbreviations that are often used within sismonr:
 
-<center>
+<div align="left" markdown="1">
 
 | Abbreviations | Meaning                         |
 |---------------|---------------------------------|
@@ -67,7 +67,7 @@ Before getting started, here are some abbreviations that are often used within s
 | Pm            | Modified protein                |
 | C             | Regulatory complex              |
 
-</center>
+</div>
 
 ### Generating a random GRN
 

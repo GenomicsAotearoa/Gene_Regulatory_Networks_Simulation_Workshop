@@ -1,10 +1,10 @@
-<center>
-# **Scaling Gene Regulatory Networks Simulations**
-</center>
 
-<center>
+# **Scaling Gene Regulatory Networks Simulations**
+
+
+
 ![image](./nesi_images/main_logo_f_workshop.png)
-</center>
+
 
 ## Prerequisites
 

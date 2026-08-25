@@ -1,6 +1,6 @@
 # 6. Post-processing
 
-<center>![image](./nesi_images/post-processing.png){width="700"}</center>
+![image](./nesi_images/post-processing.png){.center width="700"}
 
 ## Checking that the job array worked
 
